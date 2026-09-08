@@ -1,0 +1,33 @@
+name: Proof-Gated Speedup
+
+on:
+  workflow_dispatch:
+    inputs:
+      certificate:
+        description: Path to an evidence certificate JSON
+        required: true
+        default: evidence/certificates/example.json
+  push:
+    paths:
+      - 'evidence/**'
+      - 'publisher/**'
+      - 'lean4/**'
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Python gate syntax
+        run: python -m py_compile publisher/gate.py publisher/manifest.py
+      - name: Run publication gate when certificate exists
+        shell: bash
+        run: |
+          CERT="${{ github.event.inputs.certificate }}"
+          if [[ -n "$CERT" && -f "$CERT" ]]; then
+            python publisher/gate.py "$CERT"
+          else
+            echo "No certificate supplied for this event; gate implementation validated only."
+          fi
