@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "official-bbob-dim2-instance1-s6agd-vs-cma444",
+  "run_id": "2026-09-08T19:54:00Z",
+  "claim_status": "STRONG_LOCAL",
+  "scenario_hash": "bbob|dim=2|instance_indices=1|budget=200|seed=20260810|cocoex=2.8.2|cma=4.4.4",
+  "source_hash": "s6_agd_project_feasible+cma.CMAEvolutionStrategy",
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": false,
+    "invariants": true,
+    "performance": false,
+    "lean": false
+  },
+  "why_performance_false": "S6-AGD target hits 0/24 vs CMA 1/24. No speedup claim is licensed.",
+  "why_not_verified": "Not the 360-problem dim10 budget1000 protocol. Reverse reconstruction of the full observer log not attached. Lean not instantiated from this certificate.",
+  "correlation": {"f1_i1_d2_f00": 80.88209408, "abs_error": 0.0},
+  "counts": {"S6_ONLY": 0, "CMA_ONLY": 1, "BOTH": 0, "NEITHER": 23},
+  "s6_hits": 0,
+  "cma_hits": 1,
+  "s6_invariant_pass": 24,
+  "cma_only_problem": "bbob_f021_i01_d02",
+  "s6_mean_best_f": 4638.519363224847,
+  "cma_mean_best_f": -70.11896570799713,
+  "stack": {"cocoex": "2.8.2", "cma": "4.4.4", "numpy": "2.4.4"},
+  "attached_obligations": [
+    "Replay this filter and match counts exactly (reconstruction)",
+    "Bind Lean only to invariant_pass=24/24 and Q=cocoex final_target_hit",
+    "Do not publish a speedup factor from this certificate",
+    "Scale protocol to dim10, 15 instances, budget 1000 before any VERIFIED label"
+  ]
+}

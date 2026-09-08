@@ -1,0 +1,10 @@
+{
+  "protocol": {"suite": "bbob", "filter": "dimensions: 2 instance_indices: 1", "budget": 200, "seed": 20260810, "n": 24},
+  "correlation_abs_error": 0.0,
+  "counts": {"S6_ONLY": 0, "CMA_ONLY": 1, "BOTH": 0, "NEITHER": 23},
+  "s6_hits": 0,
+  "cma_hits": 1,
+  "s6_invariant_pass": 24,
+  "elapsed_sec": 0.587493896484375,
+  "cma_only": ["bbob_f021_i01_d02"]
+}
