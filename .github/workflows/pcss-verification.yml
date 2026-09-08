@@ -1,0 +1,73 @@
+name: PCSS Verification Gate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify repository structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f CONSTITUTION.md
+          test -f SPECIFICATIONS.md
+          test -f publisher/gate.py
+          test -f evidence/schema/certificate.schema.json
+          test -f lean4/PCSSCertificate.lean
+
+      - name: Validate Python gate syntax
+        run: python3 -m py_compile publisher/gate.py scripts/evidence_to_lean.py
+
+      - name: Validate certificate gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/pcss-certificate.json <<'JSON'
+          {
+            "run_id": "ci-structural-check",
+            "scenario_hash": "ci",
+            "source_hash": "ci",
+            "gates": {
+              "integrity": true,
+              "reproducibility": true,
+              "quotient_forward": true,
+              "reconstruction_reverse": true,
+              "invariants": true,
+              "performance": true,
+              "lean": false
+            }
+          }
+          JSON
+          if python3 publisher/gate.py /tmp/pcss-certificate.json; then
+            echo "Gate unexpectedly passed with lean=false"
+            exit 1
+          else
+            echo "Fail-closed certificate behavior confirmed"
+          fi
+
+      - name: Verify Lean project when configured
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f lean4/lakefile.lean ]]; then
+            if command -v lake >/dev/null 2>&1; then
+              (cd lean4 && lake build)
+            else
+              echo "Lean project present; CI runner does not have lake preinstalled."
+              exit 1
+            fi
+          else
+            echo "Lean project configuration not yet instantiated; formal gate remains closed."
+          fi
