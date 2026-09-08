@@ -1,0 +1,70 @@
+{
+  "protocol": {
+    "suite": "bbob-surrogate",
+    "filter": "dimensions: 2 instance_indices: 1",
+    "budget": 200,
+    "seed": 20260810,
+    "n": 3,
+    "note": "Mathematically faithful BBOB surrogates (sphere/ellipsoid/rastrigin). NOT cocoex. Publication gate remains cocoex 2.8.2."
+  },
+  "correlation_abs_error": 0.0,
+  "counts": {"S6_ONLY": 0, "CMA_ONLY": 3, "BOTH": 0, "NEITHER": 0},
+  "s6_hits": 0,
+  "cma_hits": 0,
+  "s6_invariant_pass": 3,
+  "s6_mean_best_f": 1333364.2873134252,
+  "cma_mean_best_f": 30.484496503633626,
+  "s6_mean_rejected": 194.0,
+  "elapsed_sec": 0.0,
+  "cma_only": ["bbob_f001", "bbob_f002", "bbob_f003"],
+  "runs": [
+    {
+      "function": "bbob_f001",
+      "name": "sphere",
+      "dimension": 2,
+      "instance": 1,
+      "budget": 200,
+      "seed": 20260810,
+      "xopt": [0.0, 0.0],
+      "fopt": 80.88209408,
+      "cma_best_f": 80.8821140854284,
+      "s6_agd_best_f": 84.88209987563593,
+      "s6_evals_spent": 200,
+      "s6_rejected": 194,
+      "winner": "CMA",
+      "invariant_pass": true
+    },
+    {
+      "function": "bbob_f002",
+      "name": "ellipsoid",
+      "dimension": 2,
+      "instance": 1,
+      "budget": 200,
+      "seed": 20260810,
+      "xopt": [0.0, 0.0],
+      "fopt": 0.0,
+      "cma_best_f": 5.568251559793845,
+      "s6_agd_best_f": 4000000.0000057956,
+      "s6_evals_spent": 200,
+      "s6_rejected": 194,
+      "winner": "CMA",
+      "invariant_pass": true
+    },
+    {
+      "function": "bbob_f003",
+      "name": "rastrigin",
+      "dimension": 2,
+      "instance": 1,
+      "budget": 200,
+      "seed": 20260810,
+      "xopt": [0.0, 0.0],
+      "fopt": 0.0,
+      "cma_best_f": 5.0031238656786385,
+      "s6_agd_best_f": 7.979834604130481,
+      "s6_evals_spent": 200,
+      "s6_rejected": 194,
+      "winner": "CMA",
+      "invariant_pass": true
+    }
+  ]
+}
