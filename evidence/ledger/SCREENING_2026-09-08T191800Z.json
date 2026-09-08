@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "pcss-profile-screen-2026-09-08",
+  "screened_at": "2026-09-08T19:18:00Z",
+  "regime": "PCSS-v1.0",
+  "claim_status": "QUARANTINED",
+  "publication": false,
+  "verified_count": 0,
+  "families": [
+    {
+      "id": "speedup-scaffold",
+      "source": "batmeezy918/Speedup",
+      "claim_status": "CANDIDATE",
+      "gates": {
+        "integrity": false,
+        "reproducibility": false,
+        "quotient_forward": false,
+        "reconstruction_reverse": false,
+        "invariants": false,
+        "performance": false,
+        "lean": false
+      },
+      "note": "Repo defines the regime. No completed empirical certificate."
+    },
+    {
+      "id": "chronofold-protocol-benchmarks",
+      "source": "batmeezy918/chronofold/benchmarks/protocol_benchmarks.py",
+      "claim_status": "QUARANTINED",
+      "gates": {
+        "integrity": false,
+        "reproducibility": false,
+        "quotient_forward": false,
+        "reconstruction_reverse": false,
+        "invariants": false,
+        "performance": false,
+        "lean": false
+      },
+      "note": "Single interpreter timings. No hashed scenario, no baseline/candidate pair, no Q/R."
+    },
+    {
+      "id": "vault-canonical-decider-20260531T112101Z",
+      "source": "batmeezy918/chronofold-evidence-vault/results/canonical_result_json_decider_20260531T112101Z",
+      "claim_status": "CANDIDATE",
+      "gates": {
+        "integrity": false,
+        "reproducibility": false,
+        "quotient_forward": false,
+        "reconstruction_reverse": false,
+        "invariants": false,
+        "performance": false,
+        "lean": false
+      },
+      "note": "Only family with repeated baseline/candidate wall_sec artifacts. Salvageable after remanifest."
+    },
+    {
+      "id": "vault-audit-18x",
+      "source": "chronofold-evidence-vault/results/audit_18x_metric_source_and_strict_approval_*",
+      "claim_status": "QUARANTINED",
+      "gates": {
+        "integrity": false,
+        "reproducibility": false,
+        "quotient_forward": false,
+        "reconstruction_reverse": false,
+        "invariants": false,
+        "performance": false,
+        "lean": false
+      },
+      "note": "Filename 18x is not a PCSS speedup factor. Quarantined to prevent silent promotion."
+    },
+    {
+      "id": "chronofold-lean-kernel",
+      "source": "batmeezy918/chronofold/src/Chronofold",
+      "claim_status": "FORMAL_PARTIAL",
+      "gates": {
+        "integrity": false,
+        "reproducibility": false,
+        "quotient_forward": false,
+        "reconstruction_reverse": false,
+        "invariants": false,
+        "performance": false,
+        "lean": true
+      },
+      "note": "Formal operator/quotient theorems. lean=true only for mathematical obligations encoded there. performance remains false."
+    }
+  ],
+  "gates": {
+    "integrity": false,
+    "reproducibility": false,
+    "quotient_forward": false,
+    "reconstruction_reverse": false,
+    "invariants": false,
+    "performance": false,
+    "lean": false
+  },
+  "artifacts": [
+    {"path": "evidence/ledger/SCREENING_2026-09-08T191800Z.md", "sha256": "pending-canonical"},
+    {"path": "evidence/ledger/SCREENING_2026-09-08T191800Z.json", "sha256": "self"}
+  ]
+}
