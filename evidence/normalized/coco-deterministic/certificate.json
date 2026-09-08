@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "coco-deterministic-s6",
+  "run_id": "normalize-2026-09-08T191900Z",
+  "scenario_hash": "UNCOMPUTED_PENDING_LOCKED_MANIFEST",
+  "source_hash": "7cd62aabbd6620e3d61dafbeaa11e8585a0cff05",
+  "claim_status": "CANDIDATE",
+  "existence": {
+    "readme": true,
+    "harness": true,
+    "verify_sh": true,
+    "requirements_lock": true,
+    "captured_determinism_manifest": false,
+    "captured_double_run_trace": false
+  },
+  "gates": {
+    "integrity": false,
+    "reproducibility": false,
+    "quotient_forward": false,
+    "reconstruction_reverse": false,
+    "invariants": false,
+    "performance": false,
+    "lean": false
+  },
+  "attached_obligations": [
+    "Hash locked scenario after pinning environment fingerprint",
+    "Produce determinism_manifest.json from a live double-run",
+    "Set Q = SHA-256 equality of stdout/JSON/trace",
+    "Set R = re-execution of verify.sh reconstructing the same hashes",
+    "Bind Lean obligation: double-run equality, not a speedup factor",
+    "Do not claim silicon speedup from this family; it is a determinism contract"
+  ],
+  "artifacts": [
+    {"path": "chronofold/benchmarks/coco_deterministic/README.md", "sha256": "7cd62aabbd6620e3d61dafbeaa11e8585a0cff05"}
+  ]
+}

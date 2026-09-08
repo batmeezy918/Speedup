@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "vault-canonical-decider-20260531T112101Z",
+  "run_id": "20260531T112101Z",
+  "normalized_at": "2026-09-08T19:19:00Z",
+  "scenario_hash": "UNCOMPUTED_PENDING_LOCKED_MANIFEST",
+  "source_hash": "35f0124d184bc9af2ecb1b15ef6b08528ddd70c1",
+  "claim_status": "CANDIDATE",
+  "existence": {
+    "decision_json": true,
+    "summary_tsv": true,
+    "five_baseline_repeats": true,
+    "five_candidate_repeats": true,
+    "wall_sec_files": true
+  },
+  "original_status": "CANONICAL_L1_TARGET_SUCCESS_PASS_L2_L3_BLOCKED",
+  "equivalence_levels": {
+    "L1_target_success": true,
+    "L2_semantic_task": false,
+    "L3_concrete_evidence": false
+  },
+  "performance": {
+    "metric": "wall_sec_median",
+    "baseline": 1.679053177,
+    "candidate": 1.644068229,
+    "median_baseline": 1.679053177,
+    "median_candidate": 1.644068229,
+    "samples": 5,
+    "wall_speedup_reported": 1.0212794988571001,
+    "internal_speedup_reported": 1.3907721280602636,
+    "throughput_ratio_reported": 0.695870576937283,
+    "scope": "this captured pair only; L2/L3 blocked so ratio is not a verified speedup"
+  },
+  "gates": {
+    "integrity": false,
+    "reproducibility": false,
+    "quotient_forward": false,
+    "reconstruction_reverse": false,
+    "invariants": false,
+    "performance": false,
+    "lean": false
+  },
+  "why_performance_is_false": "Reported 1.021 wall ratio exists as a number in the captured JSON, but Q is only L1. L2 semantic tasks differ (rank16_convergence_collapse vs residue_extraction_map). Constitution forbids promoting a ratio across non-equivalent tasks.",
+  "attached_obligations": [
+    "Declare Q explicitly as L1-only or lift L2/L3 to pass",
+    "Re-run both scripts under one hashed scenario and environment fingerprint",
+    "Prove reconstruction of L1 hash from certificate",
+    "Do not treat 1.39 internal_speedup as publishable",
+    "Lean may encode L1 hash equality; it may not encode wall_speedup as a theorem without X gate"
+  ],
+  "artifacts": [
+    {"path": "chronofold-evidence-vault/results/canonical_result_json_decider_20260531T112101Z/canonical_result_decision.json", "sha256": "35f0124d184bc9af2ecb1b15ef6b08528ddd70c1"},
+    {"path": "chronofold-evidence-vault/results/canonical_result_json_decider_20260531T112101Z/canonical_summary.tsv", "sha256": "968e907b6eae3169870f3e71a4bc1566cfc31287"}
+  ]
+}

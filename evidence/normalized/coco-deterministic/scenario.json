@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "coco-deterministic-s6",
+  "source_repo": "batmeezy918/chronofold",
+  "source_path": "benchmarks/coco_deterministic",
+  "existence_verified": true,
+  "baseline": {"command": "official cocoex.Suite bbob", "revision": "UNPINNED_IN_THIS_CERTIFICATE"},
+  "candidate": {"command": "bash verify.sh", "revision": "chronofold main benchmarks/coco_deterministic"},
+  "parameters": {
+    "python": "3.10.14",
+    "coco-experiment": "2.8.2",
+    "numpy": "2.2.6",
+    "PYTHONHASHSEED": 0,
+    "seed": 20260810,
+    "suite": "bbob",
+    "dimension": 10,
+    "budget": 1000
+  },
+  "environment": {"os": "UNPINNED", "arch": "UNPINNED", "cpu": "UNPINNED"},
+  "measurement": {"warmups": 0, "samples": 0, "metric": "function_evaluations_to_target", "aggregation": "undeclared_in_captured_run"},
+  "quotient": {"definition": "byte-identical stdout/JSON/trace on double-run", "metric": "exact"},
+  "reconstruction": {"operator": "replay_verify_sh", "metric": "sha256_manifest", "tolerance": "exact"},
+  "invariants": ["PYTHONHASHSEED=0", "fixed suite/dim/budget", "no duplicated COCO objective"],
+  "random_seed": 20260810
+}

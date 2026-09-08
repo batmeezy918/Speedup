@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "coco-head-to-head-s6-vs-cma-4.4.4",
+  "source_repo": "batmeezy918/chronofold",
+  "source_path": "benchmarks/coco_head_to_head",
+  "existence_verified": true,
+  "baseline": {"command": "cma==4.4.4 on cocoex bbob dim10 budget1000", "revision": "PIN_CMA_4.4.4"},
+  "candidate": {"command": "S6 deterministic path same suite", "revision": "chronofold main"},
+  "parameters": {
+    "suite": "bbob",
+    "dimension": 10,
+    "functions": 24,
+    "instances": 15,
+    "problems": 360,
+    "budget": 1000
+  },
+  "environment": {"os": "UNPINNED", "arch": "UNPINNED", "cpu": "UNPINNED"},
+  "measurement": {"warmups": 0, "samples": 0, "metric": "evaluations_to_coco_target", "aggregation": "per-problem classification"},
+  "quotient": {"definition": "same problem, budget, observer; target-hit boolean per problem", "metric": "exact target-hit"},
+  "reconstruction": {"operator": "replay_head_to_head.py", "metric": "per-problem class equality", "tolerance": "exact"},
+  "invariants": ["identical suite/budget/observer", "cma treated as reference not SOTA", "S6 diagnostics not substituted for COCO measures"],
+  "random_seed": 0
+}

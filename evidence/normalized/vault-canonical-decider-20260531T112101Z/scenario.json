@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "vault-canonical-decider-20260531T112101Z",
+  "source_repo": "batmeezy918/chronofold-evidence-vault",
+  "source_path": "results/canonical_result_json_decider_20260531T112101Z",
+  "existence_verified": true,
+  "baseline": {"command": "baseline script repeats 1-5", "revision": "vault 20260531T112101Z"},
+  "candidate": {"command": "candidate script repeats 1-5", "revision": "vault 20260531T112101Z"},
+  "parameters": {"target_id": "RSA-260", "bit_size": 862, "repeats": 5},
+  "environment": {"os": "UNPINNED", "arch": "UNPINNED", "cpu": "UNPINNED"},
+  "measurement": {"warmups": 0, "samples": 5, "metric": "wall_sec", "aggregation": "median"},
+  "quotient": {"definition": "L1 target_id+success only", "metric": "exact L1 hash"},
+  "reconstruction": {"operator": "replay both scripts", "metric": "L1 hash equality", "tolerance": "exact"},
+  "invariants": ["exit_code=0", "L1 hash bd4b8fe4d4662c747bca669c6d6e84f684b44e407548af01cb286ea0fa312c75"],
+  "random_seed": 0
+}

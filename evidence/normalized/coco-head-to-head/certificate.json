@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "coco-head-to-head-s6-vs-cma-4.4.4",
+  "run_id": "normalize-2026-09-08T191900Z",
+  "scenario_hash": "UNCOMPUTED_PENDING_LOCKED_MANIFEST",
+  "source_hash": "015f4daf32fefbfee30205df5c192f0981843d66",
+  "claim_status": "CANDIDATE",
+  "existence": {
+    "readme": true,
+    "head_to_head_py": true,
+    "requirements_lock": true,
+    "captured_360_problem_results": false
+  },
+  "gates": {
+    "integrity": false,
+    "reproducibility": false,
+    "quotient_forward": false,
+    "reconstruction_reverse": false,
+    "invariants": false,
+    "performance": false,
+    "lean": false
+  },
+  "attached_obligations": [
+    "Execute the 360-problem suite under a hashed scenario",
+    "Record S6_ONLY / CMA_ONLY / BOTH / NEITHER per problem",
+    "Q-forward: same target-hit classification under replay",
+    "Q-reverse: reconstruct per-problem table from certificate",
+    "Performance gate uses evaluations-to-target, not wall-clock alone",
+    "Lean binds only declared classification counts, not a universal speedup"
+  ],
+  "artifacts": [
+    {"path": "chronofold/benchmarks/coco_head_to_head/README.md", "sha256": "015f4daf32fefbfee30205df5c192f0981843d66"}
+  ]
+}
