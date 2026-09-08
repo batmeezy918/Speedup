@@ -1,0 +1,16 @@
+{
+  "target": "Termux Android 15 aarch64",
+  "canonical": {"branches": 24, "prefix_steps": 5000, "suffix_steps": 80, "inner_work": 48, "repeats": 7, "median_speedup": 17.54427741717751, "hash_output_equivalence": true},
+  "stability": [
+    {"branches": 2, "predicted": 1.9689922480620154, "measured_median": 1.970248, "relative_error": 0.0006377637795275868},
+    {"branches": 4, "predicted": 3.819548872180451, "measured_median": 3.805239, "relative_error": 0.003746482283464618},
+    {"branches": 8, "predicted": 7.205673758865248, "measured_median": 7.197757, "relative_error": 0.0010986840551180492},
+    {"branches": 24, "predicted": 17.61849710982659, "measured_median": 17.559338, "relative_error": 0.0033577841207348184},
+    {"branches": 48, "predicted": 27.58371040723982, "measured_median": 27.404334, "relative_error": 0.006502983267716638}
+  ],
+  "max_relative_error": 0.006502983267716638,
+  "boundary_condition": "(b-1)*p > 0",
+  "boundary_tests_pass": true,
+  "status": "VALIDATED_LOCAL_CONDITIONAL_STABILITY",
+  "definitive_claim": "The target-device runtime follows the derived shared-prefix work-elimination scaling across five branch scales; the canonical 24-branch workload retains a 17.544277x median verified runtime speedup."
+}
