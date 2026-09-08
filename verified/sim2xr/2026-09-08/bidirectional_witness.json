@@ -1,0 +1,22 @@
+{
+  "schema": "PCSS-SIM2XR-BIDIRECTIONAL-WITNESS-1.0",
+  "status": "STRONG_LOCAL_INTERNAL_VERIFICATION",
+  "mechanism": "exact coordinate invariant quotient of diagonal propagation",
+  "platform": "Android-16-aarch64-64bit-ELF",
+  "python": "3.14.6",
+  "numpy": "2.4.4",
+  "seed": 20260817,
+  "tolerance": 1e-12,
+  "cases": [
+    {"d":256,"r":2,"steps":1000,"intertwining_residual":0.0,"task_error":0.0,"reconstruction_error":0.0,"dense_median_s":0.001631562,"reduced_median_s":0.001456718,"speedup":1.1200259762012963,"forward_reverse_pass":true},
+    {"d":1024,"r":4,"steps":1000,"intertwining_residual":0.0,"task_error":0.0,"reconstruction_error":0.0,"dense_median_s":0.002464219,"reduced_median_s":0.001506823,"speedup":1.6353738959386737,"forward_reverse_pass":true},
+    {"d":4096,"r":8,"steps":1000,"intertwining_residual":0.0,"task_error":0.0,"reconstruction_error":0.0,"dense_median_s":0.006193021,"reduced_median_s":0.001513282,"speedup":4.092443444116827,"forward_reverse_pass":true},
+    {"d":16384,"r":16,"steps":1000,"intertwining_residual":0.0,"task_error":0.0,"reconstruction_error":0.0,"dense_median_s":0.023672135,"reduced_median_s":0.001485625,"speedup":15.934125368111065,"forward_reverse_pass":true},
+    {"d":65536,"r":32,"steps":500,"intertwining_residual":0.0,"task_error":0.0,"reconstruction_error":0.0,"dense_median_s":0.131605729,"reduced_median_s":0.000782708,"speedup":168.14154065117515,"forward_reverse_pass":true}
+  ],
+  "median_speedup": 4.092443444116827,
+  "max_speedup": 168.14154065117515,
+  "all_bidirectional_witnesses_pass": true,
+  "universal_speedup_claim": false,
+  "note": "Measured local performance for the exact tested invariant-sector construction; not a universal or asymptotic speedup theorem."
+}
