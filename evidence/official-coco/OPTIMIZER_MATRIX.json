@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "locked_at": "2026-09-08T19:25:00Z",
+  "official_interface": "cocoex.Suite('bbob')",
+  "official_metric": "evaluations_to_final_target_hit",
+  "families": [
+    {
+      "id": "S6-deterministic",
+      "source": "chronofold/benchmarks/coco_deterministic/s6_coco_harness.py",
+      "official_cocoex": true,
+      "status": "OFFICIAL_HARNESS_NOT_YET_FULL_CAPTURE",
+      "required_run": "bbob dim10 budget1000 seed20260810 double-run hash"
+    },
+    {
+      "id": "S6-vs-CMA-4.4.4",
+      "source": "chronofold/benchmarks/coco_head_to_head/head_to_head.py",
+      "official_cocoex": true,
+      "status": "OFFICIAL_HARNESS_NOT_YET_FULL_CAPTURE",
+      "required_run": "360 problems dim10 budget1000 classifications"
+    },
+    {
+      "id": "coco-bbo-setup-smoke",
+      "source": "chronofold/tools/coco-bbo-setup/smoke_test.py",
+      "official_cocoex": true,
+      "status": "ARCHITECTURE_VERIFIED_ON_PROFILE_AND_RECONFIRMED",
+      "required_run": "suite instantiate + f(0,0) correlation"
+    },
+    {
+      "id": "S6-coco-equivalent-20260515",
+      "source": "benchmarks/optimizer_evolution/s6",
+      "official_cocoex": false,
+      "status": "UNOFFICIAL_MUST_REBIND_TO_COCOEX",
+      "required_run": "replace equivalent script with cocoex Suite"
+    },
+    {
+      "id": "S7-coco-equivalent-20260515",
+      "source": "benchmarks/optimizer_evolution/s7",
+      "official_cocoex": false,
+      "status": "UNOFFICIAL_MUST_REBIND_TO_COCOEX",
+      "required_run": "replace equivalent script with cocoex Suite"
+    },
+    {
+      "id": "S8-covariance-20260515",
+      "source": "benchmarks/optimizer_evolution/s8",
+      "official_cocoex": false,
+      "status": "UNOFFICIAL_MUST_REBIND_TO_COCOEX",
+      "required_run": "replace equivalent script with cocoex Suite"
+    },
+    {
+      "id": "SNAP-core/plus/pp/pure/real/spme",
+      "source": "src/optimizers/* and archive/old_versions",
+      "official_cocoex": false,
+      "status": "UNOFFICIAL_MUST_REBIND_TO_COCOEX",
+      "required_run": "wrap each optimizer as cocoex observer loop"
+    },
+    {
+      "id": "iqvf-coco",
+      "source": "batmeezy918/iqvf-coco",
+      "official_cocoex": "unknown-empty-or-stale",
+      "status": "REBIND_OR_QUARANTINE",
+      "required_run": "inspect then official suite only"
+    }
+  ]
+}

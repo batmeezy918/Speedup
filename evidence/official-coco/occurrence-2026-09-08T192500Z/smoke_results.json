@@ -1,0 +1,22 @@
+{
+  "correlation": {
+    "abs_error": 0.0,
+    "f1_i1_f00": 80.88209408,
+    "profile_report": 80.88209408,
+    "zero_error_1e8": true
+  },
+  "official_stack": {
+    "cma": "4.4.4",
+    "cocoex": "2.8.2",
+    "numpy": "2.2.6"
+  },
+  "paired": [
+    {"class": "NEITHER", "cma_best": 79.48026404171078, "cma_evals": 80, "cma_hit": false, "problem_id": "bbob_f001_i01_d02", "s6_best": 79.4829661665961, "s6_evals": 80, "s6_hit": false},
+    {"class": "NEITHER", "cma_best": 394.5722016690707, "cma_evals": 80, "cma_hit": false, "problem_id": "bbob_f001_i02_d02", "s6_best": 394.48307640835424, "s6_evals": 80, "s6_hit": false},
+    {"class": "NEITHER", "cma_best": -247.09506324798227, "cma_evals": 80, "cma_hit": false, "problem_id": "bbob_f001_i03_d02", "s6_best": -247.1034714996715, "s6_evals": 80, "s6_hit": false},
+    {"class": "NEITHER", "cma_best": -152.0389104507062, "cma_evals": 80, "cma_hit": false, "problem_id": "bbob_f001_i04_d02", "s6_best": -152.0279955863635, "s6_evals": 80, "s6_hit": false},
+    {"class": "NEITHER", "cma_best": -25.234941970496163, "cma_evals": 80, "cma_hit": false, "problem_id": "bbob_f001_i05_d02", "s6_best": -25.24341547949705, "s6_evals": 80, "s6_hit": false},
+    {"class": "NEITHER", "cma_best": 183.0396890507318, "cma_evals": 80, "cma_hit": false, "problem_id": "bbob_f001_i71_d02", "s6_best": 183.02697940046318, "s6_evals": 80, "s6_hit": false}
+  ],
+  "subset": {"budget": 80, "dimension": 2, "problems": 6, "seed": 20260810, "note": "smoke subset of official bbob; not the 360-problem publication run"}
+}

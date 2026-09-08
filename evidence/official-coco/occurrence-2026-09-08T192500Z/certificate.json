@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "official-cocoex-architecture-correlation-and-dim2-smoke",
+  "run_id": "2026-09-08T19:25:00Z",
+  "claim_status": "STRONG_LOCAL",
+  "scenario_hash": "live-sandbox-cocoex-2.8.2",
+  "source_hash": "profile-tools-coco-bbo-setup",
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": false,
+    "invariants": false,
+    "performance": false,
+    "lean": false
+  },
+  "why_not_verified": "Full 360-problem dim10 budget1000 capture and reverse reconstruction were not executed in this event. Smoke documents architecture and official numeric correlation only.",
+  "correlation": {
+    "probe": "bbob f1 instance 1 dim2 f(0,0)",
+    "profile_VERIFICATION_REPORT": 80.88209408,
+    "this_run_cocoex_2_8_2": 80.88209408,
+    "abs_error": 0.0,
+    "official_correlation_zero_error": true
+  },
+  "stack": {"cocoex": "2.8.2", "cma": "4.4.4", "numpy": "2.2.6", "python": "3.12.3"},
+  "smoke_subset": {
+    "dimension": 2,
+    "budget": 80,
+    "problems": 6,
+    "seed": 20260810,
+    "s6_target_hits": 0,
+    "cma_target_hits": 0,
+    "classes": {"NEITHER": 6, "S6_ONLY": 0, "CMA_ONLY": 0, "BOTH": 0}
+  }
+}
