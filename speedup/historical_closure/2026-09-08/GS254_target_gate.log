@@ -1,0 +1,7 @@
+[20260908T201730Z][RIMS_E_EQ_PROOF_GATE_V1][INFO] repeats=5
+[20260908T201730Z][RIMS_E_EQ_PROOF_GATE_V1][INFO] baseline and candidate commands exited 0 for all five pairs.
+Pair timing signatures were produced, but semantic signatures did not match and were not machine-checkable factor witnesses.
+[20260908T201730Z][RIMS_E_EQ_PROOF_GATE_V1][INFO] verdict=INSTRUMENTATION_MISSING
+CLAIM: BLOCKED — semantic output not extractable. Add FACTOR_RESULT / structured output.
+
+Definitive status: historical GS254 18.533401810344827x claim is not re-elevated by this target run. This is a successful fail-closed gate, not a speedup failure.
