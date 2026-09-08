@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "example",
+  "baseline": {"command": "./baseline", "revision": "PIN_COMMIT"},
+  "candidate": {"command": "./candidate", "revision": "PIN_COMMIT"},
+  "parameters": {},
+  "environment": {"os": "PIN", "arch": "PIN", "cpu": "PIN"},
+  "measurement": {"warmups": 10, "samples": 100, "metric": "wall_clock_ns", "aggregation": "median"},
+  "quotient": {"definition": "acceptance_relevant_observables", "metric": "exact_or_declared_tolerance"},
+  "reconstruction": {"operator": "R", "metric": "declared_distance", "tolerance": "DECLARED"},
+  "invariants": ["DECLARED_INVARIANT"],
+  "random_seed": 0
+}
