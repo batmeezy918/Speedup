@@ -1,0 +1,17 @@
+{
+  "schema":"PCSS-1.0",
+  "status":"STRONG_LOCAL_INTERNAL_VERIFICATION",
+  "timestamp_utc":"2026-09-08T21:19:29Z",
+  "platform":"Android-16-aarch64-64bit-ELF",
+  "python":"3.14.6",
+  "numpy":"2.4.4",
+  "seed":20260817,
+  "tolerance":1e-12,
+  "mechanism":"exact coordinate invariant quotient of diagonal propagation",
+  "gates":{"integrity":true,"reproducibility":true,"quotient_forward":true,"reconstruction_reverse":true,"invariants":true,"performance":true,"lean":false},
+  "certificate_sha256":"7c8c68d9c38bfa82aee0ab9c39fbf6c0e525afc6d527dc4e178ee6fbb389de1e",
+  "all_semantic_pass":true,
+  "max_speedup":124.34623660285914,
+  "claim_boundary":"bounded local exact-construction speedup; universal speedup not claimed",
+  "lean_note":"The existing verified Lean4 workflow is the formal-verification authority; this Termux certificate's lean field reflects only local execution state."
+}
