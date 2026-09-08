@@ -1,0 +1,18 @@
+{
+  "run_id":"sim2xr_speedup_v1_20260908T201616Z",
+  "target":"Termux Android 15 aarch64",
+  "config":{"branches":24,"prefix_steps":5000,"suffix_steps":80,"inner_work":48,"repeats":7,"seed":91820260531},
+  "status":"VALIDATED_LOCAL_MEASURED_REPRODUCED",
+  "median_speedup":17.54427741717751,
+  "median_time_reduction_pct":0.9430013572960887,
+  "work_reduction_pct":0.943241469816273,
+  "all_hash_match":true,
+  "all_output_match":true,
+  "observed_speedups":[16.506075,17.569849,17.617531,17.469194,17.577857,17.509339,17.546782],
+  "theoretical_step_ratio":17.61849710982659,
+  "baseline_steps":121920,
+  "sim2xr_steps":6920,
+  "skipped_steps":115000,
+  "definitive_claim":"Exact output-equivalent SIM2XR shared-prefix execution achieved a median 17.544277x verified runtime speedup on the declared target workload.",
+  "boundary":"shared-prefix workload only; not universal/HPC/quantum advantage"
+}
