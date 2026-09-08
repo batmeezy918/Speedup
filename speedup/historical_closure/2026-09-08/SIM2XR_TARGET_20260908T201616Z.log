@@ -1,0 +1,11 @@
+[2026-09-08T20:16:16Z][SIM2XR_SPEEDUP_V1][START] run_id=sim2xr_speedup_v1_20260908T201616Z
+[2026-09-08T20:16:16Z][SIM2XR_SPEEDUP_V1][CONFIG] {"branches":24,"inner_work":48,"prefix_steps":5000,"repeats":7,"seed":91820260531,"suffix_steps":80}
+[2026-09-08T20:16:24Z][RESULT] repeat=1 speedup=16.506075 hash_match=True
+[2026-09-08T20:16:32Z][RESULT] repeat=2 speedup=17.569849 hash_match=True
+[2026-09-08T20:16:40Z][RESULT] repeat=3 speedup=17.617531 hash_match=True
+[2026-09-08T20:16:48Z][RESULT] repeat=4 speedup=17.469194 hash_match=True
+[2026-09-08T20:16:56Z][RESULT] repeat=5 speedup=17.577857 hash_match=True
+[2026-09-08T20:17:03Z][RESULT] repeat=6 speedup=17.509339 hash_match=True
+[2026-09-08T20:17:11Z][RESULT] repeat=7 speedup=17.546782 hash_match=True
+[2026-09-08T20:17:11Z][COMPLETE] median_speedup=17.544277 time_reduction=94.300136% work_reduction=94.324147% PASS=True
+[NOTE] cfsnap command was unavailable after the run; the benchmark itself completed and emitted its own snapshot plus SHA256 path.
