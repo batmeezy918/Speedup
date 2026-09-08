@@ -1,0 +1,6 @@
+e2ca58311a498a300ef09a6e002f6d4e62185926617bfca4a9d12aa5bb190aa4  SIM2XR_FIRST_PRINCIPLES_STABILITY.json
+165dc37ce0ef8d9432ff58e3d02ab2c29f857295d6e2f71a2db08ccdaae6d810  sim2xr_stability_20260908T203831Z.log
+1c99fde3fc72aa7c97054cd16276894e077ad81b9bc21be72c6f123dfe851211  sim2xr_stability_closure_20260908.tar.gz
+f4c13bf5afd7e5e6a25aaf370c698dd8e716ace63427334256f29213d500850b  GS254_FIRST_PRINCIPLES_BLOCK_CLOSURE.md
+
+Note: hashes are for the target-device artifacts. The GitHub copies are textual certificates of those target artifacts; the binary tarball is not claimed to have been uploaded here.
