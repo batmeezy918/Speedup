@@ -1,0 +1,15 @@
+{
+  "date": "2026-09-08",
+  "target": "Termux Android 15 aarch64",
+  "evidence_rule": "claim_strength <= evidence_strength",
+  "records": [
+    {"id":"SIM2XR_SPEEDUP_V1_SHARED_PREFIX","original":"16.808386x","rerun":"7 repeats","median_speedup":17.544277,"time_reduction_pct":94.300136,"hash_output_equivalence":true,"work_reduction_pct":94.324147,"status":"VALIDATED_LOCAL_MEASURED_REPRODUCED","max_claim":"17.544277x median verified runtime speedup on declared shared-prefix workload","boundary":"not universal, HPC, or quantum advantage"},
+    {"id":"GS254_LOCAL_RIMS_EFFECTIVE_TIME_SPEEDUP","original":"18.533401810344827x","rerun":"5 paired executions","status":"BLOCKED_PENDING_SEMANTIC_WITNESS","gate":"INSTRUMENTATION_MISSING","max_claim":"not re-elevated; runtime alone does not establish E_eq","boundary":"effective-time claim, not throughput dominance"},
+    {"id":"OMEGA_BFGS_V5_PROJECTION_SLOPE","original":"36.539x slope ratio","rerun":"canonical runner not recovered","status":"PENDING_RERUN","max_claim":"projection slope metric only","boundary":"not runtime speedup"},
+    {"id":"SPARSE_1M_PROJECTION_SPEEDUP","original":"~10.6667x","rerun":"canonical runner not recovered","status":"PENDING_RERUN","max_claim":"structured sparse projection result only","boundary":"not runtime speedup until matched RIMS run"},
+    {"id":"OMEGA_V63_96BIT_FACTORIZATION","original":"~2.60x","rerun":"2 complete paired trials","ratios":[0.3208,6.009],"factor_correctness":true,"status":"NOT_VALIDATED_AS_STABLE_SPEEDUP","max_claim":"correct factorization of sampled 96-bit instances","boundary":"no cryptographic break"},
+    {"id":"OMEGA_V7_AGGREGATE_OPTIMIZER_REPORT","original":"~1969x aggregate","rerun":"canonical runner/parameters not recovered","status":"PENDING_RERUN","max_claim":"objective/error ratio on selected landscapes","boundary":"not runtime or universal optimizer dominance"},
+    {"id":"HARADAX_CONTROL_ALPHA_PROJECTION","original":"mean alpha 563.1747; final 2456.8106","rerun":"canonical runner/parameters not recovered","status":"PENDING_RERUN","max_claim":"projection/control advancement","boundary":"not compute speedup"},
+    {"id":"CHRONOFOLD_QUANT_LAYER_25_TRACE_PASS","original":"25 zero-defect traces","rerun":"support evidence retained","status":"SUPPORTING_VALIDATION","max_claim":"local trace stability evidence","boundary":"not a speedup claim"}
+  ]
+}
