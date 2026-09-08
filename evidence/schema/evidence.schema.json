@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCSS Evidence Certificate",
+  "type": "object",
+  "required": ["schema_version", "experiment_id", "scenario_hash", "claim_status", "gates", "artifacts"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "experiment_id": {"type": "string"},
+    "scenario_hash": {"type": "string"},
+    "claim_status": {"enum": ["CANDIDATE", "STRONG_LOCAL", "FORMAL_PARTIAL", "VERIFIED", "FAILED", "QUARANTINED"]},
+    "gates": {
+      "type": "object",
+      "required": ["integrity", "reproducibility", "quotient_forward", "reconstruction_reverse", "invariants", "performance", "lean"],
+      "additionalProperties": {"type": "boolean"}
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256"],
+        "properties": {"path": {"type": "string"}, "sha256": {"type": "string"}}
+      }
+    }
+  }
+}
