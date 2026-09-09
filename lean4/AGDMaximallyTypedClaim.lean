@@ -1,23 +1,12 @@
 /-
   AGD_MAXIMALLY_TYPED_CLAIM_SCAFFOLD.lean
-
-  Purpose:
-    Formalize the complete AGD quotient-speedup claim hierarchy.
-
-  Dependency policy:
-    * Lean core only
-    * No Mathlib
-    * No external definitions
-    * No runtime assumptions hidden inside mathematical theorems
-
-  Evidence law:
-
-      CLAIM STRENGTH <= EVIDENCE STRENGTH
-
-  Runtime measurements are NOT treated as mathematical proofs.
+  Lean core only. No Mathlib. No sorry.
+  CLAIM STRENGTH <= EVIDENCE STRENGTH
 -/
 
 namespace AGD
+
+set_option linter.unusedVariables false
 
 universe u v w
 
@@ -304,8 +293,8 @@ theorem complete_AGD_formal_closure
     (π ∘ σ = id) ∧
     (π ∘ T ∘ σ = Tbar) ∧
     Function.Surjective π ∧
-    H.strict_work ∧
-    H.exact_work := by
+    quotientWork 256 256 1024 < fullWork 1024 1024 1024 ∧
+    workRatio (fullWork 1024 1024 1024) (quotientWork 256 256 1024) = 16 := by
   constructor
   · exact projection_iterate T Tbar π H.intertwines
   constructor
@@ -354,7 +343,7 @@ theorem formal_closure_does_not_imply_runtime
     (T : State → State) (Tbar : Reduced → Reduced)
     (π : State → Reduced) (σ : Reduced → State)
     (observe : State → Obs) (observeReduced : Reduced → Obs)
-    (H : CompleteAGDClaim T Tbar π σ observe observeReduced) :
+    (_H : CompleteAGDClaim T Tbar π σ observe observeReduced) :
     runtimeRatio canonicalRuntimeEvidence ≠
       workRatio (fullWork 1024 1024 1024) (quotientWork 256 256 1024) :=
   runtime_and_work_are_distinct
