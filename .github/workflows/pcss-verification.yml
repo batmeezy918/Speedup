@@ -13,7 +13,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,6 +28,7 @@ jobs:
           test -f evidence/schema/certificate.schema.json
           test -f lean4/PCSSCertificate.lean
           test -f lean4/lakefile.lean
+          test -f lean4/SpeedupLean.lean
           test -f lean4/AGDGemmWork.lean
           test -f lean4/AGDGemmProjection.lean
           test -f lean4/AGDGemmReconstruction.lean
@@ -65,7 +66,7 @@ jobs:
 
       - name: Install Lean (elan)
         run: |
-          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: lake build Lean 4 AGD-GEMM stack
@@ -74,9 +75,18 @@ jobs:
           set -euo pipefail
           lean --version
           lake --version
-          lake build
+          lake build 2>&1 | tee /tmp/lake-build.log
+          if grep -q "Build completed successfully (0 jobs)" /tmp/lake-build.log; then
+            echo "Lake built 0 jobs — default_target is not wired."
+            exit 1
+          fi
           if grep -RIn --include='*.lean' -E '^[[:space:]]*(sorry|admit)([[:space:]]|$)' .; then
             echo PLACEHOLDER_FOUND
             exit 1
           fi
+          if grep -RIn --include='*.lean' -E '^[[:space:]]*import Mathlib' .; then
+            echo MATHLIB_IMPORT_FOUND
+            exit 1
+          fi
           echo NO_PLACEHOLDERS=1
+          echo NO_MATHLIB=1
