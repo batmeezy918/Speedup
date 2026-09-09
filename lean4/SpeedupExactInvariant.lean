@@ -1,51 +1,42 @@
-import Mathlib
+/-
+  Exact invariant-sector semantics, Mathlib-free.
+  Re-stated on the AGD-GEMM iterate/projection vocabulary.
+-/
+
+import AGDGemmProjection
+import AGDGemmReconstruction
 
 namespace Speedup
 
-/-- A quotient map from concrete states to represented states. -/
-def Descends {S Q : Type} (π : S → Q) (T : S → S) (Tbar : Q → Q) : Prop :=
-  ∀ s, π (T s) = Tbar (π s)
+open AGDGemmProjection
+open AGDGemmReconstruction
 
-/-- One-step descent implies descent for every finite iterate. -/
+universe u v
+
+def Descends {S : Type u} {Q : Type v} (π : S → Q) (T : S → S) (Tbar : Q → Q) : Prop :=
+  Intertwines T Tbar π
+
 theorem finite_descent
-    {S Q : Type} (π : S → Q) (T : S → S) (Tbar : Q → Q)
+    {S : Type u} {Q : Type v} (π : S → Q) (T : S → S) (Tbar : Q → Q)
     (h : Descends π T Tbar) :
-    ∀ n s, π (Function.iterate T n s) = Function.iterate Tbar n (π s) := by
-  intro n
-  induction n with
-  | zero =>
-      intro s
-      rfl
-  | succ n ih =>
-      intro s
-      rw [Function.iterate_succ_apply]
-      rw [Function.iterate_succ_apply]
-      rw [h]
-      exact congrArg Tbar (ih s)
+    ∀ n s, π (iterate T n s) = iterate Tbar n (π s) :=
+  projection_iterate T Tbar π h
 
-/-- Bidirectional semantic witness: reconstruction on represented states and
-forward intertwining on concrete states. -/
 theorem bidirectional
-    {S Q : Type} (π : S → Q) (r : Q → S)
+    {S : Type u} {Q : Type v} (π : S → Q) (r : Q → S)
     (T : S → S) (Tbar : Q → Q)
-    (hreconstruct : ∀ q, π (r q) = q)
+    (hreconstruct : Section π r)
     (hdescend : Descends π T Tbar) :
-    (∀ q, π (r q) = q) ∧ (∀ s, π (T s) = Tbar (π s)) := by
-  exact ⟨hreconstruct, hdescend⟩
+    (∀ q, π (r q) = q) ∧ (∀ s, π (T s) = Tbar (π s)) :=
+  ⟨hreconstruct, hdescend⟩
 
-/-- Exact coordinate-sector construction. For a selected invariant sector,
-projection after the dense operator equals application of the reduced
-operator after projection. The implementation witness supplies this relation
-for the concrete diagonal operator and coordinate-selection map. -/
 theorem exact_sector_semantics
-    {S Q : Type} (π : S → Q) (r : Q → S)
+    {S : Type u} {Q : Type v} (π : S → Q) (r : Q → S)
     (T : S → S) (Tbar : Q → Q)
-    (hreconstruct : ∀ q, π (r q) = q)
+    (hreconstruct : Section π r)
     (hintertwine : ∀ s, π (T s) = Tbar (π s)) :
-    (∀ n s, π (Function.iterate T n s) = Function.iterate Tbar n (π s)) ∧
-      (∀ q, π (r q) = q) := by
-  constructor
-  · exact finite_descent π T Tbar hintertwine
-  · exact hreconstruct
+    (∀ n s, π (iterate T n s) = iterate Tbar n (π s)) ∧
+      (∀ q, π (r q) = q) :=
+  ⟨projection_iterate T Tbar π hintertwine, hreconstruct⟩
 
 end Speedup
