@@ -1,5 +1,3 @@
-import Std
-
 namespace PCSS
 
 structure EvidenceCertificate where
@@ -59,7 +57,6 @@ structure PerformanceWitness where
   repetitions : Nat
   deriving Repr
 
-/-- The publication predicate is deliberately explicit and fail-closed. --/
 def publishable (c : EvidenceCertificate) : Prop :=
   c.integrity = true ∧
   c.reproducibility = true ∧
@@ -69,7 +66,6 @@ def publishable (c : EvidenceCertificate) : Prop :=
   c.performance = true ∧
   c.lean = true
 
-/-- Evidence cannot be upgraded unless every publication predicate is established. --/
 theorem publish_requires_all_gates
     (c : EvidenceCertificate)
     (h : publishable c) :
@@ -82,11 +78,9 @@ theorem publish_requires_all_gates
     c.lean = true := by
   exact h
 
-/-- Forward and reverse quotient witnesses must agree before publication. --/
 def bidirectionalQuotientPass (w : QuotientWitness) : Prop :=
   w.equivalent = true
 
-/-- A certificate that is not fully proven is not a verified certificate. --/
 def verifiedResult (c : EvidenceCertificate) : Prop :=
   publishable c
 
