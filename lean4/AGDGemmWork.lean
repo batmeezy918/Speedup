@@ -85,14 +85,16 @@ theorem canonical_q_square_equals_sixteen :
     workRatio (fullWork (4 * 256) (4 * 256) 1024) (quotientWork 256 256 1024) = 16 := by
   rw [canonical_is_instance_of_q_square, four_sq]
 
-theorem work_model_closure :
-    fullWork 1024 1024 1024 = 2147483648 ∧
-    quotientWork 256 256 1024 = 134217728 ∧
-    fullWork 1024 1024 1024 = 16 * quotientWork 256 256 1024 ∧
-    quotientWork 256 256 1024 < fullWork 1024 1024 1024 ∧
-    squareWork 1024 1024 = 16 * squareWork 256 1024 ∧
-    workRatio (fullWork 1024 1024 1024) (quotientWork 256 256 1024) = 16 ∧
-    workRatio (fullWork (4 * 256) (4 * 256) 1024) (quotientWork 256 256 1024) = 4 * 4 :=
+def WorkModelHolds : Prop :=
+  fullWork 1024 1024 1024 = 2147483648 ∧
+  quotientWork 256 256 1024 = 134217728 ∧
+  fullWork 1024 1024 1024 = 16 * quotientWork 256 256 1024 ∧
+  quotientWork 256 256 1024 < fullWork 1024 1024 1024 ∧
+  squareWork 1024 1024 = 16 * squareWork 256 1024 ∧
+  workRatio (fullWork 1024 1024 1024) (quotientWork 256 256 1024) = 16 ∧
+  workRatio (fullWork (4 * 256) (4 * 256) 1024) (quotientWork 256 256 1024) = 4 * 4
+
+theorem work_model_closure : WorkModelHolds :=
   ⟨fullWork_1024, quotientWork_256, canonical_ratio,
    strict_work_reduction, factor_four_gives_sixteen, canonical_workRatio,
    canonical_is_instance_of_q_square⟩

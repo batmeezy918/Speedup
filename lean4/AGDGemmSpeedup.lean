@@ -39,8 +39,8 @@ theorem modeled_speedup_valid
 theorem semantic_and_work_closure
     {State : Type u} {Reduced : Type v} {Obs : Type w}
     (H : SemanticHypotheses State Reduced Obs) :
-    work_model_closure ∧
-    (WellDefined H.π H.T) ∧
+    WorkModelHolds ∧
+    WellDefined H.π H.T ∧
     (∀ n x, H.observe (iterate H.T n x) =
       H.observeReduced (iterate H.Tbar n (H.π x))) ∧
     (H.π ∘ H.T ∘ H.σ = H.Tbar) ∧
@@ -68,7 +68,7 @@ theorem measured_hundredths_neq_work_ratio_times_100 :
   native_decide
 
 theorem speedup_stack_closure :
-    work_model_closure ∧ MeasuredRuntimeObligation :=
+    WorkModelHolds ∧ MeasuredRuntimeObligation :=
   ⟨work_model_closure, trivial⟩
 
 end AGDGemmSpeedup
