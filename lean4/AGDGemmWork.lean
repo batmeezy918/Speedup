@@ -1,9 +1,3 @@
-/-
-  AGD-GEMM Work Model
-  -------------------
-  Arithmetic work-reduction layer only. Lean 4 core. No Mathlib.
--/
-
 namespace AGDGemmWork
 
 def fullWork (m n k : Nat) : Nat :=
@@ -41,7 +35,7 @@ theorem workRatio_outer
     (hr : r ≠ 0) (hs : s ≠ 0) (hk : k ≠ 0) :
     workRatio (fullWork (q * r) (q * s) k) (quotientWork r s k) = q * q := by
   unfold workRatio
-  rw [outer_factorization]
+  rw [outer_factorization, Nat.mul_comm (q * q)]
   exact Nat.mul_div_right (q * q)
     (Nat.pos_of_ne_zero (quotientWork_ne_zero hr hs hk))
 
