@@ -1,15 +1,3 @@
-/-
-  AGD-GEMM Speedup Boundary
-  -------------------------
-  Combines work reduction with semantic hypotheses.
-
-  Theorems in this file license a *modeled* 16× work claim
-  *conditional on* Intertwines, ObservablePreserved, and Section.
-
-  They do not license a wall-clock theorem.
-  15.96× remains a measured obligation outside this stack.
--/
-
 import AGDGemmWork
 import AGDGemmProjection
 import AGDGemmReconstruction
@@ -22,7 +10,6 @@ open AGDGemmReconstruction
 
 universe u v w
 
-/-- Concrete semantic obligations that a GEMM quotient must discharge. -/
 structure SemanticHypotheses
     (State : Type u) (Reduced : Type v) (Obs : Type w) where
   T : State → State
@@ -33,10 +20,8 @@ structure SemanticHypotheses
   observeReduced : Reduced → Obs
   intertwines : Intertwines T Tbar π
   observable : ObservablePreserved π observe observeReduced
-  section : Section π σ
+  reconstructs : Section π σ
 
-/-- Modeled speedup is valid exactly when work reduces by 16 and
-    the quotient is semantically interchangeable at the observable. -/
 theorem modeled_speedup_valid
     {State : Type u} {Reduced : Type v} {Obs : Type w}
     (H : SemanticHypotheses State Reduced Obs) :
@@ -48,10 +33,9 @@ theorem modeled_speedup_valid
   ⟨canonical_workRatio,
    quotient_observable_correct H.T H.Tbar H.π H.observe H.observeReduced
      H.intertwines H.observable,
-   section_is_right_inverse H.π H.σ H.section,
-   reconstructed_operator H.π H.σ H.T H.Tbar H.section H.intertwines⟩
+   section_is_right_inverse H.π H.σ H.reconstructs,
+   reconstructed_operator H.π H.σ H.T H.Tbar H.reconstructs H.intertwines⟩
 
-/-- Full semantic + work closure under the hypotheses. -/
 theorem semantic_and_work_closure
     {State : Type u} {Reduced : Type v} {Obs : Type w}
     (H : SemanticHypotheses State Reduced Obs) :
@@ -65,15 +49,11 @@ theorem semantic_and_work_closure
    intertwines_wellDefined H.T H.Tbar H.π H.intertwines,
    quotient_observable_correct H.T H.Tbar H.π H.observe H.observeReduced
      H.intertwines H.observable,
-   reconstructed_operator H.π H.σ H.T H.Tbar H.section H.intertwines,
-   section_implies_surjective H.π H.σ H.section⟩
+   reconstructed_operator H.π H.σ H.T H.Tbar H.reconstructs H.intertwines,
+   section_implies_surjective H.π H.σ H.reconstructs⟩
 
-/-- Runtime measurement lives outside the work model.
-    The proposition is recorded, not derived from arithmetic. -/
 def MeasuredRuntimeObligation : Prop := True
 
-/-- Recorded measured hundredths. This is documentation, not a proof
-    that wall-clock equals modeled work. -/
 def measuredHundredths : Nat := 1596
 
 theorem measured_runtime_is_not_a_work_theorem :
@@ -82,7 +62,6 @@ theorem measured_runtime_is_not_a_work_theorem :
     measuredHundredths = 1596 :=
   ⟨trivial, canonical_workRatio, rfl⟩
 
-/-- 15.96 is 1596/100. We do not identify it with the work ratio 16. -/
 theorem measured_hundredths_neq_work_ratio_times_100 :
     measuredHundredths ≠
       workRatio (fullWork 1024 1024 1024) (quotientWork 256 256 1024) * 100 := by
