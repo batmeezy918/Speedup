@@ -2,7 +2,7 @@ name: PCSS Verification Gate
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, agd-gemm-lean-stack ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -13,6 +13,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,6 +27,11 @@ jobs:
           test -f publisher/gate.py
           test -f evidence/schema/certificate.schema.json
           test -f lean4/PCSSCertificate.lean
+          test -f lean4/lakefile.lean
+          test -f lean4/AGDGemmWork.lean
+          test -f lean4/AGDGemmProjection.lean
+          test -f lean4/AGDGemmReconstruction.lean
+          test -f lean4/AGDGemmSpeedup.lean
 
       - name: Validate Python gate syntax
         run: python3 -m py_compile publisher/gate.py scripts/evidence_to_lean.py
@@ -57,17 +63,20 @@ jobs:
             echo "Fail-closed certificate behavior confirmed"
           fi
 
-      - name: Verify Lean project when configured
-        shell: bash
+      - name: Install Lean (elan)
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: lake build Lean 4 AGD-GEMM stack
+        working-directory: lean4
         run: |
           set -euo pipefail
-          if [[ -f lean4/lakefile.lean ]]; then
-            if command -v lake >/dev/null 2>&1; then
-              (cd lean4 && lake build)
-            else
-              echo "Lean project present; CI runner does not have lake preinstalled."
-              exit 1
-            fi
-          else
-            echo "Lean project configuration not yet instantiated; formal gate remains closed."
+          lean --version
+          lake --version
+          lake build
+          if grep -RIn --include='*.lean' -E '^[[:space:]]*(sorry|admit)([[:space:]]|$)' .; then
+            echo PLACEHOLDER_FOUND
+            exit 1
           fi
+          echo NO_PLACEHOLDERS=1
