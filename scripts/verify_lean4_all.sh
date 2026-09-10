@@ -86,8 +86,8 @@ while [[ "${#pending[@]}" -gt 0 ]]; do
         next+=("$file")
       fi
     else
-      echo "--- lake env lean $file"
-      if (cd "$ROOT_ABS" && lake env lean "$file"); then
+      echo "--- lean --root $ROOT_ABS $file"
+      if lean --root="$ROOT_ABS" "$file"; then
         progress=$((progress + 1))
       else
         next+=("$file")
