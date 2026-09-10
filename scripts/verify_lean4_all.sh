@@ -10,18 +10,36 @@ if [[ ! -d "$ROOT_ABS" ]]; then
   exit 1
 fi
 
-if grep -RIn --include='*.lean' -E '\b(sorry|admit|by\?)\b' "$ROOT_ABS"; then
-  echo "ERROR: unfinished proof marker detected." >&2
-  exit 1
-fi
+TMPDIR_VERIFIER="$(mktemp -d)"
+trap 'rm -rf "$TMPDIR_VERIFIER"' EXIT
 
-if [[ "$MODE" == "core" ]]; then
-  if grep -RIn --include='*.lean' -E '^[[:space:]]*import[[:space:]]+Mathlib([.]|[[:space:]]|$)' "$ROOT_ABS"; then
-    echo "ERROR: Mathlib import detected in core lane." >&2
+# Policy checks operate on comment-stripped text so documentation such as
+# "No sorry" does not become a false proof-hole failure.
+scan_file() {
+  local file="$1"
+  local out="$2"
+  sed -E '/^[[:space:]]*--/d; s/--.*$//g' "$file" \
+    | perl -0pe 's/\/\-.*?\-\// /gs' > "$out"
+
+  if grep -nE '\b(sorry|admit|by\?)\b' "$out" >/dev/null; then
+    echo "ERROR: executable unfinished proof marker detected in $file" >&2
+    grep -nE '\b(sorry|admit|by\?)\b' "$out" >&2 || true
     exit 1
   fi
+}
+
+if [[ "$MODE" == "core" ]]; then
   FIND_ROOT="$ROOT_ABS"
   mapfile -d '' files < <(find "$FIND_ROOT" -type f -name '*.lean' ! -path '*/Mathlib/*' -print0 | sort -z)
+  for file in "${files[@]}"; do
+    rel="${file#${ROOT_ABS}/}"
+    out="$TMPDIR_VERIFIER/${rel//\//__}.txt"
+    scan_file "$file" "$out"
+    if grep -nE '^import[[:space:]]+Mathlib([.]|[[:space:]]|$)' "$out" >/dev/null; then
+      echo "ERROR: Mathlib import detected in core lane: $file" >&2
+      exit 1
+    fi
+  done
 elif [[ "$MODE" == "mathlib" ]]; then
   MROOT="$ROOT_ABS/Mathlib"
   if [[ ! -d "$MROOT" ]]; then
@@ -29,6 +47,11 @@ elif [[ "$MODE" == "mathlib" ]]; then
     exit 1
   fi
   mapfile -d '' files < <(find "$MROOT" -type f -name '*.lean' -print0 | sort -z)
+  for file in "${files[@]}"; do
+    rel="${file#${MROOT}/}"
+    out="$TMPDIR_VERIFIER/${rel//\//__}.txt"
+    scan_file "$file" "$out"
+  done
 else
   echo "ERROR: unknown mode '$MODE' (expected core or mathlib)" >&2
   exit 1
@@ -39,7 +62,6 @@ if [[ "${#files[@]}" -eq 0 ]]; then
   exit 1
 fi
 
-# Remove generated objects only from the selected lane.
 find "$ROOT_ABS" -type f \( -name '*.olean' -o -name '*.ilean' \) -delete
 
 pass=0
@@ -50,6 +72,7 @@ while [[ "${#pending[@]}" -gt 0 ]]; do
   next=()
   progress=0
   echo "=== Lean4 $MODE verification pass $pass: ${#pending[@]} pending ==="
+
   for file in "${pending[@]}"; do
     if [[ "$MODE" == "mathlib" ]]; then
       rel="${file#${MROOT}/}"
@@ -60,7 +83,7 @@ while [[ "${#pending[@]}" -gt 0 ]]; do
         next+=("$file")
       fi
     else
-      echo "--- lean -I "$ROOT_ABS" "$file""
+      echo "--- lean -I $ROOT_ABS $file"
       if lean -I "$ROOT_ABS" "$file"; then
         progress=$((progress + 1))
       else
@@ -68,15 +91,18 @@ while [[ "${#pending[@]}" -gt 0 ]]; do
       fi
     fi
   done
+
   if [[ "${#next[@]}" -eq 0 ]]; then
     echo "LEAN4_${MODE^^}_ALL_PASS=1"
     echo "LEAN4_${MODE^^}_SOURCE_COUNT=$total"
     exit 0
   fi
+
   if [[ "$progress" -eq 0 || "$pass" -ge 100 ]]; then
     echo "LEAN4_${MODE^^}_ALL_PASS=0" >&2
     printf 'Unresolved/failed source: %s\n' "${next[@]}" >&2
     exit 1
   fi
+
   pending=("${next[@]}")
 done
