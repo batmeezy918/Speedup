@@ -10,6 +10,19 @@ if [[ ! -d "$ROOT_ABS" ]]; then
   exit 1
 fi
 
+# The package build can resolve the toolchain from lean-toolchain even when
+# elan has no global default. Direct `lean` invocations do not. Pin the
+# verifier to the repository-declared toolchain so every source is checked
+# with the same compiler as `lake build`.
+if [[ "$MODE" == "core" && -f "$ROOT_ABS/lean-toolchain" && -x "$(command -v elan || true)" ]]; then
+  TOOLCHAIN="$(tr -d '\r\n' < "$ROOT_ABS/lean-toolchain")"
+  if [[ -z "$TOOLCHAIN" ]]; then
+    echo "ERROR: empty Lean toolchain declaration: $ROOT_ABS/lean-toolchain" >&2
+    exit 1
+  fi
+  elan default "$TOOLCHAIN"
+fi
+
 TMPDIR_VERIFIER="$(mktemp -d)"
 trap 'rm -rf "$TMPDIR_VERIFIER"' EXIT
 
