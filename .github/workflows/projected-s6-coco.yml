@@ -86,6 +86,7 @@ jobs:
       - name: Execute Canonical Projected S6 COCO Harness
         run: |
           RUN_DIR="evidence/official-coco/official-${{ github.run_id }}"
+          mkdir -p "${RUN_DIR}"
           python evidence/official-coco/projected_s6_coco_harness.py \
             --run-id "official-${{ github.run_id }}" \
             --dimensions "${COCO_DIMENSIONS}" \
