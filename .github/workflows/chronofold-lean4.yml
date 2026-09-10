@@ -1,0 +1,52 @@
+name: ChronoFold Lean4 Verification
+
+on:
+  push:
+    paths:
+      - 'lean4/chronofold/**'
+      - '.github/workflows/chronofold-lean4.yml'
+  pull_request:
+    paths:
+      - 'lean4/chronofold/**'
+      - '.github/workflows/chronofold-lean4.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install elan and Lean4
+        uses: leanprover/elan-action@v1
+        with:
+          toolchain: leanprover/lean4:stable
+          default-toolchain: true
+
+      - name: Verify Lean version
+        run: lean --version
+
+      - name: Fetch Mathlib cache
+        run: |
+          cd lean4/chronofold
+          lake exe cache get
+
+      - name: Build ChronoFold proof scaffold
+        run: |
+          cd lean4/chronofold
+          lake env lean ChronoFoldProof.lean
+
+      - name: Reject unfinished proof markers
+        run: |
+          if grep -RInE '\b(sorry|admit|by\?)\b' lean4/chronofold; then
+            echo 'Unfinished proof marker detected.'
+            exit 1
+          fi
+
+      - name: Export proof identity
+        run: |
+          sha256sum lean4/chronofold/ChronoFoldProof.lean > lean4/chronofold/ChronoFoldProof.lean.sha256
+          cat lean4/chronofold/ChronoFoldProof.lean.sha256
