@@ -30,23 +30,21 @@ jobs:
         run: lean --version
 
       - name: Fetch Mathlib cache
-        run: |
-          cd lean4/chronofold
-          lake exe cache get
+        working-directory: lean4/chronofold
+        run: lake exe cache get
 
-      - name: Build ChronoFold proof scaffold
-        run: |
-          cd lean4/chronofold
-          lake env lean ChronoFoldProof.lean
+      - name: Build ChronoFold proof
+        working-directory: lean4/chronofold
+        run: lake env lean ChronoFoldProof.lean
 
       - name: Reject unfinished proof markers
         run: |
-          if grep -RInE '\b(sorry|admit|by\?)\b' lean4/chronofold; then
+          if grep -RInE '\b(sorry|admit|by\?)\b' lean4/chronofold --include='*.lean'; then
             echo 'Unfinished proof marker detected.'
             exit 1
           fi
 
       - name: Export proof identity
         run: |
-          sha256sum lean4/chronofold/ChronoFoldProof.lean > lean4/chronofold/ChronoFoldProof.lean.sha256
-          cat lean4/chronofold/ChronoFoldProof.lean.sha256
+          sha256sum lean4/chronofold/ChronoFoldProof.lean > ChronoFoldProof.lean.sha256
+          cat ChronoFoldProof.lean.sha256
