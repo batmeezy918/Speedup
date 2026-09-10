@@ -1,13 +1,15 @@
-name: ChronoFold Lean4 Verification
+name: Lean4 Verification
 
 on:
   push:
     paths:
-      - 'lean4/chronofold/**'
+      - 'lean4/**/*.lean'
+      - 'lean4/**/lean-toolchain'
       - '.github/workflows/chronofold-lean4.yml'
   pull_request:
     paths:
-      - 'lean4/chronofold/**'
+      - 'lean4/**/*.lean'
+      - 'lean4/**/lean-toolchain'
       - '.github/workflows/chronofold-lean4.yml'
   workflow_dispatch:
 
@@ -20,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install elan and Lean4
+      - name: Install Lean4
         uses: leanprover/elan-action@v1
         with:
           toolchain: leanprover/lean4:stable
@@ -29,22 +31,31 @@ jobs:
       - name: Verify Lean version
         run: lean --version
 
-      - name: Fetch Mathlib cache
-        working-directory: lean4/chronofold
-        run: lake exe cache get
-
-      - name: Build ChronoFold proof
-        working-directory: lean4/chronofold
-        run: lake env lean ChronoFoldProof.lean
+      - name: Verify every Lean4 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -d '' files < <(find lean4 -type f -name '*.lean' -print0 | sort -z)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo 'No Lean4 source files found.'
+            exit 1
+          fi
+          for file in "${files[@]}"; do
+            echo "=== lean $file ==="
+            lean "$file"
+          done
 
       - name: Reject unfinished proof markers
+        shell: bash
         run: |
-          if grep -RInE '\b(sorry|admit|by\?)\b' lean4/chronofold --include='*.lean'; then
+          set -euo pipefail
+          if grep -RInE '\b(sorry|admit|by\?)\b' lean4 --include='*.lean'; then
             echo 'Unfinished proof marker detected.'
             exit 1
           fi
 
-      - name: Export proof identity
+      - name: Export Lean proof identities
+        shell: bash
         run: |
-          sha256sum lean4/chronofold/ChronoFoldProof.lean > ChronoFoldProof.lean.sha256
-          cat ChronoFoldProof.lean.sha256
+          set -euo pipefail
+          find lean4 -type f -name '*.lean' -print0 | sort -z | xargs -0 sha256sum | tee lean4-proof-identities.sha256
