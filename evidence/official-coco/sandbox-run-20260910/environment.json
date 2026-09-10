@@ -1,0 +1,12 @@
+{
+  "platform": "Linux-6.8.0-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "architecture": "64bit",
+  "python_version": "3.12.13",
+  "numpy_version": "2.5.3",
+  "coco_version": "2.8.2",
+  "cpu_count_logical": 4,
+  "cpu_count_physical": 4,
+  "memory_total_bytes": 8345718784,
+  "process_rss_bytes": 37224448
+}

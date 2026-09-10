@@ -1,0 +1,140 @@
+name: ChronoFold Projected S6 COCO Benchmark Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      dimensions:
+        description: 'BBOB dimension'
+        required: false
+        default: '10'
+      budget:
+        description: 'Function-evaluation budget'
+        required: false
+        default: '1000'
+      seed:
+        description: 'Deterministic seed'
+        required: false
+        default: '20260810'
+  push:
+    paths:
+      - '.github/workflows/projected-s6-coco.yml'
+      - 'evidence/official-coco/**'
+
+permissions:
+  contents: read
+
+jobs:
+  projected-s6-coco:
+    name: Projected S6 COCO Benchmark & Quotient Validation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONUNBUFFERED: '1'
+      COCO_DIMENSIONS: ${{ github.event.inputs.dimensions || '10' }}
+      COCO_BUDGET: ${{ github.event.inputs.budget || '1000' }}
+      COCO_SEED: ${{ github.event.inputs.seed || '20260810' }}
+      PYTHONHASHSEED: '0'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install official registered COCO stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'coco-experiment==2.8.2' 'cma==4.4.4' 'numpy==2.2.6' psutil
+          python - <<'PY'
+          import cocoex, cma, numpy, psutil
+          print('cocoex=', getattr(cocoex, '__version__', 'unknown'))
+          print('cma=', getattr(cma, '__version__', 'unknown'))
+          print('numpy=', numpy.__version__)
+          print('psutil=', psutil.__version__)
+          PY
+
+      - name: Verify official BBOB identity
+        run: |
+          python - <<'PY'
+          import cocoex, hashlib, json, os
+          dim = int(os.environ['COCO_DIMENSIONS'])
+          suite = cocoex.Suite('bbob', '', f"dimensions: {dim}")
+          first = suite.get_problem(0)
+          probe = float(first([0.0] * dim))
+          record = {
+              'suite': 'bbob',
+              'dimensions': dim,
+              'problem_count': len(suite),
+              'first_problem_id': first.id,
+              'f_zero': probe,
+              'coco_version': getattr(cocoex, '__version__', 'unknown'),
+          }
+          digest = hashlib.sha256(json.dumps(record, sort_keys=True).encode()).hexdigest()
+          print(json.dumps({**record, 'record_sha256': digest}, sort_keys=True, indent=2))
+          PY
+
+      - name: Execute Harness Self-Test
+        run: |
+          python evidence/official-coco/projected_s6_coco_harness.py --self-test
+
+      - name: Execute Canonical Projected S6 COCO Harness
+        run: |
+          RUN_DIR="evidence/official-coco/official-${{ github.run_id }}"
+          mkdir -p "${RUN_DIR}"
+          python evidence/official-coco/projected_s6_coco_harness.py \
+            --run-id "official-${{ github.run_id }}" \
+            --dimensions "${COCO_DIMENSIONS}" \
+            --budget "${COCO_BUDGET}" \
+            --seed "${COCO_SEED}" \
+            --output-dir "${RUN_DIR}" 2>&1 | tee "${RUN_DIR}/stdout.log"
+
+      - name: Hash Runtime Evidence
+        run: |
+          RUN_DIR="evidence/official-coco/official-${{ github.run_id }}"
+          find "${RUN_DIR}" -type f -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            | tee "${RUN_DIR}/SHA256SUMS.txt"
+
+      - name: Enforce Gates
+        run: |
+          RUN_DIR="evidence/official-coco/official-${{ github.run_id }}"
+          python - <<PY
+          import json, sys
+          manifest_path = "${RUN_DIR}/manifest.json"
+          with open(manifest_path) as f:
+              m = json.load(f)
+          print("Manifest Summary:")
+          print(json.dumps(m, indent=2))
+          if m.get("problem_count") != 360:
+              print(f"Canonical Run Incomplete: problem_count is {m.get('problem_count')}")
+              sys.exit(1)
+          if m.get("final_status") not in ["COMPLETE_EVIDENCE_PASS", "GATE_FAILURE"]:
+              print(f"Canonical Run Incomplete: unexpected status {m.get('final_status')}")
+              sys.exit(1)
+          print(f"Canonical Run Complete. Recorded Status: {m.get('final_status')}")
+          PY
+
+      - name: Upload Immutable Evidence Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: projected-s6-coco-${{ github.run_id }}
+          path: evidence/official-coco/official-${{ github.run_id }}/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish Gate Summary
+        if: always()
+        run: |
+          RUN_DIR="evidence/official-coco/official-${{ github.run_id }}"
+          if [ -f "${RUN_DIR}/final_report.md" ]; then
+            cat "${RUN_DIR}/final_report.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## Run Execution Incomplete or Failed" >> "$GITHUB_STEP_SUMMARY"
+          fi
