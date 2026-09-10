@@ -20,6 +20,8 @@ on:
       - '.github/workflows/official-coco-registered.yml'
       - 'evidence/official-coco/**'
       - 'benchmarks/**'
+      - 'lean4/**'
+      - 'scripts/verify_lean4_all.sh'
 
 permissions:
   contents: read
@@ -63,18 +65,21 @@ jobs:
         run: |
           python - <<'PY'
           import cocoex, hashlib, json, os
-          suite = cocoex.Suite('bbob', '', f"dimensions: {os.environ['COCO_DIMENSIONS']}")
+          dimensions = int(os.environ['COCO_DIMENSIONS'])
+          suite = cocoex.Suite('bbob', '', f"dimensions: {dimensions}")
           first = suite.get_problem(0)
-          probe = float(first([0.0] * int(os.environ['COCO_DIMENSIONS'])))
+          probe = float(first([0.0] * dimensions))
           record = {
               'suite': 'bbob',
-              'dimensions': int(os.environ['COCO_DIMENSIONS']),
+              'dimensions': dimensions,
               'problem_count': len(suite),
+              'expected_problem_count': 360 if dimensions == 10 else None,
               'first_problem_id': first.id,
               'f_zero': probe,
-              'expected_dim10_probe': 80.88209408 if int(os.environ['COCO_DIMENSIONS']) == 2 else None,
               'coco_version': getattr(cocoex, '__version__', 'unknown'),
           }
+          if dimensions == 10 and len(suite) != 360:
+              raise SystemExit(f"unexpected BBOB dim10 problem count: {len(suite)}")
           digest = hashlib.sha256(json.dumps(record, sort_keys=True).encode()).hexdigest()
           print(json.dumps({**record, 'record_sha256': digest}, sort_keys=True, indent=2))
           PY
