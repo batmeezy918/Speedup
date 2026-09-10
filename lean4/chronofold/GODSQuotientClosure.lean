@@ -1,5 +1,5 @@
 /-
-  ChronoFold lane — GODS Quotient Closure.
+  ChronoFold lane — GODS Quotient Closure (Quot kernel).
 
   Lean core only. No Mathlib. No unfinished-proof markers.
 
@@ -13,9 +13,9 @@ namespace ChronoFold.GODS
 
 set_option autoImplicit false
 
-universe u v w
+universe u v
 
-variable {X : Type u} {Y : Type v} {I : Type w}
+variable {X : Type u} {Y : Type v}
 
 def UniqueExists {alpha : Sort u} (p : alpha → Prop) : Prop :=
   ∃ x, p x ∧ ∀ y, p y → y = x
@@ -23,60 +23,38 @@ def UniqueExists {alpha : Sort u} (p : alpha → Prop) : Prop :=
 def GODSEquiv (O : X → Y) (x y : X) : Prop :=
   O x = O y
 
-theorem godsEquiv_refl (O : X → Y) (x : X) :
-    GODSEquiv O x x :=
-  rfl
-
-theorem godsEquiv_symm (O : X → Y) {x y : X}
-    (h : GODSEquiv O x y) :
-    GODSEquiv O y x :=
-  h.symm
-
-theorem godsEquiv_trans (O : X → Y) {x y z : X}
-    (hxy : GODSEquiv O x y) (hyz : GODSEquiv O y z) :
-    GODSEquiv O x z :=
-  hxy.trans hyz
-
-instance godsSetoid (O : X → Y) : Setoid X where
-  r := GODSEquiv O
-  iseqv := {
-    refl := fun x => godsEquiv_refl O x
-    symm := fun h => godsEquiv_symm O h
-    trans := fun h1 h2 => godsEquiv_trans O h1 h2
-  }
-
 def Respects (O : X → Y) (T : X → X) : Prop :=
   ∀ x y : X, GODSEquiv O x y → GODSEquiv O (T x) (T y)
 
-abbrev Q (O : X → Y) := Quotient (godsSetoid O)
+def Q (O : X → Y) := Quot (GODSEquiv O)
 
-abbrev mkG (O : X → Y) : X → Q O :=
-  Quotient.mk (godsSetoid O)
+def mkG (O : X → Y) (x : X) : Q O :=
+  Quot.mk (GODSEquiv O) x
 
 theorem mkG_sound (O : X → Y) {x y : X}
     (h : GODSEquiv O x y) :
     mkG O x = mkG O y :=
-  Quotient.sound h
+  Quot.sound h
+
+def inducedObs (O : X → Y) : Q O → Y :=
+  Quot.lift O (fun _x _y h => h)
 
 theorem mkG_exact (O : X → Y) {x y : X}
     (h : mkG O x = mkG O y) :
-    GODSEquiv O x y :=
-  Quotient.exact h
-
-theorem mkG_eq_iff (O : X → Y) {x y : X} :
-    mkG O x = mkG O y ↔ GODSEquiv O x y :=
-  ⟨mkG_exact O, mkG_sound O⟩
+    GODSEquiv O x y := by
+  change inducedObs O (mkG O x) = inducedObs O (mkG O y)
+  rw [h]
 
 theorem mkG_surjective (O : X → Y) :
     Function.Surjective (mkG O) := by
   intro q
-  refine Quotient.inductionOn q ?_
+  refine Quot.inductionOn q ?_
   intro x
   exact ⟨x, rfl⟩
 
 def descendOp (O : X → Y) (T : X → X) (hR : Respects O T) :
     Q O → Q O :=
-  Quotient.lift
+  Quot.lift
     (fun x => mkG O (T x))
     (fun x y h => mkG_sound O (hR x y h))
 
@@ -90,7 +68,7 @@ theorem gods_descend (O : X → Y) (T : X → X) (hR : Respects O T) :
   refine ⟨descendOp O T hR, gods_one_step O T hR, ?uniq⟩
   intro g hg
   funext q
-  refine Quotient.inductionOn q ?_
+  refine Quot.inductionOn q ?_
   intro x
   calc
     g (mkG O x)
@@ -104,14 +82,6 @@ theorem gods_descend (O : X → Y) (T : X → X) (hR : Respects O T) :
 def iterate {alpha : Type u} (step : alpha → alpha) : Nat → alpha → alpha
   | 0,     x => x
   | n + 1, x => step (iterate step n x)
-
-theorem iterate_zero {alpha : Type u} (step : alpha → alpha) (x : alpha) :
-    iterate step 0 x = x :=
-  rfl
-
-theorem iterate_succ {alpha : Type u} (step : alpha → alpha) (n : Nat) (x : alpha) :
-    iterate step (n + 1) x = step (iterate step n x) :=
-  rfl
 
 theorem respects_iterate (O : X → Y) (T : X → X) (hR : Respects O T) :
     ∀ n, Respects O (fun x => iterate T n x) := by
@@ -176,22 +146,6 @@ theorem gods_bidirectional_closure
     _ = iterate T_bar n (mkG O (R q)) :=
       hrec
     _ = iterate T_bar n q := by
-      rw [hsec]
-
-def inducedObs (O : X → Y) : Q O → Y :=
-  Quotient.lift O (fun _x _y h => h)
-
-theorem observe_via_section
-    (O : X → Y) (R : Q O → X) (hR_sec : SectionOf O R) :
-    O ∘ R = inducedObs O := by
-  funext q
-  have hsec : mkG O (R q) = q :=
-    congrFun hR_sec q
-  calc
-    O (R q)
-        = inducedObs O (mkG O (R q)) :=
-      rfl
-    _ = inducedObs O q := by
       rw [hsec]
 
 theorem reverse_respects
