@@ -1,13 +1,18 @@
-name: Lean 4 AGD-GEMM
+name: Lean 4 Verification
 
 on:
   push:
-    branches: [ main, agd-gemm-lean-stack ]
     paths:
-      - "lean4/**"
-      - ".github/workflows/lean-ci.yml"
+      - 'lean4/**/*.lean'
+      - 'lean4/**/lean-toolchain'
+      - 'scripts/verify_lean4_all.sh'
+      - '.github/workflows/lean-ci.yml'
   pull_request:
-    branches: [ main ]
+    paths:
+      - 'lean4/**/*.lean'
+      - 'lean4/**/lean-toolchain'
+      - 'scripts/verify_lean4_all.sh'
+      - '.github/workflows/lean-ci.yml'
   workflow_dispatch:
 
 permissions:
@@ -16,44 +21,28 @@ permissions:
 jobs:
   lean:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install elan
+      - name: Install Lean4 through elan
+        shell: bash
         run: |
           set -euo pipefail
-          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain leanprover/lean4:stable
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-
-      - name: lake build (must compile at least one job)
-        working-directory: lean4
-        run: |
-          set -euo pipefail
           lean --version
-          lake --version
-          lake build 2>&1 | tee /tmp/lake-build.log
-          if grep -q "Build completed successfully (0 jobs)" /tmp/lake-build.log; then
-            echo "Lake built 0 jobs — library target is not wired."
-            exit 1
-          fi
-          if ! grep -E "Build completed successfully \([1-9][0-9]* jobs\)" /tmp/lake-build.log; then
-            echo "Could not confirm a nonzero job count."
-            exit 1
-          fi
 
-      - name: Forbid Mathlib, sorry, admit (except historical notes)
-        working-directory: lean4
+      - name: Verify all Lean4 sources
+        shell: bash
         run: |
           set -euo pipefail
-          if grep -RIn --include='*.lean' -E '^[[:space:]]*(sorry|admit)([[:space:]]|$)' .; then
-            echo PLACEHOLDER_FOUND
-            exit 1
-          fi
-          if grep -RIn --include='*.lean' -E '^[[:space:]]*import Mathlib' .; then
-            echo MATHLIB_IMPORT_FOUND
-            exit 1
-          fi
-          echo NO_PLACEHOLDERS=1
-          echo NO_MATHLIB=1
+          bash scripts/verify_lean4_all.sh lean4
+
+      - name: Export Lean proof identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          find lean4 -type f -name '*.lean' -print0 | sort -z | xargs -0 sha256sum | tee lean4-proof-identities.sha256
