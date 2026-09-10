@@ -22,16 +22,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Lean4
-        uses: leanprover/elan-action@v1
-        with:
-          toolchain: leanprover/lean4:stable
-          default-toolchain: true
+      - name: Install Lean4 through elan
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain leanprover/lean4:stable
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/lean" --version
 
-      - name: Verify Lean version
-        run: lean --version
+      - name: Verify Lean4 compiler from repository root
+        shell: bash
+        run: |
+          set -euo pipefail
+          lean --version
+          test -x "$HOME/.elan/bin/lean"
 
-      - name: Verify every Lean4 source
+      - name: Verify every Lean4 source regardless of folder
         shell: bash
         run: |
           set -euo pipefail
