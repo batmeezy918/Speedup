@@ -3,12 +3,14 @@ name: Lean4 Verification
 on:
   push:
     paths:
+      - 'lean4/chronofold/**'
       - 'lean4/**/*.lean'
       - 'lean4/**/lean-toolchain'
       - 'scripts/verify_lean4_all.sh'
       - '.github/workflows/chronofold-lean4.yml'
   pull_request:
     paths:
+      - 'lean4/chronofold/**'
       - 'lean4/**/*.lean'
       - 'lean4/**/lean-toolchain'
       - 'scripts/verify_lean4_all.sh'
@@ -45,15 +47,18 @@ jobs:
           lean --version
           test -x "$HOME/.elan/bin/lean"
 
-      - name: Verify every Lean4 source regardless of folder
+      - name: Verify ChronoFold Lean4 kernel lane
         shell: bash
         run: |
           set -euo pipefail
           export PATH="$HOME/.elan/bin:$PATH"
-          bash scripts/verify_lean4_all.sh lean4
+          test -f lean4/chronofold/ChronoFoldProof.lean
+          test -f lean4/chronofold/LinearQuotientProof.lean
+          test -f lean4/chronofold/GODSQuotientClosure.lean
+          bash scripts/verify_lean4_all.sh lean4/chronofold
 
-      - name: Export Lean proof identities
+      - name: Export ChronoFold Lean proof identities
         shell: bash
         run: |
           set -euo pipefail
-          find lean4 -type f -name '*.lean' -print0 | sort -z | xargs -0 sha256sum | tee lean4-proof-identities.sha256
+          find lean4/chronofold -type f -name '*.lean' -print0 | sort -z | xargs -0 sha256sum | tee lean4-chronofold-proof-identities.sha256

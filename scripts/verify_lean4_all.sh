@@ -13,8 +13,6 @@ fi
 TMPDIR_VERIFIER="$(mktemp -d)"
 trap 'rm -rf "$TMPDIR_VERIFIER"' EXIT
 
-# Policy checks operate on comment-stripped text so documentation such as
-# "No sorry" does not become a false proof-hole failure.
 scan_file() {
   local file="$1"
   local out="$2"
@@ -30,7 +28,12 @@ scan_file() {
 
 if [[ "$MODE" == "core" ]]; then
   FIND_ROOT="$ROOT_ABS"
-  mapfile -d '' files < <(find "$FIND_ROOT" -type f -name '*.lean' ! -path '*/Mathlib/*' -print0 | sort -z)
+  mapfile -d '' files < <(
+    find "$FIND_ROOT" -type f -name '*.lean' \
+      ! -path '*/Mathlib/*' \
+      ! -name 'lakefile.lean' \
+      -print0 | sort -z
+  )
   for file in "${files[@]}"; do
     rel="${file#${ROOT_ABS}/}"
     out="$TMPDIR_VERIFIER/${rel//\//__}.txt"
@@ -46,7 +49,7 @@ elif [[ "$MODE" == "mathlib" ]]; then
     echo "ERROR: Mathlib lane root not found: $MROOT" >&2
     exit 1
   fi
-  mapfile -d '' files < <(find "$MROOT" -type f -name '*.lean' -print0 | sort -z)
+  mapfile -d '' files < <(find "$MROOT" -type f -name '*.lean' ! -name 'lakefile.lean' -print0 | sort -z)
   for file in "${files[@]}"; do
     rel="${file#${MROOT}/}"
     out="$TMPDIR_VERIFIER/${rel//\//__}.txt"
@@ -83,8 +86,8 @@ while [[ "${#pending[@]}" -gt 0 ]]; do
         next+=("$file")
       fi
     else
-      echo "--- lean -I $ROOT_ABS $file"
-      if lean -I "$ROOT_ABS" "$file"; then
+      echo "--- lean --root $ROOT_ABS $file"
+      if lean --root="$ROOT_ABS" "$file"; then
         progress=$((progress + 1))
       else
         next+=("$file")
