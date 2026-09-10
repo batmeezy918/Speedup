@@ -1,0 +1,59 @@
+name: Lean 4 AGD-GEMM
+
+on:
+  push:
+    branches: [ main, agd-gemm-lean-stack ]
+    paths:
+      - "lean4/**"
+      - ".github/workflows/lean-ci.yml"
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          set -euo pipefail
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: lake build (must compile at least one job)
+        working-directory: lean4
+        run: |
+          set -euo pipefail
+          lean --version
+          lake --version
+          lake build 2>&1 | tee /tmp/lake-build.log
+          if grep -q "Build completed successfully (0 jobs)" /tmp/lake-build.log; then
+            echo "Lake built 0 jobs — library target is not wired."
+            exit 1
+          fi
+          if ! grep -E "Build completed successfully \([1-9][0-9]* jobs\)" /tmp/lake-build.log; then
+            echo "Could not confirm a nonzero job count."
+            exit 1
+          fi
+
+      - name: Forbid Mathlib, sorry, admit (except historical notes)
+        working-directory: lean4
+        run: |
+          set -euo pipefail
+          if grep -RIn --include='*.lean' -E '^[[:space:]]*(sorry|admit)([[:space:]]|$)' .; then
+            echo PLACEHOLDER_FOUND
+            exit 1
+          fi
+          if grep -RIn --include='*.lean' -E '^[[:space:]]*import Mathlib' .; then
+            echo MATHLIB_IMPORT_FOUND
+            exit 1
+          fi
+          echo NO_PLACEHOLDERS=1
+          echo NO_MATHLIB=1
