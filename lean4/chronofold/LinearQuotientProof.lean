@@ -1,5 +1,3 @@
-import Mathlib
-
 namespace ChronoFold.LinearQuotient
 
 universe u v w
@@ -26,12 +24,11 @@ theorem finite_descent
       rfl
   | succ n ih =>
       intro x
-      simp [iter, h, ih]
+      rw [iter, h x, ih x]
 
 theorem reconstruction
     (hσ : Section π σ) :
-    ∀ q, π (σ q) = q := by
-  exact hσ
+    ∀ q, π (σ q) = q := hσ
 
 theorem reconstructed_operator
     (hσ : Section π σ)
@@ -45,8 +42,7 @@ theorem observable_iterate
     (hobs : ObservablePreserved π obs obsBar) :
     ∀ n x, obs (iter n T x) = obsBar (iter n Tbar (π x)) := by
   intro n x
-  rw [hobs]
-  rw [finite_descent π T Tbar hT n x]
+  rw [hobs, finite_descent π T Tbar hT n x]
 
 def fullWork (m n k : Nat) : Nat := 2 * m * n * k
 def quotientWork (r s k : Nat) : Nat := 2 * r * s * k
@@ -54,17 +50,11 @@ def quotientWork (r s k : Nat) : Nat := 2 * r * s * k
 theorem exactWorkRatio16 :
     fullWork 1024 1024 1024 =
       16 * quotientWork 256 256 1024 := by
-  norm_num [fullWork, quotientWork]
+  decide
 
 theorem strictWorkReduction :
     quotientWork 256 256 1024 <
       fullWork 1024 1024 1024 := by
-  norm_num [fullWork, quotientWork]
-
-theorem conditionalSpeedup
-    (b p s ε : ℝ) (hb : 1 < b) :
-    b * (p + s) > p + b * s + ε ↔
-      (b - 1) * p > ε := by
-  constructor <;> intro h <;> linarith
+  decide
 
 end ChronoFold.LinearQuotient
