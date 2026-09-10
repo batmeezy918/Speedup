@@ -5,19 +5,23 @@ on:
     paths:
       - 'lean4/**/*.lean'
       - 'lean4/**/lean-toolchain'
+      - 'scripts/verify_lean4_all.sh'
       - '.github/workflows/chronofold-lean4.yml'
   pull_request:
     paths:
       - 'lean4/**/*.lean'
       - 'lean4/**/lean-toolchain'
+      - 'scripts/verify_lean4_all.sh'
       - '.github/workflows/chronofold-lean4.yml'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   verify:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,24 +46,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mapfile -d '' files < <(find lean4 -type f -name '*.lean' -print0 | sort -z)
-          if [ "${#files[@]}" -eq 0 ]; then
-            echo 'No Lean4 source files found.'
-            exit 1
-          fi
-          for file in "${files[@]}"; do
-            echo "=== lean $file ==="
-            lean "$file"
-          done
-
-      - name: Reject unfinished proof markers
-        shell: bash
-        run: |
-          set -euo pipefail
-          if grep -RInE '\b(sorry|admit|by\?)\b' lean4 --include='*.lean'; then
-            echo 'Unfinished proof marker detected.'
-            exit 1
-          fi
+          bash scripts/verify_lean4_all.sh lean4
 
       - name: Export Lean proof identities
         shell: bash
