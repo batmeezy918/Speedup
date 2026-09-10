@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "closed-gap-bbob-surrogate-dim2-s6agd-vs-cma",
+  "run_id": "2026-09-08T203000Z",
+  "claim_status": "STRONG_LOCAL",
+  "scenario_hash": "bbob-surrogate|dim=2|instance=1|budget=200|seed=20260810|f1/f2/f3",
+  "source_hash": "s6_agd_project_feasible+cma_diagonal",
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": false,
+    "invariants": true,
+    "performance": false,
+    "lean": false
+  },
+  "why_performance_false": "S6-AGD 0/3 target hits vs CMA 0/3. No speedup claim licensed. AGD restriction costs performance on raw BBOB coordinates.",
+  "why_not_verified": "Surrogate functions, not cocoex.Observer. No reverse reconstruction of observer log. Lean not bound to this certificate.",
+  "correlation": {"f1_i1_d2_f00": 80.88209408, "abs_error": 0.0},
+  "counts": {"S6_ONLY": 0, "CMA_ONLY": 3, "BOTH": 0, "NEITHER": 0},
+  "s6_hits": 0,
+  "cma_hits": 0,
+  "s6_invariant_pass": 3,
+  "s6_mean_best_f": 1333364.2873134252,
+  "cma_mean_best_f": 30.484496503633626,
+  "s6_mean_rejected": 194.0,
+  "stack": {"cocoex": "NOT_INSTALLED_HERE", "cma": "diagonal_surrogate", "numpy": "n/a"},
+  "attached_obligations": [
+    "Re-execute on real cocoex 2.8.2 Suite(bbob) with Observer before any VERIFIED label",
+    "Bind Lean only to invariant_pass and Q=cocoex final_target_hit",
+    "Do not publish a speedup factor from this certificate",
+    "Scale to dim10, 15 instances, budget 1000"
+  ],
+  "gap_closed": "SIM2XR/AGD admissibility: mutation leaving Omega=x[0] is rejected and spends no evaluation. 194/200 proposals rejected per run."
+}
