@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Repository-wide Lean4 verifier.
-# No Mathlib/Lake dependency is required for source verification.
-# Lean files may live in any directory under lean4/ and may import siblings.
-
 ROOT="${1:-lean4}"
+ROOT="$(cd "$ROOT" && pwd)"
+
 if [[ ! -d "$ROOT" ]]; then
   echo "ERROR: Lean root not found: $ROOT" >&2
   exit 1
@@ -27,10 +25,12 @@ if [[ "${#pending[@]}" -eq 0 ]]; then
   exit 1
 fi
 
-# Remove stale generated objects so this run proves the checked-out sources.
-find "$ROOT" -type f \( -name '*.olean' -o -name '*.ilean' \) -delete
+# Start clean, then use the repository's lean-toolchain override.
+cd "$ROOT"
+find . -type f \( -name '*.olean' -o -name '*.ilean' \) -delete
 
 pass=0
+total=${#pending[@]}
 while [[ "${#pending[@]}" -gt 0 ]]; do
   pass=$((pass + 1))
   echo "=== Lean4 verification pass $pass: ${#pending[@]} file(s) pending ==="
@@ -48,12 +48,12 @@ while [[ "${#pending[@]}" -gt 0 ]]; do
 
   if [[ "${#next[@]}" -eq 0 ]]; then
     echo "LEAN4_ALL_PASS=1"
-    echo "LEAN4_SOURCE_COUNT=${#pending[@]}"
+    echo "LEAN4_SOURCE_COUNT=$total"
     exit 0
   fi
 
   if [[ "$progress" -eq 0 ]]; then
-    echo "LEAN4_ALL_PASS=0"
+    echo "LEAN4_ALL_PASS=0" >&2
     echo "ERROR: no progress in dependency-resolution pass." >&2
     printf 'Unresolved/failed source: %s\n' "${next[@]}" >&2
     exit 1
