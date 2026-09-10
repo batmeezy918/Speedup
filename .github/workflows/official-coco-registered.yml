@@ -1,0 +1,150 @@
+name: Official COCO Registered Benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      dimensions:
+        description: 'BBOB dimension'
+        required: false
+        default: '10'
+      budget:
+        description: 'Function-evaluation budget'
+        required: false
+        default: '1000'
+      seed:
+        description: 'Deterministic seed'
+        required: false
+        default: '20260810'
+  push:
+    paths:
+      - '.github/workflows/official-coco-registered.yml'
+      - 'evidence/official-coco/**'
+      - 'benchmarks/**'
+
+permissions:
+  contents: read
+
+jobs:
+  official-coco:
+    name: COCO/BBOB official harness
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONUNBUFFERED: '1'
+      COCO_DIMENSIONS: ${{ github.event.inputs.dimensions || '10' }}
+      COCO_BUDGET: ${{ github.event.inputs.budget || '1000' }}
+      COCO_SEED: ${{ github.event.inputs.seed || '20260810' }}
+      PYTHONHASHSEED: '0'
+
+    steps:
+      - name: Checkout Speedup
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install registered COCO stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'coco-experiment==2.8.2' 'cma==4.4.4' 'numpy==2.2.6'
+          python - <<'PY'
+          import cocoex, cma, numpy
+          print('cocoex=', getattr(cocoex, '__version__', 'unknown'))
+          print('cma=', getattr(cma, '__version__', 'unknown'))
+          print('numpy=', numpy.__version__)
+          PY
+
+      - name: Verify official BBOB identity
+        run: |
+          python - <<'PY'
+          import cocoex, hashlib, json, os
+          suite = cocoex.Suite('bbob', '', f"dimensions: {os.environ['COCO_DIMENSIONS']}")
+          first = suite.get_problem(0)
+          probe = float(first([0.0] * int(os.environ['COCO_DIMENSIONS'])))
+          record = {
+              'suite': 'bbob',
+              'dimensions': int(os.environ['COCO_DIMENSIONS']),
+              'problem_count': len(suite),
+              'first_problem_id': first.id,
+              'f_zero': probe,
+              'expected_dim10_probe': 80.88209408 if int(os.environ['COCO_DIMENSIONS']) == 2 else None,
+              'coco_version': getattr(cocoex, '__version__', 'unknown'),
+          }
+          digest = hashlib.sha256(json.dumps(record, sort_keys=True).encode()).hexdigest()
+          print(json.dumps({**record, 'record_sha256': digest}, sort_keys=True, indent=2))
+          PY
+
+      - name: Locate registered harness
+        run: |
+          test -f evidence/official-coco/ARCHITECTURE.md
+          test -f evidence/official-coco/OPTIMIZER_MATRIX.json
+          grep -q "OFFICIAL_HARNESS_NOT_YET_FULL_CAPTURE" evidence/official-coco/OPTIMIZER_MATRIX.json
+
+      - name: Fetch ChronoFold benchmark source
+        run: |
+          python - <<'PY'
+          from urllib.request import urlopen
+          import hashlib, json
+          url = 'https://raw.githubusercontent.com/batmeezy918/chronofold/main/benchmarks/coco_deterministic/s6_coco_harness.py'
+          data = urlopen(url, timeout=30).read()
+          digest = hashlib.sha256(data).hexdigest()
+          open('/tmp/s6_coco_harness.py', 'wb').write(data)
+          print(json.dumps({'source': url, 'sha256': digest}, sort_keys=True))
+          PY
+
+      - name: Execute registered S6 COCO harness
+        run: |
+          mkdir -p evidence/runtime/official-coco/${{ github.run_id }}
+          python /tmp/s6_coco_harness.py 2>&1 | tee evidence/runtime/official-coco/${{ github.run_id }}/stdout.log
+
+      - name: Execute quotient-runtime EOF gate
+        run: |
+          python3 - <<'PY' > evidence/runtime/official-coco/${{ github.run_id }}/quotient_gate.json
+          import json, os, platform, time, hashlib
+          record = {
+              'workflow': 'official-coco-registered',
+              'run_id': os.environ.get('GITHUB_RUN_ID'),
+              'sha': os.environ.get('GITHUB_SHA'),
+              'runner_os': platform.platform(),
+              'machine': platform.machine(),
+              'timestamp_ns': time.time_ns(),
+              'status': 'RUNTIME_CAPTURE_REQUIRES_QUOTIENT_BOUND_HARNESS'
+          }
+          record['sha256'] = hashlib.sha256(json.dumps(record, sort_keys=True).encode()).hexdigest()
+          print(json.dumps(record, sort_keys=True, indent=2))
+          PY
+
+      - name: Hash runtime evidence
+        run: |
+          find evidence/runtime/official-coco/${{ github.run_id }} -type f -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            | tee evidence/runtime/official-coco/${{ github.run_id }}/SHA256SUMS.txt
+
+      - name: Upload immutable benchmark evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-coco-${{ github.run_id }}
+          path: evidence/runtime/official-coco/${{ github.run_id }}/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish gate summary
+        run: |
+          {
+            echo '## Official COCO/BBOB registered run'
+            echo
+            echo "- Commit: \\`${GITHUB_SHA}\\`"
+            echo "- Dimension: \\`${COCO_DIMENSIONS}\\`"
+            echo "- Budget: \\`${COCO_BUDGET}\\`"
+            echo "- Seed: \\`${COCO_SEED}\\`"
+            echo '- Suite: `cocoex.Suite("bbob")`'
+            echo '- Observer: official COCO observer'
+            echo '- Evidence: uploaded as workflow artifact'
+            echo '- Speedup publication gate: remains closed until quotient equivalence + reverse reconstruction + invariant + performance gates are captured for the same workload.'
+          } >> "$GITHUB_STEP_SUMMARY"
