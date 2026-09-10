@@ -1,8 +1,10 @@
 {
-  "schema_version": "1.0",
-  "locked_at": "2026-09-08T20:30:00Z",
+  "schema_version": "1.1",
+  "locked_at": "2026-09-10T12:00:00Z",
   "official_interface": "cocoex.Suite('bbob')",
   "official_metric": "evaluations_to_final_target_hit",
+  "canonical_runtime_template": "evidence/templates/CF_QRT_CANONICAL_RUNTIME_CERTIFICATE_v1.1.md",
+  "latest_local_instance": "evidence/templates/CF_QRT_CANONICAL_RUNTIME_CERTIFICATE_v1.1_INSTANCE_20260910.md",
   "families": [
     {
       "id": "S6-deterministic",
