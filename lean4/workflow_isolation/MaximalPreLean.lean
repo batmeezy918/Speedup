@@ -1,5 +1,3 @@
-import Mathlib
-
 namespace SpeedupWorkflow
 
 universe u v w
@@ -27,29 +25,30 @@ class Observable (M : QuotientModel) : Prop where
 
 def Iterate {α : Type u} (f : α → α) : Nat → α → α
   | 0, x => x
-  | n+1, x => f (Iterate f n x)
+  | n + 1, x => f (Iterate f n x)
 
 theorem finite_descent
     (M : QuotientModel)
     [h : Intertwining M] :
     ∀ n x, M.π (Iterate M.T n x) = Iterate M.Tbar n (M.π x) := by
-  intro n x
+  intro n
   induction n with
-  | zero => rfl
+  | zero =>
+      intro x
+      rfl
   | succ n ih =>
-      simp [Iterate, h.step, ih]
+      intro x
+      rw [Iterate, h.step x, ih x]
 
 theorem reconstruction
     (M : QuotientModel)
     [h : Reconstruction M] :
-    ∀ q, M.π (M.σ q) = q := by
-  exact h.section
+    ∀ q, M.π (M.σ q) = q := h.section
 
 theorem observable_preservation
     (M : QuotientModel)
     [h : Observable M] :
-    ∀ x, M.obs x = M.obsBar (M.π x) := by
-  exact h.preserved
+    ∀ x, M.obs x = M.obsBar (M.π x) := h.preserved
 
 /- Modeled GEMM work identities. -/
 def fullWork (m n k : Nat) := 2 * m * n * k
@@ -58,12 +57,12 @@ def reducedWork (r s k : Nat) := 2 * r * s * k
 theorem work_16x :
     fullWork 1024 1024 1024 =
       16 * reducedWork 256 256 1024 := by
-  norm_num [fullWork, reducedWork]
+  decide
 
 theorem reduced_is_strictly_smaller :
     reducedWork 256 256 1024 <
       fullWork 1024 1024 1024 := by
-  norm_num [fullWork, reducedWork]
+  decide
 
 /- Runtime evidence must remain external to the mathematical theorem. -/
 structure RuntimeBinding where
