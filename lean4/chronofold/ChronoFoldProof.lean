@@ -1,3 +1,6 @@
+/- ChronoFold verified theorem set: forward iteration, reconstruction, reconstructed operator,
+   reconstructed iteration, observable iteration, exact work ratio, strict work reduction.
+   Lean core only; no Mathlib dependency. -/
 namespace ChronoFold
 
 universe u v w
