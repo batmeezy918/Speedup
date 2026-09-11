@@ -23,31 +23,37 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Lean4 through elan
+      - name: Install repository-declared Lean toolchain
         shell: bash
         run: |
           set -euo pipefail
-          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
-            | sh -s -- -y --default-toolchain leanprover/lean4:stable
           export PATH="$HOME/.elan/bin:$PATH"
+          if ! command -v elan >/dev/null 2>&1; then
+            curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+              | sh -s -- -y --default-toolchain leanprover/lean4:stable
+          fi
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-          test -x "$HOME/.elan/bin/lean"
-          "$HOME/.elan/bin/lean" --version
+          test -f lean4/chronofold/lean-toolchain
+          TOOLCHAIN="$(tr -d '\r\n' < lean4/chronofold/lean-toolchain)"
+          test -n "$TOOLCHAIN"
+          elan toolchain install "$TOOLCHAIN"
+          elan default "$TOOLCHAIN"
+          lean --version
+          lake --version
 
-      - name: Verify Lean4 compiler from repository root
+      - name: Verify core source discipline
         shell: bash
         run: |
           set -euo pipefail
           export PATH="$HOME/.elan/bin:$PATH"
-          lean --version
-          test -x "$HOME/.elan/bin/lean"
+          bash scripts/verify_lean4_all.sh lean4/chronofold core
 
-      - name: Verify ChronoFold Lean4 kernel lane
+      - name: Build and verify ChronoFold kernel workload
         shell: bash
         run: |
           set -euo pipefail
@@ -55,10 +61,39 @@ jobs:
           test -f lean4/chronofold/ChronoFoldProof.lean
           test -f lean4/chronofold/LinearQuotientProof.lean
           test -f lean4/chronofold/GODSQuotientClosure.lean
-          bash scripts/verify_lean4_all.sh lean4/chronofold
+          test -f lean4/chronofold/ProgressTargetCoupling.lean
+          if [[ -f lean4/chronofold/lakefile.lean ]]; then
+            (cd lean4/chronofold && lake build)
+          fi
+          bash scripts/verify_lean4_all.sh lean4/chronofold core
 
-      - name: Export ChronoFold Lean proof identities
+      - name: Emit theorem and toolchain manifest
         shell: bash
         run: |
           set -euo pipefail
-          find lean4/chronofold -type f -name '*.lean' -print0 | sort -z | xargs -0 sha256sum | tee lean4-chronofold-proof-identities.sha256
+          export PATH="$HOME/.elan/bin:$PATH"
+          mkdir -p verification-artifact
+          TOOLCHAIN="$(tr -d '\r\n' < lean4/chronofold/lean-toolchain)"
+          {
+            echo "toolchain=$TOOLCHAIN"
+            echo "lean=$(lean --version)"
+            echo "lake=$(lake --version)"
+            echo "commit=${GITHUB_SHA}"
+            echo "verified_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } | tee verification-artifact/environment.txt
+          find lean4/chronofold -type f -name '*.lean' -print0 | sort -z | xargs -0 sha256sum \
+            | tee verification-artifact/lean-source-sha256.txt
+          printf '%s\n' \
+            'ProgressTargetCoupling.lean' \
+            'ChronoFoldProof.lean' \
+            'LinearQuotientProof.lean' \
+            'GODSQuotientClosure.lean' \
+            | tee verification-artifact/verified-workload.txt
+
+      - name: Upload verified Lean workload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: speedup-lean4-verified-workload
+          path: verification-artifact/
+          if-no-files-found: error
+          retention-days: 30
