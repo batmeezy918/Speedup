@@ -1,0 +1,29 @@
+name: Recursive Speedup Ledger
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'evidence/ledger/**'
+      - 'governor/recursive_speedup_ledger.py'
+      - 'RECURSIVE_SPEEDUP_CONSTITUTION.md'
+      - 'SPECIFICATIONS.md'
+      - '.github/workflows/recursive-speedup-ledger.yml'
+  pull_request:
+    paths:
+      - 'evidence/ledger/**'
+      - 'governor/recursive_speedup_ledger.py'
+      - 'RECURSIVE_SPEEDUP_CONSTITUTION.md'
+      - 'SPECIFICATIONS.md'
+      - '.github/workflows/recursive-speedup-ledger.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-recursive-ledger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate append-only recursive primitive ledger
+        run: python3 governor/recursive_speedup_ledger.py evidence/ledger/RECURSIVE_PRIMITIVE_LEDGER.jsonl
