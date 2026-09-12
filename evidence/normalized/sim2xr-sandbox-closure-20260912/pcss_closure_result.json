@@ -1,0 +1,28 @@
+{
+  "schema": "PCSS-SIM2XR-SANDBOX-CLOSURE-1.0",
+  "archive_sha256": {
+    "test1": "79d04637dc91c8890ca8a032bc1e836f84266134f1d9f4b094c65bc35e38984c",
+    "full": "191ce2e570e52ad599d91731a03d3e401f35ae2aaf2fab422075bb1ccb80a298",
+    "qsim": "0df42b6c08c360ee23b90d0d00edead0d1b884a098f8f08105721775bd057be4",
+    "test3": "8e4955e86869dd2eff3c592e954b499cecfcdb33ab25f6e09f9572042d8a781f",
+    "webapp": "7315b10d18c57dd4e1131b35848795c4ee32e5a1971b27bc0b460b00c3b3baba"
+  },
+  "checks": {
+    "test1": {"rows": 210, "manifest_rows": 210, "speedup_recompute_max_abs_error": 0.0, "max_measured_speedup": 139.40863003017623, "relative_error_max": 4.8096324702166476e-15, "pass": true},
+    "full_suite": {"rows": 35, "manifest_tests": 10, "max_speedup_manifest": 125.58778814300723, "key_manifest_checks": {"trace_signal": 0.0, "trace_norm": 2.275879237363892, "omega_antisymmetry_error": 0.0, "qfi_noncommuting_difference": 1.1918838432789958, "ad_span_Z_error": 0.9441494461795135, "ad_span_ZY_error": 0.0, "physical_trace_error": 6.661338147750939e-16, "physical_hermiticity_error": 0.0, "physical_min_eigenvalue_deficit": 0.0, "unitary_invariance_error": 5.995204332975845e-15, "sim2x_definition_error": 0}, "pass": true},
+    "qsim": {"regime_rows": 28, "advantage_rows": 20, "control_rows": 4, "qfi_xi_rows": 2, "open_system_rows": 20, "pass": true},
+    "test3": {"rows": 176, "tests": 6, "speedup_values_found": 25, "max_speedup": 98.96895754923221, "max_relative_error": 3.241182505409006e-15, "control_span_Z_error": 0.9441494461795135, "control_span_ZY_error": 0.0, "pass": true},
+    "webapp": {"required_operator_tokens": 15, "missing_tokens": [], "self_contained_readme": true, "pass": true}
+  },
+  "verdict": "CLOSED_WITH_GAPS",
+  "claim_gate": {
+    "mathematical_closed_sector": "PROVED_FOR_SPECIFIED_CONSTRUCTION",
+    "numerical_closed_grid": "INDEPENDENTLY_REPRODUCED_IN_SANDBOX",
+    "scaling_speedup": "EMPIRICAL_ONLY",
+    "universal_speedup": "NOT_ESTABLISHED",
+    "q_inverse_full_campaign": "NOT_CLOSED",
+    "lean_closure": "NOT_ESTABLISHED",
+    "hardware_independent_speedup": "NOT_ESTABLISHED",
+    "pcss_verified_primitive": false
+  }
+}
