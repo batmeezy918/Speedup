@@ -12,6 +12,7 @@ theorem weak_coupling_bound
     (e z : Nat → Nat)
     (G : Nat)
     (hG : G = M + eps * L)
+    (hGdom : ∀ n, M * (n + 1) + G ≤ (n + 2) * G)
     (he0 : e 0 = 0)
     (hz : ∀ n, z n ≤ iterNat n (fun v => G * v) z0)
     (he : ∀ n, e (n + 1) ≤ M * e n + eps * C * z n) :
@@ -34,14 +35,16 @@ theorem weak_coupling_bound
               M * (eps * (n + 1) * C * iterNat n (fun v => G * v) z0) +
               eps * C * (G * iterNat n (fun v => G * v) z0) := by
             exact le_trans hstep (Nat.add_le_add
-              (Nat.mul_le_mul_left M hbounde)
-              (Nat.mul_le_mul_left (eps * C) hboundz))
+              (Nat.mul_le_mul_left hbounde M)
+              (Nat.mul_le_mul_left hboundz (eps * C)))
+          have hcoef := Nat.mul_le_mul_right
+            (hGdom n) (eps * C * iterNat n (fun v => G * v) z0)
           have harith :
               M * (eps * (n + 1) * C * iterNat n (fun v => G * v) z0) +
               eps * C * (G * iterNat n (fun v => G * v) z0)
               ≤ eps * (n + 2) * C * iterNat (n + 1) (fun v => G * v) z0 := by
-            simp [iterNat, hG, Nat.mul_add, Nat.add_mul, Nat.mul_assoc,
-              Nat.mul_left_comm, Nat.mul_comm]
+            simpa [iterNat, Nat.mul_add, Nat.add_mul, Nat.mul_assoc,
+              Nat.mul_left_comm, Nat.mul_comm] using hcoef
           exact le_trans hstep' harith
 
 /-- Zero coupling collapses the recurrence error to zero. -/
@@ -55,6 +58,6 @@ theorem weak_coupling_zero
   induction N with
   | zero => simp [he0]
   | succ n ih =>
-      exact le_trans (he n) (Nat.mul_le_mul_left M ih)
+      exact le_trans (he n) (Nat.mul_le_mul_left ih M)
 
 end SiliconSpeedup
