@@ -1,0 +1,69 @@
+name: MASQ EOF Benchmark
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'merchant_assurance_benchmark.py'
+      - '.github/workflows/masq-benchmark.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'merchant_assurance_benchmark.py'
+      - '.github/workflows/masq-benchmark.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify benchmark syntax
+        run: python3 -m py_compile merchant_assurance_benchmark.py
+
+      - name: Run MASQ deterministic and randomized corpus
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 merchant_assurance_benchmark.py | tee masq-ci.log
+
+      - name: Verify declared local evidence boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'LOCAL_REFERENCE_ORACLE_ONLY' masq_final_summary.json
+          grep -q 'UNPROVEN' masq_final_summary.json
+
+      - name: Verify benchmark closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          s = json.loads(Path('masq_final_summary.json').read_text())
+          assert s['cases_failed'] == 0, s
+          assert s['cases_completed'] == 5021, s
+          assert s['cases_passed'] == 5021, s
+          assert s['pass_rate'] == 1.0, s
+          assert s['empirical_closure_status'] == 'CLOSED_OVER_DECLARED_TEST_DOMAIN', s
+          assert s['claim_boundary'] == 'LOCAL_REFERENCE_ORACLE_ONLY', s
+          assert s['network_equivalence'] == 'UNPROVEN', s
+          print('MASQ CI gate: PASS')
+          PY
+
+      - name: Upload benchmark artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: masq-benchmark-results
+          path: |
+            masq_finished_runs.jsonl
+            masq_final_summary.json
+            masq-ci.log
+          if-no-files-found: error
