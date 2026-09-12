@@ -173,3 +173,21 @@ Preserve declared invariants, including `Omega(O psi)` and any domain-specific i
 ## 15. Non-claims
 
 This constitution does not assert universal speedup, universal optimality, automatic hardware acceleration, or general composability. These remain hypotheses until independently demonstrated.
+
+## 16. Enforcement
+
+The canonical machine-readable ledger is `evidence/ledger/RECURSIVE_PRIMITIVE_LEDGER.jsonl`.
+
+`governor/recursive_speedup_ledger.py` is the fail-closed validator. It MUST reject:
+
+- missing required chronology or evidence fields;
+- `ClaimStrength > EvidenceStrength`;
+- a `VERIFIED` record without `I`, `R`, `Q`, `Q_inverse`, `Omega`, `X`, and `L` all true;
+- a `VERIFIED` record without native scenario/run identity;
+- a non-verified record carrying `S_verified`;
+- a verified composition without explicit parents, independently measured `S_composed`, independently measured `S_cumulative`, and an interaction factor;
+- a composition whose parent primitive has not already appeared in the append-only ledger.
+
+GitHub Actions workflow `.github/workflows/recursive-speedup-ledger.yml` runs this validator on ledger and governing-specification changes. CI is an independent verification event; it does not promote an artifact to `VERIFIED` by itself.
+
+The ledger currently records no `VERIFIED` primitive. Existing empirical/formal artifacts remain at their declared lower evidence classes until their own complete PCSS gates close.
