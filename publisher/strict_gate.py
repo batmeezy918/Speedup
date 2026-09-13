@@ -2,8 +2,8 @@
 """Evidence-backed PCSS publication gate.
 
 A VERIFIED result requires explicit gates plus immutable local artifact hashes.
-This evaluator is deliberately unable to infer quotient, reconstruction,
-invariants, attribution, or Lean proof from timing alone.
+Proof-gate hashes are bound to actual files; a claimed hash string alone is
+never accepted as proof evidence.
 """
 from __future__ import annotations
 import hashlib
@@ -13,7 +13,7 @@ from pathlib import Path
 
 GATES = ("integrity", "reproducibility", "quotient_forward", "reconstruction_reverse", "invariants", "performance", "lean")
 BASE_ARTIFACTS = ("scenario.json", "environment.json", "trace.json", "performance.json")
-PROOF_ARTIFACTS = {
+PROOF_GATES = {
     "quotient_forward": "quotient_hash",
     "reconstruction_reverse": "reverse_hash",
     "invariants": "invariants_hash",
@@ -54,9 +54,39 @@ def evaluate(cert: dict, root: Path) -> tuple[bool, list[str]]:
             elif digest(path) != expected:
                 failures.append(f"hash:{name}")
 
-    for gate, field in PROOF_ARTIFACTS.items():
-        if gates.get(gate) is True and (not isinstance(cert.get(field), str) or not cert[field]):
-            failures.append(field)
+    # A proof gate is valid only when its certificate hash is bound to a
+    # present local artifact whose bytes hash to the declared value.
+    proof_files = cert.get("proof_artifacts")
+    if not isinstance(proof_files, dict):
+        proof_files = {}
+    for gate, hash_field in PROOF_GATES.items():
+        if gates.get(gate) is True:
+            declared_hash = cert.get(hash_field)
+            spec = proof_files.get(gate)
+            if not isinstance(declared_hash, str) or not declared_hash:
+                failures.append(hash_field)
+                continue
+            if not isinstance(spec, dict):
+                failures.append(f"proof_binding:{gate}")
+                continue
+            rel = spec.get("path")
+            expected = spec.get("sha256")
+            if not isinstance(rel, str) or not rel or not isinstance(expected, str) or not expected:
+                failures.append(f"proof_binding:{gate}")
+                continue
+            if expected != declared_hash:
+                failures.append(f"proof_declared_hash:{gate}")
+                continue
+            path = (root / rel).resolve()
+            try:
+                path.relative_to(root.resolve())
+            except ValueError:
+                failures.append(f"proof_path_escape:{gate}")
+                continue
+            if not path.is_file():
+                failures.append(f"proof_missing:{gate}")
+            elif digest(path) != expected:
+                failures.append(f"proof_hash:{gate}")
 
     if gates.get("performance") is True:
         perf = cert.get("performance")
