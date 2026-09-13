@@ -14,6 +14,7 @@ on:
       - 'lean4/**'
       - 'scripts/pcss_native_runner.py'
       - 'scripts/test_pcss_gates.py'
+      - 'scripts/test_pcss_gate_matrix.py'
 
 jobs:
   gate:
@@ -23,9 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate Python gates and runner
-        run: python -m py_compile publisher/gate.py publisher/strict_gate.py publisher/manifest.py scripts/pcss_native_runner.py scripts/test_pcss_gates.py
+        run: python -m py_compile publisher/gate.py publisher/strict_gate.py publisher/manifest.py scripts/pcss_native_runner.py scripts/test_pcss_gates.py scripts/test_pcss_gate_matrix.py
       - name: Execute PCSS gate regression tests
         run: python scripts/test_pcss_gates.py
+      - name: Exhaustively verify all seven-gate paths
+        run: python scripts/test_pcss_gate_matrix.py
       - name: Prove strict gate is fail-closed
         shell: bash
         run: |
