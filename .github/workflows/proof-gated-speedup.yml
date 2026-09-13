@@ -12,6 +12,7 @@ on:
       - 'evidence/**'
       - 'publisher/**'
       - 'lean4/**'
+      - 'scripts/pcss_native_runner.py'
 
 jobs:
   gate:
@@ -20,14 +21,27 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Validate Python gate syntax
-        run: python -m py_compile publisher/gate.py publisher/manifest.py
+      - name: Validate Python gates
+        run: python -m py_compile publisher/gate.py publisher/strict_gate.py publisher/manifest.py scripts/pcss_native_runner.py
+      - name: Prove strict gate is fail-closed
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/strict-gate
+          cat > /tmp/strict-gate/certificate.json <<'JSON'
+          {"run_id":"ci-negative","scenario_hash":"x","source_hash":"x","input_hash":"x","environment_hash":"x","trace_hash":"x","performance_hash":"x","gates":{"integrity":true,"reproducibility":true,"quotient_forward":true,"reconstruction_reverse":true,"invariants":true,"performance":true,"lean":true}}
+          JSON
+          if python publisher/strict_gate.py /tmp/strict-gate/certificate.json; then
+            echo "Strict gate unexpectedly accepted a certificate without artifacts"
+            exit 1
+          fi
+          echo "Strict gate correctly rejected certificate-only proof"
       - name: Run publication gate when certificate exists
         shell: bash
         run: |
           CERT="${{ github.event.inputs.certificate }}"
           if [[ -n "$CERT" && -f "$CERT" ]]; then
-            python publisher/gate.py "$CERT"
+            python publisher/strict_gate.py "$CERT"
           else
-            echo "No certificate supplied for this event; gate implementation validated only."
+            echo "No certificate supplied for this event; structural gate validation only."
           fi
