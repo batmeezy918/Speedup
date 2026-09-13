@@ -3,7 +3,8 @@
 
 This proves the boolean decision surface of strict_gate.py is fail-closed:
 exactly the all-true vector can pass when artifact hashes and required fields
-are valid; every other gate vector must quarantine.
+are valid; every other gate vector must quarantine. Proof gates are backed by
+actual hashed files, not bare hash strings.
 """
 from __future__ import annotations
 import hashlib
@@ -16,6 +17,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 GATES = ("integrity", "reproducibility", "quotient_forward", "reconstruction_reverse", "invariants", "performance", "lean")
+PROOF = {
+    "quotient_forward": ("quotient.json", b'{"quotient":"matrix"}\n', "quotient_hash"),
+    "reconstruction_reverse": ("reverse.json", b'{"reverse":"matrix"}\n', "reverse_hash"),
+    "invariants": ("invariants.json", b'{"invariants":"matrix"}\n', "invariants_hash"),
+    "lean": ("proof.txt", b"theorem matrix : True := by trivial\n", "proof_hash"),
+}
 BASE = {
     "scenario.json": b'{"scenario":"matrix"}\n',
     "environment.json": b'{"environment":"matrix"}\n',
@@ -39,9 +46,13 @@ def certificate(d: Path, values: tuple[bool, ...]) -> Path:
         "performance_hash":hashes["performance.json"],
         "artifacts":hashes,
         "performance":{"metric":"wall_ns","median_baseline":2,"median_candidate":1,"speedup_measured":2,"samples":1},
-        "quotient_hash":"q", "reverse_hash":"r", "invariants_hash":"i", "proof_hash":"p",
         "gates":dict(zip(GATES, values)),
+        "proof_artifacts":{},
     }
+    for gate, (name, data, field) in PROOF.items():
+        h = put(d, name, data)
+        cert[field] = h
+        cert["proof_artifacts"][gate] = {"path": name, "sha256": h}
     p = d / "certificate.json"
     p.write_text(json.dumps(cert), encoding="utf-8")
     return p
