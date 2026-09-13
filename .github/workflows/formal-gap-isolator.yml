@@ -1,0 +1,36 @@
+name: Formal Gap Isolator
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gap-isolator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile gap tools
+        run: python3 -m py_compile formal_gap_isolator/gap_isolator.py formal_gap_isolator/gap_lifecycle.py
+
+      - name: Run gap unit tests
+        run: python3 -m pytest -q formal_gap_isolator/tests
+
+      - name: Verify fail-closed lifecycle surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp)"
+          if python3 formal_gap_isolator/gap_lifecycle.py "$tmp" GAP-CI OPEN CLOSED; then
+            echo "Illegal OPEN -> CLOSED transition was accepted"
+            exit 1
+          fi
+          echo "Fail-closed lifecycle transition confirmed"
