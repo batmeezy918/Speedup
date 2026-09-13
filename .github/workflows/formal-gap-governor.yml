@@ -28,12 +28,15 @@ jobs:
       - name: Compile isolator smoke test
         run: |
           python3 - <<'PY'
-          import importlib.util
+          import hashlib, importlib.util, json
+          from pathlib import Path
           spec = importlib.util.spec_from_file_location('isolator', 'governor/formal_gap_isolator.py')
           mod = importlib.util.module_from_spec(spec)
           spec.loader.exec_module(mod)
+          p = Path('ci-smoke-certificate.json')
           cert = {'run_id':'CI-SMOKE','gates':{g:False for g in mod.GATES},'claim_strength':'CANDIDATE','evidence_strength':'OBSERVATION'}
-          bundle = mod.extract(cert, __import__('pathlib').Path('ci-smoke-certificate.json'))
+          p.write_text(json.dumps(cert), encoding='utf-8')
+          bundle = mod.extract(cert, p)
           assert len(bundle['gaps']) == 7
           assert bundle['promotion_policy'] == 'NO_PROMOTION: gap extraction cannot promote evidence'
           print('PASS: gap isolator smoke test')
