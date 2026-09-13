@@ -1,0 +1,40 @@
+name: Formal Gap Governor
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'governor/formal_gap_isolator.py'
+      - 'governor/formal_gap_ledger.py'
+      - 'evidence/ledger/FORMAL_GAP_LEDGER.jsonl'
+      - '.github/workflows/formal-gap-governor.yml'
+  pull_request:
+    paths:
+      - 'governor/formal_gap_isolator.py'
+      - 'governor/formal_gap_ledger.py'
+      - 'evidence/ledger/FORMAL_GAP_LEDGER.jsonl'
+      - '.github/workflows/formal-gap-governor.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-formal-gap-state:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate append-only formal gap ledger
+        run: python3 governor/formal_gap_ledger.py evidence/ledger/FORMAL_GAP_LEDGER.jsonl
+      - name: Compile isolator smoke test
+        run: |
+          python3 - <<'PY'
+          import importlib.util
+          spec = importlib.util.spec_from_file_location('isolator', 'governor/formal_gap_isolator.py')
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          cert = {'run_id':'CI-SMOKE','gates':{g:False for g in mod.GATES},'claim_strength':'CANDIDATE','evidence_strength':'OBSERVATION'}
+          bundle = mod.extract(cert, __import__('pathlib').Path('ci-smoke-certificate.json'))
+          assert len(bundle['gaps']) == 7
+          assert bundle['promotion_policy'] == 'NO_PROMOTION: gap extraction cannot promote evidence'
+          print('PASS: gap isolator smoke test')
+          PY
