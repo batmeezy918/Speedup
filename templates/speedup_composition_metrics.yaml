@@ -1,0 +1,51 @@
+schema_version: "1.1"
+template: speedup_composition_metrics
+
+# Core metrics
+metrics:
+  S_ideal: "T_baseline_ideal / T_candidate_ideal"
+  S_measured: "T_baseline / T_candidate"
+  S_verified: "S_measured after all verification gates pass"
+  S_cumulative: "T_canonical_baseline / T_actual_composed"
+  S_product: "product(S_i) — prediction only"
+  K_comp: "S_composed / S_product"
+  Gamma_higher_order: "S_1n / (product(S_i) * product(K_conditional_i))"
+
+# Mandatory state-boundary fields prevent double counting.
+state_boundary:
+  vector_form: "P_i = (X_{i-1}, O_i, X_i, S_i, E_i, C_i)"
+  rule: "Each vector represents one non-overlapping transition."
+  dependency_rule: "A downstream vector is conditioned on the actual output state of its predecessor."
+  double_counting_rule: "Reject any product in which a component already contains another component's work."
+
+# Composition measurements
+composition_tests:
+  isolated_runs: true
+  direct_composed_run: true
+  canonical_baseline: true
+  order_test: true
+  associativity_test: true
+  repeated_seed_test: true
+  cross_scenario_test: true
+  interaction_factor: true
+  higher_order_interaction: true
+
+# Semantic/evidence controls
+verification_metrics:
+  semantic_error: "d(Q(candidate), Q(baseline))"
+  reconstruction_error: "d(R(Q(e)), e)"
+  invariant_delta: "distance(Omega_candidate, Omega_baseline)"
+  oracle_agreement: "independent verifier agrees with implementation verdict"
+  falsification_rate: "failed adversarial cases / attempted adversarial cases"
+  timing_variance: "sample dispersion under declared aggregation rule"
+  amortization_break_even: "setup_cost / (baseline_step_cost - candidate_step_cost)"
+  hardware_attribution: "measured effect attributable to identified mechanism, not merely correlated"
+
+# Evidence statuses
+status_order:
+  - UNVERIFIED
+  - EMPIRICAL
+  - FORMAL_PARTIAL
+  - VERIFIED_OPERATIONAL_PRIMITIVE
+
+claim_law: "CLAIM_STRENGTH <= EVIDENCE_STRENGTH"
