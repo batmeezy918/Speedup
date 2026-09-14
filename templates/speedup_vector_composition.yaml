@@ -1,0 +1,109 @@
+schema_version: "1.1"
+template: speedup_vector_composition
+status: CANDIDATE
+claim_strength: CANDIDATE
+
+# A speedup vector is state-boundary aware. Scalars are never treated as context-free.
+performance_vector:
+  id: "P-REPLACE"
+  operation: "REPLACE"
+  input_state: "X_PREV"
+  output_state: "X_NEXT"
+  baseline_id: "BASELINE-REPLACE"
+  scenario_id: "SCENARIO-REPLACE"
+  implementation_id: "IMPL-REPLACE"
+  environment_id: "ENV-REPLACE"
+  metric: wall_clock_seconds
+  timing_source: "REPLACE"
+  samples: 0
+  warmups: 0
+  aggregation: median
+  uncertainty: "REPLACE"
+  seed: null
+  speedup:
+    ideal: null
+    measured: null
+    verified: null
+    cumulative: null
+  evidence_state: UNVERIFIED
+
+# Composition is permitted only when dependency/state boundaries are compatible.
+composition:
+  enabled: false
+  ordered_vectors: []
+  compatibility:
+    state_boundary_match: false
+    baseline_chain_match: false
+    observable_match: false
+    invariant_match: false
+    implementation_overlap: false
+    double_counting_check: false
+  product_prediction:
+    enabled: false
+    value: null
+    formula: "product(measured or verified component vectors)"
+    interpretation: derived_prediction_only
+  direct_composed_measurement:
+    required: true
+    baseline_id: "CANONICAL-BASELINE-REPLACE"
+    measured_speedup: null
+  interaction:
+    K_comp: null
+    formula: "S_composed / S_product"
+    interpretation: measured_composability_diagnostic
+  higher_order:
+    enabled: false
+    Gamma: null
+    formula: "S_1:n / (product(S_i) * product(K_conditional_i))"
+
+# Recursive continuation vectors must measure only the newly introduced state transition.
+recursive:
+  enabled: false
+  boundary_semantics: "each vector owns one non-overlapping state transition"
+  vectors: []
+  conditional_speedups: []
+  recursive_product_prediction: null
+  direct_recursive_measurement: null
+  recursive_interaction: null
+
+verification:
+  semantic_equivalence: UNKNOWN
+  reverse_reconstruction: UNKNOWN
+  invariant_preservation: UNKNOWN
+  independent_oracle: UNKNOWN
+  falsification_random: UNKNOWN
+  falsification_corrupted: UNKNOWN
+  precision_gate: UNKNOWN
+  incompatible_gate: UNKNOWN
+  double_counting_gate: UNKNOWN
+  baseline_gate: UNKNOWN
+  native_rerun: UNKNOWN
+  hardware_mechanism: UNKNOWN
+  formal_closure: UNKNOWN
+  reproducibility: UNKNOWN
+
+# Gap classes are retained; none may be silently erased by a successful benchmark.
+gaps:
+  - DEPENDENCY_GAP
+  - COMPOSITION_GAP
+  - MEASUREMENT_GAP
+  - ATTRIBUTION_GAP
+  - SCALING_GAP
+  - HARDWARE_MECHANISM_GAP
+  - RECONSTRUCTION_GAP
+  - OBSERVABLE_COMPLETENESS_GAP
+  - FORMAL_GAP
+
+promotion:
+  verified_operational_primitive: false
+  required_claim_law: "CLAIM_STRENGTH <= EVIDENCE_STRENGTH"
+  required_gates:
+    - integrity_provenance
+    - reproducibility
+    - forward_equivalence
+    - reverse_reconstruction
+    - invariant_preservation
+    - direct_performance_measurement
+    - independent_verification
+    - formal_obligations
+  on_unknown_or_failure: QUARANTINE
