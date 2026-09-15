@@ -10,10 +10,6 @@ if [[ ! -d "$ROOT_ABS" ]]; then
   exit 1
 fi
 
-# The package build can resolve the toolchain from lean-toolchain even when
-# elan has no global default. Direct `lean` invocations do not. Pin the
-# verifier to the repository-declared toolchain so every source is checked
-# with the same compiler as `lake build`.
 if [[ "$MODE" == "core" && -f "$ROOT_ABS/lean-toolchain" && -x "$(command -v elan || true)" ]]; then
   TOOLCHAIN="$(tr -d '\r\n' < "$ROOT_ABS/lean-toolchain")"
   if [[ -z "$TOOLCHAIN" ]]; then
@@ -31,7 +27,6 @@ scan_file() {
   local out="$2"
   sed -E '/^[[:space:]]*--/d; s/--.*$//g' "$file" \
     | perl -0pe 's/\/\-.*?\-\// /gs' > "$out"
-
   if grep -nE '\b(sorry|admit|by\?)\b' "$out" >/dev/null; then
     echo "ERROR: executable unfinished proof marker detected in $file" >&2
     grep -nE '\b(sorry|admit|by\?)\b' "$out" >&2 || true
@@ -80,6 +75,14 @@ fi
 
 find "$ROOT_ABS" -type f \( -name '*.olean' -o -name '*.ilean' \) -delete
 
+# A package lakefile is the canonical dependency-aware build boundary. Build it
+# before per-file checks so imports resolve to actual compiled targets rather
+# than relying on source ordering or stale local artifacts.
+if [[ "$MODE" == "core" && -f "$ROOT_ABS/lakefile.lean" ]] && grep -q 'lean_lib' "$ROOT_ABS/lakefile.lean"; then
+  echo "=== Lean4 package build: $(basename "$ROOT_ABS") ==="
+  (cd "$ROOT_ABS" && lake build)
+fi
+
 pass=0
 pending=("${files[@]}")
 total=${#pending[@]}
@@ -88,12 +91,19 @@ while [[ "${#pending[@]}" -gt 0 ]]; do
   next=()
   progress=0
   echo "=== Lean4 $MODE verification pass $pass: ${#pending[@]} pending ==="
-
   for file in "${pending[@]}"; do
     if [[ "$MODE" == "mathlib" ]]; then
       rel="${file#${MROOT}/}"
       echo "--- lake env lean $rel"
       if (cd "$MROOT" && lake env lean "$rel"); then
+        progress=$((progress + 1))
+      else
+        next+=("$file")
+      fi
+    elif [[ -f "$ROOT_ABS/lakefile.lean" ]] && grep -q 'lean_lib' "$ROOT_ABS/lakefile.lean"; then
+      rel="${file#${ROOT_ABS}/}"
+      echo "--- lake env lean $rel"
+      if (cd "$ROOT_ABS" && lake env lean "$rel"); then
         progress=$((progress + 1))
       else
         next+=("$file")
@@ -107,18 +117,15 @@ while [[ "${#pending[@]}" -gt 0 ]]; do
       fi
     fi
   done
-
   if [[ "${#next[@]}" -eq 0 ]]; then
     echo "LEAN4_${MODE^^}_ALL_PASS=1"
     echo "LEAN4_${MODE^^}_SOURCE_COUNT=$total"
     exit 0
   fi
-
   if [[ "$progress" -eq 0 || "$pass" -ge 100 ]]; then
     echo "LEAN4_${MODE^^}_ALL_PASS=0" >&2
     printf 'Unresolved/failed source: %s\n' "${next[@]}" >&2
     exit 1
   fi
-
   pending=("${next[@]}")
 done

@@ -1,18 +1,3 @@
-/-!
-Progress–Target Coupling bridge for the ChronoFold/Speedup formal layer.
-
-This file is deliberately narrow: it closes the mathematical gap between a
-Nat-valued strict-progress measure and eventual target reachability, then
-binds that quotient result to the existing literal reconstruction/intertwining
-layer.
-
-Evidence status:
-* Theorems in this file are NEW constructions until CI compiles them in the
-  repository's canonical Lean environment.
-* No empirical speedup is asserted here.
-* No universal optimizer or wall-clock claim is asserted here.
--/
-
 import ExactQuotientClosure
 
 namespace SiliconSpeedup
@@ -25,12 +10,7 @@ variable {X : Type u} {Q : Type v}
 def Reaches (Target : Q → Prop) (Tbar : Q → Q) (q : Q) : Prop :=
   ∃ n, Target (iter n Tbar q)
 
-/--
-Progress–Target Coupling:
-if every non-target state strictly decreases a Nat-valued defect, and zero
-is target, then every initial quotient state reaches the target in finitely
-many iterations.
--/
+/-- Progress–Target Coupling: strict Nat-valued descent reaches a target. -/
 theorem progress_target_coupling
     (D : Q → Nat)
     (Target : Q → Prop)
@@ -48,7 +28,6 @@ theorem progress_target_coupling
         obtain ⟨n, hn⟩ := ih (D (Tbar q)) hlt (Tbar q) rfl
         exact ⟨n + 1, by simpa [iter] using hn⟩
 
-/-- Zero-defect characterization is sufficient to turn termination into the target. -/
 theorem zero_defect_is_target
     (D : Q → Nat)
     (Target : Q → Prop)
@@ -57,11 +36,6 @@ theorem zero_defect_is_target
   intro q hq
   exact h_zero q hq
 
-/--
-Literal target transfer through the existing intertwining theorem.
-If the quotient trajectory reaches `Target`, the corresponding literal
-trajectory reaches the same quotient target.
--/
 theorem literal_target_transfer
     (π : X → Q)
     (T : X → X)
@@ -77,10 +51,6 @@ theorem literal_target_transfer
     exact hn
   ⟩
 
-/--
-Reconstructed literal execution from a certified quotient representative.
-The section law preserves the quotient target at every finite iterate.
--/
 theorem reconstructed_target_transfer
     (π : X → Q)
     (T : X → X)
@@ -99,11 +69,6 @@ theorem reconstructed_target_transfer
     exact hn
   ⟩
 
-/--
-Master closure for the first concrete gap:
-Progress–Target Coupling + intertwining + section gives literal target
-reachability from every reconstructed quotient state.
--/
 theorem progress_target_literal_closure
     (π : X → Q)
     (T : X → X)
