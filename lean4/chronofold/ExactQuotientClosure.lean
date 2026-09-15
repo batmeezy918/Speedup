@@ -31,7 +31,7 @@ theorem reconstructed_iterate
     ∀ n q, π (iter n T (σ q)) = iter n Tbar q := by
   intro n q
   rw [quotient_iterate π T Tbar hT]
-  exact hσ q
+  exact congrArg (iter n Tbar) (hσ q)
 
 theorem observable_preserved_iterate
     (hT : Intertwines π T Tbar)
@@ -48,7 +48,7 @@ theorem exact_quotient_closure
     (∀ n q, π (iter n T (σ q)) = iter n Tbar q) ∧
     (∀ n x, obs (iter n T x) = obsBar (iter n Tbar (π x))) := by
   exact ⟨quotient_iterate π T Tbar hT,
-    reconstructed_iterate π T Tbar hσ hT,
+    reconstructed_iterate π T Tbar σ hσ hT,
     observable_preserved_iterate π T Tbar obs obsBar hT hobs⟩
 
 end SiliconSpeedup
