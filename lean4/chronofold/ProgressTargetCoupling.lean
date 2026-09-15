@@ -19,7 +19,7 @@ def Intertwines (pi : X → Q) (T : X → X) (Tbar : Q → Q) : Prop :=
 def Section (pi : X → Q) (sigma : Q → X) : Prop :=
   ∀ q, pi (sigma q) = q
 
-def iter {α : Type u} (n : Nat) (f : α → α) (x : α) : α :=
+def iter {α : Type _} (n : Nat) (f : α → α) (x : α) : α :=
   match n with
   | 0 => x
   | n + 1 => f (iter n f x)
@@ -54,11 +54,11 @@ theorem progress_target_coupling
     (D : Q → Nat)
     (Target : Q → Prop)
     (Tbar : Q → Q)
-    (h_zero : ∀ q, D q = 0 → Target q)
+    (_h_zero : ∀ q, D q = 0 → Target q)
     (h_dec : ∀ q, ¬ Target q → D (Tbar q) < D q) :
     ∀ q, Reaches Target Tbar q := by
   intro q0
-  have rec : ∀ n q, D q < n → Reaches Target Tbar q := by
+  have hstep : ∀ n q, D q < n → Reaches Target Tbar q := by
     intro n
     induction n with
     | zero =>
@@ -73,7 +73,7 @@ theorem progress_target_coupling
             Nat.lt_of_lt_of_le hlt (Nat.le_of_lt_succ hq)
           obtain ⟨k, hk⟩ := ih (Tbar q) hbound
           exact ⟨k + 1, by simpa [iter] using hk⟩
-  exact rec (D q0 + 1) q0 (Nat.lt_succ_self _)
+  exact hstep (D q0 + 1) q0 (Nat.lt_succ_self _)
 
 theorem zero_defect_is_target
     (D : Q → Nat)
