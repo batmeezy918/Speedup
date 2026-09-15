@@ -47,11 +47,9 @@ theorem reconstructed_iterate
   rw [quotient_iterate pi T Tbar hT]
   exact congrArg (iter n Tbar) (hσ q)
 
-/-- A quotient-space target reached by an iterated transition. -/
 def Reaches (Target : Q → Prop) (Tbar : Q → Q) (q : Q) : Prop :=
   ∃ n, Target (iter n Tbar q)
 
-/-- Progress–Target Coupling: strict Nat-valued descent reaches a target. -/
 theorem progress_target_coupling
     (D : Q → Nat)
     (Target : Q → Prop)
@@ -59,15 +57,23 @@ theorem progress_target_coupling
     (h_zero : ∀ q, D q = 0 → Target q)
     (h_dec : ∀ q, ¬ Target q → D (Tbar q) < D q) :
     ∀ q, Reaches Target Tbar q := by
-  intro q
-  induction h : D q using Nat.strong_induction_on with
-  | h d ih =>
-      by_cases ht : Target q
-      · exact ⟨0, by simpa [iter] using ht⟩
-      · have hlt : D (Tbar q) < d := by
-          simpa [h] using h_dec q ht
-        obtain ⟨n, hn⟩ := ih (D (Tbar q)) hlt (Tbar q) rfl
-        exact ⟨n + 1, by simpa [iter] using hn⟩
+  intro q0
+  have rec : ∀ n q, D q < n → Reaches Target Tbar q := by
+    intro n
+    induction n with
+    | zero =>
+        intro q hq
+        cases hq
+    | succ n ih =>
+        intro q hq
+        by_cases ht : Target q
+        · exact ⟨0, by simpa [iter] using ht⟩
+        · have hlt : D (Tbar q) < D q := h_dec q ht
+          have hbound : D (Tbar q) < n :=
+            Nat.lt_of_lt_of_le hlt (Nat.le_of_lt_succ hq)
+          obtain ⟨k, hk⟩ := ih (Tbar q) hbound
+          exact ⟨k + 1, by simpa [iter] using hk⟩
+  exact rec (D q0 + 1) q0 (Nat.lt_succ_self _)
 
 theorem zero_defect_is_target
     (D : Q → Nat)
