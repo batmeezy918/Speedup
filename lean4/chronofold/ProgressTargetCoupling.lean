@@ -12,7 +12,10 @@ Evidence status:
 * No empirical speedup is asserted here.
 * No universal optimizer or wall-clock claim is asserted here.
 -/
-namespace ChronoFold
+
+import ExactQuotientClosure
+
+namespace SiliconSpeedup
 
 universe u v
 
@@ -70,7 +73,7 @@ theorem literal_target_transfer
     ∃ n, Target (π (iter n T x)) := by
   obtain ⟨n, hn⟩ := hreach
   exact ⟨n, by
-    rw [forward_iterate π T Tbar hT]
+    rw [quotient_iterate π T Tbar hT]
     exact hn
   ⟩
 
@@ -91,7 +94,7 @@ theorem reconstructed_target_transfer
     ∃ n, Target (π (iter n T (σ q))) := by
   obtain ⟨n, hn⟩ := hreach
   exact ⟨n, by
-    have hrec := reconstructed_iterate π T Tbar hσ hT n q
+    have hrec := reconstructed_iterate π T Tbar σ hσ hT n q
     rw [hrec]
     exact hn
   ⟩
@@ -117,4 +120,4 @@ theorem progress_target_literal_closure
   apply reconstructed_target_transfer π T Tbar σ Target hσ hT q
   exact progress_target_coupling D Target Tbar h_zero h_dec q
 
-end ChronoFold
+end SiliconSpeedup
