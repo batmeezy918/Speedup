@@ -18,7 +18,7 @@ class Intertwining {X : Type u} {Q : Type v} {Y : Type w}
 
 class Reconstruction {X : Type u} {Q : Type v} {Y : Type w}
     (M : QuotientModel X Q Y) : Prop where
-  section : ∀ q, M.π (M.σ q) = q
+  section_ : ∀ q, M.π (M.σ q) = q
 
 class Observable {X : Type u} {Q : Type v} {Y : Type w}
     (M : QuotientModel X Q Y) : Prop where
@@ -38,13 +38,15 @@ theorem finite_descent
   | zero => intro x; rfl
   | succ n ih =>
       intro x
-      rw [Iterate, h.step x, ih x]
+      change M.π (M.T (Iterate M.T n x)) =
+        M.Tbar (Iterate M.Tbar n (M.π x))
+      rw [h.step, ih x]
 
 theorem reconstruction
     {X : Type u} {Q : Type v} {Y : Type w}
     (M : QuotientModel X Q Y)
     [h : Reconstruction M] :
-    ∀ q, M.π (M.σ q) = q := h.section
+    ∀ q, M.π (M.σ q) = q := h.section_
 
 theorem observable_preservation
     {X : Type u} {Q : Type v} {Y : Type w}
