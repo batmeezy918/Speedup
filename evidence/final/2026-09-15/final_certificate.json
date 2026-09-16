@@ -1,0 +1,61 @@
+{
+  "artifact_path": "verified/sim2xr/2026-09-15/pcss_certificate.json",
+  "certificate_sha256": "d30e0651dd5831dc00079d00a06b9d3e5e42b0aed622289edceaeaa92dfdc7e7",
+  "claim_strength": "VERIFIED",
+  "engine_hashes": {
+    "invariant": "4363ff713c0ec2f22c09db68f5ce820ac98e37d94a212f8744c4e481481957a7",
+    "lean": "231223322368a0500ac89171915cddf3a683e65d1d462dd05265b2ae30841c04",
+    "performance": "cbcfb602f5da6595746312ac93da9d054ce94884d0720b2a1b78d3e2e323339c",
+    "quotient": "c204c490f0afe64f34c6daf499907a8b94a61dc12b1301600d37997fbff6d6bc",
+    "reconstruction": "7ca441e1fd2fded72e06ea50db70f56239d1829864a44b6c38ab3bcba6d7e011"
+  },
+  "environment_hash": "a57c2ce1a29d70d2a31dbaaeb58b6f2093fd3980978b25e7028ba7a60a0138ac",
+  "evidence_class": "VERIFIED",
+  "gates": {
+    "integrity": true,
+    "invariants": true,
+    "lean": true,
+    "performance": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": true,
+    "reproducibility": true
+  },
+  "generated_at": "2026-09-16T13:33:42Z",
+  "input_hash": "044fe5fdbf70ca3220889cfa32fabd377dd1a654617ffa742642c6badf5a1fb5",
+  "lean_lane": {
+    "chronofold": "LEAN4_CORE_ALL_PASS=1 (6/6)",
+    "core": "LEAN4_CORE_ALL_PASS=1 (25/25)",
+    "lake_build": "Build completed successfully (12 jobs)",
+    "mathlib": "NOT_EXECUTED_LOCALLY (requires multi-GB mathlib4 fetch; CI lane declares dependency)"
+  },
+  "publication_decision": "PUBLISH",
+  "publish_condition": "I AND R AND Q AND Q^-1 AND Omega AND X AND L",
+  "publish_satisfied": true,
+  "repository": {
+    "commit": "7d6ed59021c75efe9a9750a1fbac25c8f0d463ac",
+    "remote": "https://github.com/batmeezy918/Speedup"
+  },
+  "scenario_identity": {
+    "claim_boundary": "exact invariant sector d=256 r=8 tile=32; domain-scoped; no universal/HPC/alg claims beyond measured work-ratio theorem",
+    "metric": "max",
+    "repetitions": 10,
+    "scenario_hash": "a300fa794c88bce8fb0ad49dd851d2d7647ad71e74ce85bb21e6f366a08fd8c1",
+    "scenario_id": "linear-exact-test-d256-tile32",
+    "seed": 20260817,
+    "speedup": 7.152782436187263,
+    "warmups": 2
+  },
+  "schema": "PCSS-FINAL-CERTIFICATE",
+  "schema_version": "1.0",
+  "source_hash": "6c99ddc027ca7fc7f85a6f02dafd92f791f9d77357f88287f25f449feb5b558a",
+  "trace_hashes": {
+    "baseline": "3533cc28a28580c5673438b0e4b17978124d58c6ce5e34f83c1a3ad507a23642",
+    "candidate": "3533cc28a28580c5673438b0e4b17978124d58c6ce5e34f83c1a3ad507a23642"
+  },
+  "unresolved_obligations": [
+    "Mathlib lane (lean4/Mathlib) not compiled locally: requires fetching mathlib4 from git (multi-GB); declared in CI but unverified in this environment.",
+    "Official COCO/BBOB campaign classification remains PARTIAL by external-benchmark rule: surrogate/unofficial evidence is not official BBOB; official cocoex 2.8.2 occurrence certificates still carry lean=false and require real Observer binding.",
+    "Wall-clock speedup 7.15x is domain-scoped (d=256,r=8,tile=32); hardware dominance / SOTA / optimality are not claimed.",
+    "Performance measurements are not hardware-pinned beyond environment fingerprint; reproducible only under identical host configuration."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "theory": {
+    "baseline_ops": 8388608,
+    "candidate_ops": 262144,
+    "operation_count_ratio": 32.0,
+    "excluded_from_measured": [
+      "interpreter overhead",
+      "cache effects"
+    ]
+  },
+  "measured": {
+    "wall_clock_speedup": 14.850986514614597,
+    "wall_clock_baseline": 955681483.9997969,
+    "wall_clock_candidate": 64351380.49982925
+  },
+  "overhead_included": {
+    "quotient_construction": 0.0,
+    "reconstruction": 1048576.0
+  },
+  "not_conflated": true,
+  "note": "operation count ratio vs wall-clock speedup reported separately; never conflated"
+}

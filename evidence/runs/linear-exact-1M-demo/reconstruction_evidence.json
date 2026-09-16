@@ -1,0 +1,13 @@
+{
+  "pass": false,
+  "reason": "9/9 states exceed tolerance 0.0",
+  "maximum_error": 2.5187002251261656,
+  "mean_error": 2.404189302387723,
+  "tolerance": 0.0,
+  "metric": "max",
+  "domain_coverage": {
+    "states_checked": 9,
+    "declared_domain": "declared_sampled"
+  },
+  "reconstruction_status": "FAIL"
+}

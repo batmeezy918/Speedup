@@ -1,0 +1,2741 @@
+{
+ "action": "REFUSE",
+ "confidence": 0.95,
+ "decision_id": "dec_b4fa2100617e4c558b518779",
+ "evidence": [],
+ "governor_version": "1.0.0",
+ "input_signature": "f02e49ef9f545a3fa699d0e7fab5032499a84f0e8959046305af2157a45e3f9f",
+ "mitigation": [
+  "preserve essential operations",
+  "keep observing"
+ ],
+ "overhead": {
+  "telemetry_cpu_time_ns": 38200000,
+  "telemetry_io_bytes": 0,
+  "telemetry_io_reason": "",
+  "telemetry_memory_bytes": 25341952,
+  "telemetry_samples": 1,
+  "telemetry_ticks": 1,
+  "telemetry_wall_time_ns": 73758021
+ },
+ "policy_state": {
+  "battery": "UNKNOWN",
+  "battery_level_pct": null,
+  "charging": null,
+  "freq_khz": 1699200.0,
+  "load_1m": 0.12,
+  "max_temp_c": 53.8,
+  "memory": "NORMAL",
+  "memory_pressure_pct": 75.302,
+  "storage": "CRITICAL",
+  "storage_used_pct": 98.879,
+  "thermal": "ELEVATED"
+ },
+ "policy_version": "1.0.0",
+ "previous_state_signature": "f02e49ef9f545a3fa699d0e7fab5032499a84f0e8959046305af2157a45e3f9f",
+ "reason": "storage:CRITICAL forbids DEFER",
+ "resulting_state_signature": "f02e49ef9f545a3fa699d0e7fab5032499a84f0e8959046305af2157a45e3f9f",
+ "state": {
+  "battery": {
+   "ac_powered": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys battery",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "charge_counter_uah": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "charge_source": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys battery",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "charging": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys battery",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "current_a": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "cycle_count": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "energy_now_uwh": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "health": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "level_pct": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "status": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "technology": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "temp_c": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "usb_powered": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys battery",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "voltage_v": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "battery interface unavailable",
+    "source": "dumpsys battery | /sys/class/power_supply",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "wireless_powered": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys battery",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   }
+  },
+  "cpu": {
+   "context_switches": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": null
+   },
+   "count": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/devices/system/cpu",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "cpus",
+    "value": 8
+   },
+   "governors": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/devices/system/cpu/cpufreq",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "name",
+    "value": [
+     "walt",
+     "walt"
+    ]
+   },
+   "guest_ticks": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ticks",
+    "value": 0
+   },
+   "idle_ticks": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ticks",
+    "value": 93280
+   },
+   "interrupts": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": null
+   },
+   "iowait_ticks": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ticks",
+    "value": 262
+   },
+   "irq_ticks": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ticks",
+    "value": 342
+   },
+   "load_15m": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/loadavg",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "load",
+    "value": 0.02
+   },
+   "load_1m": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/loadavg",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "load",
+    "value": 0.12
+   },
+   "load_5m": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/loadavg",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "load",
+    "value": 0.07
+   },
+   "max_cur_freq_khz": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/devices/system/cpu/cpufreq",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "kHz",
+    "value": 1900800
+   },
+   "mean_cur_freq_khz": {
+    "availability": "DERIVED",
+    "confidence": 1.0,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "/sys/devices/system/cpu/cpufreq",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "kHz",
+    "value": 1699200.0
+   },
+   "min_cur_freq_khz": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/devices/system/cpu/cpufreq",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "kHz",
+    "value": 1497600
+   },
+   "nice_ticks": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ticks",
+    "value": 0
+   },
+   "offline": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/devices/system/cpu/offline",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "online": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/devices/system/cpu/online",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "overall_load_pct": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "first sample: no baseline",
+    "source": "/proc/stat (delta)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "per_cpu_load_pct": {
+    "availability": "DERIVED",
+    "confidence": 1.0,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "/proc/stat (delta)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "%",
+    "value": []
+   },
+   "policies": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/devices/system/cpu/cpufreq",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "policy[]",
+    "value": [
+     {
+      "affected_cpus": [],
+      "available_frequencies_khz": [
+       691200,
+       806400,
+       940800,
+       1113600,
+       1324800,
+       1497600,
+       1651200,
+       1804800
+      ],
+      "cur_freq_khz": 1497600,
+      "driver": "qcom-cpufreq-hw",
+      "governor": "walt",
+      "max_freq_khz": 1497600,
+      "min_freq_khz": 691200,
+      "policy_id": 0,
+      "related_cpus": [],
+      "source": "/sys/devices/system/cpu/cpufreq/policy0",
+      "time_in_state": [
+       [
+        691200,
+        2918873
+       ],
+       [
+        806400,
+        225977
+       ],
+       [
+        940800,
+        169210
+       ],
+       [
+        1113600,
+        381963
+       ],
+       [
+        1324800,
+        414015
+       ],
+       [
+        1497600,
+        639056
+       ],
+       [
+        1651200,
+        1456965
+       ],
+       [
+        1804800,
+        481625
+       ]
+      ]
+     },
+     {
+      "affected_cpus": [],
+      "available_frequencies_khz": [
+       691200,
+       960000,
+       1190400,
+       1344000,
+       1497600,
+       1651200,
+       1900800,
+       2054400,
+       2112000,
+       2208000,
+       2304000,
+       2400000
+      ],
+      "cur_freq_khz": 1900800,
+      "driver": "qcom-cpufreq-hw",
+      "governor": "walt",
+      "max_freq_khz": 1900800,
+      "min_freq_khz": 691200,
+      "policy_id": 4,
+      "related_cpus": [],
+      "source": "/sys/devices/system/cpu/cpufreq/policy4",
+      "time_in_state": [
+       [
+        691200,
+        4266435
+       ],
+       [
+        960000,
+        291156
+       ],
+       [
+        1190400,
+        307566
+       ],
+       [
+        1344000,
+        76006
+       ],
+       [
+        1497600,
+        83553
+       ],
+       [
+        1651200,
+        147122
+       ],
+       [
+        1900800,
+        474472
+       ],
+       [
+        2054400,
+        47674
+       ],
+       [
+        2112000,
+        771642
+       ],
+       [
+        2208000,
+        45624
+       ],
+       [
+        2304000,
+        11313
+       ],
+       [
+        2400000,
+        165113
+       ]
+      ]
+     }
+    ]
+   },
+   "processes_created": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": null
+   },
+   "procs_blocked": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": null
+   },
+   "procs_running": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": null
+   },
+   "softirq_ticks": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ticks",
+    "value": 254
+   },
+   "steal_ticks": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ticks",
+    "value": 87
+   },
+   "system_ticks": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ticks",
+    "value": 2877
+   },
+   "uptime_s": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/uptime",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "s",
+    "value": 124.08
+   },
+   "user_ticks": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ticks",
+    "value": 1957
+   }
+  },
+  "device": {
+   "abi": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "getprop",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "arm64-v8a"
+   },
+   "android_release": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "getprop",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "16"
+   },
+   "board": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "getprop",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "S88535AA1"
+   },
+   "build_fingerprint": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "getprop",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "T-Mobile/Prescott/Prescott:16/BQ2A.250925.001/535AA1_W_V021:user/release-keys"
+   },
+   "hardware": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "getprop",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "qcom"
+   },
+   "kernel_release": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "os.uname",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "6.17.0-PRoot-Distro"
+   },
+   "kernel_version": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "os.uname",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "#1 SMP PREEMPT_DYNAMIC Fri, 10 Oct 2025 00:00:00 +0000"
+   },
+   "locale": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "LANG env",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": null
+   },
+   "machine": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "os.uname",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "aarch64"
+   },
+   "manufacturer": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "getprop",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "Luxshare"
+   },
+   "model": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "getprop",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "TMRV08P5G"
+   },
+   "root_available": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "ROOT_UNAVAILABLE",
+    "source": "privilege probe",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bool",
+    "value": false
+   },
+   "sdk_version": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "getprop",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "36"
+   },
+   "security_patch": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "getprop",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "2026-07-05"
+   },
+   "timezone": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "TZ env",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": null
+   }
+  },
+  "display": {
+   "battery_saver": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys power",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bool",
+    "value": null
+   },
+   "brightness": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "settings get system screen_brightness",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "brightness_mode": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "settings get system",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "density_dpi": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys display",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "dpi",
+    "value": null
+   },
+   "height_px": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys display",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "refresh_hz": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys display",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "Hz",
+    "value": null
+   },
+   "screen_on": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys power",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "screen_state": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys display",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "state",
+    "value": null
+   },
+   "wakefulness": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys power",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "state",
+    "value": null
+   },
+   "width_px": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys display",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   }
+  },
+  "dt_ns": 0,
+  "io": {
+   "disk_ms_io": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/diskstats",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "disk_read_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/diskstats",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "disk_write_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/diskstats",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "process_rchar": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/<pid>/io",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "process_read_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/<pid>/io",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "process_wchar": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/<pid>/io",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "process_write_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/<pid>/io",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "telemetry_write_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "telemetry ledger (self)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": null
+   }
+  },
+  "memory": {
+   "anonymous_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 3048861696
+   },
+   "available_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 1907707904
+   },
+   "buffers_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 745472
+   },
+   "cached_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 1972969472
+   },
+   "committed_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 235135709184
+   },
+   "dirty_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 1122304
+   },
+   "free_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 239280128
+   },
+   "pressure_pct": {
+    "availability": "DERIVED",
+    "confidence": 0.9,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "/proc/meminfo (derived)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "%",
+    "value": 75.302
+   },
+   "slab_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 592211968
+   },
+   "swap_free_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 1059311616
+   },
+   "swap_total_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 4294963200
+   },
+   "swap_used_bytes": {
+    "availability": "DERIVED",
+    "confidence": 1.0,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "/proc/meminfo (derived)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 3235651584
+   },
+   "total_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 7724212224
+   },
+   "used_bytes": {
+    "availability": "DERIVED",
+    "confidence": 0.95,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "/proc/meminfo (derived)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 5816504320
+   },
+   "writeback_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/meminfo",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 0
+   }
+  },
+  "monotonic_time_ns": 66886802859535,
+  "network": {
+   "interface_count": {
+    "availability": "UNAVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/class/net",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": null
+   },
+   "interfaces": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/class/net",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "iface[]",
+    "value": []
+   },
+   "primary_operstate": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/class/net",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "state",
+    "value": null
+   },
+   "rx_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/net/dev",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "rx_dropped": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/net/dev",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "rx_errors": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/net/dev",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "rx_packets": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/net/dev",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "tx_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/net/dev",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "tx_dropped": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/net/dev",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "tx_errors": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/net/dev",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "tx_packets": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "permission denied on this device",
+    "source": "/proc/net/dev",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   }
+  },
+  "parser_version": "1.0.0",
+  "provenance": "{\"collector_errors\":[],\"parser_version\":\"1.0.0\",\"sampling_class\":\"MIXED\",\"schema_version\":\"1.0.0\"}",
+  "scheduler": {
+   "jitter_us": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "telemetry (self)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "us",
+    "value": null
+   },
+   "load_1m": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/loadavg",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "load",
+    "value": 0.12
+   },
+   "monitored": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/<pid>",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "",
+    "value": null
+   },
+   "monitored_count": {
+    "availability": "UNAVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/<pid>",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": null
+   },
+   "telemetry_latency_ns": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "telemetry (self)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ns",
+    "value": null
+   },
+   "uptime_s": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/proc/uptime",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "s",
+    "value": 124.08
+   }
+  },
+  "schema_version": "1.0.0",
+  "storage": {
+   "free_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 2537893888
+   },
+   "inodes_free": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": 619603
+   },
+   "inodes_total": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": 12812797
+   },
+   "ledger_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "ledger file stat",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": null
+   },
+   "repo_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "cached directory walk",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": null
+   },
+   "total_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 238349529088
+   },
+   "used_bytes": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": 235677417472
+   },
+   "used_pct": {
+    "availability": "DERIVED",
+    "confidence": 1.0,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "/ (derived)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "%",
+    "value": 98.879
+   }
+  },
+  "thermal": {
+   "max_temp_c": {
+    "availability": "DERIVED",
+    "confidence": 0.95,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "/sys/class/thermal (derived)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "C",
+    "value": 53.8
+   },
+   "mean_temp_c": {
+    "availability": "DERIVED",
+    "confidence": 0.9,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "/sys/class/thermal (derived)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "C",
+    "value": -38.256
+   },
+   "state": {
+    "availability": "DERIVED",
+    "confidence": 0.8,
+    "evidence_class": "DERIVED",
+    "note": "",
+    "source": "/sys/class/thermal (derived)",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "state",
+    "value": "READING"
+   },
+   "thermalservice": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "dumpsys thermalservice",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": "Permission Denial: can't dump ThermalManagerService from from pid=8887, uid=10272 due to missing android.permission.DUMP permission\n"
+   },
+   "zone_count": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/class/thermal",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "zones",
+    "value": 71
+   },
+   "zones": {
+    "availability": "AVAILABLE",
+    "confidence": 1.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "/sys/class/thermal",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "zone[]",
+    "value": [
+     {
+      "source": "/sys/class/thermal/thermal_zone0",
+      "temp_c": 48.2,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "aoss-0",
+      "zone_id": "0"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone1",
+      "temp_c": 52.9,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpuss-0",
+      "zone_id": "1"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone2",
+      "temp_c": 53.3,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpuss-1",
+      "zone_id": "2"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone3",
+      "temp_c": 52.3,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-1-0",
+      "zone_id": "3"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone4",
+      "temp_c": 53.6,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-1-1",
+      "zone_id": "4"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone5",
+      "temp_c": 51.6,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-1-2",
+      "zone_id": "5"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone6",
+      "temp_c": 52.9,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-1-3",
+      "zone_id": "6"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone7",
+      "temp_c": 49.9,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-1-4",
+      "zone_id": "7"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone8",
+      "temp_c": 50.9,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-1-5",
+      "zone_id": "8"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone9",
+      "temp_c": 50.2,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-1-6",
+      "zone_id": "9"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone10",
+      "temp_c": 51.9,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-1-7",
+      "zone_id": "10"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone11",
+      "temp_c": 45.8,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "gpuss-0",
+      "zone_id": "11"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone12",
+      "temp_c": 47.2,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "gpuss-1",
+      "zone_id": "12"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone13",
+      "temp_c": 44.4,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "camera-0",
+      "zone_id": "13"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone14",
+      "temp_c": 0.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 1
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 1
+       }
+      ],
+      "type": "zeroc-0",
+      "zone_id": "14"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone15",
+      "temp_c": 49.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "aoss-1",
+      "zone_id": "15"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone16",
+      "temp_c": 53.8,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-0-0",
+      "zone_id": "16"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone17",
+      "temp_c": 53.8,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-0-1",
+      "zone_id": "17"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone18",
+      "temp_c": 52.7,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-0-2",
+      "zone_id": "18"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone19",
+      "temp_c": 51.4,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 110000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "cpu-0-3",
+      "zone_id": "19"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone20",
+      "temp_c": 45.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "nspss-0",
+      "zone_id": "20"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone21",
+      "temp_c": 46.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "nspss-1",
+      "zone_id": "21"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone22",
+      "temp_c": 45.6,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_3_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "nspss-2",
+      "zone_id": "22"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone23",
+      "temp_c": 46.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "video",
+      "zone_id": "23"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone24",
+      "temp_c": 48.7,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 90000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "ddr",
+      "zone_id": "24"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone25",
+      "temp_c": 46.3,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "mdmss-0",
+      "zone_id": "25"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone26",
+      "temp_c": 44.6,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "mdmss-1",
+      "zone_id": "26"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone27",
+      "temp_c": 45.3,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "mdmss-2",
+      "zone_id": "27"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone28",
+      "temp_c": 45.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       }
+      ],
+      "type": "mdmss-3",
+      "zone_id": "28"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone29",
+      "temp_c": 0.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 1
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 1
+       }
+      ],
+      "type": "zeroc-1",
+      "zone_id": "29"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone30",
+      "temp_c": 0.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 1
+       }
+      ],
+      "type": "pm6150l-bcl-lvl0",
+      "zone_id": "30"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone31",
+      "temp_c": 0.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 1
+       }
+      ],
+      "type": "pm6150l-bcl-lvl1",
+      "zone_id": "31"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone32",
+      "temp_c": 0.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 1
+       }
+      ],
+      "type": "pm6150l-bcl-lvl2",
+      "zone_id": "32"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone33",
+      "temp_c": 0.234,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 6000
+       }
+      ],
+      "type": "pm7250b-ibat-lvl0",
+      "zone_id": "33"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone34",
+      "temp_c": 0.078,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 7500
+       }
+      ],
+      "type": "pm7250b-ibat-lvl1",
+      "zone_id": "34"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone35",
+      "temp_c": 0.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 100
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 100
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 1
+       }
+      ],
+      "type": "pm7250b-bcl-lvl0",
+      "zone_id": "35"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone36",
+      "temp_c": 0.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 100
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 100
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 1
+       }
+      ],
+      "type": "pm7250b-bcl-lvl1",
+      "zone_id": "36"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone37",
+      "temp_c": 0.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 100
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 100
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 1
+       }
+      ],
+      "type": "pm7250b-bcl-lvl2",
+      "zone_id": "37"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone38",
+      "temp_c": 0.089,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 100
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 90
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 95
+       }
+      ],
+      "type": "socd",
+      "zone_id": "38"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone39",
+      "temp_c": 37.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 145000
+       }
+      ],
+      "type": "pm6450_tz",
+      "zone_id": "39"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone40",
+      "temp_c": 40.951,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 50000
+       }
+      ],
+      "type": "xo-therm",
+      "zone_id": "40"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone41",
+      "temp_c": 41.844,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 48000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "quiet-therm",
+      "zone_id": "41"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone42",
+      "temp_c": -40.96,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "usb-therm",
+      "zone_id": "42"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone43",
+      "temp_c": 40.348,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 82000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "pa2-therm",
+      "zone_id": "43"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone44",
+      "temp_c": 39.791,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 82000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "pa1-therm",
+      "zone_id": "44"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone45",
+      "temp_c": 41.918,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 43000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "msm-therm",
+      "zone_id": "45"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone46",
+      "temp_c": -40.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "cam-therm",
+      "zone_id": "46"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone47",
+      "temp_c": 47.611,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 95000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 145000
+       }
+      ],
+      "type": "pm6150l_tz",
+      "zone_id": "47"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone48",
+      "temp_c": 37.555,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 90000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 115000
+       },
+       {
+        "point": "trip_point_2_temp",
+        "temp_raw": 145000
+       }
+      ],
+      "type": "pm7250b_tz",
+      "zone_id": "48"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone49",
+      "temp_c": 39.843,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "charger-skin-therm",
+      "zone_id": "49"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone50",
+      "temp_c": -40.0,
+      "trips": null,
+      "type": "usb",
+      "zone_id": "50"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone51",
+      "temp_c": -400.0,
+      "trips": null,
+      "type": "wireless_chg",
+      "zone_id": "51"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone52",
+      "temp_c": 37.0,
+      "trips": null,
+      "type": "battery",
+      "zone_id": "52"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone53",
+      "temp_c": 39.816,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "pa",
+      "zone_id": "53"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone54",
+      "temp_c": 40.382,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "pa1",
+      "zone_id": "54"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone55",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "bcl-warn",
+      "zone_id": "55"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone56",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sub1-modem-cfg",
+      "zone_id": "56"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone57",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sub1-lte-cc",
+      "zone_id": "57"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone58",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sub1_mcg_fr1_cc",
+      "zone_id": "58"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone59",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sub1_mcg_fr2_cc",
+      "zone_id": "59"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone60",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sub1_scg_fr1_cc",
+      "zone_id": "60"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone61",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sub1_scg_fr2_cc",
+      "zone_id": "61"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone62",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sdr0-pa",
+      "zone_id": "62"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone63",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sdr1-pa",
+      "zone_id": "63"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone64",
+      "temp_c": 37.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sdr0",
+      "zone_id": "64"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone65",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "sdr1",
+      "zone_id": "65"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone66",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "mmw0",
+      "zone_id": "66"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone67",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "mmw1",
+      "zone_id": "67"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone68",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "mmw2",
+      "zone_id": "68"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone69",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       },
+       {
+        "point": "trip_point_1_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "mmw3",
+      "zone_id": "69"
+     },
+     {
+      "source": "/sys/class/thermal/thermal_zone70",
+      "temp_c": -273.0,
+      "trips": [
+       {
+        "point": "trip_point_0_temp",
+        "temp_raw": 125000
+       }
+      ],
+      "type": "mmw-ific0",
+      "zone_id": "70"
+     }
+    ]
+   }
+  },
+  "timestamp_ns": 1789176329866430800,
+  "versions": {
+   "governor": "1.0.0",
+   "ledger": "1.0.0",
+   "mapper": "1.0.0",
+   "parser": "1.0.0",
+   "policy": "1.0.0",
+   "quotient": "1.0.0",
+   "replay": "1.0.0",
+   "schema": "1.0.0"
+  },
+  "wall_time_ns": 1789176329866430800,
+  "workload": {
+   "cpu_time_ns": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "governor workload",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ns",
+    "value": null
+   },
+   "ctx_switches": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "governor workload",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "count",
+    "value": null
+   },
+   "elapsed_ns": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "governor workload",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ns",
+    "value": null
+   },
+   "end_ns": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "governor workload",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ns",
+    "value": null
+   },
+   "name": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "governor workload",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "text",
+    "value": null
+   },
+   "rss_bytes": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "governor workload",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "bytes",
+    "value": null
+   },
+   "start_ns": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "governor workload",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "ns",
+    "value": null
+   },
+   "state": {
+    "availability": "UNAVAILABLE",
+    "confidence": 0.0,
+    "evidence_class": "OBSERVED",
+    "note": "",
+    "source": "governor workload",
+    "timestamp_ns": 1789176329866430800,
+    "unit": "state",
+    "value": null
+   }
+  }
+ },
+ "state_signature": "f02e49ef9f545a3fa699d0e7fab5032499a84f0e8959046305af2157a45e3f9f",
+ "timestamp_ns": 1789176329965462415
+}
