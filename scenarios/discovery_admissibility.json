@@ -1,0 +1,60 @@
+{
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "scenario_id": "discovery-admissibility-sample",
+  "workload": {
+    "kind": "exact_invariant_sector",
+    "function_name": "engines.linear_exact.LinearExactModel"
+  },
+  "mathematical_object": {
+    "state_space": "R^d sample (d=4096), block-constant invariant sector Omega",
+    "quotient_space": "discovered equivalence classes over R^d",
+    "transition": "T(x)[i] = x[i] * w[class(i)]",
+    "projection": "discovered class representatives",
+    "reconstruction": "sigma(q) class replication",
+    "invariant": "block-constancy",
+    "observable": "class representative vector"
+  },
+  "baseline": {
+    "implementation_id": "T_full_vector_d4096",
+    "kind": "native"
+  },
+  "candidate": {
+    "implementation_id": "discovered_quotient_r",
+    "kind": "native"
+  },
+  "quotient": {
+    "definition": "discovered partition validated by forward closure (intertwining)",
+    "function_name": "engines.discovery.discover",
+    "tolerance": 0.0,
+    "relation": "exact"
+  },
+  "reconstruction": {
+    "definition": "sigma(q) = replicated class reps",
+    "function_name": "engines.reconstruction.run_reconstruction",
+    "tolerance": 0.0,
+    "metric": "max"
+  },
+  "invariant": {
+    "definition": "block-constancy",
+    "function_name": "engines.linear_exact.omega_vector"
+  },
+  "parameters": {
+    "model": "vector",
+    "steps": 4,
+    "tile": 32,
+    "nclasses": 128,
+    "weights": [1.0, 1.25, 0.9, 1.1, 1.5, 0.8, 1.3, 0.95]
+  },
+  "dimensions": { "d": 4096, "r": 128, "tile": 32 },
+  "repetitions": 5,
+  "warmups": 0,
+  "warmup_policy": "none",
+  "timing_source": "clock_gettime_monotonic",
+  "seed": 42,
+  "expected_observables": [
+    "discovery returns accepted quotient or NO_ADMISSIBLE_QUOTIENT",
+    "validated classes preserve forward closure, reconstruction, invariant, observable"
+  ],
+  "environment": { "python": "3.13.5", "arch": "aarch64" }
+}

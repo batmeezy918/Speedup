@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCSS Canonical Scenario Manifest",
+  "description": "Canonical scenario identity. Two measurements may only be treated as matched measurements if their scenario_hash is identical.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "scenario_id",
+    "workload",
+    "mathematical_object",
+    "baseline",
+    "candidate",
+    "quotient",
+    "reconstruction",
+    "invariants",
+    "parameters",
+    "dimensions",
+    "repetitions",
+    "warmups",
+    "timing_source",
+    "seed",
+    "expected_observables",
+    "environment_requirements"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "scenario_id": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "workload": {
+      "type": "object",
+      "required": ["name", "kind"],
+      "properties": {
+        "name": { "type": "string" },
+        "kind": { "type": "string", "enum": ["linear_algebra", "optimization", "search", "simulation", "other"] },
+        "version": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "mathematical_object": {
+      "type": "object",
+      "required": ["description", "state_space", "transition_operator"],
+      "properties": {
+        "description": { "type": "string" },
+        "state_space": { "type": "string" },
+        "transition_operator": { "type": "string" },
+        "iterations_label": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "baseline": { "type": "object", "required": ["implementation", "command"], "properties": {
+        "implementation": { "type": "string" },
+        "command": { "type": "string" },
+        "source_identifier": { "type": "string" }
+      }, "additionalProperties": true },
+    "candidate": { "type": "object", "required": ["implementation", "command"], "properties": {
+        "implementation": { "type": "string" },
+        "command": { "type": "string" },
+        "source_identifier": { "type": "string" },
+        "quotient_engine": { "type": "string" }
+      }, "additionalProperties": true },
+    "quotient": {
+      "type": "object",
+      "required": ["equivalence_relation", "observable_set", "invariant_set"],
+      "properties": {
+        "equivalence_relation": { "type": "string" },
+        "state": { "type": "string" },
+        "representative": { "type": "string" },
+        "projection": { "type": "string" },
+        "observable_set": { "type": "array", "items": { "type": "string" } },
+        "invariant_set": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "reconstruction": {
+      "type": "object",
+      "required": ["operator", "metric", "tolerance", "domain"],
+      "properties": {
+        "operator": { "type": "string" },
+        "metric": { "type": "string" },
+        "tolerance": { "type": "number", "minimum": 0 },
+        "domain": { "type": "string" },
+        "max_error_expected": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "invariants": {
+      "type": "object",
+      "required": ["relation", "items"],
+      "properties": {
+        "relation": { "type": "string", "enum": ["equality", "numerical_relation", "declared"] },
+        "items": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "parameters": { "type": "object", "additionalProperties": true },
+    "dimensions": {
+      "type": "object",
+      "required": ["d"],
+      "properties": {
+        "d": { "type": "integer", "minimum": 1 },
+        "r": { "type": "integer", "minimum": 1 },
+        "N": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": true
+    },
+    "repetitions": { "type": "integer", "minimum": 1 },
+    "warmups": { "type": "integer", "minimum": 0 },
+    "timing_source": { "type": "string", "enum": ["perf_counter_ns", "process_time_ns", "clock_gettime", "declared"] },
+    "seed": { "type": "integer" },
+    "expected_observables": { "type": "array", "items": { "type": "string" } },
+    "environment_requirements": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": false
+}

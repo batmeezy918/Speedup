@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Canonical PCSS Scenario Manifest",
+  "version": "1.0",
+  "description": "The one canonical scenario manifest. A scenario uniquely determines the workload, mathematical object, baseline and candidate implementations, quotient/reconstruction/invariant definitions, parameters, dimensions, repetitions, warmup policy, timing source, seed, expected observables, and environment requirements. The manifest is canonicalized and hashed before execution; every derived artifact references the exact scenario hash.",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "scenario_id",
+    "workload",
+    "mathematical_object",
+    "baseline",
+    "candidate",
+    "quotient",
+    "reconstruction",
+    "invariant",
+    "parameters",
+    "dimensions",
+    "repetitions",
+    "warmup_policy",
+    "timing_source",
+    "seed",
+    "expected_observables",
+    "environment"
+  ],
+  "properties": {
+    "schema": { "const": "PCSS-SCENARIO" },
+    "schema_version": { "const": "1.0" },
+    "scenario_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Globally unique, human-readable scenario identifier."
+    },
+    "workload": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "exact_invariant_sector",
+            "projected_exact_diagonal",
+            "linear_exact_closure",
+            "custom_command",
+            "python_plugin"
+          ]
+        },
+        "module": { "type": "string", "description": "Importable Python module (package.name) for custom workloads." },
+        "baseline_command": { "type": "array", "items": { "type": "string" }, "description": "Command line for custom_command workloads." },
+        "candidate_command": { "type": "array", "items": { "type": "string" }, "description": "Command line for custom_command workloads." },
+        "package_name": { "type": "string" },
+        "function_name": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "mathematical_object": {
+      "type": "object",
+      "required": ["state_space", "transition", "quotient_space", "projection"],
+      "properties": {
+        "state_space": { "type": "string" },
+        "quotient_space": { "type": "string" },
+        "transition": { "type": "string" },
+        "projection": { "type": "string" },
+        "reconstruction": { "type": "string" },
+        "invariant": { "type": "string" },
+        "observable": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "baseline": {
+      "type": "object",
+      "required": ["implementation_id"],
+      "properties": {
+        "implementation_id": { "type": "string" },
+        "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "kind": { "type": "string", "enum": ["native", "command", "plugin"] }
+      },
+      "additionalProperties": true
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["implementation_id"],
+      "properties": {
+        "implementation_id": { "type": "string" },
+        "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "kind": { "type": "string", "enum": ["native", "command", "plugin"] }
+      },
+      "additionalProperties": true
+    },
+    "quotient": {
+      "type": "object",
+      "required": ["definition"],
+      "properties": {
+        "definition": { "type": "string" },
+        "function_name": { "type": "string" },
+        "tolerance": { "type": "number", "minimum": 0 },
+        "relation": { "type": "string", "enum": ["exact", "numerical"], "default": "exact" }
+      },
+      "additionalProperties": true
+    },
+    "reconstruction": {
+      "type": "object",
+      "required": ["definition"],
+      "properties": {
+        "definition": { "type": "string" },
+        "function_name": { "type": "string" },
+        "tolerance": { "type": "number", "minimum": 0 },
+        "metric": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "invariant": {
+      "type": "object",
+      "required": ["definition"],
+      "properties": {
+        "definition": { "type": "string" },
+        "function_name": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "d": { "type": "integer", "minimum": 1 },
+        "r": { "type": "integer", "minimum": 1 },
+        "tile": { "type": "integer", "minimum": 1 },
+        "matrix_rows": { "type": "integer", "minimum": 1 },
+        "matrix_cols": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": true
+    },
+    "repetitions": { "type": "integer", "minimum": 1 },
+    "warmups": { "type": "integer", "minimum": 0 },
+    "warmup_policy": { "type": "string", "enum": ["none", "fixed", "adaptive", "system"], "default": "none" },
+    "timing_source": {
+      "type": "string",
+      "enum": ["monotonic", "process_time", "perf_counter", "clock_gettime_monotonic", "wall", "custom"],
+      "default": "clock_gettime_monotonic"
+    },
+    "seed": { "type": "integer" },
+    "expected_observables": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "os": { "type": "string" },
+        "arch": { "type": "string" },
+        "cpu": { "type": "string" },
+        "python": { "type": "string" },
+        "numpy": { "type": "string" },
+        "lean_toolchain": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "linear-exact-quotient-1M",
+  "description": "Exact invariant-sector linear quotient: full dimension d=1,000,000, reduced r=1000. Baseline computes T on (u, v) with v = M u; candidate computes Tbar on u only. Semantic equivalence is exact by the invariant-sector construction and is checked by the quotient engine.",
+  "workload": {
+    "name": "linear_exact",
+    "kind": "linear_algebra",
+    "version": "1.0"
+  },
+  "mathematical_object": {
+    "description": "x = (u, v), v = M u, T(u,v) = (A u, M (A u)), Tbar(q) = A q",
+    "state_space": "R^{d} with invariant manifold v = M u",
+    "transition_operator": "T(u,v) = (A u, M (A u))",
+    "iterations_label": "steps"
+  },
+  "baseline": {
+    "implementation": "workloads/linear_exact.py --mode baseline",
+    "command": "python3 workloads/linear_exact.py --mode baseline --d {d} --r {r} --seed {seed} --steps {N}",
+    "source_identifier": "workloads/linear_exact.py"
+  },
+  "candidate": {
+    "implementation": "workloads/linear_exact.py --mode candidate",
+    "command": "python3 workloads/linear_exact.py --mode candidate --d {d} --r {r} --seed {seed} --steps {N}",
+    "source_identifier": "workloads/linear_exact.py"
+  },
+  "quotient": {
+    "equivalence_relation": "exact coordinate equivalence: u = pi(x) determines all observables",
+    "state": "u in R^{r}",
+    "representative": "sigma(q) = (q, M q)",
+    "projection": "pi(u, v) = u",
+    "observable_set": ["f = sum(u^2)", "omega = |sum(u)|"],
+    "invariant_set": ["v - M u = 0"]
+  },
+  "reconstruction": {
+    "operator": "sigma(q) = (q, M q)",
+    "metric": "max_abs",
+    "tolerance": 1e-9,
+    "domain": "u in R^{r} for steps 0..N",
+    "max_error_expected": 0.0
+  },
+  "invariants": {
+    "relation": "equality",
+    "items": ["v - M u = 0"]
+  },
+  "parameters": {
+    "d": 1000000,
+    "r": 1000
+  },
+  "dimensions": {
+    "d": 1000000,
+    "r": 1000,
+    "N": 8
+  },
+  "repetitions": 5,
+  "warmups": 2,
+  "timing_source": "perf_counter_ns",
+  "seed": 20260810,
+  "expected_observables": ["f", "omega"],
+  "environment_requirements": {
+    "numpy": ">=2.0"
+  },
+  "claim_boundary": "d=1e6, r=1000, numpy wall-clock on this machine; speedup reported as measured ratio, not universal."
+}

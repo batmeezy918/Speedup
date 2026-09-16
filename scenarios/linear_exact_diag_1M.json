@@ -1,0 +1,75 @@
+{
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "scenario_id": "linear-exact-vector-1M-d32768-tile32",
+  "workload": {
+    "kind": "exact_invariant_sector",
+    "function_name": "engines.linear_exact.LinearExactModel"
+  },
+  "mathematical_object": {
+    "state_space": "R^d  (d=1048576), block-constant invariant sector Omega",
+    "quotient_space": "R^r  (r=32768), class representatives",
+    "transition": "T(x)[i] = x[i] * w[class(i)]  (block-scale, block-constant preserving)",
+    "projection": "pi(x) = [x[c*tile] for c in 0..r-1]  (first element per block)",
+    "reconstruction": "sigma(q) = [q[c] for c for _ in range(tile)]  (repeat each rep tile times)",
+    "invariant": "block-constancy: x[b*tile .. (b+1)*tile -1] are all equal",
+    "observable": "class representative vector pi(x)"
+  },
+  "baseline": {
+    "implementation_id": "T_full_vector_d1048576",
+    "kind": "native"
+  },
+  "candidate": {
+    "implementation_id": "Tbar_vector_r32768_sigma_reconstruct",
+    "kind": "native"
+  },
+  "quotient": {
+    "definition": "exact block-constant projection with pi(T(x)) = Tbar(pi(x)) on invariant sector",
+    "function_name": "engines.quotient.run_quotient",
+    "tolerance": 0.0,
+    "relation": "exact"
+  },
+  "reconstruction": {
+    "definition": "sigma(q) = tile-replicate each quotient coord back to d-dim full vector",
+    "function_name": "engines.reconstruction.run_reconstruction",
+    "tolerance": 0.0,
+    "metric": "max"
+  },
+  "invariant": {
+    "definition": "block-constancy: all tile coords within each block equal (exact for the invariant sector)",
+    "function_name": "engines.linear_exact.omega_vector"
+  },
+  "parameters": {
+    "model": "vector",
+    "steps": 8,
+    "tile": 32,
+    "nclasses": 32768,
+    "weights": [1.0, 1.25, 0.9, 1.1, 1.5, 0.8, 1.3, 0.95],
+    "note": "baseline executes T on full d vector; candidate executes Tbar on r reps + sigma once"
+  },
+  "dimensions": {
+    "d": 1048576,
+    "r": 32768,
+    "tile": 32,
+    "nclasses": 32768,
+    "operation_count_baseline_per_step": 1048576,
+    "operation_count_candidate_per_step": 32768,
+    "operation_count_ratio_theory": 32.0
+  },
+  "repetitions": 30,
+  "warmups": 5,
+  "warmup_policy": "fixed",
+  "timing_source": "clock_gettime_monotonic",
+  "seed": 20260817,
+  "expected_observables": [
+    "quotient forward exact",
+    "reconstruction exact",
+    "invariant block-constancy exact",
+    "direct speedup reported separately",
+    "operation count ratio reported separately"
+  ],
+  "environment": {
+    "python": "3.13.5",
+    "arch": "aarch64"
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCSS Canonical Evidence Certificate",
+  "description": "Single canonical certificate schema. Every speedup primitive publishes through this schema. Reject certificates containing unexplained PASS values: every gate must reference a hash-backed artifact.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "scenario_id",
+    "scenario_hash",
+    "source_hash",
+    "input_hash",
+    "environment_hash",
+    "baseline_trace_hash",
+    "candidate_trace_hash",
+    "quotient_hash",
+    "reconstruction_hash",
+    "invariant_hash",
+    "performance_hash",
+    "lean_hash",
+    "timestamp",
+    "toolchain",
+    "implementation_identity",
+    "parameters",
+    "seed",
+    "tolerance",
+    "metric",
+    "repetitions",
+    "warmups",
+    "baseline_measurement",
+    "candidate_measurement",
+    "speedup",
+    "uncertainty",
+    "gates",
+    "claim_strength",
+    "claim_boundary",
+    "artifact_paths"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "scenario_id": { "type": "string", "minLength": 1 },
+    "scenario_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 of canonical scenario manifest bytes"
+    },
+    "source_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "input_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "environment_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "baseline_trace_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "candidate_trace_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "quotient_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "reconstruction_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "invariant_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "performance_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "lean_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "toolchain": { "type": "string" },
+    "implementation_identity": { "type": "string" },
+    "parameters": { "type": "object", "additionalProperties": true },
+    "seed": { "type": "integer" },
+    "tolerance": { "type": "number", "minimum": 0 },
+    "metric": { "type": "string" },
+    "repetitions": { "type": "integer", "minimum": 1 },
+    "warmups": { "type": "integer", "minimum": 0 },
+    "baseline_measurement": {
+      "type": "object",
+      "required": ["median_s", "samples"],
+      "properties": {
+        "median_s": { "type": "number", "minimum": 0 },
+        "mean_s": { "type": "number", "minimum": 0 },
+        "p95_s": { "type": "number", "minimum": 0 },
+        "samples": { "type": "integer", "minimum": 1 },
+        "time_unit": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "candidate_measurement": {
+      "type": "object",
+      "required": ["median_s", "samples"],
+      "properties": {
+        "median_s": { "type": "number", "minimum": 0 },
+        "mean_s": { "type": "number", "minimum": 0 },
+        "p95_s": { "type": "number", "minimum": 0 },
+        "samples": { "type": "integer", "minimum": 1 },
+        "time_unit": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "speedup": { "type": "number" },
+    "uncertainty": {
+      "type": "object",
+      "properties": {
+        "treatment": { "type": "string" },
+        "baseline_std_s": { "type": "number", "minimum": 0 },
+        "candidate_std_s": { "type": "number", "minimum": 0 },
+        "speedup_low_s": { "type": "number" },
+        "speedup_high_s": { "type": "number" }
+      },
+      "additionalProperties": true
+    },
+    "quotient": {
+      "type": "object",
+      "required": ["forward_pass", "equivalence_relation", "evidence_map"],
+      "properties": {
+        "forward_pass": { "type": "boolean" },
+        "equivalence_relation": { "type": "string" },
+        "evidence_map": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "reconstruction": {
+      "type": "object",
+      "required": ["reverse_pass", "metric", "tolerance", "max_error", "mean_error", "domain"],
+      "properties": {
+        "reverse_pass": { "type": "boolean" },
+        "metric": { "type": "string" },
+        "tolerance": { "type": "number", "minimum": 0 },
+        "max_error": { "type": "number", "minimum": 0 },
+        "mean_error": { "type": "number", "minimum": 0 },
+        "domain": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "invariants": {
+      "type": "object",
+      "required": ["preserved"],
+      "properties": {
+        "preserved": { "type": "boolean" },
+        "details": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "performance": {
+      "type": "object",
+      "required": ["reported_metric", "timing_source"],
+      "properties": {
+        "reported_metric": { "type": "string" },
+        "timing_source": { "type": "string" },
+        "attribution": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "lean": {
+      "type": "object",
+      "required": ["pass", "obligation_source"],
+      "properties": {
+        "pass": { "type": "boolean" },
+        "obligation_source": { "type": "string" },
+        "theorems": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "gates": {
+      "type": "object",
+      "required": [
+        "integrity",
+        "reproducibility",
+        "quotient_forward",
+        "reconstruction_reverse",
+        "invariants",
+        "performance",
+        "lean"
+      ],
+      "properties": {
+        "integrity": { "type": "boolean" },
+        "reproducibility": { "type": "boolean" },
+        "quotient_forward": { "type": "boolean" },
+        "reconstruction_reverse": { "type": "boolean" },
+        "invariants": { "type": "boolean" },
+        "performance": { "type": "boolean" },
+        "lean": { "type": "boolean" }
+      },
+      "additionalProperties": false,
+      "description": "PUBLISH <=> I AND R AND Q AND Q^-1 AND OMEGA AND X AND L. Any value that is not true is a quarantine."
+    },
+    "claim_strength": {
+      "type": "string",
+      "enum": ["CANDIDATE", "STRONG_LOCAL", "FORMAL_PARTIAL", "VERIFIED", "FAILED", "QUARANTINED", "NOT_VERIFIED"]
+    },
+    "claim_boundary": { "type": "string" },
+    "artifact_paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
