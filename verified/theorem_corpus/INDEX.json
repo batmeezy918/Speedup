@@ -1,0 +1,41 @@
+{
+  "schema": "batmeezy918.theorem_corpus.v1",
+  "assembled_at": "2026-09-16T12:40:00Z",
+  "claim_law": "CLAIM_STRENGTH <= EVIDENCE_STRENGTH",
+  "publish": "I && R && Q && Qinv && Omega && X && L",
+  "archive_note": "Copies under verified/theorem_corpus/proofs are not a live lake target.",
+  "repos_scanned": ["chronofold", "Speedup", "OIC-Core-Calculus", "Testsuite"],
+  "green_ci": {
+    "chronofold": {
+      "workflow": "CFPC Lean CI v2",
+      "conclusion": "success",
+      "ref": "main@69a544fb6af1c9f747600e5938ce35cca39868ba"
+    },
+    "oic": {
+      "workflow": "Lean4 Verification + Lean Action CI",
+      "conclusion": "success",
+      "ref": "main@830f75c8fb01c23dfafbd3941f3a6420638a0906"
+    },
+    "speedup_chronofold_lane": {
+      "workflow": "Lean4 Verification chronofold-lean4.yml",
+      "last_full_green": "run 33",
+      "current_main": "mixed"
+    }
+  },
+  "attached_proofs": [
+    {"id": "CF-AGD-CORE", "path": "proofs/chronofold/AgdCore.lean"},
+    {"id": "CF-AGD-ITERATE", "path": "proofs/chronofold/AgdIterate.lean"},
+    {"id": "CF-AGD-BIDIR", "path": "proofs/chronofold/AgdBidirectional.lean"},
+    {"id": "CF-AGD-OQ", "path": "proofs/chronofold/AgdOperationalQuotient.lean"},
+    {"id": "CF-AGD-FECU", "path": "proofs/chronofold/AgdFecu.lean"},
+    {"id": "SU-GODS", "path": "proofs/speedup/GODSQuotientClosure.lean"},
+    {"id": "SU-CFPROOF", "path": "proofs/speedup/ChronoFoldProof.lean"},
+    {"id": "SU-GEMM-WORK", "path": "proofs/speedup/AGDGemmWork.lean"},
+    {"id": "SU-PCSS", "path": "proofs/speedup/PCSSCertificate.lean"},
+    {"id": "OIC-BASIC", "path": "proofs/oic/OICCore_Basic.lean"}
+  ],
+  "benchmarks": {
+    "gemm_work_model": {"fullWork_1024": 2147483648, "quotientWork_256": 134217728, "ratio": 16, "class": "FORMAL_PARTIAL"},
+    "coco_surrogate_20260908T203000Z": {"official_cocoex": false, "class": "UNOFFICIAL", "winner": "CMA_on_all_three", "s6_hits": 0}
+  }
+}
