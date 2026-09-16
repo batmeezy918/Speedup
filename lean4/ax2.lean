@@ -1,0 +1,4 @@
+import HPL_AGD_01_Obligations
+#print axioms HPLAGD01.reduced_exact_solution
+#print axioms HPLAGD01.full_exact_solution
+#print axioms HPLAGD01.hpl_agd_01_reconstruction_closure

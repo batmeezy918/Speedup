@@ -1,0 +1,12 @@
+import AGDGemmProjection
+import AGDGemmReconstruction
+import AGDGemmSpeedup
+import AGDGemmWork
+import AGDMaximallyTypedClaim
+#check AGDGemmProjection.projection_iterate
+#print axioms AGDGemmProjection.projection_iterate
+#print axioms AGDGemmReconstruction.section_is_right_inverse
+#print axioms AGDGemmReconstruction.reconstruction_closure
+#print axioms AGDGemmWork.strict_work_reduction
+#print axioms AGDGemmSpeedup.speedup_stack_closure
+#print axioms AGD.projection_iterate

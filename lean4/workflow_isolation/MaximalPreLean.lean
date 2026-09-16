@@ -2,11 +2,9 @@ namespace SpeedupWorkflow
 
 universe u v w
 
-variable {X : Type u} {Q : Type v} {Y : Type w}
-
 /-! Pre-Lean objects that are candidates for formal closure. -/
 
-structure QuotientModel where
+structure QuotientModel (X : Type u) (Q : Type v) (Y : Type w) where
   π : X → Q
   T : X → X
   Tbar : Q → Q
@@ -14,22 +12,22 @@ structure QuotientModel where
   obs : X → Y
   obsBar : Q → Y
 
-class Intertwining (M : QuotientModel) : Prop where
-  step : ∀ x, M.π (M.T x) = M.Tbar (M.π x)
+def Intertwining (M : QuotientModel X Q Y) : Prop :=
+  ∀ x, M.π (M.T x) = M.Tbar (M.π x)
 
-class Reconstruction (M : QuotientModel) : Prop where
-  section : ∀ q, M.π (M.σ q) = q
+def Reconstruction (M : QuotientModel X Q Y) : Prop :=
+  ∀ q, M.π (M.σ q) = q
 
-class Observable (M : QuotientModel) : Prop where
-  preserved : ∀ x, M.obs x = M.obsBar (M.π x)
+def Observability (M : QuotientModel X Q Y) : Prop :=
+  ∀ x, M.obs x = M.obsBar (M.π x)
 
 def Iterate {α : Type u} (f : α → α) : Nat → α → α
   | 0, x => x
   | n + 1, x => f (Iterate f n x)
 
 theorem finite_descent
-    (M : QuotientModel)
-    [h : Intertwining M] :
+    (M : QuotientModel X Q Y)
+    (h : Intertwining M) :
     ∀ n x, M.π (Iterate M.T n x) = Iterate M.Tbar n (M.π x) := by
   intro n
   induction n with
@@ -38,17 +36,17 @@ theorem finite_descent
       rfl
   | succ n ih =>
       intro x
-      rw [Iterate, h.step x, ih x]
+      rw [Iterate, h (Iterate M.T n x), ih x, Iterate]
 
 theorem reconstruction
-    (M : QuotientModel)
-    [h : Reconstruction M] :
-    ∀ q, M.π (M.σ q) = q := h.section
+    (M : QuotientModel X Q Y)
+    (h : Reconstruction M) :
+    ∀ q, M.π (M.σ q) = q := h
 
 theorem observable_preservation
-    (M : QuotientModel)
-    [h : Observable M] :
-    ∀ x, M.obs x = M.obsBar (M.π x) := h.preserved
+    (M : QuotientModel X Q Y)
+    (h : Observability M) :
+    ∀ x, M.obs x = M.obsBar (M.π x) := h
 
 /- Modeled GEMM work identities. -/
 def fullWork (m n k : Nat) := 2 * m * n * k

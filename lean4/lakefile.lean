@@ -17,5 +17,6 @@ lean_lib «SpeedupLean» where
     `SpeedupExactInvariant,
     `AGDMaximallyTypedClaim,
     `GODSQuotientClosure,
-    `SpeedupLean
+    `SpeedupLean,
+    `HPL_AGD_01_Obligations
   ]

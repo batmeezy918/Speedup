@@ -19,33 +19,39 @@ theorem weak_coupling_bound
     ∀ N, 1 ≤ N →
       e N ≤ eps * N * C * iterNat (N - 1) (fun v => G * v) z0 := by
   intro N hN
-  cases N with
-  | zero => exact False.elim (Nat.not_succ_le_zero 0 hN)
-  | succ n =>
-      induction n with
-      | zero =>
-          simpa [he0, iterNat] using he 0
-      | succ n ih =>
-          have hstep := he (n + 1)
-          have hz' := hz (n + 1)
-          have hbounde : e (n + 1) ≤ eps * (n + 1) * C * iterNat n (fun v => G * v) z0 := ih
-          have hboundz : z (n + 1) ≤ G * iterNat n (fun v => G * v) z0 := by
-            simpa [iterNat] using hz'
-          have hstep' : e (n + 2) ≤
-              M * (eps * (n + 1) * C * iterNat n (fun v => G * v) z0) +
-              eps * C * (G * iterNat n (fun v => G * v) z0) := by
-            exact le_trans hstep (Nat.add_le_add
-              (Nat.mul_le_mul_left hbounde M)
-              (Nat.mul_le_mul_left hboundz (eps * C)))
-          have hcoef := Nat.mul_le_mul_right
-            (hGdom n) (eps * C * iterNat n (fun v => G * v) z0)
-          have harith :
-              M * (eps * (n + 1) * C * iterNat n (fun v => G * v) z0) +
-              eps * C * (G * iterNat n (fun v => G * v) z0)
-              ≤ eps * (n + 2) * C * iterNat (n + 1) (fun v => G * v) z0 := by
-            simpa [iterNat, Nat.mul_add, Nat.add_mul, Nat.mul_assoc,
-              Nat.mul_left_comm, Nat.mul_comm] using hcoef
-          exact le_trans hstep' harith
+  have aux : ∀ k, e (k + 1) ≤ eps * (k + 1) * C * iterNat k (fun v => G * v) z0 := by
+    intro k
+    induction k with
+    | zero =>
+        have h1 : e (0 + 1) ≤ eps * C * z 0 := by
+          calc
+            e (0 + 1) ≤ M * e 0 + eps * C * z 0 := he 0
+            _ = eps * C * z 0 := by simp [he0]
+        have hz0b : z 0 ≤ z0 := by simpa [iterNat] using hz 0
+        simpa [iterNat] using (Nat.le_trans h1 (Nat.mul_le_mul_left (eps * C) hz0b))
+    | succ k ih =>
+        have hstep := he (k + 1)
+        have hz' := hz (k + 1)
+        have hboundz : z (k + 1) ≤ G * iterNat k (fun v => G * v) z0 := by
+          simpa [iterNat] using hz'
+        have hstep' : e (k + 2) ≤
+            M * (eps * (k + 1) * C * iterNat k (fun v => G * v) z0) +
+            eps * C * (G * iterNat k (fun v => G * v) z0) := by
+          exact Nat.le_trans hstep (Nat.add_le_add
+            (Nat.mul_le_mul_left M ih)
+            (Nat.mul_le_mul_left (eps * C) hboundz))
+        have hcoef := Nat.mul_le_mul_right
+            (eps * C * iterNat k (fun v => G * v) z0) (hGdom k)
+        have harith :
+            M * (eps * (k + 1) * C * iterNat k (fun v => G * v) z0) +
+            eps * C * (G * iterNat k (fun v => G * v) z0)
+            ≤ eps * (k + 2) * C * iterNat (k + 1) (fun v => G * v) z0 := by
+          simpa [iterNat, Nat.mul_add, Nat.add_mul, Nat.mul_assoc,
+            Nat.mul_left_comm, Nat.mul_comm] using hcoef
+        exact Nat.le_trans hstep' harith
+  have hNarg : N - 1 + 1 = N := Nat.sub_add_cancel hN
+  rw [← hNarg]
+  exact aux (N - 1)
 
 /-- Zero coupling collapses the recurrence error to zero. -/
 theorem weak_coupling_zero
@@ -58,6 +64,6 @@ theorem weak_coupling_zero
   induction N with
   | zero => simp [he0]
   | succ n ih =>
-      exact le_trans (he n) (Nat.mul_le_mul_left ih M)
+      exact Nat.le_trans (he n) (by simpa using Nat.mul_le_mul_left M ih)
 
 end SiliconSpeedup
