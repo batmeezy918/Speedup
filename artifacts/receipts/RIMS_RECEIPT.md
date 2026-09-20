@@ -1,0 +1,61 @@
+# RIMS Receipt
+
+## RUN_ID
+agd_20260920_071132
+
+## timestamp
+2026-09-20T07:11:35Z
+
+## git_SHA
+43d73f3c64629c60410a9d9a8c3b9a4b350e5c67
+
+## benchmark_SHA
+9a17bc2c7ee3fab9ca023036b82a81898512a001
+
+## model_identity
+simulated
+
+## model_hash
+simulated_hash
+
+## environment_fingerprint
+cloudchamber
+
+## dataset_hashes
+- 7b9b42751d8314a21e31a8a45d6c2f471af83796ae7cafc07f5aaa98ecab6c92
+- 767f580b762f24510233b56e86fc7810a364c171a67a367b950b3df3afc41960
+- 21dab5b4735d46d7302495318794f962303baa0c339fc5ba80245bee305fe41a
+- b61df8cd4c6bfd9d22a4941fc93ff17f6ed8d2801483cefab50e1e6f8add0e31
+- 8f8b139cb48ea8e9c0a3e08090ee42e6b23fdbf2ec90b567fc2c6189dcda454c
+- b6fd7c859b8b24bfd6b9b1befeeba430f48ec37026bd54a8ef86479eddab9683
+- 298dc15899829a7239dfc1b02037efb94890b8e0394f06c790ca7a2ecc719279
+- 03ae5c134afdcc0eb0b1a6c9a1676adc8bb93583a4cf6592d370b8b21cb1104f
+- 3ac2ebec67afa4f245d555ba997ea782eae9e6946aca93c9f1f1b2a7fd5f66ca
+- 60bc3d7f61844254ce6ba38ef69ba79835f380bdb607316eeefea38cfde8809a
+
+## Omega_version
+omega_v1
+
+## quotient_algorithm_version
+v1
+
+## baseline_artifact_hash
+44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+
+## AGD_artifact_hash
+44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+
+## adversarial_artifact_hash
+44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+
+## factorization_artifact_hash
+44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+
+## timing_artifact_hash
+44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+
+## stdout_hash
+63d42d26156fcc761e57da4128e9881d5bdf3bf933f0f6e9c93d6e26b9b90ae7
+
+## stderr_hash
+7e6b710b765404cccbad9eedcff7615fc37b269d6db12cd81a58be541d93083c

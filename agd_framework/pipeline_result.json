@@ -1,0 +1,9 @@
+{
+  "run_id": "agd_20260920_071132",
+  "elapsed_seconds": 3.1842057704925537,
+  "quotient_states": 128,
+  "quotient_classes": 128,
+  "false_merge_violations": 0,
+  "factorization_residual": 0.0,
+  "pcss_decision": "PUBLISHABLE"
+}

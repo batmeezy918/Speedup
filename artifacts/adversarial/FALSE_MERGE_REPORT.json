@@ -1,0 +1,9 @@
+{
+  "report_id": "fmr_897548fc9aee7748",
+  "timestamp": "2026-09-20T07:11:34Z",
+  "total_pairs_tested": 0,
+  "violations": [],
+  "omega_version": "omega_v1",
+  "conclusion": "SAFE",
+  "iterations": 1
+}
