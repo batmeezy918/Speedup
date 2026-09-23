@@ -111,10 +111,24 @@ def discover_from_model(model) -> DiscoveryResult:
     # For the invariant-sector model: each class is the contiguous block
     # of coords with the same block-class. Identify by coords whose T(x)[i]/x[i]
     # is the same for a probe state.
-    x = model.make_initial(seed=42)
-    tx = model.T_full(x)
-    q = model.pi(x)
+    x0 = model.make_initial(seed=42)
+    tx0 = model.T_full(x0)
+    q = model.pi(x0)
     tq = model.Tbar(q)
+
+    # Flatten nested (matrix) states so discovery operates on the flat coord
+    # domain consistently for both vector and matrix models. Blocks stay
+    # contiguous under row-major flattening, so the class partition below is
+    # preserved for the exact-invariant-sector family.
+    def _flat(v):
+        if v and isinstance(v[0], (list, tuple)):
+            return [float(e) for row in v for e in row]
+        return list(v)
+
+    x = _flat(x0)
+    tx = _flat(tx0)
+    q = _flat(q)
+    tq = _flat(tq)
     r = model.r if hasattr(model, 'r') else len(q)
 
     # class of each coord: for vector model, the quotient coord c = i // tile

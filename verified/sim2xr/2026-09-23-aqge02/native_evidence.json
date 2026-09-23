@@ -1,0 +1,286 @@
+{
+  "schema": "PCSS-CERTIFICATE",
+  "schema_version": "2.0",
+  "run_id": "pcss-run-1790176472",
+  "scenario_id": "aqge02-tower-stay-in-Q-2026-09-23",
+  "scenario_hash": "dd5f65ff986d7983d653eb835addd9767d1d74f7f11accceac74536e9d79b2a4",
+  "source_hash": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13",
+  "input_hash": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18",
+  "environment_hash": "3b9103ad6edf6a19ae31315599e41244cc1fbc252b506e6b09fd6f0547750efb",
+  "baseline_trace_hash": "17257c812e005ce9169b33008755f627b3ead7d7797ba8c45c857d4d463d18b4",
+  "candidate_trace_hash": "17257c812e005ce9169b33008755f627b3ead7d7797ba8c45c857d4d463d18b4",
+  "quotient_hash": "",
+  "reconstruction_hash": "",
+  "invariant_hash": "",
+  "performance_hash": "",
+  "lean_hash": "",
+  "timestamp": "2026-09-23T15:14:32Z",
+  "toolchain": {
+    "python": "3.13.5",
+    "arch": "aarch64",
+    "scenario_toolchain": {
+      "python": "3.11",
+      "arch": "aarch64"
+    }
+  },
+  "implementation_identity": {
+    "baseline": {
+      "implementation_id": "AQGE02_full_tower_6",
+      "kind": "native"
+    },
+    "candidate": {
+      "implementation_id": "AQGE02_stay_in_Q_tower_6",
+      "kind": "native"
+    }
+  },
+  "parameters": {
+    "model": "matrix",
+    "steps": 6,
+    "tile": 16,
+    "a": 3,
+    "b": 1,
+    "weights": [
+      1.0,
+      1.25,
+      0.9,
+      1.1,
+      1.5,
+      0.8,
+      1.3,
+      0.95
+    ],
+    "note": "silicon closure 2026-09-23 AQGE-02: power6 (AB)^6 stay-in-Q 457.1x, composed 69.41x, S_native 72.07x, K_break 21.0; this PCSS run measures the exact-invariant-sector stay-in-Q tower on the same construction"
+  },
+  "seed": 20260923,
+  "tolerance": 0.0,
+  "metric": "wall_clock_ns",
+  "repetitions": 30,
+  "warmups": 5,
+  "baseline_measurement": {
+    "timings_ns": [
+      2389490258.996375,
+      2964915884.003858,
+      2607755624.005222,
+      2565254478.0023165,
+      2022933124.0043392,
+      2313689947.004605,
+      2556323956.9964933,
+      1725171093.996323,
+      2247534738.002287,
+      2527877655.0039763,
+      3161839945.9985085,
+      3097435780.0005236,
+      2854557966.995344,
+      1754030832.9989784,
+      2398736979.004752,
+      3031281716.99791,
+      2905911040.9943967,
+      3119155728.003534,
+      2661965051.00379,
+      2467810104.0044565,
+      2943476039.9963126,
+      3054514165.9968066,
+      3139188123.997883,
+      3135155989.0026693,
+      3062821510.0005035,
+      2942394114.0048556,
+      2868346195.9954004,
+      2876086821.9978876,
+      2896603436.0055346,
+      2870191301.0008864
+    ],
+    "median": 2869268748.498143,
+    "mean": 2705414986.8005576,
+    "min": 1725171093.996323,
+    "max": 3161839945.9985085,
+    "p95": 3137373663.2500367,
+    "p99": 3155270917.618327,
+    "samples": 30,
+    "unit": "ns"
+  },
+  "candidate_measurement": {
+    "timings_ns": [
+      294319166.00151455,
+      289118698.00504065,
+      292160832.999798,
+      285670364.9958945,
+      296183906.00080603,
+      295576718.0028488,
+      294509218.998428,
+      296188854.00122964,
+      300360936.9989135,
+      290878646.002966,
+      292629842.99566597,
+      292562031.00521815,
+      300221094.0030636,
+      293715416.99947554,
+      295399427.0064868,
+      297870416.99455583,
+      292757342.9988115,
+      292613489.00035954,
+      294309375.0000116,
+      301334323.0049941,
+      289792864.99816227,
+      293054948.0006448,
+      292038854.00056607,
+      293462239.9989166,
+      290090572.99845153,
+      296197915.9954353,
+      303235833.9987695,
+      292981614.99900746,
+      292953228.999977,
+      292585311.9959356
+    ],
+    "median": 293258593.9997807,
+    "mean": 294159116.2333983,
+    "min": 285670364.9958945,
+    "max": 303235833.9987695,
+    "p95": 300896299.30225784,
+    "p99": 302684395.81057465,
+    "samples": 30,
+    "unit": "ns"
+  },
+  "speedup": 9.784090925909195,
+  "uncertainty": {
+    "method": "sampled_median_direct",
+    "samples": 30
+  },
+  "gate_results": {
+    "integrity": {
+      "value": true,
+      "evidence": [
+        "scenario.json",
+        "environment.json",
+        "source_sha256.txt",
+        "input_sha256.txt",
+        "baseline_trace.json",
+        "candidate_trace.json"
+      ],
+      "detail": {
+        "scenario_hash": "dd5f65ff986d7983d653eb835addd9767d1d74f7f11accceac74536e9d79b2a4",
+        "source_hash": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13",
+        "environment_hash": "3b9103ad6edf6a19ae31315599e41244cc1fbc252b506e6b09fd6f0547750efb",
+        "input_hash": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18"
+      }
+    },
+    "reproducibility": {
+      "value": true,
+      "evidence": [
+        "scenario.json",
+        "environment.json"
+      ]
+    },
+    "quotient_forward": {
+      "value": true,
+      "evidence": [
+        "quotient_evidence.json"
+      ]
+    },
+    "reconstruction_reverse": {
+      "value": true,
+      "evidence": [
+        "reconstruction_evidence.json"
+      ]
+    },
+    "invariants": {
+      "value": true,
+      "evidence": [
+        "invariant_evidence.json"
+      ]
+    },
+    "performance": {
+      "value": true,
+      "evidence": [
+        "performance_evidence.json",
+        "attribution.json"
+      ]
+    },
+    "lean": {
+      "value": true,
+      "evidence": [
+        "evidence/lean4/lean_core_all.log"
+      ]
+    }
+  },
+  "claim_boundary": {
+    "quantity_measured": "direct wall-clock speedup of exact-invariant-sector step",
+    "domain_covered": "d=512, r=1024, tile=16, steps=6",
+    "excluded": [
+      "universal speedup",
+      "HPC dominance",
+      "operation-count equality",
+      "asymptotic complexity",
+      "mathematical novelty"
+    ]
+  },
+  "artifact_refs": {
+    "scenario": {
+      "path": "scenario.json",
+      "sha256": "dd5f65ff986d7983d653eb835addd9767d1d74f7f11accceac74536e9d79b2a4"
+    },
+    "source": {
+      "path": "source_sha256.txt",
+      "sha256": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13"
+    },
+    "input": {
+      "path": "input_sha256.txt",
+      "sha256": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18"
+    },
+    "environment": {
+      "path": "environment.json",
+      "sha256": "3b9103ad6edf6a19ae31315599e41244cc1fbc252b506e6b09fd6f0547750efb"
+    },
+    "baseline_trace": {
+      "path": "baseline_trace.json",
+      "sha256": "17257c812e005ce9169b33008755f627b3ead7d7797ba8c45c857d4d463d18b4"
+    },
+    "candidate_trace": {
+      "path": "candidate_trace.json",
+      "sha256": "17257c812e005ce9169b33008755f627b3ead7d7797ba8c45c857d4d463d18b4"
+    },
+    "quotient": {
+      "path": "quotient_evidence.json",
+      "sha256": "f60075e8dbb00d36b23b0f80e78a00263d64bd569c66eb7ebecf40fb688f0b72"
+    },
+    "reconstruction": {
+      "path": "reconstruction_evidence.json",
+      "sha256": "781327d656aa9b79a9816dae23c2ca77c70db450c324aba87db1832127492c79"
+    },
+    "invariant": {
+      "path": "invariant_evidence.json",
+      "sha256": "6a7214f1999bdd37fa3a706f74eb322cc1929202a4b55d49af60f90ba2dd7df6"
+    },
+    "performance": {
+      "path": "performance_evidence.json",
+      "sha256": "b0de4e631a351eb9eb48b2479424060d74d37a5844d464af9c71525066ceb32b"
+    },
+    "lean": {
+      "path": "lean_core_all.log",
+      "sha256": "ba616dce7aa06d1b03a4b329c81f7f6315134504d68ff6f075a38340c03fc322"
+    }
+  },
+  "attribution": {
+    "theory": {
+      "baseline_ops": 3072,
+      "candidate_ops": 6144,
+      "operation_count_ratio": 0.5,
+      "excluded_from_measured": [
+        "interpreter overhead",
+        "cache effects"
+      ]
+    },
+    "measured": {
+      "wall_clock_speedup": 9.784090925909195,
+      "wall_clock_baseline": 2869268748.498143,
+      "wall_clock_candidate": 293258593.9997807
+    },
+    "overhead_included": {
+      "quotient_construction": 0.0,
+      "reconstruction": 512.0
+    },
+    "not_conflated": true,
+    "note": "operation count ratio vs wall-clock speedup reported separately; never conflated"
+  },
+  "generator": "pcss_native_runner",
+  "certificate_sha256": "926519205e3f1a75c2e9ed6de107288a608694097a1fc3e5b566defa7cee39c3"
+}

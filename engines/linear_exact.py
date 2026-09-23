@@ -152,7 +152,7 @@ class LinearExactMatrixModel:
         return [[0.0] * self.n for _ in range(self.n)]
 
     def T_full(self, A) -> list[list[float]]:
-        out = []
+        out = [[0.0] * self.n for _ in range(self.n)]
         for bi in range(self.bn):
             for bj in range(self.bn):
                 w = self.class_weights[(bi, bj)]
@@ -160,9 +160,8 @@ class LinearExactMatrixModel:
                     for y in range(self.tile):
                         ii = bi * self.tile + x
                         jj = bj * self.tile + y
-                        out.append(A[ii][jj] * w)
-        # reshape row-major
-        return [out[i * self.n:(i + 1) * self.n] for i in range(self.n)]
+                        out[ii][jj] = A[ii][jj] * w
+        return out
 
     def pi(self, A) -> list[float]:
         reps = []

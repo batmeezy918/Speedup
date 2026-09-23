@@ -1,0 +1,285 @@
+{
+  "schema": "PCSS-CERTIFICATE",
+  "schema_version": "2.0",
+  "run_id": "pcss-run-1790196592",
+  "scenario_id": "sim2xr-oracle-exact-sector-2026-09-23",
+  "scenario_hash": "5716d34df686694b8cb74872a7eb354fd8084281e3b3b7cbc16c1922d37a2c6c",
+  "source_hash": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13",
+  "input_hash": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18",
+  "environment_hash": "e83de3227f34f94fcc6842fb40234476680d3533066133923599264e41bc1db3",
+  "baseline_trace_hash": "d0bc6e64c3964d5c38f6b1673b7e5a80f33bfcb25d99dca4e07bdf210af7a03c",
+  "candidate_trace_hash": "d0bc6e64c3964d5c38f6b1673b7e5a80f33bfcb25d99dca4e07bdf210af7a03c",
+  "quotient_hash": "",
+  "reconstruction_hash": "",
+  "invariant_hash": "",
+  "performance_hash": "",
+  "lean_hash": "",
+  "timestamp": "2026-09-23T20:49:52Z",
+  "toolchain": {
+    "python": "3.13.5",
+    "arch": "aarch64",
+    "scenario_toolchain": {
+      "python": "3.11",
+      "arch": "aarch64"
+    }
+  },
+  "implementation_identity": {
+    "baseline": {
+      "implementation_id": "SIM2XR_full_d1048576",
+      "kind": "native"
+    },
+    "candidate": {
+      "implementation_id": "SIM2XR_oracle_quotient_r32768",
+      "kind": "native"
+    }
+  },
+  "parameters": {
+    "model": "vector",
+    "steps": 8,
+    "tile": 32,
+    "nclasses": 2048,
+    "weights": [
+      1.0,
+      1.25,
+      0.9,
+      1.1,
+      1.5,
+      0.8,
+      1.3,
+      0.95
+    ],
+    "note": "silicon closure 2026-09-23 SIM2XR pipeline: oracle-exact trajectory up to 18.66x (err ~7e-13), single-shot discovery-inclusive refuted (0.73-0.83x slower); this PCSS run measures the exact-invariant-sector oracle rewrite WITHOUT charging single-shot discovery cost"
+  },
+  "seed": 20260923,
+  "tolerance": 0.0,
+  "metric": "wall_clock_ns",
+  "repetitions": 30,
+  "warmups": 5,
+  "baseline_measurement": {
+    "timings_ns": [
+      238189219.00237912,
+      240258385.99482086,
+      238828489.0039358,
+      238690415.99391493,
+      238069375.0019418,
+      239257968.99129635,
+      237417032.0108533,
+      239240156.00641724,
+      237698697.99434674,
+      238380051.98922473,
+      239187917.00270957,
+      238538332.9965407,
+      238030417.00739413,
+      239813854.0011132,
+      237863021.00052124,
+      239037813.00759876,
+      237492604.00654748,
+      239690521.00437695,
+      238821613.99524194,
+      238626354.01019362,
+      238059739.9896942,
+      241315572.9882419,
+      238671875.00582075,
+      239742240.0099458,
+      237966354.00503874,
+      238018072.99605572,
+      239861457.98698997,
+      240613282.00332355,
+      236464895.00242752,
+      238646405.9964055
+    ],
+    "median": 238659140.50111312,
+    "mean": 238749737.86684373,
+    "min": 236464895.00242752,
+    "max": 241315572.9882419,
+    "p95": 240453578.79949734,
+    "p99": 241111908.6026156,
+    "samples": 30,
+    "unit": "ns"
+  },
+  "candidate_measurement": {
+    "timings_ns": [
+      15677134.986617602,
+      16475312.0043315,
+      15880572.987953201,
+      15873021.009610966,
+      15753853.993373923,
+      15614791.991538368,
+      15583229.003823362,
+      15439896.000316367,
+      15586042.005452327,
+      15360728.997620754,
+      15806563.009391539,
+      15379271.004348993,
+      15648334.010620601,
+      15831823.00964836,
+      15811146.004125476,
+      15692969.01288908,
+      15622655.99204693,
+      15853229.007916525,
+      15837657.00343065,
+      15806613.999302499,
+      15717239.992227405,
+      15566563.000902534,
+      15688750.00521075,
+      15708541.00282304,
+      15819844.003999606,
+      16219062.003074214,
+      15918541.001155972,
+      16004115.008399822,
+      15767760.007292964,
+      16008698.003133759
+    ],
+    "median": 15760807.000333443,
+    "mean": 15765131.968752636,
+    "min": 15360728.997620754,
+    "max": 16475312.0043315,
+    "p95": 16124398.20310101,
+    "p99": 16400999.503966887,
+    "samples": 30,
+    "unit": "ns"
+  },
+  "speedup": 15.142571093984206,
+  "uncertainty": {
+    "method": "sampled_median_direct",
+    "samples": 30
+  },
+  "gate_results": {
+    "integrity": {
+      "value": true,
+      "evidence": [
+        "scenario.json",
+        "environment.json",
+        "source_sha256.txt",
+        "input_sha256.txt",
+        "baseline_trace.json",
+        "candidate_trace.json"
+      ],
+      "detail": {
+        "scenario_hash": "5716d34df686694b8cb74872a7eb354fd8084281e3b3b7cbc16c1922d37a2c6c",
+        "source_hash": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13",
+        "environment_hash": "e83de3227f34f94fcc6842fb40234476680d3533066133923599264e41bc1db3",
+        "input_hash": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18"
+      }
+    },
+    "reproducibility": {
+      "value": true,
+      "evidence": [
+        "scenario.json",
+        "environment.json"
+      ]
+    },
+    "quotient_forward": {
+      "value": true,
+      "evidence": [
+        "quotient_evidence.json"
+      ]
+    },
+    "reconstruction_reverse": {
+      "value": true,
+      "evidence": [
+        "reconstruction_evidence.json"
+      ]
+    },
+    "invariants": {
+      "value": true,
+      "evidence": [
+        "invariant_evidence.json"
+      ]
+    },
+    "performance": {
+      "value": true,
+      "evidence": [
+        "performance_evidence.json",
+        "attribution.json"
+      ]
+    },
+    "lean": {
+      "value": true,
+      "evidence": [
+        "evidence/lean4/lean_core_all.log"
+      ]
+    }
+  },
+  "claim_boundary": {
+    "quantity_measured": "direct wall-clock speedup of exact-invariant-sector step",
+    "domain_covered": "d=65536, r=2048, tile=32, steps=8",
+    "excluded": [
+      "universal speedup",
+      "HPC dominance",
+      "operation-count equality",
+      "asymptotic complexity",
+      "mathematical novelty"
+    ]
+  },
+  "artifact_refs": {
+    "scenario": {
+      "path": "scenario.json",
+      "sha256": "5716d34df686694b8cb74872a7eb354fd8084281e3b3b7cbc16c1922d37a2c6c"
+    },
+    "source": {
+      "path": "source_sha256.txt",
+      "sha256": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13"
+    },
+    "input": {
+      "path": "input_sha256.txt",
+      "sha256": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18"
+    },
+    "environment": {
+      "path": "environment.json",
+      "sha256": "e83de3227f34f94fcc6842fb40234476680d3533066133923599264e41bc1db3"
+    },
+    "baseline_trace": {
+      "path": "baseline_trace.json",
+      "sha256": "d0bc6e64c3964d5c38f6b1673b7e5a80f33bfcb25d99dca4e07bdf210af7a03c"
+    },
+    "candidate_trace": {
+      "path": "candidate_trace.json",
+      "sha256": "d0bc6e64c3964d5c38f6b1673b7e5a80f33bfcb25d99dca4e07bdf210af7a03c"
+    },
+    "quotient": {
+      "path": "quotient_evidence.json",
+      "sha256": "7186bb772ae05850ccd5a45a7287ac37da0fd0fccb6745a73019e9184948611c"
+    },
+    "reconstruction": {
+      "path": "reconstruction_evidence.json",
+      "sha256": "b4f99b0dc6909c05ca14e26427b66b5c378cfd730edff4d64fa294162e81ff00"
+    },
+    "invariant": {
+      "path": "invariant_evidence.json",
+      "sha256": "f313ee21df0cb442136b704a0fb84ffae68d14bdf042dbb6e8f27f8062bd0ef1"
+    },
+    "performance": {
+      "path": "performance_evidence.json",
+      "sha256": "2b560c31af062365553c25ace7b9812626c4db82558186747c47d5b41d6893f3"
+    },
+    "lean": {
+      "path": "lean_core_all.log",
+      "sha256": "ba616dce7aa06d1b03a4b329c81f7f6315134504d68ff6f075a38340c03fc322"
+    }
+  },
+  "attribution": {
+    "theory": {
+      "baseline_ops": 524288,
+      "candidate_ops": 16384,
+      "operation_count_ratio": 32.0,
+      "excluded_from_measured": [
+        "interpreter overhead",
+        "cache effects"
+      ]
+    },
+    "measured": {
+      "wall_clock_speedup": 15.142571093984206,
+      "wall_clock_baseline": 238659140.50111312,
+      "wall_clock_candidate": 15760807.000333443
+    },
+    "overhead_included": {
+      "quotient_construction": 0.0,
+      "reconstruction": 65536.0
+    },
+    "not_conflated": true,
+    "note": "operation count ratio vs wall-clock speedup reported separately; never conflated"
+  },
+  "generator": "pcss_native_runner",
+  "certificate_sha256": "e69ea19f61ec960f0a706690941f8419f019f0c3f354d55b72b4e3f0a55d02e1"
+}

@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "reason": "",
+  "invariant_name": "declared",
+  "relation": "exact",
+  "tolerance": 0.0,
+  "baseline_signature": true,
+  "candidate_signature": true,
+  "signature_steps_checked": 7
+}

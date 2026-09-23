@@ -1,0 +1,84 @@
+{
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "scenario_id": "sim2xr-oracle-exact-sector-2026-09-23",
+  "workload": {
+    "kind": "exact_invariant_sector",
+    "function_name": "engines.linear_exact.LinearExactModel"
+  },
+  "mathematical_object": {
+    "state_space": "R^d (d=1048576), block-constant invariant sector Omega (oracle-exact discovery via SIM2XR pipeline)",
+    "quotient_space": "R^r (r=32768), class representatives (oracle quotient from spectral collapse)",
+    "transition": "T(x)[i] = x[i] * w[class(i)]  (block-scale, block-constant preserving)",
+    "projection": "pi(x) = [x[c*tile] for c in 0..r-1]  (first element per block, oracle-exact)",
+    "reconstruction": "sigma(q) = [q[c] for c for _ in range(tile)]  (repeat each rep tile times)",
+    "invariant": "block-constancy: x[b*tile .. (b+1)*tile -1] all equal (exact)",
+    "observable": "class representative vector pi(x)"
+  },
+  "baseline": {
+    "implementation_id": "SIM2XR_full_d1048576",
+    "kind": "native"
+  },
+  "candidate": {
+    "implementation_id": "SIM2XR_oracle_quotient_r32768",
+    "kind": "native"
+  },
+  "quotient": {
+    "definition": "exact block-constant projection with pi(T(x)) = Tbar(pi(x)) on invariant sector (oracle-exact)",
+    "function_name": "engines.quotient.run_quotient",
+    "tolerance": 0.0,
+    "relation": "exact"
+  },
+  "reconstruction": {
+    "definition": "sigma(q) tile-replicate each oracle quotient coord back to d-dim full vector",
+    "function_name": "engines.reconstruction.run_reconstruction",
+    "tolerance": 0.0,
+    "metric": "max"
+  },
+  "invariant": {
+    "definition": "block-constancy: all tile coords within each block equal (exact for invariant sector)",
+    "function_name": "engines.linear_exact.omega_vector"
+  },
+  "parameters": {
+    "model": "vector",
+    "steps": 8,
+    "tile": 32,
+    "nclasses": 2048,
+    "weights": [
+      1.0,
+      1.25,
+      0.9,
+      1.1,
+      1.5,
+      0.8,
+      1.3,
+      0.95
+    ],
+    "note": "silicon closure 2026-09-23 SIM2XR pipeline: oracle-exact trajectory up to 18.66x (err ~7e-13), single-shot discovery-inclusive refuted (0.73-0.83x slower); this PCSS run measures the exact-invariant-sector oracle rewrite WITHOUT charging single-shot discovery cost"
+  },
+  "dimensions": {
+    "d": 65536,
+    "r": 2048,
+    "tile": 32,
+    "nclasses": 2048,
+    "operation_count_baseline_per_step": 65536,
+    "operation_count_candidate_per_step": 2048,
+    "operation_count_ratio_theory": 32.0
+  },
+  "repetitions": 30,
+  "warmups": 5,
+  "warmup_policy": "fixed",
+  "timing_source": "clock_gettime_monotonic",
+  "seed": 20260923,
+  "expected_observables": [
+    "quotient forward exact (oracle)",
+    "reconstruction exact",
+    "invariant block-constancy exact",
+    "direct wall-clock speedup > 1 reported",
+    "operation count ratio reported separately"
+  ],
+  "environment": {
+    "python": "3.11",
+    "arch": "aarch64"
+  }
+}
