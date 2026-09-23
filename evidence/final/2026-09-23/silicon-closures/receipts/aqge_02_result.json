@@ -1,0 +1,690 @@
+{
+  "adversarial_fail_closed": [
+    {
+      "detected": true,
+      "expected": true,
+      "fail_closed": true,
+      "name": "exact_repeated"
+    },
+    {
+      "detected": true,
+      "expected": true,
+      "fail_closed": true,
+      "name": "near_structured_1e-8"
+    },
+    {
+      "detected": true,
+      "expected": true,
+      "fail_closed": true,
+      "name": "near_structured_1e-5"
+    },
+    {
+      "detected": false,
+      "expected": false,
+      "fail_closed": true,
+      "name": "near_structured_1e-3"
+    },
+    {
+      "detected": false,
+      "expected": false,
+      "fail_closed": true,
+      "name": "strong_perturbation_1e-1"
+    },
+    {
+      "detected": false,
+      "expected": false,
+      "fail_closed": true,
+      "name": "random_unstructured"
+    },
+    {
+      "detected": false,
+      "expected": false,
+      "fail_closed": true,
+      "name": "blockdiag_against_repeated"
+    },
+    {
+      "detected": true,
+      "expected": false,
+      "fail_closed": false,
+      "name": "collage_non_admissible"
+    },
+    {
+      "detected": true,
+      "expected": true,
+      "fail_closed": true,
+      "name": "ill_conditioned_structured_cond1e8"
+    },
+    {
+      "detected": false,
+      "expected": false,
+      "fail_closed": true,
+      "name": "checkerboard_structure"
+    }
+  ],
+  "experiment": "AQGE-02 fixed adaptive tower",
+  "hardware": {
+    "arch": "aarch64",
+    "asimddp": false,
+    "byteorder": "little",
+    "cpu_brand": "[\u2713] ChronoFold shell loaded.\nModel name:                              Cortex-A55\nModel name:                              Cortex-A78",
+    "features": [],
+    "jitter_stdev_s": 0.056267474,
+    "model": "aarch64",
+    "neon": false,
+    "timing_source": "time.perf_counter_ns"
+  },
+  "manifest": {
+    "dtype": "fp32",
+    "experiment_id": "AQGE-02",
+    "family": "repeated",
+    "n": 1024,
+    "platform": {
+      "cpu_count": 8,
+      "machine": "aarch64",
+      "numpy": "2.2.4",
+      "os": "Linux",
+      "python": "3.13.5",
+      "threads_env": "1"
+    },
+    "probe_ratios": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "reps": 5,
+    "seed": 9001,
+    "tolerance": 0.0001,
+    "version": "2",
+    "warmups": 2
+  },
+  "quotient_mathematics": {
+    "best_effort_simd": "scalar C and NEON micro kernel measured in-pipeline",
+    "descend": "project A,B to (A0,B0); reduced product m*(A0 B0); reconstruct kron(J_m, C0)",
+    "identity": "(J_m kron A0) (J_m kron B0) = J_m kron (m (A0 B0))  with J_m ones matrix, m = N/r",
+    "param": "r = block quotient; m = N/r multiplier; M_struct = m^2 (data), M_work = m^3 (flops)",
+    "quarantine_note": "no fabricated data; every number above is measured on this host"
+  },
+  "scenarios": [
+    {
+      "_K_FLAG": "DIAGNOSTIC ONLY; PROVISIONAL if timing protocol differs between isolation and composition",
+      "adaptive_quotient_tower": {
+        "128": {
+          "admissible": true,
+          "execution_model_seconds": 0.013296646,
+          "m": 8,
+          "projection_seconds": 0.02653375,
+          "r": 128,
+          "reconstruction_memory_bytes": 4194304,
+          "reconstruction_seconds": 0.011390052,
+          "reduced_eff_GFLOPS": 2.2,
+          "reduced_flops": 4194304,
+          "reduced_seconds": 0.001906594,
+          "structure_error": {
+            "A_max_abs": 0.0,
+            "B_max_abs": 0.0
+          },
+          "total_model_seconds": 0.801527531,
+          "verification_seconds": 0.761697135
+        },
+        "256": {
+          "admissible": true,
+          "execution_model_seconds": 0.036000219,
+          "m": 4,
+          "projection_seconds": 0.028559219,
+          "r": 256,
+          "reconstruction_memory_bytes": 4194304,
+          "reconstruction_seconds": 0.022489406,
+          "reduced_eff_GFLOPS": 2.48,
+          "reduced_flops": 33554432,
+          "reduced_seconds": 0.013510812,
+          "structure_error": {
+            "A_max_abs": 0.0,
+            "B_max_abs": 0.0
+          },
+          "total_model_seconds": 0.825620479,
+          "verification_seconds": 0.761061041
+        },
+        "512": {
+          "admissible": true,
+          "execution_model_seconds": 0.205604427,
+          "m": 2,
+          "projection_seconds": 0.028620625,
+          "r": 512,
+          "reconstruction_memory_bytes": 4194304,
+          "reconstruction_seconds": 0.110067781,
+          "reduced_eff_GFLOPS": 2.81,
+          "reduced_flops": 268435456,
+          "reduced_seconds": 0.095536646,
+          "structure_error": {
+            "A_max_abs": 0.0,
+            "B_max_abs": 0.0
+          },
+          "total_model_seconds": 1.035218697,
+          "verification_seconds": 0.800993645
+        },
+        "64": {
+          "admissible": true,
+          "execution_model_seconds": 0.012232885,
+          "m": 16,
+          "projection_seconds": 0.030991458,
+          "r": 64,
+          "reconstruction_memory_bytes": 4194304,
+          "reconstruction_seconds": 0.011877042,
+          "reduced_eff_GFLOPS": 1.47,
+          "reduced_flops": 524288,
+          "reduced_seconds": 0.000355844,
+          "structure_error": {
+            "A_max_abs": 0.0,
+            "B_max_abs": 0.0
+          },
+          "total_model_seconds": 0.87761528,
+          "verification_seconds": 0.834390937
+        }
+      },
+      "adversarial_forced_positive_only_on_repeated": [
+        {
+          "detected": true,
+          "expected": true,
+          "fail_closed": true,
+          "name": "exact_repeated"
+        },
+        {
+          "detected": true,
+          "expected": true,
+          "fail_closed": true,
+          "name": "near_structured_1e-8"
+        },
+        {
+          "detected": true,
+          "expected": true,
+          "fail_closed": true,
+          "name": "near_structured_1e-5"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "near_structured_1e-3"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "strong_perturbation_1e-1"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "random_unstructured"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "blockdiag_against_repeated"
+        },
+        {
+          "detected": true,
+          "expected": false,
+          "fail_closed": false,
+          "name": "collage_non_admissible"
+        },
+        {
+          "detected": true,
+          "expected": true,
+          "fail_closed": true,
+          "name": "ill_conditioned_structured_cond1e8"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "checkerboard_structure"
+        }
+      ],
+      "amortization": {
+        "T_canonical_seconds": 0.831011354,
+        "T_discovery_seconds": 17.241089726,
+        "T_pipeline_seconds": 0.011530156,
+        "break_even_K": 21.03903026462412,
+        "per_use_savings_seconds": 0.819481198
+      },
+      "candidate": {
+        "S_native": 72.0729,
+        "pipeline_seconds": 0.011530156,
+        "r": 128
+      },
+      "claim_strength_note": "CLAIM_STRENGTH <= EVIDENCE_STRENGTH enforced; no multiplied isolated ratios",
+      "composition": {
+        "K_composed_diagnostic": 0.8621,
+        "K_cumulative_diagnostic": 0.5395,
+        "S_composed_measured": 69.4106,
+        "S_cumulative_measured": 43.4358,
+        "S_orientation": 1.1171,
+        "S_quotient": 72.0729,
+        "_K_NOTE": "DIAGNOSTIC ONLY: ratios of measured values in ONE shared protocol; if a future protocol differs, label PROVISIONAL"
+      },
+      "evidence_state": "EMPIRICAL",
+      "experiment": "AQGE-02 fixed adaptive tower",
+      "hardware": {
+        "arch": "aarch64",
+        "asimddp": false,
+        "byteorder": "little",
+        "cpu_brand": "[\u2713] ChronoFold shell loaded.\nModel name:                              Cortex-A55\nModel name:                              Cortex-A78",
+        "features": [],
+        "jitter_stdev_s": 0.056267474,
+        "model": "aarch64",
+        "neon": false,
+        "timing_source": "time.perf_counter_ns"
+      },
+      "interaction_factor_K": 0.8621,
+      "manifest": {
+        "dtype": "fp32",
+        "experiment_id": "AQGE-02",
+        "family": "repeated",
+        "n": 1024,
+        "platform": {
+          "cpu_count": 8,
+          "machine": "aarch64",
+          "numpy": "2.2.4",
+          "os": "Linux",
+          "python": "3.13.5",
+          "threads_env": "1"
+        },
+        "probe_ratios": [
+          2,
+          4,
+          8,
+          16
+        ],
+        "reps": 5,
+        "seed": 9001,
+        "tolerance": 0.0001,
+        "version": "2",
+        "warmups": 2
+      },
+      "power_chain_verification": {
+        "abs": 2.548458912813109e+19,
+        "passed": false,
+        "rel": 2284950.551186316,
+        "residual": 11153234198532.18,
+        "tolerance": 0.0016
+      },
+      "primitives": [
+        {
+          "S": 1.1171,
+          "evidence_state": "MEASURED",
+          "primitive": "orientation"
+        },
+        {
+          "S": 72.0729,
+          "evidence_state": "EMPIRICAL",
+          "primitive": "block_quotient",
+          "r": 128
+        },
+        {
+          "evidence_state": "IMPLEMENTED",
+          "primitive": "oshift_noop"
+        },
+        {
+          "S": 69.4106,
+          "evidence_state": "COMPOSED",
+          "primitive": "composed"
+        }
+      ],
+      "promotion_status": "NOT_VERIFIED_OPERATIONAL_PRIMITIVE",
+      "quotient_staying_power6": {
+        "k": 6,
+        "naive_samples": [
+          8.849529215000075,
+          9.4589165590005,
+          9.902573174000281
+        ],
+        "naive_seconds": 9.4589165590005,
+        "stay_Q_samples": [
+          0.020158281000476563,
+          0.020692761001555482,
+          0.020889218998490833
+        ],
+        "stay_Q_seconds": 0.020692761001555482
+      },
+      "scenario": {
+        "base_block_r": 64,
+        "constructed_ratio": 16,
+        "seed": 9001
+      },
+      "selected_quotient": {
+        "M_struct": 64,
+        "M_work": 512,
+        "S_native": 72.0729,
+        "eta_Q": 0.140767,
+        "finest_admissible_r": 64,
+        "mathematics": {
+          "M_struct": "m^2 data compression",
+          "M_work": "m^3 flop reduction",
+          "identity": "(J_m kron A0)(J_m kron B0) = J_m kron (m A0 B0)"
+        },
+        "r": 128
+      },
+      "timing_decomposition": {
+        "baseline_seconds": 0.831011354,
+        "discovery_seconds": 17.241089726,
+        "quotient_pipeline_seconds": 0.011530156,
+        "simd": {
+          "NEON_over_scalar_pipeline": 0.6903054787772966,
+          "S_NEON_pipeline": 45.764080309715055,
+          "S_SCALAR_pipeline": 31.591195369000506,
+          "reduced_step_seconds": {
+            "neon": 0.004439729199657449,
+            "neon_over_scalar": 0.35792451612867376,
+            "scalar": 0.012404093599616316
+          }
+        }
+      },
+      "tower_discovery_wall_s": 17.241089726,
+      "verification": {
+        "composed": {
+          "abs": 2.376674910209431e-07,
+          "passed": true,
+          "rel": 3.518254757875772e-08,
+          "residual": 2.376674919091215e-07,
+          "tolerance": 0.0016
+        },
+        "quotient": {
+          "abs": 2.376674910209431e-07,
+          "passed": true,
+          "rel": 3.518254757875772e-08,
+          "residual": 2.376674919091215e-07,
+          "tolerance": 0.0016
+        }
+      }
+    },
+    {
+      "_K_FLAG": "DIAGNOSTIC ONLY; PROVISIONAL if timing protocol differs between isolation and composition",
+      "adaptive_quotient_tower": {
+        "128": {
+          "admissible": false,
+          "m": 8,
+          "projection_seconds": 0.02986198,
+          "r": 128,
+          "structure_error": {
+            "A_max_abs": 0.2964880168437958,
+            "B_max_abs": 0.29133105278015137
+          }
+        },
+        "256": {
+          "admissible": false,
+          "m": 4,
+          "projection_seconds": 0.027350156,
+          "r": 256,
+          "structure_error": {
+            "A_max_abs": 0.2964880168437958,
+            "B_max_abs": 0.30257124453783035
+          }
+        },
+        "512": {
+          "admissible": true,
+          "execution_model_seconds": 0.232454062,
+          "m": 2,
+          "projection_seconds": 0.026327916,
+          "r": 512,
+          "reconstruction_memory_bytes": 4194304,
+          "reconstruction_seconds": 0.126204365,
+          "reduced_eff_GFLOPS": 2.53,
+          "reduced_flops": 268435456,
+          "reduced_seconds": 0.106249698,
+          "structure_error": {
+            "A_max_abs": 0.0,
+            "B_max_abs": 0.0
+          },
+          "total_model_seconds": 1.148434738,
+          "verification_seconds": 0.88965276
+        },
+        "64": {
+          "admissible": false,
+          "m": 16,
+          "projection_seconds": 0.031372656,
+          "r": 64,
+          "structure_error": {
+            "A_max_abs": 0.30143168568611145,
+            "B_max_abs": 0.2822583019733429
+          }
+        }
+      },
+      "adversarial_forced_positive_only_on_repeated": [
+        {
+          "detected": true,
+          "expected": true,
+          "fail_closed": true,
+          "name": "exact_repeated"
+        },
+        {
+          "detected": true,
+          "expected": true,
+          "fail_closed": true,
+          "name": "near_structured_1e-8"
+        },
+        {
+          "detected": true,
+          "expected": true,
+          "fail_closed": true,
+          "name": "near_structured_1e-5"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "near_structured_1e-3"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "strong_perturbation_1e-1"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "random_unstructured"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "blockdiag_against_repeated"
+        },
+        {
+          "detected": true,
+          "expected": false,
+          "fail_closed": false,
+          "name": "collage_non_admissible"
+        },
+        {
+          "detected": true,
+          "expected": true,
+          "fail_closed": true,
+          "name": "ill_conditioned_structured_cond1e8"
+        },
+        {
+          "detected": false,
+          "expected": false,
+          "fail_closed": true,
+          "name": "checkerboard_structure"
+        }
+      ],
+      "amortization": {
+        "T_canonical_seconds": 0.906319844,
+        "T_discovery_seconds": 5.72544682,
+        "T_pipeline_seconds": 0.129595417,
+        "break_even_K": 7.371271741897009,
+        "per_use_savings_seconds": 0.776724427
+      },
+      "candidate": {
+        "S_native": 6.9935,
+        "pipeline_seconds": 0.129595417,
+        "r": 512
+      },
+      "claim_strength_note": "CLAIM_STRENGTH <= EVIDENCE_STRENGTH enforced; no multiplied isolated ratios",
+      "composition": {
+        "K_composed_diagnostic": 0.9334,
+        "K_cumulative_diagnostic": 0.3132,
+        "S_composed_measured": 6.7363,
+        "S_cumulative_measured": 2.2606,
+        "S_orientation": 1.0319,
+        "S_quotient": 6.9935,
+        "_K_NOTE": "DIAGNOSTIC ONLY: ratios of measured values in ONE shared protocol; if a future protocol differs, label PROVISIONAL"
+      },
+      "evidence_state": "EMPIRICAL",
+      "experiment": "AQGE-02 fixed adaptive tower",
+      "hardware": {
+        "arch": "aarch64",
+        "asimddp": false,
+        "byteorder": "little",
+        "cpu_brand": "[\u2713] ChronoFold shell loaded.\nModel name:                              Cortex-A55\nModel name:                              Cortex-A78",
+        "features": [],
+        "jitter_stdev_s": 0.012681931,
+        "model": "aarch64",
+        "neon": false,
+        "timing_source": "time.perf_counter_ns"
+      },
+      "interaction_factor_K": 0.9334,
+      "manifest": {
+        "dtype": "fp32",
+        "experiment_id": "AQGE-02",
+        "family": "repeated",
+        "n": 1024,
+        "platform": {
+          "cpu_count": 8,
+          "machine": "aarch64",
+          "numpy": "2.2.4",
+          "os": "Linux",
+          "python": "3.13.5",
+          "threads_env": "1"
+        },
+        "probe_ratios": [
+          2,
+          4,
+          8,
+          16
+        ],
+        "reps": 5,
+        "seed": 9001,
+        "tolerance": 0.0001,
+        "version": "2",
+        "warmups": 2
+      },
+      "power_chain_verification": {
+        "abs": 467.2138824110083,
+        "passed": false,
+        "rel": 0.9999689782735078,
+        "residual": 467.31706849717915,
+        "tolerance": 0.0016
+      },
+      "primitives": [
+        {
+          "S": 1.0319,
+          "evidence_state": "MEASURED",
+          "primitive": "orientation"
+        },
+        {
+          "S": 6.9935,
+          "evidence_state": "EMPIRICAL",
+          "primitive": "block_quotient",
+          "r": 512
+        },
+        {
+          "evidence_state": "IMPLEMENTED",
+          "primitive": "oshift_noop"
+        },
+        {
+          "S": 6.7363,
+          "evidence_state": "COMPOSED",
+          "primitive": "composed"
+        }
+      ],
+      "promotion_status": "NOT_VERIFIED_OPERATIONAL_PRIMITIVE",
+      "quotient_staying_power6": {
+        "k": 6,
+        "naive_samples": [
+          11.940502703997481,
+          14.205363901000965,
+          14.302395203001652
+        ],
+        "naive_seconds": 14.205363901000965,
+        "stay_Q_samples": [
+          0.7595381760002056,
+          0.7820561459993769,
+          0.7911185929988278
+        ],
+        "stay_Q_seconds": 0.7820561459993769
+      },
+      "scenario": {
+        "base_block_r": 512,
+        "constructed_ratio": 2,
+        "seed": 9001
+      },
+      "selected_quotient": {
+        "M_struct": 4,
+        "M_work": 8,
+        "S_native": 6.9935,
+        "eta_Q": 0.874182,
+        "finest_admissible_r": 512,
+        "mathematics": {
+          "M_struct": "m^2 data compression",
+          "M_work": "m^3 flop reduction",
+          "identity": "(J_m kron A0)(J_m kron B0) = J_m kron (m A0 B0)"
+        },
+        "r": 512
+      },
+      "timing_decomposition": {
+        "baseline_seconds": 0.906319844,
+        "discovery_seconds": 5.72544682,
+        "quotient_pipeline_seconds": 0.129595417,
+        "simd": {
+          "NEON_over_scalar_pipeline": 0.3408976202399704,
+          "S_NEON_pipeline": 2.7531184193268223,
+          "S_SCALAR_pipeline": 0.9385315173873425,
+          "reduced_step_seconds": {
+            "neon": 0.3220967809997092,
+            "neon_over_scalar": 0.3414693021674441,
+            "scalar": 0.9432671661998029
+          }
+        }
+      },
+      "tower_discovery_wall_s": 5.72544682,
+      "verification": {
+        "composed": {
+          "abs": 1.488744927335972e-08,
+          "passed": true,
+          "rel": 3.4485765289107945e-08,
+          "residual": 1.4887449328870872e-08,
+          "tolerance": 0.0016
+        },
+        "quotient": {
+          "abs": 1.488744927335972e-08,
+          "passed": true,
+          "rel": 3.4485765289107945e-08,
+          "residual": 1.4887449328870872e-08,
+          "tolerance": 0.0016
+        }
+      }
+    }
+  ],
+  "scenarios_math": [
+    {
+      "S_native": 72.0729,
+      "T_canonical": 0.831011354,
+      "finest_admissible_r": 64,
+      "selected_r": 128
+    },
+    {
+      "S_native": 6.9935,
+      "T_canonical": 0.906319844,
+      "finest_admissible_r": 512,
+      "selected_r": 512
+    }
+  ]
+}

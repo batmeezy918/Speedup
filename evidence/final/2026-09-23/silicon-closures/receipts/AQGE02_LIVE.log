@@ -1,0 +1,29 @@
+AQGE-02 fixed tower  N=1024
+  scenario           base_ratio=16        base_block_r=64
+  canonical baseline T =   831.011 ms
+  tower: selected r =  128  finest_admissible = 64
+         M_struct=64  M_work=512  S_native=72.0729  eta_Q=0.140767
+  quotient pipeline  T =    11.530 ms
+  SIMD full-pipeline NEON S =   45.764x  scalar S =   31.591x  (NEON/scalar = 69%)
+  reduced step       scalar  12.404ms  NEON   4.440ms  ratio 0.358x
+  composition (one baseline): S_orient=1.1171  S_q=72.0729  S_composed=69.4106  K_diag=0.8621
+  amortization       discovery 17241.09ms  break-even K = 21.0
+  stay-in-Q  (AB)^6: stay_Q   20.693ms  naive 9458.917ms  S=457.1x
+  descent rel err    = 3.518e-08  passed=True
+  evidence = EMPIRICAL (VERIFIED_OPERATIONAL_PRIMITIVE NOT claimed)
+
+AQGE-02 fixed tower  N=1024
+  scenario           base_ratio=2         base_block_r=512
+  canonical baseline T =   906.320 ms
+  tower: selected r =  512  finest_admissible = 512
+         M_struct=4  M_work=8  S_native=6.9935  eta_Q=0.874182
+  quotient pipeline  T =   129.595 ms
+  SIMD full-pipeline NEON S =    2.753x  scalar S =    0.939x  (NEON/scalar = 34%)
+  reduced step       scalar 943.267ms  NEON 322.097ms  ratio 0.341x
+  composition (one baseline): S_orient=1.0319  S_q=6.9935  S_composed=6.7363  K_diag=0.9334
+  amortization       discovery 5725.45ms  break-even K = 7.4
+  stay-in-Q  (AB)^6: stay_Q  782.056ms  naive 14205.364ms  S=18.2x
+  descent rel err    = 3.449e-08  passed=True
+  evidence = EMPIRICAL (VERIFIED_OPERATIONAL_PRIMITIVE NOT claimed)
+
+[artifact] results/aqge_02_result.json

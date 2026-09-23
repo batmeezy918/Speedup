@@ -1,0 +1,88 @@
+=== SIM2XR d=256 r=4 ===
+{
+ "d": 256,
+ "r": 4,
+ "subspace_align(lambda_max(U'Uhat))": 0.0003831567597653913,
+ "t_dense_s": 0.0005353130036382936,
+ "t_proj_s": 3.8386002415791154e-05,
+ "t_reduced_s": 4.968699795426801e-05,
+ "t_unfold_s": 9.093800326809287e-05,
+ "t_pipeline_s": 0.00018265700055053458,
+ "t_discovery_s": 0.025302239999291487,
+ "kernel_speedup (dense/reduced)": 10.773703899981975,
+ "pipeline_speedup (dense/(proj+red+unfold))": 2.9307007233494557,
+ "oracle_construction_inclusive_speedup (dense/(model+pipe))": 0.7265653440534409,
+ "discovery_construction_inclusive_speedup (dense/(disc+model+pipe))": 0.02065317159073884,
+ "task_error_oracle_in_subspace": 4.1586233150460915e-13,
+ "task_error_discovered_in_subspace": 1.0079980174995873,
+ "task_error_arbitrary_X": 0.9864764825556138,
+ "K_break_even": 55.8345686394198,
+ "inclusive_active": "NO"
+}
+exit=0
+=== SIM2XR d=512 r=8 ===
+{
+ "d": 512,
+ "r": 8,
+ "subspace_align(lambda_max(U'Uhat))": 0.0005331904365701131,
+ "t_dense_s": 0.007956822999403812,
+ "t_proj_s": 0.00013322899758350104,
+ "t_reduced_s": 0.0001615110013517551,
+ "t_unfold_s": 0.00029359300242504105,
+ "t_pipeline_s": 0.0006113020062912256,
+ "t_discovery_s": 0.05501526100124465,
+ "kernel_speedup (dense/reduced)": 49.2648979500451,
+ "pipeline_speedup (dense/(proj+red+unfold))": 13.016189898799652,
+ "oracle_construction_inclusive_speedup (dense/(model+pipe))": 0.8474095327481417,
+ "discovery_construction_inclusive_speedup (dense/(disc+model+pipe))": 0.12520170872733144,
+ "task_error_oracle_in_subspace": 4.2768873395115914e-13,
+ "task_error_discovered_in_subspace": 1.0102181490500426,
+ "task_error_arbitrary_X": 0.9894798649062034,
+ "K_break_even": 8.10557545791681,
+ "inclusive_active": "NO"
+}
+exit=0
+=== SIM2XR d=1024 r=16 ===
+{
+ "d": 1024,
+ "r": 16,
+ "subspace_align(lambda_max(U'Uhat))": 0.0007610778917258074,
+ "t_dense_s": 0.03310281300218776,
+ "t_proj_s": 0.0007563030012534,
+ "t_reduced_s": 0.0006200520001584664,
+ "t_unfold_s": 0.0012208850021124817,
+ "t_pipeline_s": 0.0027942189990426414,
+ "t_discovery_s": 0.1648642709988053,
+ "kernel_speedup (dense/reduced)": 53.387156228393245,
+ "pipeline_speedup (dense/(proj+red+unfold))": 11.84689282176146,
+ "oracle_construction_inclusive_speedup (dense/(model+pipe))": 0.766297449286282,
+ "discovery_construction_inclusive_speedup (dense/(disc+model+pipe))": 0.16140606989793335,
+ "task_error_oracle_in_subspace": 4.793593582284556e-13,
+ "task_error_discovered_in_subspace": 1.0046033334992386,
+ "task_error_arbitrary_X": 0.995335432285006,
+ "K_break_even": 6.245193899750062,
+ "inclusive_active": "NO"
+}
+exit=0
+=== SIM2XR d=2048 r=16 ===
+{
+ "d": 2048,
+ "r": 16,
+ "subspace_align(lambda_max(U'Uhat))": 0.0003399622397013359,
+ "t_dense_s": 0.12632999999914318,
+ "t_proj_s": 0.0016782819948275574,
+ "t_reduced_s": 0.0016375519990106113,
+ "t_unfold_s": 0.003102656002738513,
+ "t_pipeline_s": 0.0067697400008910336,
+ "t_discovery_s": 0.5651595309973345,
+ "kernel_speedup (dense/reduced)": 77.14564183334038,
+ "pipeline_speedup (dense/(proj+red+unfold))": 18.66098254623008,
+ "oracle_construction_inclusive_speedup (dense/(model+pipe))": 0.8316689859351842,
+ "discovery_construction_inclusive_speedup (dense/(disc+model+pipe))": 0.17842833114045292,
+ "task_error_oracle_in_subspace": 7.189482058729993e-13,
+ "task_error_discovered_in_subspace": 1.0017176720379481,
+ "task_error_arbitrary_X": 0.9975377828313922,
+ "K_break_even": 5.62771237462294,
+ "inclusive_active": "NO"
+}
+exit=0
