@@ -1,0 +1,9 @@
+simd_sweep_v3.c
+simd_v6_validation.c PACKED_NEON_8x8
+simd_v5_validation.c PACKED_NEON_8x8
+omega_neon_gemm_roofline_20260921 omega_neon_gemm.c
+omega_neon_gemm_roofline_20260601 omega_neon_gemm.c
+neon_gemm_sweep_20260601.c
+omega_sweep_20260826 sweep.c
+agd_engine.cpp
+agd_129_engine.cpp

@@ -1,0 +1,26 @@
+script,status,measured,silicon_anchor,alignment,class
+"simd_sweep_v3.c (from source, sweep verified)","PASS bit-exact","15.53x@128 11.75x@512 8.78x@768 (15.09/9.78/5.00 GF)","SIMD v3 band 12-17 GF, 1 A78",ALIGNED_EXACT,simd
+"simd_v6_validation.c PACKED_NEON_8x8","PASS exact @N=128 only","56.11x kernel / 22.67x e2e @128 max_abs=0; 27-49x kernel @256-1024 FAIL (residual 2e-4)","1 A78 wide-FMA regime",ALIGNED_EXACT_BOUNDED,simd
+"simd_v5_validation.c PACKED_NEON_8x8","PASS exact @N=128 only","11.59x @128 max_abs=0; N>=256 max_abs~40 FAIL (kernel bug)","1 A78 wide-FMA regime",ALIGNED_EXACT_BOUNDED,simd
+"omega_neon_gemm_roofline_20260921 omega_neon_gemm.c",PASS,"8.94 GF (1T)","neutron_gemm N=512 1T 8.7-10.5 GF",ALIGNED_ALU,gemm
+"omega_neon_gemm_roofline_20260601 omega_neon_gemm.c",PASS,"9.35 GF (1T)","same band",ALIGNED_ALU,gemm
+neon_gemm_sweep_20260601.c,PASS,"N=512 9.22 GF, N=768 4.41 GF, checksum matched","DRAM-roof roof 1T",ALIGNED_ALU,gemm
+"omega_sweep_20260826 sweep.c (prebuilt)",PASS,"8.6-10.2 GF N=512-1024","neutron band",ALIGNED_ALU,gemm
+sovereign_kernel.cpp,PASS,"2.26-6.17 Gops/s (variance)","serialized scalar-ish",PARTIAL,kernel
+agd_engine.cpp,"PASS (correctness)","Prime/Factor/Decrypt PASSED; OpenMP DISABLED 1T","verification only",ALIGNED_CORRECTNESS,agd
+"agd_129_engine.cpp (2000)","PASS (correctness)","Prime/Factor/Decrypt PASSED","verification only",ALIGNED_CORRECTNESS,agd
+omega_v17_1_simd.c,"PASS (structural)","manifold fused, parallel convergence",structural,NEUTRAL,simd
+probe.cpp,REFUTED,"claims 426-600 GF (impossible vs 134.4 paper peak)","not silicon-consistent",REFUTED,claim
+apollo_kernel.c,"REFUTE x86-only","immintrin.h not found on aarch64","not portable to this silicon",REFUTED,x86
+sovereign_gemm_showcase.c,"REFUTE x86-only","immintrin.h not found","not portable",REFUTED,x86
+termux_speedup_bench.c,COMPILE_FAIL,"warning->error in cache-alignment test","needs fix",INCONCLUSIVE,bench
+sim2xr_definitive/sim2xr.cpp,LINK_FAIL,"multi-file archive; hash_bytes unresolved","needs full source set",INCONCLUSIVE,qsxr
+sim2xr-definitive/engine_c.c,LINK_FAIL,"multi-file archive","needs full source set",INCONCLUSIVE,qsxr
+omega_v13_1_event_horizon.c,LINK_FAIL,"archive subset; undefined refs","incomplete archive",INCONCLUSIVE,collapse
+omega_v15_1_collapse.c,LINK_FAIL,"collapse_worker unresolved","incomplete archive",INCONCLUSIVE,collapse
+omega_warp.c,LINK_FAIL,"warp_drive unresolved","incomplete archive",INCONCLUSIVE,collapse
+vector_kernel.c,LINK_FAIL,"operator_step unresolved","incomplete archive",INCONCLUSIVE,kernel
+sovereign_kernel.c,LINK_FAIL,"main unresolved from subset","incomplete archive",INCONCLUSIVE,kernel
+saturator.c,TIMEOUT(25s),"sustained saturation loop","needs run config",INCONCLUSIVE,burn
+sigma_scan.cpp,TIMEOUT(25s),"sustained scan","needs run config",INCONCLUSIVE,scan
+constitutional_silicon_dag.c,"USAGE rc=2","prints usage (needs args)","needs run config",INCONCLUSIVE,dag
