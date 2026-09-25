@@ -1,0 +1,16 @@
+{
+  "per_step_baseline_ns": 480186223.98376465,
+  "per_step_candidate_ns": 2035379.409790039,
+  "oneoff_projection_pi_ns": 935792.9229736328,
+  "oneoff_reconstruction_sigma_ns": 306118488.3117676,
+  "oneoff_total_ns": 307054281.2347412,
+  "per_step_gap_ns": 478150844.5739746,
+  "break_even_steps_N_star": 0.6421703207662889,
+  "at_composed_14_steps": {
+    "amortized": true,
+    "net_gain_ns": 6387057542.800903
+  },
+  "note": "O_C = sigma o Tbar^14 o pi has fixed pi+sigma cost amortized over 14 stay-in-Q steps; N*=break-even #steps",
+  "sample_median_of_8": true,
+  "affinity": "2,3"
+}

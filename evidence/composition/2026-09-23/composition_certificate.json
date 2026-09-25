@@ -1,0 +1,43 @@
+{
+  "schema": "PCSS-COMPOSITION-CERTIFICATE",
+  "schema_version": "1.0",
+  "composition_id": "C1",
+  "operator": "O_C = sigma o Tbar^14 o pi",
+  "baseline": "T_full^14",
+  "components": [
+    {"primitive": "QMULT-02", "steps": 8, "cert": "evidence/final/2026-09-23/pcss/qmult02_matrix.certificate.json"},
+    {"primitive": "AQGE-02", "steps": 6, "cert": "evidence/final/2026-09-23/pcss/aqge02_matrix.certificate.json"}
+  ],
+  "verified_certificate": "evidence/composition/2026-09-23/pcss/qmult02_o_aqge02_composed.certificate.json",
+  "published_artifact": "verified/sim2xr/2026-09-23-qm02_aqge02_composed/pcss_certificate.json",
+  "ledger_hash": "a587395593c6d8fd1e7b2dc818bd7dabca4bbb28fb6643b38cc199dc9f522a51",
+  "run_id": "pcss-run-1790200585",
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": true,
+    "invariants": true,
+    "performance": true,
+    "lean": true
+  },
+  "claim_strength": "VERIFIED",
+  "status": "COMPOSITIONALLY_VERIFIED",
+  "result": {
+    "S_composed_measured": 22.1545,
+    "S1_component": 14.9469,
+    "S2_component": 9.7841,
+    "modeled_product_S1xS2": 146.24,
+    "modeled_product_is_NOT_measured": true,
+    "interaction_factor_I12": 0.1515,
+    "break_even_steps": 0.642
+  },
+  "measurement_conditions": {
+    "affinity": "taskset -c 2,3",
+    "threads": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1",
+    "repetitions": 30,
+    "warmups": 5,
+    "timing_source": "clock_gettime_monotonic"
+  },
+  "certified_by": "publisher/strict_gate.py (STRICT_GATE=VERIFIED exit 0)"
+}

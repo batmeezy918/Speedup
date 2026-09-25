@@ -1,0 +1,18 @@
+STAGE: 11
+STATUS: IN_PROGRESS - ESCALATION_SELECTED (operator authorized)
+AUTHORIZATION: operator granted escalation to Stage 11
+SELECTED_OPERATOR: C2 = QMULT-02 o AQGE-02 o AGD-GEMM (three-way fusion)
+SELECTION_REASON:
+  - Most operational composition of the verified corpus: ALL three VERIFIED matrix-family
+    primitives share the certified operator family (identical weights, tile 16, nclasses 8,
+    source_hash 5f3b2d9d) -> fusible into ONE stay-in-Q trajectory
+  - Maximizes step depth (8+6+8 = 22) and amortization of the single pi/sigma boundary
+  - SIM2XR (vector domain) remains INCOMPATIBLE (no certified matrix<->vector morphism)
+COMPONENTS:
+  - QMULT-02 steps=8 S=14.9469 cert evidence/final/2026-09-23/pcss/qmult02_matrix.certificate.json
+  - AQGE-02 steps=6 S=9.7841  cert evidence/final/2026-09-23/pcss/aqge02_matrix.certificate.json
+  - AGD-GEMM steps=8 S=13.2075 cert evidence/final/2026-09-23/pcss/agd_gemm_matrix.certificate.json
+OPERATOR: O_C = sigma o Tbar^22 o pi, baseline T_full^22, single projection/reconstruction
+RATIO: verified(c1) + verified(c2) + verified(c3) does NOT imply verified(composed);
+  S_composed must be MEASURED natively. S1*S2*S3 = MODELED reference ONLY.
+NEXT: write scenario -> static validate -> native correctness+perf -> PCSS certify -> ledger.

@@ -1,0 +1,10 @@
+{
+  "baseline_signature": 1.3384543013535267e-12,
+  "candidate_signature": 8.113156612643435e-14,
+  "invariant_name": "exact_sector_decomposition",
+  "pass": true,
+  "reason": "invariant sector separation preserved across 122 scenarios",
+  "relation": "approx",
+  "signature_steps_checked": 122,
+  "tolerance": 1e-10
+}

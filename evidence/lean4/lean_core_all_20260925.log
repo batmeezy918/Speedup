@@ -1,0 +1,88 @@
+info: default toolchain set to 'leanprover/lean4:v4.29.0'
+=== Lean4 core verification pass 1: 26 pending ===
+--- lean --root /root/Speedup/lean4 -o AGDGemmProjection.olean /root/Speedup/lean4/AGDGemmProjection.lean
+--- lean --root /root/Speedup/lean4 -o AGDGemmReconstruction.olean /root/Speedup/lean4/AGDGemmReconstruction.lean
+--- lean --root /root/Speedup/lean4 -o AGDGemmSpeedup.olean /root/Speedup/lean4/AGDGemmSpeedup.lean
+/root/Speedup/lean4/AGDGemmSpeedup.lean:1:0: error: unknown module prefix 'AGDGemmWork'
+
+No directory 'AGDGemmWork' or file 'AGDGemmWork.olean' in the search path entries:
+/root/Speedup/lean4
+/root/.elan/toolchains/leanprover--lean4---v4.29.0/lib/lean
+--- lean --root /root/Speedup/lean4 -o AGDGemmWork.olean /root/Speedup/lean4/AGDGemmWork.lean
+--- lean --root /root/Speedup/lean4 -o AGDMaximallyTypedClaim.olean /root/Speedup/lean4/AGDMaximallyTypedClaim.lean
+--- lean --root /root/Speedup/lean4 -o GODSQuotientClosure.olean /root/Speedup/lean4/GODSQuotientClosure.lean
+--- lean --root /root/Speedup/lean4 -o HPL_AGD_01_Obligations.olean /root/Speedup/lean4/HPL_AGD_01_Obligations.lean
+--- lean --root /root/Speedup/lean4 -o LeanSpeedup.olean /root/Speedup/lean4/LeanSpeedup.lean
+/root/Speedup/lean4/LeanSpeedup.lean:1:0: error: unknown module prefix 'PCSSCertificate'
+
+No directory 'PCSSCertificate' or file 'PCSSCertificate.olean' in the search path entries:
+/root/Speedup/lean4
+/root/.elan/toolchains/leanprover--lean4---v4.29.0/lib/lean
+--- lean --root /root/Speedup/lean4 -o PCSSCertificate.olean /root/Speedup/lean4/PCSSCertificate.lean
+--- lean --root /root/Speedup/lean4 -o ProvenAgd/AGDTheoremSeries.olean /root/Speedup/lean4/ProvenAgd/AGDTheoremSeries.lean
+--- lean --root /root/Speedup/lean4 -o ProvenAgd/ConstitutionalKernel.olean /root/Speedup/lean4/ProvenAgd/ConstitutionalKernel.lean
+--- lean --root /root/Speedup/lean4 -o ProvenAgd/CorrectByConstructionSearch.olean /root/Speedup/lean4/ProvenAgd/CorrectByConstructionSearch.lean
+--- lean --root /root/Speedup/lean4 -o SIM2xrEquivalenceClosure.olean /root/Speedup/lean4/SIM2xrEquivalenceClosure.lean
+--- lean --root /root/Speedup/lean4 -o SpeedupExactInvariant.olean /root/Speedup/lean4/SpeedupExactInvariant.lean
+--- lean --root /root/Speedup/lean4 -o SpeedupLean.olean /root/Speedup/lean4/SpeedupLean.lean
+/root/Speedup/lean4/SpeedupLean.lean:1:0: error: unknown module prefix 'AGDGemmSpeedup'
+
+No directory 'AGDGemmSpeedup' or file 'AGDGemmSpeedup.olean' in the search path entries:
+/root/Speedup/lean4
+/root/.elan/toolchains/leanprover--lean4---v4.29.0/lib/lean
+--- lean --root /root/Speedup/lean4 -o ax2.olean /root/Speedup/lean4/ax2.lean
+'HPLAGD01.reduced_exact_solution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ HPLAGD01.reduced_exact_solution._native.native_decide.ax_1_1]
+'HPLAGD01.full_exact_solution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ HPLAGD01.full_exact_solution._native.native_decide.ax_1_1]
+'HPLAGD01.hpl_agd_01_reconstruction_closure' depends on axioms: [propext, Classical.choice, Quot.sound]
+--- lean --root /root/Speedup/lean4 -o axcheck.olean /root/Speedup/lean4/axcheck.lean
+/root/Speedup/lean4/axcheck.lean:1:0: error: unknown module prefix 'AGDGemmSpeedup'
+
+No directory 'AGDGemmSpeedup' or file 'AGDGemmSpeedup.olean' in the search path entries:
+/root/Speedup/lean4
+/root/.elan/toolchains/leanprover--lean4---v4.29.0/lib/lean
+--- lean --root /root/Speedup/lean4 -o chronofold/ChronoFoldProof.olean /root/Speedup/lean4/chronofold/ChronoFoldProof.lean
+--- lean --root /root/Speedup/lean4 -o chronofold/ExactQuotientClosure.olean /root/Speedup/lean4/chronofold/ExactQuotientClosure.lean
+--- lean --root /root/Speedup/lean4 -o chronofold/GODSQuotientClosure.olean /root/Speedup/lean4/chronofold/GODSQuotientClosure.lean
+--- lean --root /root/Speedup/lean4 -o chronofold/LinearQuotientProof.olean /root/Speedup/lean4/chronofold/LinearQuotientProof.lean
+--- lean --root /root/Speedup/lean4 -o chronofold/ProgressTargetCoupling.olean /root/Speedup/lean4/chronofold/ProgressTargetCoupling.lean
+--- lean --root /root/Speedup/lean4 -o chronofold/WeakCouplingBound.olean /root/Speedup/lean4/chronofold/WeakCouplingBound.lean
+/root/Speedup/lean4/chronofold/WeakCouplingBound.lean:14:5: warning: unused variable `hG`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+/root/Speedup/lean4/chronofold/WeakCouplingBound.lean:58:7: warning: unused variable `C`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+--- lean --root /root/Speedup/lean4 -o linear/LinearQuotientProof.olean /root/Speedup/lean4/linear/LinearQuotientProof.lean
+--- lean --root /root/Speedup/lean4 -o scaffolding/PCSSCertificate.olean /root/Speedup/lean4/scaffolding/PCSSCertificate.lean
+--- lean --root /root/Speedup/lean4 -o workflow_isolation/MaximalPreLean.olean /root/Speedup/lean4/workflow_isolation/MaximalPreLean.lean
+=== Lean4 core verification pass 2: 4 pending ===
+--- lean --root /root/Speedup/lean4 -o AGDGemmSpeedup.olean /root/Speedup/lean4/AGDGemmSpeedup.lean
+--- lean --root /root/Speedup/lean4 -o LeanSpeedup.olean /root/Speedup/lean4/LeanSpeedup.lean
+--- lean --root /root/Speedup/lean4 -o SpeedupLean.olean /root/Speedup/lean4/SpeedupLean.lean
+--- lean --root /root/Speedup/lean4 -o axcheck.olean /root/Speedup/lean4/axcheck.lean
+AGDGemmProjection.projection_iterate.{u, v} {State : Type u} {Reduced : Type v} (T : State → State)
+  (Tbar : Reduced → Reduced) (π : State → Reduced) (h : AGDGemmProjection.Intertwines T Tbar π) (n : Nat) (x : State) :
+  π (AGDGemmProjection.iterate T n x) = AGDGemmProjection.iterate Tbar n (π x)
+'AGDGemmProjection.projection_iterate' does not depend on any axioms
+'AGDGemmReconstruction.section_is_right_inverse' depends on axioms: [Quot.sound]
+'AGDGemmReconstruction.reconstruction_closure' depends on axioms: [Quot.sound]
+'AGDGemmWork.strict_work_reduction' depends on axioms: [AGDGemmWork.strict_work_reduction._native.native_decide.ax_1_1]
+'AGDGemmSpeedup.speedup_stack_closure' depends on axioms: [propext,
+ AGDGemmWork.canonical_is_instance_of_q_square._native.native_decide.ax_1_1,
+ AGDGemmWork.canonical_is_instance_of_q_square._native.native_decide.ax_1_2,
+ AGDGemmWork.canonical_is_instance_of_q_square._native.native_decide.ax_1_3,
+ AGDGemmWork.canonical_ratio._native.native_decide.ax_1_1,
+ AGDGemmWork.canonical_workRatio._native.native_decide.ax_1_1,
+ AGDGemmWork.factor_four_gives_sixteen._native.native_decide.ax_1_1,
+ AGDGemmWork.fullWork_1024._native.native_decide.ax_1_1,
+ AGDGemmWork.quotientWork_256._native.native_decide.ax_1_1,
+ AGDGemmWork.strict_work_reduction._native.native_decide.ax_1_1]
+'AGD.projection_iterate' does not depend on any axioms
+LEAN4_CORE_ALL_PASS=1
+LEAN4_CORE_SOURCE_COUNT=26

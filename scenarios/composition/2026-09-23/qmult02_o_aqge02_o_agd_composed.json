@@ -1,0 +1,113 @@
+{
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "scenario_id": "qmult02_o_aqge02_o_agd_composed_fused_2026-09-23",
+  "composition": [
+    {
+      "primitive": "QMULT-02",
+      "certificate": "evidence/final/2026-09-23/pcss/qmult02_matrix.certificate.json",
+      "steps": 8,
+      "claim_strength": "VERIFIED"
+    },
+    {
+      "primitive": "AQGE-02",
+      "certificate": "evidence/final/2026-09-23/pcss/aqge02_matrix.certificate.json",
+      "steps": 6,
+      "claim_strength": "VERIFIED"
+    },
+    {
+      "primitive": "AGD-GEMM",
+      "certificate": "evidence/final/2026-09-23/pcss/agd_gemm_matrix.certificate.json",
+      "steps": 8,
+      "claim_strength": "VERIFIED"
+    }
+  ],
+  "composition_operator": "O_C = sigma o Tbar^(8+6+8) o pi : three-way fused stay-in-Q trajectory; ONE projection, 22 reduced steps, ONE reconstruction; NOT S1*S2*S3",
+  "workload": {
+    "kind": "exact_invariant_sector",
+    "function_name": "engines.linear_exact.LinearExactMatrixModel",
+    "model": "matrix"
+  },
+  "mathematical_object": {
+    "state_space": "R^(n x n) with tile-tile block-constancy Omega; block class c=(a*bi+b*bj) mod nclasses",
+    "quotient_space": "R^r block representatives (bi,bj) -> A[bi*tile][bj*tile]",
+    "transition": "T(A)[ii][jj] = A[ii][jj] * w[class(bi,bj)] (block-scale, block-constant preserving)",
+    "projection": "pi(A) = reps over blocks, one rep per tile-tile block",
+    "reconstruction": "sigma(q) = replicate each rep across its tile-tile block (exact)",
+    "invariant": "tile-tile block constancy (omega_matrix exact)",
+    "observable": "class representative matrix pi(A)"
+  },
+  "baseline": {
+    "implementation_id": "COMPOSED3_BASELINE_T_full^22_full_space_n512",
+    "kind": "native",
+    "impl": "full-space trajectory x_0 -> T_full^22(x_0) in R^512x512"
+  },
+  "candidate": {
+    "implementation_id": "COMPOSED3_CANDIDATE_sigma_o_Tbar^22_o_pi_fused_stayinq",
+    "kind": "native",
+    "impl": "fused composed operator O_C = sigma(Tbar^22(pi(x_0))): one projection, 22 reduced steps, one reconstruction"
+  },
+  "quotient": {
+    "definition": "exact tile-tile block-constant projection; pi(T(A)) = Tbar(pi(A)) on sector (intertwining)",
+    "function_name": "engines.quotient.run_quotient",
+    "tolerance": 0.0,
+    "relation": "exact"
+  },
+  "reconstruction": {
+    "definition": "sigma(q) block-replicate each quotient rep back to n x n full matrix (section: pi(sigma(q))=q)",
+    "function_name": "engines.reconstruction.run_reconstruction",
+    "tolerance": 0.0,
+    "metric": "max"
+  },
+  "invariant": {
+    "definition": "tile-tile block constancy on every trajectory state (exact for invariant sector)",
+    "function_name": "engines.linear_exact.omega_matrix"
+  },
+  "parameters": {
+    "model": "matrix",
+    "steps": 22,
+    "tile": 16,
+    "a": 3,
+    "b": 1,
+    "weights": [
+      1.0,
+      1.25,
+      0.9,
+      1.1,
+      1.5,
+      0.8,
+      1.3,
+      0.95
+    ],
+    "note": "COMPOSITION C2 (STAGE 11 escalation, operator-authorized) = QMULT-02 o AQGE-02 o AGD-GEMM. Three certified matrix-family primitives share the exact-invariant-sector operator family with identical weights; composed implementation executes ONE projection, Tbar^22 reduced steps, ONE reconstruction against FULL-space T_full^22 baseline. S_composed is measured natively; S1*S2*S3 is MODELED reference only, never claimed."
+  },
+  "dimensions": {
+    "matrix_rows": 512,
+    "matrix_cols": 512,
+    "d": 512,
+    "r": 1024,
+    "tile": 16,
+    "nclasses": 8,
+    "steps_baseline": 22,
+    "operation_count_baseline_total": 5767168,
+    "operation_count_candidate_total": 22714,
+    "operation_count_ratio_theory": 253.9
+  },
+  "repetitions": 30,
+  "warmups": 5,
+  "warmup_policy": "fixed",
+  "timing_source": "clock_gettime_monotonic",
+  "seed": 20260923,
+  "expected_observables": [
+    "quotient forward exact over 22 steps",
+    "reconstruction exact",
+    "invariant block-constancy exact",
+    "direct wall-clock speedup S_composed = T_B/T_C measured natively",
+    "interaction I_123 = S_measured/(S1*S2*S3) reported separately",
+    "operation count ratio reported separately"
+  ],
+  "environment": {
+    "python": "3.13",
+    "arch": "aarch64"
+  }
+}

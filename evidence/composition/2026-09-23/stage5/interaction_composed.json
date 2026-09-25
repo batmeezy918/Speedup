@@ -1,0 +1,9 @@
+{
+  "S_measured_composed": 20.7955670899576,
+  "S1_qmult02_cert": 14.9469,
+  "S2_aqge02_cert": 9.7841,
+  "modeled_product_S1xS2": 146.24196429,
+  "interaction_factor_I12": 0.14219972489373625,
+  "interpretation": "composed S measured natively; I12 reveals overshoot of the ratio-product model",
+  "unit": "wall-clock ratio"
+}

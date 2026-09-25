@@ -1,0 +1,61 @@
+{
+  "baseline": {
+    "dense": "full unpacked pipeline with iterative checks",
+    "measured": "BFS_t",
+    "operator": "BFS"
+  },
+  "candidate": {
+    "measured": "Int_t",
+    "operator": "quotient path",
+    "reduced": "sparse-fiber interpreter"
+  },
+  "dimensions": {
+    "N_max": 50000,
+    "steps": 150,
+    "trials": 3
+  },
+  "environment": {
+    "arch": "aarch64",
+    "os": "linux",
+    "toolchain": "python 3.13 numpy 2.2.4"
+  },
+  "expected_observables": [
+    "speedup > 1",
+    "BFS_ok 3/3"
+  ],
+  "invariant": {
+    "definition": "BFS_ok 3/3: candidate reproduces baseline reachability",
+    "relation": "approx",
+    "tolerance": 1e-10
+  },
+  "mathematical_object": "compiler/interpreter frontier: quotient-path BFS avoids dense verification",
+  "parameters": {
+    "check_iters": 150,
+    "density": 0.1,
+    "fibers": 50,
+    "intra_degree": 3,
+    "seeds": 3
+  },
+  "quotient": {
+    "definition": "fibers=50 density=0.1 intra_degree=3; quotient over generator fiber",
+    "relation": "approx",
+    "tolerance": 1e-10
+  },
+  "reconstruction": {
+    "definition": "sparse fibers let BFS finish; results identical",
+    "metric": "max",
+    "relation": "approx",
+    "tolerance": 1e-10
+  },
+  "repetitions": 5,
+  "scenario_id": "sim2xr_unfolding_compiler_v2_sparse_fibers_2026-09-25",
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "seed": 20260823,
+  "timing_source": "clock_gettime_monotonic",
+  "warmup_policy": "fixed",
+  "workload": {
+    "kind": "python_plugin",
+    "plugin": "unfold_bench2.py"
+  }
+}

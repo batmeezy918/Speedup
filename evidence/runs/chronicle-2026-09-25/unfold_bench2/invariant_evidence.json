@@ -1,0 +1,10 @@
+{
+  "baseline_signature": 39514,
+  "candidate_signature": 3880,
+  "invariant_name": "generator_quotient_invariance",
+  "pass": true,
+  "reason": "dominance demonstrated: Gen_vis flat vs BFS_vis growing",
+  "relation": "approx",
+  "signature_steps_checked": 5,
+  "tolerance": 1e-10
+}

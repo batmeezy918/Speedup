@@ -1,0 +1,13 @@
+{
+  "pass": true,
+  "reason": "",
+  "maximum_error": 0.0,
+  "mean_error": 0.0,
+  "tolerance": 0.0,
+  "metric": "max",
+  "domain_coverage": {
+    "states_checked": 23,
+    "declared_domain": "declared_sampled"
+  },
+  "reconstruction_status": "PASS"
+}

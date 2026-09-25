@@ -1,0 +1,288 @@
+{
+  "schema": "PCSS-CERTIFICATE",
+  "schema_version": "2.0",
+  "run_id": "pcss-run-1790200585",
+  "scenario_id": "qmult02_o_aqge02_composed_stayinq_2026-09-23",
+  "scenario_hash": "fc9803f2c9d4073cfe9f7bdd5164a2a23ef697e8c6fdd00669e76202acc71b6f",
+  "source_hash": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13",
+  "input_hash": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18",
+  "environment_hash": "42580a736a78b0730ce512f8cbaf32c28d363e8c93cd9ce92aaa5813103f72f8",
+  "baseline_trace_hash": "23ad7af0c9151252100f8d6108657af9b5b62debde4ecc684de5218d72ef9483",
+  "candidate_trace_hash": "23ad7af0c9151252100f8d6108657af9b5b62debde4ecc684de5218d72ef9483",
+  "quotient_hash": "",
+  "reconstruction_hash": "",
+  "invariant_hash": "",
+  "performance_hash": "",
+  "lean_hash": "",
+  "timestamp": "2026-09-23T21:56:25Z",
+  "toolchain": {
+    "python": "3.13.5",
+    "arch": "aarch64",
+    "scenario_toolchain": {
+      "python": "3.13",
+      "arch": "aarch64"
+    }
+  },
+  "implementation_identity": {
+    "baseline": {
+      "implementation_id": "COMPOSED_BASELINE_T_full^14_full_space_n512",
+      "kind": "native",
+      "impl": "full-space trajectory x_0 -> T_full^14(x_0) in R^512x512"
+    },
+    "candidate": {
+      "implementation_id": "COMPOSED_CANDIDATE_sigma_o_Tbar^14_o_pi_fused_stayinq",
+      "kind": "native",
+      "impl": "fused composed operator O_C = sigma(Tbar^14(pi(x_0))): one projection, 14 reduced steps, one reconstruction"
+    }
+  },
+  "parameters": {
+    "model": "matrix",
+    "steps": 14,
+    "tile": 16,
+    "a": 3,
+    "b": 1,
+    "weights": [
+      1.0,
+      1.25,
+      0.9,
+      1.1,
+      1.5,
+      0.8,
+      1.3,
+      0.95
+    ],
+    "note": "COMPOSITION C1 = QMULT-02 o AQGE-02 (staged per PCSS composition constitution 2026-09-23). Combined stay-in-Q trajectory: components QMULT-02 (8 steps) and AQGE-02 (6 steps) are the same certified exact-invariant-sector operator family with identical weights; the composed implementation executes ONE projection, Tbar^14 reduced steps, ONE reconstruction against the FULL-space T_full^14 baseline. S_composed is measured natively; the ratio product S1*S2 is reported ONLY as ideal/modeled reference and is NOT claimed as measured."
+  },
+  "seed": 20260923,
+  "tolerance": 0.0,
+  "metric": "wall_clock_ns",
+  "repetitions": 30,
+  "warmups": 5,
+  "baseline_measurement": {
+    "timings_ns": [
+      4136712289.9973764,
+      4070004738.00872,
+      4045578227.000078,
+      3916951822.0005555,
+      3962454268.9998636,
+      3979760467.991582,
+      3901723018.992925,
+      3889079530.0103493,
+      3900189321.007929,
+      3858222341.9944057,
+      3906155207.005213,
+      3917065155.0084586,
+      3942937654.996058,
+      3853762915.9982314,
+      3863325623.009587,
+      3907575518.998783,
+      3922644268.9978285,
+      3927543019.9922996,
+      3917792653.9996405,
+      3947055466.9969716,
+      3944016455.9928236,
+      3938120414.997684,
+      3941204321.0031695,
+      3874775988.0061493,
+      3864988175.0025086,
+      3892444686.003728,
+      3964828905.009199,
+      3957690727.998852,
+      4003062134.0119977,
+      4083011144.0009203
+    ],
+    "median": 3925093644.495064,
+    "mean": 3941022548.7677965,
+    "min": 3853762915.9982314,
+    "max": 4136712289.9973764,
+    "p95": 4077158261.30443,
+    "p99": 4121138957.6584044,
+    "samples": 30,
+    "unit": "ns"
+  },
+  "candidate_measurement": {
+    "timings_ns": [
+      174883176.9946264,
+      174745729.0039165,
+      174120936.99385878,
+      180915104.00699916,
+      176945990.00969902,
+      171610103.9928617,
+      174928073.00004643,
+      180556769.99210846,
+      174861146.0061511,
+      176873853.99767664,
+      175664374.99772292,
+      174051823.00717568,
+      182069114.0019335,
+      175603280.99352774,
+      173634635.99758688,
+      179178072.9981838,
+      177857239.9925906,
+      180001927.00128537,
+      175703645.98941523,
+      177391874.99682885,
+      177781094.01115215,
+      189777292.00560135,
+      179004531.00446612,
+      184805363.99874836,
+      177422761.0003436,
+      186194530.99381644,
+      180685259.99842677,
+      175799165.99788702,
+      172292447.99818844,
+      185172187.00435477
+    ],
+    "median": 177168932.50326395,
+    "mean": 178017716.932906,
+    "min": 171610103.9928617,
+    "max": 189777292.00560135,
+    "p95": 185734476.1985587,
+    "p99": 188738291.31218374,
+    "samples": 30,
+    "unit": "ns"
+  },
+  "speedup": 22.154525565156593,
+  "uncertainty": {
+    "method": "sampled_median_direct",
+    "samples": 30
+  },
+  "gate_results": {
+    "integrity": {
+      "value": true,
+      "evidence": [
+        "scenario.json",
+        "environment.json",
+        "source_sha256.txt",
+        "input_sha256.txt",
+        "baseline_trace.json",
+        "candidate_trace.json"
+      ],
+      "detail": {
+        "scenario_hash": "fc9803f2c9d4073cfe9f7bdd5164a2a23ef697e8c6fdd00669e76202acc71b6f",
+        "source_hash": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13",
+        "environment_hash": "42580a736a78b0730ce512f8cbaf32c28d363e8c93cd9ce92aaa5813103f72f8",
+        "input_hash": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18"
+      }
+    },
+    "reproducibility": {
+      "value": true,
+      "evidence": [
+        "scenario.json",
+        "environment.json"
+      ]
+    },
+    "quotient_forward": {
+      "value": true,
+      "evidence": [
+        "quotient_evidence.json"
+      ]
+    },
+    "reconstruction_reverse": {
+      "value": true,
+      "evidence": [
+        "reconstruction_evidence.json"
+      ]
+    },
+    "invariants": {
+      "value": true,
+      "evidence": [
+        "invariant_evidence.json"
+      ]
+    },
+    "performance": {
+      "value": true,
+      "evidence": [
+        "performance_evidence.json",
+        "attribution.json"
+      ]
+    },
+    "lean": {
+      "value": true,
+      "evidence": [
+        "evidence/lean4/lean_core_all.log"
+      ]
+    }
+  },
+  "claim_boundary": {
+    "quantity_measured": "direct wall-clock speedup of exact-invariant-sector step",
+    "domain_covered": "d=512, r=1024, tile=16, steps=14",
+    "excluded": [
+      "universal speedup",
+      "HPC dominance",
+      "operation-count equality",
+      "asymptotic complexity",
+      "mathematical novelty"
+    ]
+  },
+  "artifact_refs": {
+    "scenario": {
+      "path": "scenario.json",
+      "sha256": "fc9803f2c9d4073cfe9f7bdd5164a2a23ef697e8c6fdd00669e76202acc71b6f"
+    },
+    "source": {
+      "path": "source_sha256.txt",
+      "sha256": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13"
+    },
+    "input": {
+      "path": "input_sha256.txt",
+      "sha256": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18"
+    },
+    "environment": {
+      "path": "environment.json",
+      "sha256": "42580a736a78b0730ce512f8cbaf32c28d363e8c93cd9ce92aaa5813103f72f8"
+    },
+    "baseline_trace": {
+      "path": "baseline_trace.json",
+      "sha256": "23ad7af0c9151252100f8d6108657af9b5b62debde4ecc684de5218d72ef9483"
+    },
+    "candidate_trace": {
+      "path": "candidate_trace.json",
+      "sha256": "23ad7af0c9151252100f8d6108657af9b5b62debde4ecc684de5218d72ef9483"
+    },
+    "quotient": {
+      "path": "quotient_evidence.json",
+      "sha256": "1ac2b44169eb4c9540ed53ed7fcf78b459b4cf5042d571a0ec0d9a6eb8830bfb"
+    },
+    "reconstruction": {
+      "path": "reconstruction_evidence.json",
+      "sha256": "880e7e6d4442eded80b593973ae6398cbda5f82b994d056ce584d61a71d32cdb"
+    },
+    "invariant": {
+      "path": "invariant_evidence.json",
+      "sha256": "24b95f750dbb724e97ceae8db25f63593e301840c742e08e27f950178d7ee2db"
+    },
+    "performance": {
+      "path": "performance_evidence.json",
+      "sha256": "59063a18555068926a3b6513281dc71bf1155a2727b422ff70b7dab6e10c13a1"
+    },
+    "lean": {
+      "path": "lean_core_all.log",
+      "sha256": "ba616dce7aa06d1b03a4b329c81f7f6315134504d68ff6f075a38340c03fc322"
+    }
+  },
+  "attribution": {
+    "theory": {
+      "baseline_ops": 7168,
+      "candidate_ops": 14336,
+      "operation_count_ratio": 0.5,
+      "excluded_from_measured": [
+        "interpreter overhead",
+        "cache effects"
+      ]
+    },
+    "measured": {
+      "wall_clock_speedup": 22.154525565156593,
+      "wall_clock_baseline": 3925093644.495064,
+      "wall_clock_candidate": 177168932.50326395
+    },
+    "overhead_included": {
+      "quotient_construction": 0.0,
+      "reconstruction": 512.0
+    },
+    "not_conflated": true,
+    "note": "operation count ratio vs wall-clock speedup reported separately; never conflated"
+  },
+  "generator": "pcss_native_runner",
+  "certificate_sha256": "7225d2efc9bf3460b309e096ba69180895a3717ba6f171cb00671316306e3414"
+}

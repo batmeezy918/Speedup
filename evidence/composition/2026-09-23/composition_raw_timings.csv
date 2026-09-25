@@ -1,0 +1,61 @@
+composition_id,phase,impl,timing_ns
+C1,baseline,T_full^14,6595763174.002059
+C1,baseline,T_full^14,7005952444.989817
+C1,baseline,T_full^14,7118182445.003185
+C1,baseline,T_full^14,7199197704.991093
+C1,baseline,T_full^14,7008357862.010598
+C1,baseline,T_full^14,7119792862.00949
+C1,baseline,T_full^14,6737089998.001466
+C1,baseline,T_full^14,6727995674.998965
+C1,baseline,T_full^14,7070883381.995373
+C1,baseline,T_full^14,7124504268.009332
+C1,baseline,T_full^14,7286812600.999838
+C1,baseline,T_full^14,7325029579.9953165
+C1,baseline,T_full^14,7083434840.998961
+C1,baseline,T_full^14,6934196610.99324
+C1,baseline,T_full^14,6595020987.006137
+C1,baseline,T_full^14,6738490987.001569
+C1,baseline,T_full^14,6878150154.007017
+C1,baseline,T_full^14,7008642861.997942
+C1,baseline,T_full^14,6668431560.014142
+C1,baseline,T_full^14,7205089893.002878
+C1,baseline,T_full^14,7314100727.002369
+C1,baseline,T_full^14,7315460673.999042
+C1,baseline,T_full^14,7320828434.996656
+C1,baseline,T_full^14,6929973852.005787
+C1,baseline,T_full^14,6781918435.0082655
+C1,baseline,T_full^14,6919522705.997224
+C1,baseline,T_full^14,7292010725.999717
+C1,baseline,T_full^14,7276179737.003985
+C1,baseline,T_full^14,6641542758.006835
+C1,baseline,T_full^14,6828017497.988185
+C1,candidate,sigma o Tbar^14 o pi,331952082.9973044
+C1,candidate,sigma o Tbar^14 o pi,331681718.99160373
+C1,candidate,sigma o Tbar^14 o pi,342724166.99968743
+C1,candidate,sigma o Tbar^14 o pi,337191562.99775934
+C1,candidate,sigma o Tbar^14 o pi,337730885.0031113
+C1,candidate,sigma o Tbar^14 o pi,338340573.0128288
+C1,candidate,sigma o Tbar^14 o pi,340264427.00996995
+C1,candidate,sigma o Tbar^14 o pi,337509895.99502647
+C1,candidate,sigma o Tbar^14 o pi,332028698.00152254
+C1,candidate,sigma o Tbar^14 o pi,335773020.99729425
+C1,candidate,sigma o Tbar^14 o pi,333616301.9994274
+C1,candidate,sigma o Tbar^14 o pi,328616458.00585395
+C1,candidate,sigma o Tbar^14 o pi,243738645.0037593
+C1,candidate,sigma o Tbar^14 o pi,284544219.0009635
+C1,candidate,sigma o Tbar^14 o pi,233301197.99356908
+C1,candidate,sigma o Tbar^14 o pi,324536978.994729
+C1,candidate,sigma o Tbar^14 o pi,338087968.993932
+C1,candidate,sigma o Tbar^14 o pi,337650155.9978351
+C1,candidate,sigma o Tbar^14 o pi,310506979.0035486
+C1,candidate,sigma o Tbar^14 o pi,278473281.01051974
+C1,candidate,sigma o Tbar^14 o pi,349451563.00091183
+C1,candidate,sigma o Tbar^14 o pi,346508749.993518
+C1,candidate,sigma o Tbar^14 o pi,335471979.007707
+C1,candidate,sigma o Tbar^14 o pi,342269479.0060632
+C1,candidate,sigma o Tbar^14 o pi,346469113.996136
+C1,candidate,sigma o Tbar^14 o pi,341928854.0026173
+C1,candidate,sigma o Tbar^14 o pi,341771770.9962744
+C1,candidate,sigma o Tbar^14 o pi,340159843.0064041
+C1,candidate,sigma o Tbar^14 o pi,336846353.99549735
+C1,candidate,sigma o Tbar^14 o pi,336149165.98889977

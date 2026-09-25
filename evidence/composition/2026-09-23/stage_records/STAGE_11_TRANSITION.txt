@@ -1,0 +1,32 @@
+STAGE: 11
+STATUS: COMPLETE - ESCALATION_C2_VERIFIED (operator-authorized)
+INPUT_COMMIT: 2701651a9a303ccc7486156fc429302eb90ab0f1
+OUTPUT_COMMIT: (C2 scenario, published verification, ledger row, artifacts)
+EVIDENCE_ARTIFACTS:
+  - scenarios/composition/2026-09-23/qmult02_o_aqge02_o_agd_composed.json (C2, steps=22)
+  - evidence/composition/2026-09-23/pcss/qmult02_o_aqge02_o_agd_composed.certificate.json
+  - verified/sim2xr/2026-09-23-qm02_aqge02_agd_composed/ (published, SHA256SUMS.txt, full run evidence)
+  - evidence/ledger/claims.jsonl publish row run_id=pcss-run-1790202194 (artifact path corrected)
+PASSED_GATES:
+  - schema/static validation: T_full^22 == sigma o Tbar^22 o pi EXACT, recon err 0.0, invariant holds
+  - strict_gate enforce: STRICT_GATE=VERIFIED exit 0 (7/7 gates)
+  - ledger canonical-hash binding: sha256(cert) == ledger hash (match=True)
+FAILED_GATES: none
+NEW_GAPS: none (same family/domain as C1; claim boundary steps=22)
+CLOSED_GAPS: 3-way composition now natively measured + PCSS-verified
+RAW_RESULTS (runner pinned {2,3}, certified condition):
+  scenario_hash=2aaf26b62fc29e22...  source_hash=5f3b2d9d15573a98 (consistent)
+  S_composed=35.8222  baseline_median_ns=7065611742 (per-step 321164170)
+  candidate_median_ns=197240938  trace hashes identical (by-design)
+  op-count ratio (theory) = 256.0  modeled S1*S2*S3 = 1931.49
+NORMALIZED_RESULT:
+  I123 = S_measured/(S1*S2*S3) = 35.8222/1931.49 = 0.0186
+  ratio-product over-claim factor = 53.9x  -> multiplication of isolated ratios REJECTED
+  composed speedup (deeper fused trajectory) INCREASED from C1 22.15x to C2 35.82x,
+  approaching the ~256 op-count family bound, while remaining far below any ratio product
+CLAIM_LEVEL: COMPOSITIONALLY_VERIFIED (three-way composition of verified matrix-family
+  primitives, natively measured)
+NEXT_ADMISSIBLE_STAGE: none (closure completed; further depth bounded by op-count family;
+  SIM2XR cross-domain still blocked on certified morphism)
+STOP_REASON: escalation executed; C2 = most operational composition (all VERIFIED matrix
+  primitives fused) measured and PCSS-verified. Final. STOP.

@@ -1,0 +1,14 @@
+{
+  "domain_coverage": {
+    "N_max": 50000,
+    "seeds": 3
+  },
+  "maximum_error": 0.0,
+  "mean_error": 0.0,
+  "metric": "max",
+  "pass": true,
+  "reason": "3/3 seeds: candidate reproduces baseline results exactly",
+  "reconstruction_status": "closed",
+  "relation": "approx",
+  "tolerance": 1e-10
+}

@@ -1,0 +1,5 @@
+id,stage,attempt,failure,resolution,status
+F1,STAGE3,make_model matrix nclasses assertion,nclasses read from dims.r=1024 not 8 (runner convention); declared weights ignored in matrix ctor,assert corrected to runner-identical make_model; static check passed,PASS
+F2,STAGE4,reconstruction/invariant initial harness,omega_matrix returns bool not scalar; reconstruction contract misexpression,re-run with section-identity check sigma(pi(e))==e and boolean omega,PASS
+F3,STAGE9,strict_gate publish path collision,default publish() wrote to verified/sim2xr/2026-09-23/ overwriting existing C-cluster SIMD cert,restored overwritten cert from git; composed cert relocated to suffixed dir; ledger artifact path corrected; hash re-verified,PASS
+F4,STAGE6,big-core repro delta 19.9%,CPU heterogeneity little vs big cores (affinity {4,5,6,7}),same-affinity repro within 4.2%; heterogeneity documented as environment note,PASS

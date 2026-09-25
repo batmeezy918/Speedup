@@ -1,0 +1,16 @@
+{
+  "measured": {
+    "wall_clock_baseline": 228202.5,
+    "wall_clock_candidate": 12083.0,
+    "wall_clock_speedup": 18.886245137796905
+  },
+  "not_conflated": true,
+  "note": "operation count vs wall clock reported separately",
+  "overhead_included": {
+    "quotient_construction": 0.0,
+    "reconstruction": 1024.0
+  },
+  "theory": {
+    "operation_count_ratio": 32.0
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "stage": 0,
+  "stage_name": "CORPUS_AND_REPOSITORY_INTEGRITY",
+  "status": "AUDIT_COMPLETE_PENDING_AUTHORIZATION",
+  "executed_at": "2026-09-23T21:10:00Z",
+  "audit": {
+    "speedup_repo": {
+      "path": "/root/Speedup",
+      "git_repo": true,
+      "branch": "fix/lean4-green",
+      "head_commit": "2701651a9a303ccc7486156fc429302eb90ab0f1",
+      "head_subject": "PCSS: promote all four exact-invariant-sector speedups to VERIFIED",
+      "remote": "https://github.com/batmeezy918/Speedup.git",
+      "remote_head_synced": true,
+      "working_tree_clean": true,
+      "recent_history": [
+        "2701651 PCSS: promote all four exact-invariant-sector speedups to VERIFIED",
+        "f79c975 SILICON CLOSURE: literal full-runtime end-to-end instantiations 2026-09-23",
+        "5984f46 PCSS: VERIFIED C-cluster SIMD 8x8 exact-sector 2026-09-23",
+        "25ba77f PCSS: VERIFIED apollo spectral-collapse sim2xr 2026-09-23",
+        "0ef4d66 Publish VERIFIED evidence chain and final PCSS certificate"
+      ]
+    },
+    "chronofold_repo": {
+      "git_repo": false,
+      "path": "/root/ChronoFold",
+      "status": "ARCHIVE_ONLY_ASYNC_STORE",
+      "note": "/root/ChronoFold is an archive (Source_Archive, archiver.sh, ChronoFold_Archive.log); the ACTIVE formalization lives inside Speedup at /root/Speedup/lean4/chronofold/ and is part of the verified Lean core lane."
+    },
+    "certificates": {
+      "path": "evidence/final/2026-09-23/pcss/",
+      "count": 4,
+      "binding": "CERT_CHAIN_BINDING_OK"
+    },
+    "device": {
+      "uname": "Linux localhost 6.17.0-PRoot-Distro #1 SMP PREEMPT_DYNAMIC Fri, 10 Oct 2025 00:00:00 +0000 aarch64 GNU/Linux",
+      "os_release": "Debian GNU/Linux 13 (trixie)",
+      "arch": "aarch64",
+      "cpu_count": 8,
+      "big_cluster": "Cortex-A78",
+      "little_cluster": "Cortex-A55",
+      "simd_flags": "fp asimd aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm lrcpc dcpop asimddp",
+      "cpu_max_mhz": 1804.8
+    },
+    "compiler": {
+      "gcc": "GCC 14.2.0",
+      "clang": "Debian Clang 19.1.7",
+      "python": "Python 3.13.5"
+    },
+    "lean": {
+      "toolchain_pin": "leanprover/lean4:v4.29.0",
+      "lean_version": "4.29.0 aarch64-unknown-linux-gnu commit 98dc76e3c0a9b856c9b98726b713fb04fab16740",
+      "lake_version": "Lake 5.0.0-src+98dc76e",
+      "available_toolchains": ["leanprover/lean4:v4.29.0", "leanprover/lean4:v4.30.0", "leanprover/lean4:v4.33.1"],
+      "core_lane_evidence": "evidence/lean4/lean_core_all.log",
+      "core_lane_sha256": "ba616dce7aa06d1b03a4b329c81f7f6315134504d68ff6f075a38340c03fc322",
+      "core_lane_pass": true,
+      "core_sources_compiled": 25,
+      "chronofold_formalization_in_core_lane": true
+    },
+    "environment": {
+      "memory_total": "7.2Gi",
+      "memory_available": "2.6Gi",
+      "memory_free": "284Mi",
+      "disk_prefix_root": "100% FULL (956M free, /dev/block/dm-64 222G)",
+      "pin_protocol": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 taskset -c 2,3"
+    },
+    "verified_primitives_loaded": {
+      "QMULT-02": {"scenario": "qmult02_matrix.json", "scenario_id": "qmult02-quotient-gemm-2026-09-23", "speedup": 14.946910072013763, "claim_strength": "VERIFIED", "gates": "all 7 true"},
+      "AQGE-02": {"scenario": "aqge02_matrix.json", "scenario_id": "aqge02-tower-stay-in-Q-2026-09-23", "speedup": 9.784090925909195, "claim_strength": "VERIFIED", "gates": "all 7 true"},
+      "SIM2XR": {"scenario": "sim2xr_oracle.json", "scenario_id": "sim2xr-oracle-exact-sector-2026-09-23", "speedup": 15.142571093984206, "claim_strength": "VERIFIED", "gates": "all 7 true"},
+      "AGD-GEMM": {"scenario": "agd_gemm_matrix.json", "scenario_id": "agd-gemm-quotient-pipeline-2026-09-23", "speedup": 13.207513743265588, "claim_strength": "VERIFIED", "gates": "all 7 true"}
+    }
+  },
+  "cert_hash_chain": {
+    "qmult02": {"ledger": "dae687aed7e089d85af62be0027bbc20d075f26929eec194a3ebfe1b8300d0ac", "verified": "dae687aed7e089d85af62be0027bbc20d075f26929eec194a3ebfe1b8300d0ac", "final_stripped": "dae687aed7e089d85af62be0027bbc20d075f26929eec194a3ebfe1b8300d0ac", "match": true},
+    "aqge02": {"ledger": "febde4f0869e64de3c5bb1b3a2f9f0af77a1e9b29a4ea341855d9d91ee0d44db", "verified": "febde4f0869e64de3c5bb1b3a2f9f0af77a1e9b29a4ea341855d9d91ee0d44db", "final_stripped": "febde4f0869e64de3c5bb1b3a2f9f0af77a1e9b29a4ea341855d9d91ee0d44db", "match": true},
+    "sim2xr": {"ledger": "44a51ec8db649cd9f8d1a59ffc0b0e61dbbb3cd6ac01e615f6a94abab3be8829", "verified": "44a51ec8db649cd9f8d1a59ffc0b0e61dbbb3cd6ac01e615f6a94abab3be8829", "final_stripped": "44a51ec8db649cd9f8d1a59ffc0b0e61dbbb3cd6ac01e615f6a94abab3be8829", "match": true},
+    "agd": {"ledger": "a603821abd3a99f45a098ac975cb2bf872b57001d42cd1a2d976c2e456d1e073", "verified": "a603821abd3a99f45a098ac975cb2bf872b57001d42cd1a2d976c2e456d1e073", "final_stripped": "a603821abd3a99f45a098ac975cb2bf872b57001d42cd1a2d976c2e456d1e073", "match": true}
+  },
+  "stop_condition_evaluation": {
+    "REPOSITORY_MISMATCH": false,
+    "CERTIFICATE_MISMATCH": false,
+    "HASH_MISMATCH": false,
+    "MISSING_ARTIFACT": false,
+    "ENVIRONMENT_UNRESOLVED": "DISK_FULL_WARNING (956M/222G free) - non-fatal, mitigations available (traces gitignored, small deltas)",
+    "chronofold_git": "ChronoFold root is an async archive not a git repo; active formalization resides in Speedup lean4/chronofold (VERIFIED core lane)"
+  },
+  "classify": "STAGE_PASS_WITH_ENV_CAVEAT",
+  "next_admissible": "STAGE_1_VERIFIED_PRIMITIVE_REVALIDATION"
+}

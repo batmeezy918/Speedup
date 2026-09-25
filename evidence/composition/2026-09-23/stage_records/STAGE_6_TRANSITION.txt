@@ -1,0 +1,25 @@
+STAGE: 6
+STATUS: COMPLETE - COMPOSED_SPEEDUP_REPRODUCIBLE (same affinity)
+INPUT_COMMIT: 2701651a9a303ccc7486156fc429302eb90ab0f1
+OUTPUT_COMMIT: (measurement artifacts)
+EVIDENCE_ARTIFACTS:
+  - evidence/composition/2026-09-23/stage6/performance_evidence_repro.json
+  - evidence/composition/2026-09-23/stage6/reproducibility_composed.json
+PASSED_GATES:
+  - reproducibility under identical affinity {2,3}: S_repro=21.6723 vs S_first=20.7956
+    delta=4.22% < 10% threshold
+FAILED_GATES: none
+NEW_GAPS / OBSERVED-CONDITION NOTE:
+  - big-core affinity {4,5,6,7} run produced S=24.9361 (Delta=19.91%): caused by CPU-speed
+    heterogeneity (Cortex-A55 little vs A78 big), NOT run instability. The certified condition
+    (affinity {2,3}) reproduces within 4.22%. Recorded as environment heterogeneity note.
+CLOSED_GAPS: none
+RAW_RESULTS:
+  first_affinity_2_3_S=20.7956  repro_affinity_2_3_S=21.6723  delta_pct=4.22
+  big_core_affinity_4_5_6_7_S=24.9361 (informational; different silicon speed class)
+  repro_baseline_median_ns=6469925752.498966 repro_candidate_median_ns=298534843.4958723 samples=30
+NORMALIZED_RESULT: COMPOSED_SPEEDUP S=20.80 reproduced S=21.67 under certified conditions (PASS)
+CLAIM_LEVEL: S_composed reproducible under certified environment; CPU-heterogeneity variance documented
+NEXT_ADMISSIBLE_STAGE: STAGE_7_AMORTIZATION
+STOP_REASON: STAGE 6 reproduction under certified affinity completed; big-core result retained as
+  environment note, not failure. STOP.

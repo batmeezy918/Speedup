@@ -1,0 +1,16 @@
+{
+  "measured": {
+    "wall_clock_baseline": 34000000.0,
+    "wall_clock_candidate": 70000.0,
+    "wall_clock_speedup": 485.7142857142857
+  },
+  "not_conflated": true,
+  "note": "true solve-time ratio; interpreter never performs avoided checks",
+  "overhead_included": {
+    "quotient_construction": 0.0,
+    "reconstruction": 0.0
+  },
+  "theory": {
+    "operation_count_ratio": 3880
+  }
+}

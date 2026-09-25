@@ -1,0 +1,14 @@
+STAGE: 1
+STATUS: COMPLETE - ALL_PRIMITIVES_VALID
+INPUT_COMMIT: 2701651a9a303ccc7486156fc429302eb90ab0f1
+OUTPUT_COMMIT: (no code changes this stage)
+EVIDENCE_ARTIFACTS: evidence/composition/2026-09-23/stage_records/PRIMITIVE_REVALIDATION_REPORT.md
+PASSED_GATES: integral revalidation of I,R,Q,Q-1,Omega,X,L for all four primitives; claim=VERIFIED; hash bindings match artifacts; working-tree source hash == certified source hash
+FAILED_GATES: none
+NEW_GAPS: none (environment caveats recorded in report)
+CLOSED_GAPS: none
+RAW_RESULTS: qmult02 14.9469 / aqge02 9.7841 / sim2xr 15.1426 / agd 13.2075 ; all 7 gates true, claim VERIFIED, scope=n=512 matrix / d=65536 vector
+NORMALIZED_RESULT: 4/4 VALID primitives
+CLAIM_LEVEL: no new claims this stage (revalidation only)
+NEXT_ADMISSIBLE_STAGE: STAGE_2_COMPOSABILITY_ANALYSIS
+STOP_REASON: STAGE STOP RULE satisfied - proceeding to Stage 2

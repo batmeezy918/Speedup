@@ -1,0 +1,26 @@
+STAGE: 5
+STATUS: COMPLETE - COMPOSED_PERFORMANCE_MEASURED
+INPUT_COMMIT: 2701651a9a303ccc7486156fc429302eb90ab0f1
+OUTPUT_COMMIT: (measurement artifacts; scenario unchanged)
+EVIDENCE_ARTIFACTS:
+  - evidence/composition/2026-09-23/stage5/performance_evidence.json
+  - evidence/composition/2026-09-23/stage5/interaction_composed.json
+PASSED_GATES:
+  - performance gate X: baseline T_full^14 median 7,008,500,362 ns; candidate sigma o Tbar^14 o pi
+    median 337,018,958 ns; 30 samples each (5 warmups); clock_gettime_monotonic
+  - S_composed = T_B/T_C = 20.7956 measured natively (PASS, > 1.0)
+  - interaction factor I12 = 0.1421997 reported vs modeled product (honesty control)
+FAILED_GATES: none
+NEW_GAPS: none
+CLOSED_GAPS: none
+RAW_RESULTS:
+  baseline_median_ns=7008500362.004271  baseline_p95_ns=7318412943
+  candidate_median_ns=337018958.49662834 candidate_p95_ns=346490914
+  S_composed=20.7955670899576  S1_cert_qmult02=14.9469  S2_cert_aqge02=9.7841
+  modeled_S1xS2=146.24  I12=0.14219972489373625
+NORMALIZED_RESULT: COMPOSED_SPEEDUP_MEASURED S=20.80 (native); ratio-product model REJECTED as
+  it over-claims 7.03x (I12<<1 demonstrates the composition protocol: never multiply isolated ratios)
+CLAIM_LEVEL: S_composed is a MEASURED wall-clock speedup of the fused stay-in-Q operator; not yet
+  reproduced (STAGE 6) nor PCSS-certified (STAGE 9)
+NEXT_ADMISSIBLE_STAGE: STAGE_6_REPRODUCIBILITY
+STOP_REASON: STAGE 5 STOP RULE - single measurement recorded; reproduction in next stage. STOP.

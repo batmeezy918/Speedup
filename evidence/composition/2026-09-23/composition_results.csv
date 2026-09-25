@@ -1,0 +1,3 @@
+composition_id,operator,components,baseline,domain,measured_S_composed,modeled_product_reference,interaction,gates,claim_strength,run_id
+C1,sigma o Tbar^14 o pi,QMULT-02;AQGE-02,T_full^14,matrix n=512 tile=16 r=1024,22.1545,146.24,0.1515,7/7,VERIFIED,pcss-run-1790200585
+C2,sigma o Tbar^22 o pi,QMULT-02;AQGE-02;AGD-GEMM,T_full^22,matrix n=512 tile=16 r=1024,35.8222,1931.49,0.0186,7/7,VERIFIED,pcss-run-1790202194

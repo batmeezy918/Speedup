@@ -1,0 +1,288 @@
+{
+  "schema": "PCSS-CERTIFICATE",
+  "schema_version": "2.0",
+  "run_id": "pcss-run-1790202194",
+  "scenario_id": "qmult02_o_aqge02_o_agd_composed_fused_2026-09-23",
+  "scenario_hash": "2aaf26b62fc29e22f52596c2d809bdeb1a28aacb05185f650d80a6a57bca86ca",
+  "source_hash": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13",
+  "input_hash": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18",
+  "environment_hash": "bdab9a8285c673c16e5c966aecb6091fdbebd38d4897d6dd573259084a140dc6",
+  "baseline_trace_hash": "b8e2688d6a6b339f6edbb0d6c9c61dfd20d47c2dbd28ca439327788400d9b014",
+  "candidate_trace_hash": "b8e2688d6a6b339f6edbb0d6c9c61dfd20d47c2dbd28ca439327788400d9b014",
+  "quotient_hash": "",
+  "reconstruction_hash": "",
+  "invariant_hash": "",
+  "performance_hash": "",
+  "lean_hash": "",
+  "timestamp": "2026-09-23T22:23:14Z",
+  "toolchain": {
+    "python": "3.13.5",
+    "arch": "aarch64",
+    "scenario_toolchain": {
+      "python": "3.13",
+      "arch": "aarch64"
+    }
+  },
+  "implementation_identity": {
+    "baseline": {
+      "implementation_id": "COMPOSED3_BASELINE_T_full^22_full_space_n512",
+      "kind": "native",
+      "impl": "full-space trajectory x_0 -> T_full^22(x_0) in R^512x512"
+    },
+    "candidate": {
+      "implementation_id": "COMPOSED3_CANDIDATE_sigma_o_Tbar^22_o_pi_fused_stayinq",
+      "kind": "native",
+      "impl": "fused composed operator O_C = sigma(Tbar^22(pi(x_0))): one projection, 22 reduced steps, one reconstruction"
+    }
+  },
+  "parameters": {
+    "model": "matrix",
+    "steps": 22,
+    "tile": 16,
+    "a": 3,
+    "b": 1,
+    "weights": [
+      1.0,
+      1.25,
+      0.9,
+      1.1,
+      1.5,
+      0.8,
+      1.3,
+      0.95
+    ],
+    "note": "COMPOSITION C2 (STAGE 11 escalation, operator-authorized) = QMULT-02 o AQGE-02 o AGD-GEMM. Three certified matrix-family primitives share the exact-invariant-sector operator family with identical weights; composed implementation executes ONE projection, Tbar^22 reduced steps, ONE reconstruction against FULL-space T_full^22 baseline. S_composed is measured natively; S1*S2*S3 is MODELED reference only, never claimed."
+  },
+  "seed": 20260923,
+  "tolerance": 0.0,
+  "metric": "wall_clock_ns",
+  "repetitions": 30,
+  "warmups": 5,
+  "baseline_measurement": {
+    "timings_ns": [
+      6291695100.997458,
+      6284821559.99518,
+      6381367132.999002,
+      6503948800.003855,
+      7023235778.004164,
+      7053793799.001142,
+      7035592444.997746,
+      7111447342.002066,
+      7188385310.00074,
+      7167879736.996838,
+      7130989944.998874,
+      7063265830.991441,
+      7013638799.995533,
+      7005944215.99817,
+      7014524580.998114,
+      8411891612.006002,
+      9001321767.99525,
+      8009456245.9999,
+      7700853122.005356,
+      7807867235.998856,
+      7067957653.998747,
+      6851925673.996448,
+      6688495622.991467,
+      7222969320.006086,
+      7592021663.993364,
+      7155383122.008061,
+      6803293069.999199,
+      7550330205.005593,
+      7443543746.994692,
+      6692283696.000232
+    ],
+    "median": 7065611742.495094,
+    "mean": 7175670804.565986,
+    "min": 6284821559.99518,
+    "max": 9001321767.99525,
+    "p95": 8230795697.303255,
+    "p99": 8830387022.75837,
+    "samples": 30,
+    "unit": "ns"
+  },
+  "candidate_measurement": {
+    "timings_ns": [
+      192744166.997727,
+      194321094.0080462,
+      192106041.00953788,
+      193982708.0059331,
+      194802603.98995596,
+      197729948.00587183,
+      192858280.99236822,
+      197267761.0028768,
+      196240051.99875683,
+      195185000.00413042,
+      196272656.00138342,
+      197214115.00358954,
+      194850468.00400597,
+      196285572.994384,
+      198148176.99079868,
+      197338124.99907798,
+      196244634.99349076,
+      196034010.0049507,
+      198323125.00511762,
+      195501145.9940579,
+      197303957.98978862,
+      209828437.00039667,
+      222345832.99723452,
+      218458489.0055703,
+      220940624.98945278,
+      218628438.00045085,
+      219543853.99294552,
+      222685729.00793517,
+      222306719.0061556,
+      218306458.00218916
+    ],
+    "median": 197240938.00323316,
+    "mean": 202793274.19993934,
+    "min": 192106041.00953788,
+    "max": 222685729.00793517,
+    "p95": 222328231.701249,
+    "p99": 222587159.16483197,
+    "samples": 30,
+    "unit": "ns"
+  },
+  "speedup": 35.82223758426496,
+  "uncertainty": {
+    "method": "sampled_median_direct",
+    "samples": 30
+  },
+  "gate_results": {
+    "integrity": {
+      "value": true,
+      "evidence": [
+        "scenario.json",
+        "environment.json",
+        "source_sha256.txt",
+        "input_sha256.txt",
+        "baseline_trace.json",
+        "candidate_trace.json"
+      ],
+      "detail": {
+        "scenario_hash": "2aaf26b62fc29e22f52596c2d809bdeb1a28aacb05185f650d80a6a57bca86ca",
+        "source_hash": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13",
+        "environment_hash": "bdab9a8285c673c16e5c966aecb6091fdbebd38d4897d6dd573259084a140dc6",
+        "input_hash": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18"
+      }
+    },
+    "reproducibility": {
+      "value": true,
+      "evidence": [
+        "scenario.json",
+        "environment.json"
+      ]
+    },
+    "quotient_forward": {
+      "value": true,
+      "evidence": [
+        "quotient_evidence.json"
+      ]
+    },
+    "reconstruction_reverse": {
+      "value": true,
+      "evidence": [
+        "reconstruction_evidence.json"
+      ]
+    },
+    "invariants": {
+      "value": true,
+      "evidence": [
+        "invariant_evidence.json"
+      ]
+    },
+    "performance": {
+      "value": true,
+      "evidence": [
+        "performance_evidence.json",
+        "attribution.json"
+      ]
+    },
+    "lean": {
+      "value": true,
+      "evidence": [
+        "evidence/lean4/lean_core_all.log"
+      ]
+    }
+  },
+  "claim_boundary": {
+    "quantity_measured": "direct wall-clock speedup of exact-invariant-sector step",
+    "domain_covered": "d=512, r=1024, tile=16, steps=22",
+    "excluded": [
+      "universal speedup",
+      "HPC dominance",
+      "operation-count equality",
+      "asymptotic complexity",
+      "mathematical novelty"
+    ]
+  },
+  "artifact_refs": {
+    "scenario": {
+      "path": "scenario.json",
+      "sha256": "2aaf26b62fc29e22f52596c2d809bdeb1a28aacb05185f650d80a6a57bca86ca"
+    },
+    "source": {
+      "path": "source_sha256.txt",
+      "sha256": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13"
+    },
+    "input": {
+      "path": "input_sha256.txt",
+      "sha256": "c28ef77a1867e2ed6b549e2e86a3a51f463a47265f223b94bd5e198c97489b18"
+    },
+    "environment": {
+      "path": "environment.json",
+      "sha256": "bdab9a8285c673c16e5c966aecb6091fdbebd38d4897d6dd573259084a140dc6"
+    },
+    "baseline_trace": {
+      "path": "baseline_trace.json",
+      "sha256": "b8e2688d6a6b339f6edbb0d6c9c61dfd20d47c2dbd28ca439327788400d9b014"
+    },
+    "candidate_trace": {
+      "path": "candidate_trace.json",
+      "sha256": "b8e2688d6a6b339f6edbb0d6c9c61dfd20d47c2dbd28ca439327788400d9b014"
+    },
+    "quotient": {
+      "path": "quotient_evidence.json",
+      "sha256": "aa654a127ae6ae513f6d5027f80c4f84f69cae70ea6fca75c35407674e89d9c7"
+    },
+    "reconstruction": {
+      "path": "reconstruction_evidence.json",
+      "sha256": "8c216aee43829ea3d983bb6a4816a837ac2da4f362cffa0eab4c0221856b7d6c"
+    },
+    "invariant": {
+      "path": "invariant_evidence.json",
+      "sha256": "07f8865b7400749b28db8772dd984bad84fb336234d59ff0fede679f96383929"
+    },
+    "performance": {
+      "path": "performance_evidence.json",
+      "sha256": "521801f5dbebde798c05f2783651e69c2b8bae7fe36d53141a5e8393ba1682ca"
+    },
+    "lean": {
+      "path": "lean_core_all.log",
+      "sha256": "ba616dce7aa06d1b03a4b329c81f7f6315134504d68ff6f075a38340c03fc322"
+    }
+  },
+  "attribution": {
+    "theory": {
+      "baseline_ops": 11264,
+      "candidate_ops": 22528,
+      "operation_count_ratio": 0.5,
+      "excluded_from_measured": [
+        "interpreter overhead",
+        "cache effects"
+      ]
+    },
+    "measured": {
+      "wall_clock_speedup": 35.82223758426496,
+      "wall_clock_baseline": 7065611742.495094,
+      "wall_clock_candidate": 197240938.00323316
+    },
+    "overhead_included": {
+      "quotient_construction": 0.0,
+      "reconstruction": 512.0
+    },
+    "not_conflated": true,
+    "note": "operation count ratio vs wall-clock speedup reported separately; never conflated"
+  },
+  "generator": "pcss_native_runner",
+  "certificate_sha256": "22fa7d76375443316d5db1f317b0c34369ce4a9acbc694b1e6732ad64a352a07"
+}

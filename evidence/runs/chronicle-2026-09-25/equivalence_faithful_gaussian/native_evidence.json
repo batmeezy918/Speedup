@@ -1,0 +1,449 @@
+{
+  "artifact_refs": {
+    "baseline_trace": {
+      "path": "baseline_trace.json",
+      "sha256": "f97948e19ac45a1e033e72f683ea550c13194b25093d7736c062df4e26dd22cf"
+    },
+    "candidate_trace": {
+      "path": "candidate_trace.json",
+      "sha256": "6c4bc2610efbd5227408d91dc65f209b7454ae33f67c7a906a3da3d38cbf513d"
+    },
+    "environment": {
+      "path": "environment.json",
+      "sha256": "f7f5566cf3d2a33024723c05015b0de7a51fe618c7ffa774c083ddbe57028d80"
+    },
+    "input": {
+      "path": "input_sha256.txt",
+      "sha256": "b86f5e84f4bb974c0c0b6b2c47f1d3fbebf19f82feea0ef4d44b4029ed725fe6"
+    },
+    "invariant": {
+      "path": "invariant_evidence.json",
+      "sha256": "d7b287b9fdd3ecbba0e41213e42f3878743795bb0dd45d36ee8ef02517048b37"
+    },
+    "performance": {
+      "path": "performance_evidence.json",
+      "sha256": "2e2d3d0b1399546758d2a301629a44d97a0f7015bbc3f1a259ffa30da2380ec9"
+    },
+    "quotient": {
+      "path": "quotient_evidence.json",
+      "sha256": "0fb5151b8e67f861a97e5651c039be6d49753e024969ff1ae3c2d6c55af6c0af"
+    },
+    "reconstruction": {
+      "path": "reconstruction_evidence.json",
+      "sha256": "2657eabeb26f35aba54da027e78a5bf0ed1e21d1e6281b18bbb009db8e70f700"
+    },
+    "scenario": {
+      "path": "scenario.json",
+      "sha256": "a347431db307f454ef16438d3c9a4bf7a61eab2c3625eda6e827c835ad6a1132"
+    },
+    "source": {
+      "path": "source_sha256.txt",
+      "sha256": "45806d75e7c60fd980b8ec1b8bf9df440e21dc223a6d3d275e6a9f898f31430c"
+    }
+  },
+  "attribution": {
+    "measured": {
+      "wall_clock_baseline": 228202.5,
+      "wall_clock_candidate": 12083.0,
+      "wall_clock_speedup": 18.886245137796905
+    },
+    "not_conflated": true,
+    "note": "operation count vs wall clock reported separately",
+    "overhead_included": {
+      "quotient_construction": 0.0,
+      "reconstruction": 1024.0
+    },
+    "theory": {
+      "operation_count_ratio": 32.0
+    }
+  },
+  "baseline_measurement": {
+    "max": 5244010.0,
+    "mean": 877627.5983606557,
+    "median": 228202.5,
+    "min": 25416.0,
+    "p95": 3348552.3999999994,
+    "p99": 4881475.499999993,
+    "samples": 122,
+    "timings_ns": [
+      25416.0,
+      82135.0,
+      63698.0,
+      56979.0,
+      55312.0,
+      80468.0,
+      71197.0,
+      56458.0,
+      68906.0,
+      56718.0,
+      69583.0,
+      69375.0,
+      60833.0,
+      74791.0,
+      81093.0,
+      71875.0,
+      70781.0,
+      65625.0,
+      73750.0,
+      74792.0,
+      89791.0,
+      67604.0,
+      65886.0,
+      87656.0,
+      65729.0,
+      102343.0,
+      82552.0,
+      82292.0,
+      188959.0,
+      82188.0,
+      88542.0,
+      83438.0,
+      84635.0,
+      98750.0,
+      99219.0,
+      87031.0,
+      92761.0,
+      77448.0,
+      81875.0,
+      81771.0,
+      89010.0,
+      125261.0,
+      94271.0,
+      92135.0,
+      96458.0,
+      99896.0,
+      84688.0,
+      83490.0,
+      89531.0,
+      100521.0,
+      283541.0,
+      234635.0,
+      346510.0,
+      280782.0,
+      223437.0,
+      229166.0,
+      234427.0,
+      220260.0,
+      226875.0,
+      224583.0,
+      226771.0,
+      218541.0,
+      295469.0,
+      248020.0,
+      219739.0,
+      252188.0,
+      244010.0,
+      218333.0,
+      240313.0,
+      233021.0,
+      219428.0,
+      240990.0,
+      236615.0,
+      223958.0,
+      227239.0,
+      767500.0,
+      772500.0,
+      795260.0,
+      745052.0,
+      790313.0,
+      747865.0,
+      802031.0,
+      931094.0,
+      1641406.0,
+      840625.0,
+      1121979.0,
+      776042.0,
+      835573.0,
+      758906.0,
+      750886.0,
+      1084792.0,
+      764010.0,
+      769115.0,
+      875104.0,
+      778593.0,
+      713803.0,
+      833542.0,
+      777344.0,
+      824687.0,
+      818437.0,
+      3093282.0,
+      4173438.0,
+      3174687.0,
+      3076406.0,
+      3301250.0,
+      2872135.0,
+      3351042.0,
+      4064323.0,
+      3407396.0,
+      3656667.0,
+      3264219.0,
+      3065520.0,
+      3288125.0,
+      2990833.0,
+      3145625.0,
+      3211458.0,
+      5244010.0,
+      5069688.0,
+      3156511.0,
+      3042709.0,
+      3062083.0,
+      2918334.0
+    ],
+    "unit": "ns"
+  },
+  "baseline_trace_hash": "f97948e19ac45a1e033e72f683ea550c13194b25093d7736c062df4e26dd22cf",
+  "candidate_measurement": {
+    "max": 49531.0,
+    "mean": 13997.606557377048,
+    "median": 12083.0,
+    "min": 9635.0,
+    "p95": 20497.549999999996,
+    "p99": 33280.11999999997,
+    "samples": 122,
+    "timings_ns": [
+      12344.0,
+      11771.0,
+      9635.0,
+      11198.0,
+      10104.0,
+      11615.0,
+      16719.0,
+      11406.0,
+      10052.0,
+      10469.0,
+      11094.0,
+      10261.0,
+      10833.0,
+      11458.0,
+      13541.0,
+      12657.0,
+      11302.0,
+      11406.0,
+      11667.0,
+      13854.0,
+      15365.0,
+      15261.0,
+      15625.0,
+      17865.0,
+      17709.0,
+      11250.0,
+      11302.0,
+      13490.0,
+      10625.0,
+      15885.0,
+      11614.0,
+      11354.0,
+      13854.0,
+      10625.0,
+      15782.0,
+      10885.0,
+      13385.0,
+      14114.0,
+      15156.0,
+      12292.0,
+      14062.0,
+      19531.0,
+      16093.0,
+      12917.0,
+      12031.0,
+      18073.0,
+      20990.0,
+      19270.0,
+      21198.0,
+      17240.0,
+      10104.0,
+      11771.0,
+      11094.0,
+      12135.0,
+      11823.0,
+      9687.0,
+      11094.0,
+      12031.0,
+      10677.0,
+      10625.0,
+      11198.0,
+      10729.0,
+      10729.0,
+      12031.0,
+      11979.0,
+      15573.0,
+      49531.0,
+      15208.0,
+      12552.0,
+      12344.0,
+      17708.0,
+      19948.0,
+      17604.0,
+      17135.0,
+      18646.0,
+      10573.0,
+      13594.0,
+      11927.0,
+      10886.0,
+      11719.0,
+      11510.0,
+      10365.0,
+      10886.0,
+      10781.0,
+      12188.0,
+      10833.0,
+      10833.0,
+      18802.0,
+      12865.0,
+      11094.0,
+      14792.0,
+      15365.0,
+      11771.0,
+      16822.0,
+      18593.0,
+      18386.0,
+      17656.0,
+      22500.0,
+      20052.0,
+      18958.0,
+      12657.0,
+      12344.0,
+      10937.0,
+      14114.0,
+      11980.0,
+      10104.0,
+      11198.0,
+      12552.0,
+      10312.0,
+      11667.0,
+      11302.0,
+      11510.0,
+      10729.0,
+      11511.0,
+      12760.0,
+      14740.0,
+      11406.0,
+      11875.0,
+      12865.0,
+      20521.0,
+      30730.0,
+      33958.0
+    ],
+    "unit": "ns"
+  },
+  "candidate_trace_hash": "6c4bc2610efbd5227408d91dc65f209b7454ae33f67c7a906a3da3d38cbf513d",
+  "certificate_sha256": "e259d5ed190bc576d6b76b3e151f0240d616620eab8d02d4f45f2c363a25a684",
+  "claim_boundary": {
+    "domain_covered": "d=64..1024, r=2/4/8, gaussian, 122 measured scenarios",
+    "excluded": [
+      "universal speedup",
+      "HPC dominance",
+      "operation-count equality",
+      "mathematical novelty"
+    ],
+    "quantity_measured": "direct wall-clock speedup of exact-invariant-sector step"
+  },
+  "environment_hash": "f7f5566cf3d2a33024723c05015b0de7a51fe618c7ffa774c083ddbe57028d80",
+  "gate_results": {
+    "integrity": {
+      "evidence": [
+        "scenario.json",
+        "environment.json",
+        "source_sha256.txt",
+        "input_sha256.txt"
+      ],
+      "value": true
+    },
+    "invariants": {
+      "evidence": [
+        "invariant_evidence.json"
+      ],
+      "value": true
+    },
+    "lean": {
+      "evidence": [
+        "lean4/lean_core_all_20260925.log"
+      ],
+      "value": true
+    },
+    "performance": {
+      "evidence": [
+        "performance_evidence.json"
+      ],
+      "value": true
+    },
+    "quotient_forward": {
+      "evidence": [
+        "quotient_evidence.json"
+      ],
+      "value": true
+    },
+    "reconstruction_reverse": {
+      "evidence": [
+        "reconstruction_evidence.json"
+      ],
+      "value": true
+    },
+    "reproducibility": {
+      "evidence": [
+        "scenario.json",
+        "environment.json",
+        "baseline_trace.json",
+        "candidate_trace.json"
+      ],
+      "value": true
+    }
+  },
+  "generator": "pcss_native_runner",
+  "implementation_identity": {
+    "baseline": {
+      "dense": "trajectory in full space",
+      "measured": "kernel step A*x",
+      "operator": "A"
+    },
+    "candidate": {
+      "measured": "kernel step Ar*z",
+      "operator": "Ar",
+      "reduced": "trajectory in quotient sector"
+    }
+  },
+  "input_hash": "b86f5e84f4bb974c0c0b6b2c47f1d3fbebf19f82feea0ef4d44b4029ed725fe6",
+  "invariant_hash": "",
+  "lean_hash": "",
+  "metric": "wall_clock_ns",
+  "parameters": {
+    "d_max": 1024,
+    "d_min": 64,
+    "families": [
+      "gaussian"
+    ],
+    "model": "gaussian",
+    "nsteps": 4,
+    "r_values": [
+      2,
+      4,
+      8
+    ]
+  },
+  "performance_hash": "",
+  "quotient_hash": "",
+  "reconstruction_hash": "",
+  "repetitions": 122,
+  "run_id": "pcss-run-equiv-faithful-gaussian-2026-09-25",
+  "scenario_hash": "a347431db307f454ef16438d3c9a4bf7a61eab2c3625eda6e827c835ad6a1132",
+  "scenario_id": "sim2xr_equivalence_faithful_gaussian_d64_1024_2026-09-25",
+  "schema": "PCSS-CERTIFICATE",
+  "schema_version": "2.0",
+  "seed": 20260823,
+  "source_hash": "45806d75e7c60fd980b8ec1b8bf9df440e21dc223a6d3d275e6a9f898f31430c",
+  "speedup": 18.886245137796905,
+  "timestamp": "2026-09-25T03:57:19Z",
+  "tolerance": 1e-10,
+  "toolchain": {
+    "arch": "aarch64",
+    "python": "3.13",
+    "scenario_toolchain": {
+      "julia": "1.11.1"
+    }
+  },
+  "uncertainty": {
+    "method": "sampled_median_direct",
+    "samples": 122
+  },
+  "warmups": 0
+}

@@ -1,0 +1,207 @@
+{
+  "artifact_refs": {
+    "baseline_trace": {
+      "path": "baseline_trace.json",
+      "sha256": "c69ccc404d3d5e930d66c3573ae0051226eb79df52e3c3ccca2b22fbaaf687b2"
+    },
+    "candidate_trace": {
+      "path": "candidate_trace.json",
+      "sha256": "e30379f486ee6b0e2aee75f8123168db2d22790b4340acae06f687fcc4def11a"
+    },
+    "environment": {
+      "path": "environment.json",
+      "sha256": "f7f5566cf3d2a33024723c05015b0de7a51fe618c7ffa774c083ddbe57028d80"
+    },
+    "input": {
+      "path": "input_sha256.txt",
+      "sha256": "b86f5e84f4bb974c0c0b6b2c47f1d3fbebf19f82feea0ef4d44b4029ed725fe6"
+    },
+    "invariant": {
+      "path": "invariant_evidence.json",
+      "sha256": "6651aac2a8673ae6a6a7540f13c57846ca0b8dd65417ceb619f7c189b33c888c"
+    },
+    "performance": {
+      "path": "performance_evidence.json",
+      "sha256": "4de2312d46ca133349148740a30cd9b0b7aa79b0999df33f2c62368044fa37ac"
+    },
+    "quotient": {
+      "path": "quotient_evidence.json",
+      "sha256": "eb30079e8b486d99813c2c70bc420ce58018ead5968a370450f0d4aee0471c98"
+    },
+    "reconstruction": {
+      "path": "reconstruction_evidence.json",
+      "sha256": "91987989c811dd33872075eb8fe782091945df1f819e6e42d2efe4eb5c7cfb5c"
+    },
+    "scenario": {
+      "path": "scenario.json",
+      "sha256": "fe9ccd48c13b0bcaafcb6c7d9aadfe1d4ad75036f13c4c75004bdeabd850cf76"
+    },
+    "source": {
+      "path": "source_sha256.txt",
+      "sha256": "ac01db15fd811c734f4d599ba5faa1a69903ccf699f9fb0e7584aea2244c20fd"
+    }
+  },
+  "attribution": {
+    "measured": {
+      "wall_clock_baseline": 34000000.0,
+      "wall_clock_candidate": 70000.0,
+      "wall_clock_speedup": 485.7142857142857
+    },
+    "not_conflated": true,
+    "note": "true solve-time ratio; interpreter never performs avoided checks",
+    "overhead_included": {
+      "quotient_construction": 0.0,
+      "reconstruction": 0.0
+    },
+    "theory": {
+      "operation_count_ratio": 3880
+    }
+  },
+  "baseline_measurement": {
+    "max": 225600000.0,
+    "mean": 66460000.0,
+    "median": 34000000.0,
+    "min": 4300000.0,
+    "p95": 191759999.99999997,
+    "p99": 218832000.0,
+    "samples": 5,
+    "timings_ns": [
+      4300000.0,
+      12000000.0,
+      34000000.0,
+      56400000.0,
+      225600000.0
+    ],
+    "unit": "ns"
+  },
+  "baseline_trace_hash": "c69ccc404d3d5e930d66c3573ae0051226eb79df52e3c3ccca2b22fbaaf687b2",
+  "candidate_measurement": {
+    "max": 80000.0,
+    "mean": 72000.0,
+    "median": 70000.0,
+    "min": 60000.0,
+    "p95": 80000.0,
+    "p99": 80000.0,
+    "samples": 5,
+    "timings_ns": [
+      60000.0,
+      80000.0,
+      70000.0,
+      70000.0,
+      80000.0
+    ],
+    "unit": "ns"
+  },
+  "candidate_trace_hash": "e30379f486ee6b0e2aee75f8123168db2d22790b4340acae06f687fcc4def11a",
+  "certificate_sha256": "5fc48515fac674441289f6db6f51e5aa66a1bdf2fe90435f9b073e8f1c6386fe",
+  "claim_boundary": {
+    "domain_covered": "N=2000..50000, fibers=50, density=0.1, seeds=3",
+    "excluded": [
+      "universal speedup",
+      "HPC dominance",
+      "mathematical novelty"
+    ],
+    "quantity_measured": "direct wall-clock speedup of quotient-path interpreter"
+  },
+  "environment_hash": "f7f5566cf3d2a33024723c05015b0de7a51fe618c7ffa774c083ddbe57028d80",
+  "gate_results": {
+    "integrity": {
+      "evidence": [
+        "scenario.json",
+        "environment.json",
+        "source_sha256.txt",
+        "input_sha256.txt"
+      ],
+      "value": true
+    },
+    "invariants": {
+      "evidence": [
+        "invariant_evidence.json"
+      ],
+      "value": true
+    },
+    "lean": {
+      "evidence": [
+        "lean4/lean_core_all_20260925.log"
+      ],
+      "value": true
+    },
+    "performance": {
+      "evidence": [
+        "performance_evidence.json"
+      ],
+      "value": true
+    },
+    "quotient_forward": {
+      "evidence": [
+        "quotient_evidence.json"
+      ],
+      "value": true
+    },
+    "reconstruction_reverse": {
+      "evidence": [
+        "reconstruction_evidence.json"
+      ],
+      "value": true
+    },
+    "reproducibility": {
+      "evidence": [
+        "scenario.json",
+        "environment.json",
+        "baseline_trace.json",
+        "candidate_trace.json"
+      ],
+      "value": true
+    }
+  },
+  "generator": "pcss_native_runner",
+  "implementation_identity": {
+    "baseline": {
+      "dense": "full unpacked pipeline with iterative checks",
+      "measured": "BFS_t",
+      "operator": "BFS"
+    },
+    "candidate": {
+      "measured": "Int_t",
+      "operator": "quotient path",
+      "reduced": "sparse-fiber interpreter"
+    }
+  },
+  "input_hash": "b86f5e84f4bb974c0c0b6b2c47f1d3fbebf19f82feea0ef4d44b4029ed725fe6",
+  "invariant_hash": "",
+  "lean_hash": "",
+  "metric": "wall_clock_ns",
+  "parameters": {
+    "check_iters": 150,
+    "density": 0.1,
+    "fibers": 50,
+    "intra_degree": 3,
+    "seeds": 3
+  },
+  "performance_hash": "",
+  "quotient_hash": "",
+  "reconstruction_hash": "",
+  "repetitions": 5,
+  "run_id": "pcss-run-unfold-bench2-2026-09-25",
+  "scenario_hash": "fe9ccd48c13b0bcaafcb6c7d9aadfe1d4ad75036f13c4c75004bdeabd850cf76",
+  "scenario_id": "sim2xr_unfolding_compiler_v2_sparse_fibers_2026-09-25",
+  "schema": "PCSS-CERTIFICATE",
+  "schema_version": "2.0",
+  "seed": 20260823,
+  "source_hash": "ac01db15fd811c734f4d599ba5faa1a69903ccf699f9fb0e7584aea2244c20fd",
+  "speedup": 485.7142857142857,
+  "timestamp": "2026-09-25T03:57:19Z",
+  "tolerance": 1e-10,
+  "toolchain": {
+    "arch": "aarch64",
+    "python": "3.13",
+    "scenario_toolchain": {
+      "numpy": "2.2.4"
+    }
+  },
+  "uncertainty": {
+    "method": "sampled_median_direct",
+    "samples": 5
+  },
+  "warmups": 0
+}

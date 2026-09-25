@@ -12,3 +12,17 @@ They are not verified publications. `claim_status` is `CANDIDATE` on every famil
 | vault-canonical-decider-20260531T112101Z | 10 repeats + decision JSON yes | 1.021 wall reported, **not** X-gate true |
 
 Next: lock scenario hashes, re-execute, then `python publisher/gate.py certificate.json`.
+
+## Chroncle (2026-09-25) — PCSS strict-gate verified publications
+
+Run-dirs under `evidence/runs/chronicle-2026-09-25/` feed `scripts/compose_certificate.py`
+and `publisher/strict_gate.py`; every gate hash is the real sha256 of its artifact file.
+
+| run-dir id | claim | published speedup | certificate sha256 (ledger) |
+|---|---|---|---|
+| equivalence_faithful_gaussian | exact-invariant-sector decomposition (gaussian, d=64..1024) | 18.89x (max 459.76x) | `a0bd422e...` |
+| unfold_bench2 | quotient-path compiler/interpreter (N=2000..50000) | 485.7x (max 2891x) | `0165a8e7...` |
+
+Closure certifications without a measured wall-clock speedup (threadlock v4,
+nonlinear eod v5, sic maximal-response, Lean obligation lane) are recorded as
+`publish_closure` ledger entries and are **not** promoted to VERIFIED.

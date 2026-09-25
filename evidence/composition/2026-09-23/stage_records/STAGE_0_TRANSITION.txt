@@ -1,0 +1,14 @@
+STAGE: 0
+STATUS: COMPLETE - AUDIT_PASS_WITH_ENV_CAVEAT
+INPUT_COMMIT: 2701651a9a303ccc7486156fc429302eb90ab0f1
+OUTPUT_COMMIT: (no code changes this stage)
+EVIDENCE_ARTIFACTS: evidence/composition/2026-09-23/stage_records/STAGE_0.json
+PASSED_GATES: integrity(chain binding OK), reproducibility(repo clean & synced), environment(device/compiler/Lean/toolchain captured)
+FAILED_GATES: none
+NEW_GAPS: DISK_FULL_WARNING non-fatal; ChronoFold root not a git repo (active formalization inside Speedup lean4/chronofold, in VERIFIED core lane)
+CLOSED_GAPS: none
+RAW_RESULTS: speedup commit 2701651; branch fix/lean4-green; remote synced; 4 certs verified, lean core pass, chronofold formalization present
+NORMALIZED_RESULT: 4 VERIFIED primitives loaded and hash-chain-consistent
+CLAIM_LEVEL: UNKNOWN (no new claims this stage)
+NEXT_ADMISSIBLE_STAGE: STAGE_1_VERIFIED_PRIMITIVE_REVALIDATION
+STOP_REASON: STAGE STOP RULE - proceeding to Stage 1

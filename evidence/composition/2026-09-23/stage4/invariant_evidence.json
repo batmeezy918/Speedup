@@ -1,0 +1,6 @@
+{
+  "pass": true,
+  "reason": "",
+  "baseline_block_constant_all_states": true,
+  "candidate_block_constant_all_states": true
+}

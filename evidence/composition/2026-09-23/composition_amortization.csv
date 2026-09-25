@@ -1,0 +1,7 @@
+metric,value,unit,note
+per_step_baseline,480186223.98376465,ns,median of 8
+per_step_candidate,2035379.409790039,ns,
+oneoff_projection_pi,935792.9229736328,ns,
+oneoff_reconstruction_sigma,306118488.3117676,ns,
+break_even_steps_N_star,0.6421703207662889,steps,
+composed_steps,14,steps,beyond break-even: fully amortized

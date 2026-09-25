@@ -1,0 +1,73 @@
+{
+  "composition_id": "C1",
+  "schema": "PCSS-COMPOSITION-PROVENANCE",
+  "version": "1.0",
+  "date": "2026-09-23",
+  "repo": {
+    "path": "/root/Speedup",
+    "branch": "fix/lean4-green",
+    "head": "2701651a9a303ccc7486156fc429302eb90ab0f1",
+    "source_hash": "5f3b2d9d15573a9868e8150e656e8eda3bd86f078eb0a1d906daf2e8c2920f13"
+  },
+  "operator": {
+    "symbol": "O_C = sigma o Tbar^14 o pi",
+    "baseline": "T_full^14",
+    "steps": 14,
+    "n": 512,
+    "tile": 16,
+    "r": 1024,
+    "domain": "matrix exact-invariant-sector"
+  },
+  "components": [
+    {
+      "primitive": "QMULT-02",
+      "cert": "evidence/final/2026-09-23/pcss/qmult02_matrix.certificate.json",
+      "steps": 8,
+      "S": 14.9469
+    },
+    {
+      "primitive": "AQGE-02",
+      "cert": "evidence/final/2026-09-23/pcss/aqge02_matrix.certificate.json",
+      "steps": 6,
+      "S": 9.7841
+    }
+  ],
+  "dependency_facts": {
+    "shared_representation": "R^512x512 block-constant, tile 16, nclasses 8",
+    "shared_operator_family": "true - identical class_weights in certified operator family",
+    "composability": "trajectory_deepening (combined stay-in-Q, single pi/sigma boundary)",
+    "certified_morphism_matrix_to_vector": "NONE - SIM2XR compositions rejected"
+  },
+  "measurement": {
+    "device": "aarch64 PRoot-Distro Debian 13",
+    "cpus": "Cortex-A55 + A78",
+    "affinity": "taskset -c 2,3",
+    "threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1"
+    },
+    "repetitions": 30,
+    "warmups": 5,
+    "timing": "clock_gettime_monotonic",
+    "S_composed": 22.1545,
+    "S_cert_run": "pcss-run-1790200585"
+  },
+  "artifacts": [
+    "composition_matrix.csv",
+    "composition_selection.md",
+    "composition_rejected.csv",
+    "composition_results.csv",
+    "composition_raw_timings.csv",
+    "composition_interaction.csv",
+    "composition_amortization.csv",
+    "composition_claims.jsonl",
+    "composition_failure_ledger.csv",
+    "pcss/qmult02_o_aqge02_composed.certificate.json",
+    "../.."
+  ],
+  "ledger": {
+    "row": "run_id=pcss-run-1790200585",
+    "artifact": "verified/sim2xr/2026-09-23-qm02_aqge02_composed/pcss_certificate.json",
+    "hash": "a587395593c6d8fd1e7b2dc818bd7dabca4bbb28fb6643b38cc199dc9f522a51"
+  }
+}

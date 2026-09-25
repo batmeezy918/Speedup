@@ -1,0 +1,43 @@
+{
+  "baseline_measurement": {
+    "max": 225600000.0,
+    "mean": 66460000.0,
+    "median": 34000000.0,
+    "min": 4300000.0,
+    "p95": 191759999.99999997,
+    "p99": 218832000.0,
+    "samples": 5,
+    "timings_ns": [
+      4300000.0,
+      12000000.0,
+      34000000.0,
+      56400000.0,
+      225600000.0
+    ],
+    "unit": "ns"
+  },
+  "candidate_measurement": {
+    "max": 80000.0,
+    "mean": 72000.0,
+    "median": 70000.0,
+    "min": 60000.0,
+    "p95": 80000.0,
+    "p99": 80000.0,
+    "samples": 5,
+    "timings_ns": [
+      60000.0,
+      80000.0,
+      70000.0,
+      70000.0,
+      80000.0
+    ],
+    "unit": "ns"
+  },
+  "direct_speedup": 485.7142857142857,
+  "metric": "wall_clock_ns",
+  "pass": true,
+  "reason": "measured wall-clock speedup > 1",
+  "repetitions": 5,
+  "timing_source": "clock_gettime_monotonic",
+  "warmups": 0
+}

@@ -1,0 +1,7 @@
+{
+  "arch": "aarch64",
+  "hostname": "proot",
+  "os": "linux",
+  "pid": null,
+  "python": "3.13"
+}

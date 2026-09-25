@@ -1,0 +1,21 @@
+{
+  "domain_coverage": {
+    "d": 1024,
+    "measured_dims": [
+      64,
+      128,
+      256,
+      512,
+      1024
+    ],
+    "r_max": 8
+  },
+  "maximum_error": 1.4927736431578483e-12,
+  "mean_error": 6.105897586663181e-16,
+  "metric": "max",
+  "pass": true,
+  "reason": "all 122 scenarios: unfold & task errors below 1e-10",
+  "reconstruction_status": "closed",
+  "relation": "approx",
+  "tolerance": 1e-10
+}

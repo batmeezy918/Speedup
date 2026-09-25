@@ -1,0 +1,72 @@
+{
+  "baseline": {
+    "dense": "trajectory in full space",
+    "measured": "kernel step A*x",
+    "operator": "A"
+  },
+  "candidate": {
+    "measured": "kernel step Ar*z",
+    "operator": "Ar",
+    "reduced": "trajectory in quotient sector"
+  },
+  "dimensions": {
+    "d": 1024,
+    "r": 8,
+    "steps": 4,
+    "tile": 32,
+    "trials": 122
+  },
+  "environment": {
+    "arch": "aarch64",
+    "os": "linux",
+    "toolchain": "julia 1.11.1"
+  },
+  "expected_observables": [
+    "closure_error <= 1e-10",
+    "task_error <= 1e-10",
+    "unfold_error <= 1e-10",
+    "quotient_error <= 1e-10"
+  ],
+  "invariant": {
+    "definition": "spectral sector separation: A*Q = Q*Ar within the invariant sector",
+    "relation": "approx",
+    "tolerance": 1e-10
+  },
+  "mathematical_object": "A = Q*Ar*Q' + Qp*Ap*Qp' exact invariant decomposition (gaussian spectral separation)",
+  "parameters": {
+    "d_max": 1024,
+    "d_min": 64,
+    "families": [
+      "gaussian"
+    ],
+    "model": "gaussian",
+    "nsteps": 4,
+    "r_values": [
+      2,
+      4,
+      8
+    ]
+  },
+  "quotient": {
+    "definition": "Phi(x) = Q'x, Q*Q' = I_r, complement spectrally separated",
+    "relation": "approx",
+    "tolerance": 1e-10
+  },
+  "reconstruction": {
+    "definition": "sigma(z) = Q*z, Q*(Ar*(Q'x)) ~ A*x",
+    "metric": "max",
+    "relation": "approx",
+    "tolerance": 1e-10
+  },
+  "repetitions": 122,
+  "scenario_id": "sim2xr_equivalence_faithful_gaussian_d64_1024_2026-09-25",
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "seed": 20260823,
+  "timing_source": "clock_gettime_monotonic",
+  "warmup_policy": "fixed",
+  "workload": {
+    "command": "julia sim2xr_equivalence_faithful.jl",
+    "kind": "custom_command"
+  }
+}

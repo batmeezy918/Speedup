@@ -1,0 +1,29 @@
+{
+  "forward_residual": 0.0,
+  "invariant_set": [
+    "sparse fibers"
+  ],
+  "metric": "relerr",
+  "observable_set": [
+    "reachability"
+  ],
+  "pass": true,
+  "quotient_states_baseline": [
+    "N=2000",
+    "N=5000",
+    "N=10000",
+    "N=25000",
+    "N=50000"
+  ],
+  "quotient_states_candidate": [
+    "N=2000",
+    "N=5000",
+    "N=10000",
+    "N=25000",
+    "N=50000"
+  ],
+  "reason": "no iterative check fails (BFS_ok full for every N)",
+  "relation": "approx",
+  "steps_checked": 150,
+  "tolerance": 1e-10
+}

@@ -1,0 +1,36 @@
+STAGE: 9
+STATUS: COMPLETE - PCSS_CERTIFICATION_VERIFIED (7/7 gates, ledger-bound)
+INPUT_COMMIT: 2701651a9a303ccc7486156fc429302eb90ab0f1
+OUTPUT_COMMIT: (published verification, ledger update, artifacts)
+EVIDENCE_ARTIFACTS:
+  - evidence/composition/2026-09-23/pcss/qmult02_o_aqge02_composed.certificate.json
+  - verified/sim2xr/2026-09-23-qm02_aqge02_composed/pcss_certificate.json (+SHA256SUMS.txt,
+    scenario.json, environment.json, source_sha256.txt, input_sha256.txt, native_evidence.json,
+    attribution.json, quotient/reconstruction/invariant/performance/discovery/refinement_evidence.json)
+  - evidence/ledger/claims.jsonl (publish row run_id=pcss-run-1790200585)
+PASSED_GATES (strict_gate enforce, exit 0 = STRICT_GATE=VERIFIED):
+  - integrity=True reproducibility=True quotient_forward=True reconstruction_reverse=True
+    invariants=True performance=True lean=True (1247465/7 all True)
+  - claim_strength VERIFIED consistent with evidence
+  - ledger canonical-hash binding verified: sha256(cert) == ledger certificate_hash
+FAILED_GATES: none
+NEW_GAPS: none
+CLOSED_GAPS: none
+RAW_RESULTS:
+  runner pinned {2,3} (certified condition): scenario_hash=fc9803f2c9d4073c...
+  source_hash=5f3b2d9d15573a98 (unchanged from 4 primitives) input_hash=c28ef77a...
+  S_composed=22.1545  baseline_median_ns=3925093644 (per-step 280363832)
+  candidate_median_ns=177168933  trace hashes identical (by-design exactness)
+NORMALIZED_RESULT: COMPOSITION C1 STRICT-GATE VERIFIED (7 gates)
+NOTE - integrity incident handled:
+  compose result published via strict_gate.publish() default path
+  verified/sim2xr/2026-09-23/pcss_certificate.json COLLIDED with existing C-cluster SIMD
+  certificate (scenario simd-v6-packed-8x8-exact-sector-2026-09-23, committed at 2701651).
+  The overwritten artifact was restored (git checkout); the composition certificate was
+  placed in its suffixed publication dir verified/sim2xr/2026-09-23-qm02_aqge02_composed/
+  mirroring the 4 primitives' convention; the ledger publish row's artifact path was
+  corrected to the suffixed dir. Ledger canonical hash binding re-verified (match=True).
+  No certificates destroyed; both published artifacts intact.
+CLAIM_LEVEL: COMPOSITIONALLY_VERIFIED (PCSS-gated, 7/7) - S_composed=22.15 measured natively
+NEXT_ADMISSIBLE_STAGE: STAGE_10_COMPOSITION_PROMOTION
+STOP_REASON: STAGE 9 certification complete; promotion/ledger consolidation next. STOP.

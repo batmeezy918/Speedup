@@ -1,0 +1,9 @@
+mechanism_a,mechanism_b,status,status_detail,native_baseline_condition
+QMULT-02,AQGE-02,SELECTED,first composition C_1 (stay-in-Q 14 steps),exact: Tbar^14 vs T_full^14 on R^512x512 seed-consistent
+QMULT-02,AGD-GEMM,DEFERRED_TO_ESCALATION,requires C_1 independently verified first,identical family
+AQGE-02,AGD-GEMM,DEFERRED_TO_ESCALATION,equivalent depth; lower priority than C_1,identical family
+QMULT-02,SIM2XR,REJECTED_INCOMPATIBLE,no certified representation morphism matrix<->vector,N/A
+AQGE-02,SIM2XR,REJECTED_INCOMPATIBLE,no certified representation morphism,N/A
+AGD-GEMM,SIM2XR,REJECTED_INCOMPATIBLE,no certified representation morphism,N/A
+SIM2XR,QMULT-02,REJECTED_INCOMPATIBLE,no certified representation morphism,N/A
+RATIO_PRODUCT,MODELED,REJECTED,not a composition; ideal reference only,N/A

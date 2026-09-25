@@ -1,0 +1,22 @@
+STAGE: 7
+STATUS: COMPLETE - AMORTIZATION_ANALYZED
+INPUT_COMMIT: 2701651a9a303ccc7486156fc429302eb90ab0f1
+OUTPUT_COMMIT: (artifact)
+EVIDENCE_ARTIFACTS:
+  - evidence/composition/2026-09-23/stage7/amortization_composed.json
+PASSED_GATES:
+  - gate: one-off projection/reconstruction cost quantified and amortization computed
+  - break-even N* = (pi+sigma)/(T_full_per_step - Tbar_per_step) = 0.642 steps
+  - composed trajectory (14 steps) far beyond break-even; net gain ~6.4e9 ns at 14 steps
+FAILED_GATES: none
+NEW_GAPS: none
+CLOSED_GAPS: none
+RAW_RESULTS (median of 8 samples, affinity 2,3):
+  T_full_per_step_ns=480186224  Tbar_per_step_ns=2035379
+  pi_oneoff_ns=935793  sigma_oneoff_ns=306118488  oneoff_total_ns=307054281
+  per_step_gap_ns=478150845  break_even_steps=0.642  composed_steps=14
+NORMALIZED_RESULT: AMORTIZATION PASS - fixed overhead fully amortized (N* < 1 step); at 14 steps,
+  reconstruction overhead is negligible relative to per-step baseline savings
+CLAIM_LEVEL: analytic amortization of the composed stay-in-Q operator (measured per-step medians)
+NEXT_ADMISSIBLE_STAGE: STAGE_8_FORMAL_CLOSURE
+STOP_REASON: amortization stage complete; formal-closure mapping next. STOP.

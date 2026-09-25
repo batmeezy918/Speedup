@@ -1,0 +1,26 @@
+STAGE: 10
+STATUS: COMPLETE - COMPOSITION_PROMOTED_COMPOSITIONALLY_VERIFIED
+INPUT_COMMIT: 2701651a9a303ccc7486156fc429302eb90ab0f1
+OUTPUT_COMMIT: (all composition artifacts + ledger + published verification; pending operator review)
+EVIDENCE_ARTIFACTS:
+  - evidence/composition/2026-09-23/ (full staged corpus: stage_records/STAGE_0..9,
+    composition_*.csv/.json/.md, formal_closure_composed.md, pcss/qmult02_o_aqge02_composed.certificate.json)
+  - verified/sim2xr/2026-09-23-qm02_aqge02_composed/ (published verification, SHA256SUMS.txt, full run evidence)
+  - evidence/ledger/claims.jsonl publish row (run_id=pcss-run-1790200585, artifact path corrected)
+PASSED_GATES: 7/7 strict-gate VERIFIED (integrity, reproducibility, quotient, reconstruction,
+  invariants, performance, lean) + ledger canonical-hash binding + formal closure instantiation
+FAILED_GATES: none (3 stage-level failures resolved, see composition_failure_ledger.csv F1-F4)
+NEW_GAPS:
+  - scaling beyond n=512 not certified (claim boundary: d=512, r=1024, tile=16, steps=14)
+  - SIM2XR (vector-domain) composition remains INCOMPATIBLE without a new certified morphism
+  - from-scratch lake rebuild of Lean core not re-run (disk 100%); artifact bit carried by committed log
+CLOSED_GAPS: composed speedup now MEASURED + REPRODUCED + FORMALLY INSTANTIATED + PCSS-gated;
+  ratio-product over-claim closed by interaction factor (I12=0.15)
+RAW_RESULTS: see stage records STAGE_5/6/7/9
+NORMALIZED_RESULT: COMPOSITION C1 = QMULT-02 o AQGE-02 -> S_composed=22.15x measured, VERIFIED
+CLAIM_LEVEL: COMPOSITIONALLY_VERIFIED (composition of two VERIFIED primitives, natively measured)
+NEXT_ADMISSIBLE_STAGE: STAGE_11_ESCALATION_DECISION (requires operator authorization before
+  any 3-way or AGD-based composition)
+STOP_REASON: primary success condition SATISFIED - at least one composition implemented,
+  executed natively, equivalence checked, reconstruction checked, invariants checked, timed,
+  reproduced, formally instanced, and PCSS-gated. STOP.

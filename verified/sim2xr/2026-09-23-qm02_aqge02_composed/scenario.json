@@ -1,0 +1,107 @@
+{
+  "baseline": {
+    "implementation_id": "COMPOSED_BASELINE_T_full^14_full_space_n512",
+    "kind": "native",
+    "impl": "full-space trajectory x_0 -> T_full^14(x_0) in R^512x512"
+  },
+  "candidate": {
+    "implementation_id": "COMPOSED_CANDIDATE_sigma_o_Tbar^14_o_pi_fused_stayinq",
+    "kind": "native",
+    "impl": "fused composed operator O_C = sigma(Tbar^14(pi(x_0))): one projection, 14 reduced steps, one reconstruction"
+  },
+  "composition": [
+    {
+      "primitive": "QMULT-02",
+      "certificate": "evidence/final/2026-09-23/pcss/qmult02_matrix.certificate.json",
+      "steps": 8,
+      "claim_strength": "VERIFIED"
+    },
+    {
+      "primitive": "AQGE-02",
+      "certificate": "evidence/final/2026-09-23/pcss/aqge02_matrix.certificate.json",
+      "steps": 6,
+      "claim_strength": "VERIFIED"
+    }
+  ],
+  "composition_operator": "O_C = sigma o Tbar^(8+6) o pi : fused stay-in-Q trajectory; ONE projection, 14 reduced steps, ONE reconstruction; NOT S1*S2",
+  "dimensions": {
+    "matrix_rows": 512,
+    "matrix_cols": 512,
+    "d": 512,
+    "r": 1024,
+    "tile": 16,
+    "nclasses": 8,
+    "steps_baseline": 14,
+    "operation_count_baseline_total": 3670016,
+    "operation_count_candidate_total": 14514,
+    "operation_count_ratio_theory": 252.88
+  },
+  "environment": {
+    "python": "3.13",
+    "arch": "aarch64"
+  },
+  "expected_observables": [
+    "quotient forward exact over 14 steps",
+    "reconstruction exact",
+    "invariant block-constancy exact",
+    "direct wall-clock speedup S_composed = T_B/T_C reported (measured, not multiplied)",
+    "interaction factor I_12 = S_measured/(S1*S2) reported separately",
+    "operation count ratio reported separately"
+  ],
+  "invariant": {
+    "definition": "tile-tile block constancy on every trajectory state (exact for invariant sector)",
+    "function_name": "engines.linear_exact.omega_matrix"
+  },
+  "mathematical_object": {
+    "state_space": "R^(n x n) with tile-tile block-constancy Omega; block class c=(a*bi+b*bj) mod nclasses",
+    "quotient_space": "R^r block representatives (bi,bj) -> A[bi*tile][bj*tile]",
+    "transition": "T(A)[ii][jj] = A[ii][jj] * w[class(bi,bj)] (block-scale, block-constant preserving)",
+    "projection": "pi(A) = reps over blocks, one rep per tile-tile block",
+    "reconstruction": "sigma(q) = replicate each rep across its tile-tile block (exact)",
+    "invariant": "tile-tile block constancy (omega_matrix exact)",
+    "observable": "class representative matrix pi(A)"
+  },
+  "parameters": {
+    "model": "matrix",
+    "steps": 14,
+    "tile": 16,
+    "a": 3,
+    "b": 1,
+    "weights": [
+      1.0,
+      1.25,
+      0.9,
+      1.1,
+      1.5,
+      0.8,
+      1.3,
+      0.95
+    ],
+    "note": "COMPOSITION C1 = QMULT-02 o AQGE-02 (staged per PCSS composition constitution 2026-09-23). Combined stay-in-Q trajectory: components QMULT-02 (8 steps) and AQGE-02 (6 steps) are the same certified exact-invariant-sector operator family with identical weights; the composed implementation executes ONE projection, Tbar^14 reduced steps, ONE reconstruction against the FULL-space T_full^14 baseline. S_composed is measured natively; the ratio product S1*S2 is reported ONLY as ideal/modeled reference and is NOT claimed as measured."
+  },
+  "quotient": {
+    "definition": "exact tile-tile block-constant projection; pi(T(A)) = Tbar(pi(A)) on sector (intertwining)",
+    "function_name": "engines.quotient.run_quotient",
+    "tolerance": 0.0,
+    "relation": "exact"
+  },
+  "reconstruction": {
+    "definition": "sigma(q) block-replicate each quotient rep back to n x n full matrix (section: pi(sigma(q))=q)",
+    "function_name": "engines.reconstruction.run_reconstruction",
+    "tolerance": 0.0,
+    "metric": "max"
+  },
+  "repetitions": 30,
+  "scenario_id": "qmult02_o_aqge02_composed_stayinq_2026-09-23",
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "seed": 20260923,
+  "timing_source": "clock_gettime_monotonic",
+  "warmup_policy": "fixed",
+  "warmups": 5,
+  "workload": {
+    "kind": "exact_invariant_sector",
+    "function_name": "engines.linear_exact.LinearExactMatrixModel",
+    "model": "matrix"
+  }
+}

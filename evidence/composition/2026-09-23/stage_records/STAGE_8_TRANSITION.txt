@@ -1,0 +1,22 @@
+STAGE: 8
+STATUS: COMPLETE - FORMAL_CLOSURE_MAPPED (instantiated at n=14)
+INPUT_COMMIT: 2701651a9a303ccc7486156fc429302eb90ab0f1
+OUTPUT_COMMIT: (artifact)
+EVIDENCE_ARTIFACTS:
+  - evidence/composition/2026-09-23/formal_closure_composed.md
+  - lean4/chronofold/ExactQuotientClosure.lean (theorems quotient_iterate / reconstructed_iterate /
+    observable_preserved_iterate / exact_quotient_closure, ALL forall-n)
+PASSED_GATES:
+  - formal gate L: composed operator is an INSTANTIATION at n=14 of verified forall-n closure
+    theorems (no new/unverified mathematics introduced)
+  - hypotheses Section pi(sigma(q))=q and Intertwines pi(T x)=Tbar(pi x) hold EXACTLY
+    (numerically 0.0 in STAGE 4)
+FAILED_GATES: none
+NEW_GAPS: none
+CLOSED_GAPS: none
+RAW_RESULTS: iter n at n=14 -> pi(iter14 T x)=iter14 Tbar(pi x); sigma(Tbar^14 pi x0)==T_full^14 x0;
+  sources in Lean4 core lane (25 sources PASS); toolchain v4.29.0
+NORMALIZED_RESULT: FORMAL_CLOSURE PASS (composition instantiates existing verified closure; no re-prove)
+CLAIM_LEVEL: formal soundness of O_C inherited from verified Lean artifacts
+NEXT_ADMISSIBLE_STAGE: STAGE_9_PCSS_CERTIFICATION
+STOP_REASON: formal closure mapped; proceed to end-to-end PCSS certification. STOP.
