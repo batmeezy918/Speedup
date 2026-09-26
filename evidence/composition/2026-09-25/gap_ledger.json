@@ -1,0 +1,92 @@
+[
+  {
+    "id": "GA01",
+    "E_new": "unfold v2 median 485.7x certified",
+    "status": "VERIFIED (empirical; no formal interpreter identity)",
+    "H": "quotient-path interpreter result equals dense pipeline result for all N",
+    "Lean_obligation": "interpreter_identity: forall N steps, quotient BFS == dense BFS",
+    "T_new": "BFS_ok both sides at N=100000",
+    "severity": "medium"
+  },
+  {
+    "id": "GA02",
+    "E_new": "equivalence_faithful 333/333 median ~63x max ~5321x (d<=2048, audit transcript only)",
+    "status": "REPRODUCED (audit); published cert is 18.886x @ d<=1024",
+    "H": "63x median extends to d<=2048 domain",
+    "Lean_obligation": "SIM2xR.equivalence_closure_high_dim: closure at d>1024",
+    "T_new": "publish a d<=2048 certificate through full gate",
+    "severity": "high"
+  },
+  {
+    "id": "GA03",
+    "E_new": "nonlinear eod v5 labelled 121/121",
+    "status": "VERIFIED rows=120 (machine claims gates=120); ledger note says 121",
+    "H": "exactly 120 gate-constrained systems",
+    "Lean_obligation": "reconcile count field single-source-of-truth",
+    "T_new": "machine-reported count in ledger",
+    "severity": "low"
+  },
+  {
+    "id": "GA04",
+    "E_new": "ATD/QG 110/110 certificate (workbench-only)",
+    "status": "WORKBENCH; not present in repo",
+    "H": "retained-residency 1.05-1.31x holds on repo CI host",
+    "Lean_obligation": "repack with hash into verified/",
+    "T_new": "repo-host rerun battery 21/21",
+    "severity": "high"
+  },
+  {
+    "id": "GA05",
+    "E_new": "SIM2XR oracle merge 15.143x kernel",
+    "status": "VERIFIED",
+    "H": "kernel median stable over r in {8}",
+    "Lean_obligation": "equivalence_kernel_closure over r=8",
+    "T_new": "publish oracle merge cert at d<=512",
+    "severity": "medium"
+  },
+  {
+    "id": "GA06",
+    "E_new": "COCO S6 result",
+    "status": "NEGATIVE (s6 1,333,364 vs cma 30.48; NOT cocoex)",
+    "H": "no complexity-collapse claim from S6 surrogates",
+    "Lean_obligation": "none (suppressed)",
+    "T_new": "gate: real cocoex 2.8.2 function set",
+    "severity": "high"
+  },
+  {
+    "id": "GA07",
+    "E_new": "silicon closure runs (19.99-457.1 empirical)",
+    "status": "REPRODUCED; publish_satisfied=false",
+    "H": "silicon realization respects model bounds",
+    "Lean_obligation": "silicon_closure_formal: S_silicon <= S_model*bounds",
+    "T_new": "publish on native build after full gates",
+    "severity": "high"
+  },
+  {
+    "id": "GA08",
+    "E_new": "composed C1/C2 end-to-end",
+    "status": "VERIFIED native measurement",
+    "H": "interaction factor <1 is generic for trajectory deepening",
+    "Lean_obligation": "trajectory_deepening_interaction_lemma for >=2 steps",
+    "T_new": "keep overclaim <2x on future stacks",
+    "severity": "medium"
+  },
+  {
+    "id": "GA09",
+    "E_new": "README chronicle qmult02 2.5x / agd 5.02x",
+    "status": "DOCUMENTATION DIVERGENCE: certs authoritative 14.9469x / 13.2075x",
+    "H": "certificate is the authoritative value",
+    "Lean_obligation": "none",
+    "T_new": "README corrected to cert values",
+    "severity": "low"
+  },
+  {
+    "id": "GA10",
+    "E_new": "unfold range 193x-7011x cited in prior brief",
+    "status": "NOT FOUND in any artifact; certified range 76x-2891x",
+    "H": "certified per-N ranges are exhaustive",
+    "Lean_obligation": "none",
+    "T_new": "brief corrected to 76x-2891x",
+    "severity": "medium"
+  }
+]

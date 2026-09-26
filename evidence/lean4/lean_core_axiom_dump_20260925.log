@@ -1,0 +1,366 @@
+=== module: ./AGDGemmProjection.lean ===
+'AGDGemmProjection.iterate' does not depend on any axioms
+'AGDGemmProjection.iterate_zero' does not depend on any axioms
+'AGDGemmProjection.iterate_succ' does not depend on any axioms
+'AGDGemmProjection.iterate_one' does not depend on any axioms
+'AGDGemmProjection.iterate_add' does not depend on any axioms
+'AGDGemmProjection.Equivalent' does not depend on any axioms
+'AGDGemmProjection.Intertwines' does not depend on any axioms
+'AGDGemmProjection.WellDefined' does not depend on any axioms
+'AGDGemmProjection.ObservablePreserved' does not depend on any axioms
+'AGDGemmProjection.Respects' does not depend on any axioms
+'AGDGemmProjection.projection_step' does not depend on any axioms
+'AGDGemmProjection.intertwines_wellDefined' does not depend on any axioms
+'AGDGemmProjection.observable_respects' does not depend on any axioms
+'AGDGemmProjection.projection_iterate' does not depend on any axioms
+'AGDGemmProjection.induced_operator_unique' depends on axioms: [Quot.sound]
+'AGDGemmProjection.quotient_observable_correct' does not depend on any axioms
+'AGDGemmProjection.projection_closure' does not depend on any axioms
+=== module: ./AGDGemmReconstruction.lean ===
+'AGDGemmReconstruction.Section' does not depend on any axioms
+'AGDGemmReconstruction.section_is_right_inverse' depends on axioms: [Quot.sound]
+'AGDGemmReconstruction.section_injective' does not depend on any axioms
+'AGDGemmReconstruction.section_implies_surjective' does not depend on any axioms
+'AGDGemmReconstruction.reconstructed_operator' depends on axioms: [Quot.sound]
+'AGDGemmReconstruction.reconstructed_iterate' does not depend on any axioms
+'AGDGemmReconstruction.observe_via_section' does not depend on any axioms
+'AGDGemmReconstruction.reconstructed_observable' does not depend on any axioms
+'AGDGemmReconstruction.reconstruction_closure' depends on axioms: [Quot.sound]
+=== module: ./AGDGemmSpeedup.lean ===
+'AGDGemmSpeedup.modeled_speedup_valid' depends on axioms: [Quot.sound,
+'AGDGemmSpeedup.semantic_and_work_closure' depends on axioms: [propext,
+'AGDGemmSpeedup.MeasuredRuntimeObligation' does not depend on any axioms
+'AGDGemmSpeedup.measuredHundredths' does not depend on any axioms
+'AGDGemmSpeedup.measured_runtime_is_not_a_work_theorem' depends on axioms: [AGDGemmWork.canonical_workRatio._native.native_decide.ax_1_1]
+'AGDGemmSpeedup.measured_hundredths_neq_work_ratio_times_100' depends on axioms: [AGDGemmSpeedup.measured_hundredths_neq_work_ratio_times_100._native.native_decide.ax_1_1]
+'AGDGemmSpeedup.speedup_stack_closure' depends on axioms: [propext,
+=== module: ./AGDGemmWork.lean ===
+'AGDGemmWork.fullWork' does not depend on any axioms
+'AGDGemmWork.quotientWork' does not depend on any axioms
+'AGDGemmWork.squareWork' does not depend on any axioms
+'AGDGemmWork.workRatio' does not depend on any axioms
+'AGDGemmWork.outer_factorization' depends on axioms: [propext]
+'AGDGemmWork.square_reduction' depends on axioms: [propext]
+'AGDGemmWork.quotientWork_ne_zero' depends on axioms: [propext]
+'AGDGemmWork.workRatio_outer' depends on axioms: [propext]
+'AGDGemmWork.workRatio_square' depends on axioms: [propext]
+'AGDGemmWork.fullWork_1024' depends on axioms: [AGDGemmWork.fullWork_1024._native.native_decide.ax_1_1]
+'AGDGemmWork.quotientWork_256' depends on axioms: [AGDGemmWork.quotientWork_256._native.native_decide.ax_1_1]
+'AGDGemmWork.canonical_ratio' depends on axioms: [AGDGemmWork.canonical_ratio._native.native_decide.ax_1_1]
+'AGDGemmWork.strict_work_reduction' depends on axioms: [AGDGemmWork.strict_work_reduction._native.native_decide.ax_1_1]
+'AGDGemmWork.factor_four_gives_sixteen' depends on axioms: [AGDGemmWork.factor_four_gives_sixteen._native.native_decide.ax_1_1]
+'AGDGemmWork.four_sq' depends on axioms: [AGDGemmWork.four_sq._native.native_decide.ax_1_1]
+'AGDGemmWork.dim_factorization' depends on axioms: [AGDGemmWork.dim_factorization._native.native_decide.ax_1_1]
+'AGDGemmWork.canonical_workRatio' depends on axioms: [AGDGemmWork.canonical_workRatio._native.native_decide.ax_1_1]
+'AGDGemmWork.canonical_is_instance_of_q_square' depends on axioms: [propext,
+'AGDGemmWork.canonical_q_square_equals_sixteen' depends on axioms: [propext,
+'AGDGemmWork.WorkModelHolds' does not depend on any axioms
+'AGDGemmWork.work_model_closure' depends on axioms: [propext,
+=== module: ./AGDMaximallyTypedClaim.lean ===
+'AGD.iterate' does not depend on any axioms
+'AGD.iterate_zero' does not depend on any axioms
+'AGD.iterate_succ' does not depend on any axioms
+'AGD.Equivalent' does not depend on any axioms
+'AGD.equivalent_refl' does not depend on any axioms
+'AGD.equivalent_symm' does not depend on any axioms
+'AGD.equivalent_trans' does not depend on any axioms
+'AGD.Intertwines' does not depend on any axioms
+'AGD.projection_step' does not depend on any axioms
+'AGD.projection_iterate' does not depend on any axioms
+'AGD.WellDefined' does not depend on any axioms
+'AGD.intertwining_implies_wellDefined' does not depend on any axioms
+'AGD.ObservablePreserved' does not depend on any axioms
+'AGD.observable_preserved_step' does not depend on any axioms
+'AGD.quotient_observable_correct' does not depend on any axioms
+'AGD.Section' does not depend on any axioms
+'AGD.section_right_inverse' depends on axioms: [Quot.sound]
+'AGD.section_surjective' does not depend on any axioms
+'AGD.section_injective' does not depend on any axioms
+'AGD.reconstructed_operator' depends on axioms: [Quot.sound]
+'AGD.reconstructed_iterate' does not depend on any axioms
+'AGD.fullWork' does not depend on any axioms
+'AGD.quotientWork' does not depend on any axioms
+'AGD.workRatio' does not depend on any axioms
+'AGD.outer_factorization' depends on axioms: [propext]
+'AGD.quotientWork_ne_zero' depends on axioms: [propext]
+'AGD.workRatio_outer' depends on axioms: [propext]
+'AGD.fullWork_1024' depends on axioms: [AGD.fullWork_1024._native.native_decide.ax_1_1]
+'AGD.quotientWork_256' depends on axioms: [AGD.quotientWork_256._native.native_decide.ax_1_1]
+'AGD.canonical_work_factor' depends on axioms: [AGD.canonical_work_factor._native.native_decide.ax_1_1]
+'AGD.canonical_work_identity' depends on axioms: [AGD.canonical_work_identity._native.native_decide.ax_1_1]
+'AGD.canonical_strict_reduction' depends on axioms: [AGD.canonical_strict_reduction._native.native_decide.ax_1_1]
+'AGD.formal_speedup_semantics' depends on axioms: [Quot.sound]
+'AGD.fullTotalCost' does not depend on any axioms
+'AGD.reducedTotalCost' does not depend on any axioms
+'AGD.StrictCostReduction' does not depend on any axioms
+'AGD.strict_cost_reduction' depends on axioms: [propext]
+'AGD.runtimeRatio' does not depend on any axioms
+'AGD.canonicalRuntimeEvidence' depends on axioms: [AGD.canonicalRuntimeEvidence._native.native_decide.ax_1]
+'AGD.runtime_and_work_are_distinct' depends on axioms: [AGD.canonicalRuntimeEvidence._native.native_decide.ax_1,
+'AGD.complete_AGD_formal_closure' depends on axioms: [Quot.sound]
+'AGD.publishable' does not depend on any axioms
+'AGD.publishable_requires_formal' does not depend on any axioms
+'AGD.unpublished_if_formal_missing' does not depend on any axioms
+'AGD.unpublished_if_runtime_unbound' does not depend on any axioms
+'AGD.formal_closure_does_not_imply_runtime' depends on axioms: [AGD.canonicalRuntimeEvidence._native.native_decide.ax_1,
+'AGD.MaximalFormalHolds' does not depend on any axioms
+'AGD.maximal_formal_from_claim' depends on axioms: [Quot.sound]
+=== module: ./GODSQuotientClosure.lean ===
+'GODS.UniqueExists' does not depend on any axioms
+'GODS.GODSEquiv' does not depend on any axioms
+'GODS.godsEquiv_refl' does not depend on any axioms
+'GODS.godsEquiv_symm' does not depend on any axioms
+'GODS.godsEquiv_trans' does not depend on any axioms
+'GODS.Respects' does not depend on any axioms
+'GODS.mkG_sound' depends on axioms: [Quot.sound]
+'GODS.mkG_exact' depends on axioms: [propext]
+'GODS.mkG_eq_iff' depends on axioms: [propext, Quot.sound]
+'GODS.mkG_surjective' does not depend on any axioms
+'GODS.descendOp' depends on axioms: [Quot.sound]
+'GODS.descendOp_mk' depends on axioms: [Quot.sound]
+'GODS.gods_one_step' depends on axioms: [Quot.sound]
+'GODS.gods_descend' depends on axioms: [Quot.sound]
+'GODS.gods_descend_unique' depends on axioms: [Quot.sound]
+'GODS.iterate' does not depend on any axioms
+'GODS.iterate_zero' does not depend on any axioms
+'GODS.iterate_succ' does not depend on any axioms
+'GODS.respects_iterate' does not depend on any axioms
+'GODS.gods_recursive_descent' depends on axioms: [Quot.sound]
+'GODS.SectionOf' does not depend on any axioms
+'GODS.section_mk' does not depend on any axioms
+'GODS.gods_bidirectional_closure' depends on axioms: [Quot.sound]
+'GODS.inducedObs' does not depend on any axioms
+'GODS.inducedObs_mk' does not depend on any axioms
+'GODS.inducedObs_recovers' does not depend on any axioms
+'GODS.observe_via_section' depends on axioms: [Quot.sound]
+'GODS.FibreConstant' does not depend on any axioms
+'GODS.inducedInv' does not depend on any axioms
+'GODS.invariant_descends' depends on axioms: [Quot.sound]
+'GODS.reverse_one_step' does not depend on any axioms
+'GODS.reverse_respects' depends on axioms: [propext, Quot.sound]
+'GODS.reverse_equiv_from_projection' depends on axioms: [propext, Quot.sound]
+'GODS.reverse_recursive_from_bidirectional' depends on axioms: [Quot.sound]
+'GODS.reverse_fibre_iterate' depends on axioms: [propext]
+'GODS.gods_len3_certified' depends on axioms: [Quot.sound]
+'GODS.MaximalOperational' depends on axioms: [Quot.sound]
+'GODS.gods_maximal_operational_claim' depends on axioms: [Quot.sound]
+'GODS.formal_is_not_runtime' depends on axioms: [Quot.sound]
+'GODS.gods_stack_closure' depends on axioms: [Quot.sound]
+=== module: ./HPL_AGD_01_Obligations.lean ===
+'HPLAGD01.solveB' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPLAGD01.T' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPLAGD01.Tbar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPLAGD01.pi' does not depend on any axioms
+'HPLAGD01.sigma' does not depend on any axioms
+'HPLAGD01.bFull' depends on axioms: [propext, Quot.sound]
+'HPLAGD01.reduced_exact_solution' depends on axioms: [propext,
+'HPLAGD01.full_exact_solution' depends on axioms: [propext,
+'HPLAGD01.section_pi_sigma' does not depend on any axioms
+'HPLAGD01.descent_intertwines' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPLAGD01.hpl_agd_01_reconstruction_closure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HPLAGD01.reduced_solution_observable' depends on axioms: [propext,
+=== module: ./LeanSpeedup.lean ===
+=== module: ./PCSSCertificate.lean ===
+'PCSS.publishable' does not depend on any axioms
+'PCSS.publish_requires_all_gates' does not depend on any axioms
+'PCSS.lean_false_not_publishable' does not depend on any axioms
+'PCSS.bidirectionalQuotientPass' does not depend on any axioms
+'PCSS.verifiedResult' does not depend on any axioms
+'PCSS.strongestUnverified' does not depend on any axioms
+=== module: ./ProvenAgd/AGDTheoremSeries.lean ===
+'AGD.Proven.jitter_close' does not depend on any axioms
+'AGD.Proven.jitter_close_reflexive' does not depend on any axioms
+'AGD.Proven.jitter_close_symmetric' does not depend on any axioms
+'AGD.Proven.jitter_close_triangle' does not depend on any axioms
+'AGD.Proven.operator_preserves_equivalence' does not depend on any axioms
+'AGD.Proven.measured_speedup' does not depend on any axioms
+'AGD.Proven.valid_certificate' does not depend on any axioms
+'AGD.Proven.speedup_positive' does not depend on any axioms
+'AGD.Proven.benchmark_claim_valid' does not depend on any axioms
+'AGD.Proven.agd_transport_closure' does not depend on any axioms
+'AGD.Proven.curvature_convergence' does not depend on any axioms
+'AGD.Proven.AGDEquiv' does not depend on any axioms
+'AGD.Proven.agd_bisimulation' does not depend on any axioms
+'AGD.Proven.agd_flow_semigroup' does not depend on any axioms
+'AGD.Proven.agd_master_dynamic_closure' does not depend on any axioms
+'AGD.Proven.iterate_operator' does not depend on any axioms
+'AGD.Proven.agd_spectral_convergence' depends on axioms: [propext]
+'AGD.Proven.IsAdaptive' does not depend on any axioms
+'AGD.Proven.adaptive_operator_preservation' does not depend on any axioms
+'AGD.Proven.rollback' does not depend on any axioms
+'AGD.Proven.IsStable' does not depend on any axioms
+'AGD.Proven.agd_failure_recovery' does not depend on any axioms
+'AGD.Proven.iterate_H' does not depend on any axioms
+'AGD.Proven.ManifoldAdmissible' does not depend on any axioms
+'AGD.Proven.InvariantStableRegion' does not depend on any axioms
+'AGD.Proven.learning_manifold_stability' does not depend on any axioms
+'AGD.Proven.Lineage' does not depend on any axioms
+'AGD.Proven.reconstruct_state' does not depend on any axioms
+'AGD.Proven.memory_lineage_reconstruction' does not depend on any axioms
+'AGD.Proven.execute_cycle' does not depend on any axioms
+'AGD.Proven.agd_autonomous_closure' does not depend on any axioms
+=== module: ./ProvenAgd/ConstitutionalKernel.lean ===
+'Chronofold.CVR.Operator' does not depend on any axioms
+'Chronofold.CVR.namespace_preserving' does not depend on any axioms
+'Chronofold.CVR.version_preserving' does not depend on any axioms
+'Chronofold.CVR.provenance_preserving' does not depend on any axioms
+'Chronofold.CVR.relationship_preserving' does not depend on any axioms
+'Chronofold.CVR.acyclicity_preserving' does not depend on any axioms
+'Chronofold.CVR.namespace_preservation' does not depend on any axioms
+'Chronofold.CVR.version_preservation' does not depend on any axioms
+'Chronofold.CVR.provenance_preservation' does not depend on any axioms
+'Chronofold.CVR.relationship_resolution_preservation' does not depend on any axioms
+'Chronofold.CVR.acyclicity_preservation' does not depend on any axioms
+'Chronofold.CVR.admissible_state' does not depend on any axioms
+'Chronofold.CVR.Omega_preservation' does not depend on any axioms
+'Chronofold.CVR.admissible_operator' does not depend on any axioms
+'Chronofold.CVR.admissibility_closure' does not depend on any axioms
+'Chronofold.CVR.canonical_omega_characterization' does not depend on any axioms
+'Chronofold.CVR.compose' does not depend on any axioms
+'Chronofold.CVR.operator_composition_closed' does not depend on any axioms
+'Chronofold.CVR.id_op' does not depend on any axioms
+'Chronofold.CVR.identity_operator_admissible' does not depend on any axioms
+'Chronofold.CVR.operator_composition_associative' does not depend on any axioms
+'Chronofold.CVR.invertible' does not depend on any axioms
+'Chronofold.CVR.inverse_is_admissible' does not depend on any axioms
+'Chronofold.CVR.D' does not depend on any axioms
+'Chronofold.CVR.defect_monotonicity' does not depend on any axioms
+'Chronofold.CVR.apply_chain' does not depend on any axioms
+'Chronofold.CVR.constitutional_closure' does not depend on any axioms
+=== module: ./ProvenAgd/CorrectByConstructionSearch.lean ===
+'Chronofold.CorrectByConstruction.StrongInductionOn' does not depend on any axioms
+'Chronofold.CorrectByConstruction.Invariant' does not depend on any axioms
+'Chronofold.CorrectByConstruction.equiv_iff_invariant_eq' does not depend on any axioms
+'Chronofold.CorrectByConstruction.Admissible' does not depend on any axioms
+'Chronofold.CorrectByConstruction.Reconstruction' does not depend on any axioms
+'Chronofold.CorrectByConstruction.sound_execution' does not depend on any axioms
+'Chronofold.CorrectByConstruction.RankStep' does not depend on any axioms
+'Chronofold.CorrectByConstruction.finite_termination' does not depend on any axioms
+'Chronofold.CorrectByConstruction.ValidConcrete' does not depend on any axioms
+'Chronofold.CorrectByConstruction.terminal_reconstructs_valid' does not depend on any axioms
+'Chronofold.CorrectByConstruction.correctByConstructionSearch' does not depend on any axioms
+=== module: ./SIM2xrEquivalenceClosure.lean ===
+'SIM2xrEquivalenceClosure.Intertwines' does not depend on any axioms
+'SIM2xrEquivalenceClosure.Section' does not depend on any axioms
+'SIM2xrEquivalenceClosure.ObservableFactor' does not depend on any axioms
+'SIM2xrEquivalenceClosure.iter' does not depend on any axioms
+'SIM2xrEquivalenceClosure.quotient_iterate' does not depend on any axioms
+'SIM2xrEquivalenceClosure.reconstructed_iterate' does not depend on any axioms
+'SIM2xrEquivalenceClosure.observable_preserved_iterate' does not depend on any axioms
+'SIM2xrEquivalenceClosure.exact_quotient_closure' does not depend on any axioms
+=== module: ./SpeedupExactInvariant.lean ===
+'Speedup.Descends' does not depend on any axioms
+'Speedup.finite_descent' does not depend on any axioms
+'Speedup.bidirectional' does not depend on any axioms
+'Speedup.exact_sector_semantics' does not depend on any axioms
+=== module: ./SpeedupLean.lean ===
+=== module: ./ax2.lean ===
+=== module: ./axcheck.lean ===
+=== module: ./chronofold/ChronoFoldProof.lean ===
+'ChronoFold.Intertwines' does not depend on any axioms
+'ChronoFold.Section' does not depend on any axioms
+'ChronoFold.ObservablePreserved' does not depend on any axioms
+'ChronoFold.iter' does not depend on any axioms
+'ChronoFold.forward_iterate' does not depend on any axioms
+'ChronoFold.reconstruction' does not depend on any axioms
+'ChronoFold.reconstructed_operator' does not depend on any axioms
+'ChronoFold.reconstructed_iterate' does not depend on any axioms
+'ChronoFold.observable_iterate' does not depend on any axioms
+'ChronoFold.fullWork' does not depend on any axioms
+'ChronoFold.quotientWork' does not depend on any axioms
+'ChronoFold.exactWorkRatio16' does not depend on any axioms
+'ChronoFold.strictWorkReduction' does not depend on any axioms
+=== module: ./chronofold/ExactQuotientClosure.lean ===
+'SiliconSpeedup.Intertwines' does not depend on any axioms
+'SiliconSpeedup.Section' does not depend on any axioms
+'SiliconSpeedup.ObservableFactor' does not depend on any axioms
+'SiliconSpeedup.iter' does not depend on any axioms
+'SiliconSpeedup.quotient_iterate' does not depend on any axioms
+'SiliconSpeedup.reconstructed_iterate' does not depend on any axioms
+'SiliconSpeedup.observable_preserved_iterate' does not depend on any axioms
+'SiliconSpeedup.exact_quotient_closure' does not depend on any axioms
+=== module: ./chronofold/GODSQuotientClosure.lean ===
+'ChronoFold.GODS.UniqueExists' does not depend on any axioms
+'ChronoFold.GODS.GODSEquiv' does not depend on any axioms
+'ChronoFold.GODS.Respects' does not depend on any axioms
+'ChronoFold.GODS.Q' does not depend on any axioms
+'ChronoFold.GODS.mkG' does not depend on any axioms
+'ChronoFold.GODS.mkG_sound' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.inducedObs' does not depend on any axioms
+'ChronoFold.GODS.mkG_exact' does not depend on any axioms
+'ChronoFold.GODS.mkG_surjective' does not depend on any axioms
+'ChronoFold.GODS.descendOp' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.gods_one_step' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.gods_descend' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.iterate' does not depend on any axioms
+'ChronoFold.GODS.respects_iterate' does not depend on any axioms
+'ChronoFold.GODS.gods_recursive_descent' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.SectionOf' does not depend on any axioms
+'ChronoFold.GODS.gods_bidirectional_closure' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.reverse_respects' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.gods_len3_certified' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.MaximalOperational' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.gods_maximal_operational_claim' depends on axioms: [Quot.sound]
+'ChronoFold.GODS.gods_stack_closure' depends on axioms: [Quot.sound]
+=== module: ./chronofold/LinearQuotientProof.lean ===
+'ChronoFold.LinearQuotient.Intertwines' does not depend on any axioms
+'ChronoFold.LinearQuotient.Section' does not depend on any axioms
+'ChronoFold.LinearQuotient.ObservablePreserved' does not depend on any axioms
+'ChronoFold.LinearQuotient.iter' does not depend on any axioms
+'ChronoFold.LinearQuotient.finite_descent' does not depend on any axioms
+'ChronoFold.LinearQuotient.reconstruction' does not depend on any axioms
+'ChronoFold.LinearQuotient.reconstructed_operator' does not depend on any axioms
+'ChronoFold.LinearQuotient.observable_iterate' does not depend on any axioms
+'ChronoFold.LinearQuotient.fullWork' does not depend on any axioms
+'ChronoFold.LinearQuotient.quotientWork' does not depend on any axioms
+'ChronoFold.LinearQuotient.exactWorkRatio16' does not depend on any axioms
+'ChronoFold.LinearQuotient.strictWorkReduction' does not depend on any axioms
+=== module: ./chronofold/ProgressTargetCoupling.lean ===
+'ChronoFold.Intertwines' does not depend on any axioms
+'ChronoFold.Section' does not depend on any axioms
+'ChronoFold.iter' does not depend on any axioms
+'ChronoFold.forward_iterate' does not depend on any axioms
+'ChronoFold.reconstructed_iterate' does not depend on any axioms
+'ChronoFold.strongInductionOn' does not depend on any axioms
+'ChronoFold.Reaches' does not depend on any axioms
+'ChronoFold.progress_target_coupling' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ChronoFold.zero_defect_is_target' does not depend on any axioms
+'ChronoFold.literal_target_transfer' does not depend on any axioms
+'ChronoFold.reconstructed_target_transfer' does not depend on any axioms
+'ChronoFold.progress_target_literal_closure' depends on axioms: [propext, Classical.choice, Quot.sound]
+=== module: ./chronofold/WeakCouplingBound.lean ===
+'SiliconSpeedup.iterNat' does not depend on any axioms
+'SiliconSpeedup.weak_coupling_bound' depends on axioms: [propext]
+'SiliconSpeedup.weak_coupling_zero' depends on axioms: [propext, Quot.sound]
+=== module: ./linear/LinearQuotientProof.lean ===
+'LinearQuotient.Intertwines' does not depend on any axioms
+'LinearQuotient.Section' does not depend on any axioms
+'LinearQuotient.ObservablePreserved' does not depend on any axioms
+'LinearQuotient.iter' does not depend on any axioms
+'LinearQuotient.finite_descent' does not depend on any axioms
+'LinearQuotient.reconstruction' does not depend on any axioms
+'LinearQuotient.reconstructed_operator' does not depend on any axioms
+'LinearQuotient.observable_iterate' does not depend on any axioms
+'LinearQuotient.fullWork' does not depend on any axioms
+'LinearQuotient.quotientWork' does not depend on any axioms
+'LinearQuotient.exactWorkRatio16' does not depend on any axioms
+'LinearQuotient.strictWorkReduction' does not depend on any axioms
+=== module: ./scaffolding/PCSSCertificate.lean ===
+'PCSSScaffold.Quotient' does not depend on any axioms
+'PCSSScaffold.ForwardEquivalent' does not depend on any axioms
+'PCSSScaffold.ReverseBound' does not depend on any axioms
+'PCSSScaffold.InvariantPreserved' does not depend on any axioms
+'PCSSScaffold.forward_equivalence_refl' does not depend on any axioms
+=== module: ./workflow_isolation/MaximalPreLean.lean ===
+'SpeedupWorkflow.Intertwining' does not depend on any axioms
+'SpeedupWorkflow.Reconstruction' does not depend on any axioms
+'SpeedupWorkflow.Observability' does not depend on any axioms
+'SpeedupWorkflow.Iterate' does not depend on any axioms
+'SpeedupWorkflow.finite_descent' does not depend on any axioms
+'SpeedupWorkflow.reconstruction' does not depend on any axioms
+'SpeedupWorkflow.observable_preservation' does not depend on any axioms
+'SpeedupWorkflow.fullWork' does not depend on any axioms
+'SpeedupWorkflow.reducedWork' does not depend on any axioms
+'SpeedupWorkflow.work_16x' does not depend on any axioms
+'SpeedupWorkflow.reduced_is_strictly_smaller' does not depend on any axioms
+'SpeedupWorkflow.RuntimeBindingValid' does not depend on any axioms

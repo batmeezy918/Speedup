@@ -1,0 +1,114 @@
+EOF HIERARCHICAL ACCELERATION - ELEVATED AND CORRECTED VALIDATION
+========================================================================
+SOURCE : /root/EOF_HIERARCHICAL_ACCELERATION_VALIDATION
+LANE   : Q0_site0 (single lane, single accounting regime)
+
+DEFECT REGISTER
+------------------------------------------------------------------------
+D1  Two accounting regimes in one report.
+      Header 'MAX VALID BRANCH SPEEDUP' is a no-overhead branch ratio (baseline/quotient). The COMPOSITION table is overhead-inclusive end-to-end (baseline/E2E). The header is the more favourable regime.
+      FIX: Publish one regime only: overhead-inclusive E2E. Branch ratios become diagnostic, not headline.
+D2  Per-L branch switching with no disclosed selection rule.
+      The COMPOSITION table mixes two branch families (L=2..6 vs L=7..8), so the trend is not one algorithm. The end_to_end_seconds values are not present in BRANCH_RESULTS.json, so the table is not reproducible from the emitted artifacts.
+      FIX: Pin a single lane (Q0_site0) for all L and re-emit E2E into the artifact set.
+D3  The speedup denominator is not a fixed reference.
+      Baseline is re-measured per branch and varies at fixed L, so cross-branch speedups are not commensurable.
+      FIX: One baseline per L, shared by all branches; branch ranking then compares numerators only.
+D4  An empty adversarial set was read as PASS.
+      ADVERSARIAL_RESULTS.json is []. Under a fail-closed constitution, zero adversarial trials is INDETERMINATE, not PASS. The report nevertheless prints 'ADVERSARIAL FAILURES []' next to 'STATUS: PASS'.
+      FIX: Report INDETERMINATE until a declared negative-control battery exists; see GATE_VALIDATION.json for the 4 that were already in the data.
+D5  Single-shot microsecond timings with no dispersion.
+      Quotient timings are 1.8-3.5 us and were taken without repeats, median or CI, yet per-L branch selection turns on differences of that order (L=8: 1.771us vs 2.188us = 24%). Selection is therefore noise-exposed.
+      FIX: Report median-of-N with IQR; require separation > dispersion before ranking branches.
+D6  A constant was published where a law was measured.
+      '385.912x' is one point. The actual result is exponential-over-linear in L, which is falsifiable at L=9,10,11.
+      FIX: Publish the fitted law with R^2 and its out-of-sample predictions as the claim.
+
+CORRECTED HEADLINE
+------------------------------------------------------------------------
+  old (no-overhead branch, mixed regime) : 385.912x
+  new (overhead-inclusive, single lane)   : 172.46x
+  correction                              : 2.238x DOWN
+  At L=8 the defensible overhead-inclusive single-lane number is 172.46x, not 385.912x. The old header excluded reconstruction overhead, which is 55.3% of end-to-end time at L=8.
+
+CORRECTED SINGLE-LANE MEASUREMENT
+------------------------------------------------------------------------
+ L | state_red | baseline_s |  quotient_s |    e2e_s | ovh% |  e2e_x | was_x
+ 2 |         2 | 1.4480e-05 | 2.6570e-06 | 4.1150e-06 | 35.4 |   3.52 |   3.52
+ 3 |         4 | 2.8646e-05 | 2.6050e-06 | 4.2190e-06 | 38.3 |   6.79 |   6.79
+ 4 |         8 | 5.9062e-05 | 2.7600e-06 | 4.3230e-06 | 36.2 |  13.66 |  13.66
+ 5 |        16 | 1.2339e-04 | 2.7090e-06 | 4.4270e-06 | 38.8 |  27.87 |  27.87
+ 6 |        32 | 2.5250e-04 | 2.7090e-06 | 4.6350e-06 | 41.6 |  54.48 |  54.48
+ 7 |        64 | 5.3922e-04 | 2.8640e-06 | 4.8960e-06 | 41.5 | 110.13 |  83.60
+ 8 |       128 | 8.4437e-04 | 2.1880e-06 | 4.8960e-06 | 55.3 | 172.46 | 136.58
+
+SCALING LAW  (the actual result)
+------------------------------------------------------------------------
+  T_base(L) = 3.6594e-06 * 2.0080^L          R2(log) = 0.997333
+  T_e2e(L)  = 3.7857e-06 + 1.4318e-07*L         R2      = 0.963603
+  S(L)      = 3.6594e-06 * 2.0080^L / (3.7857e-06 + 1.4318e-07*L)
+  class     : Theta(2^L / L)   per-step growth tends to 2.0080
+
+  PREDICTIONS (unmeasured L, falsifiable)
+    S(9) =    382.8x   band [ 349.7,  435.5]x
+    S(10) =    747.6x   band [ 683.0,  850.5]x
+    S(11) =   1461.2x   band [1334.9, 1662.1]x
+    band basis: fit law/observed ratios spanned [0.914, 1.138] on L=2..8
+  first L exceeding a threshold:
+    S >   385.912x  at  L ~ 9.01
+    S >       500x  at  L ~ 9.4
+    S >      1000x  at  L ~ 10.43
+    S >      2000x  at  L ~ 11.47
+    S >      5000x  at  L ~ 12.83
+    S >     10000x  at  L ~ 13.86
+    S >    100000x  at  L ~ 17.28
+
+GATE  (the 4 discarded trials, promoted)
+------------------------------------------------------------------------
+  negative control : Q1_parity, unit parity drift per layer
+  signature        : residual == L exactly, at even L; cancels at odd L
+  sensitivity      : 4/4 = 1.000  (rejects known-defective)
+  specificity      : 24/24 = 1.000  (accepts valid, residual identically 0.0)
+  false neg / pos  : 0 / 0
+  Quotient projection makes error DETECTION exponentially cheaper than error PREVENTION: prevention must certify 2^(L-1) states, detection certifies 1.
+  caveat: No tolerance is recorded anywhere in the source artifacts. Exactness is therefore an observed property of this run, not a declared gate parameter. Publishing it as a tolerance-free claim requires recording epsilon=0 explicitly.
+
+CROSS-DOMAIN LAW  (structure, never a multiplied number)
+------------------------------------------------------------------------
+  reduction 2^(L-1) identical in both domains : True
+  classical exactness : residual 0.0 at 24/24 accepted trials
+  quantum   exactness : projector + reconstruction residual 0.0 at every L
+  quantum closed form : 2^{L-1} DERIVED from gauge condition (C1b)
+
+  SAME 2x REDUCTION, DIFFERENT SPEEDUP
+    L=2 classical 3.52x   vs   L=2 quantum 1.31x   -> 2.70x apart
+    quantum full_runtime is FLAT over L=2..5: log-fit 1.1712/L (L=2..4 only: 1.0487/L)
+    reduced_runtime flat at 1.0047/L -> the dense path never paid for the
+    unphysical sector. Nothing to remove -> nothing to gain.
+    then a single-step inflection at L=6: full 3.933e-03 vs reduced 4.755e-04 = 8.27x
+
+  Reduction is not speedup; speedup is the crossover where a paid exponential meets an unpaid quotient.
+
+  NEW
+    + The 2^(L-1) reduction is shown domain-invariant and is upgraded from observed (classical) to derived (quantum), so the shared form is forced rather than fitted.
+    + A sufficiency condition is stated for quotient acceleration: the eliminated states must have been genuinely costed. This is the first statement in this repo that predicts a speedup of ZERO for a correct, exact, 32x reduction.
+    + The crossover parameter is made the operative quantity, converting four previously unrelated speedup numbers into one law with out-of-sample predictions.
+    + Exactness is repurposed as a detection result: a 6.25% structural drift at L=8 is caught with zero tolerance budget because detection runs in the O(1) quotient, not the 2^(L-1) full space.
+  NOT NEW
+    - No new speedup number is produced. The corrected classical headline is lower than the one it replaces. The quantum 1.305x-8.272x range and the 2^(L-1) law are pre-existing.
+
+FALSIFIERS
+------------------------------------------------------------------------
+  F1: classical S(9) outside [350, 435]x -> law refuted.
+  F2: classical end-to-end runtime stops being O(1)+O(L) at L=9 -> core-is-O(1) claim refuted.
+  F3: ATD-QG full_runtime at L=7 falls back below ~1.2e-3 s -> crossover claim refuted.
+  F4: ATD-QG at L=7,8 shows large speedup while its full_runtime stays flat -> sufficiency condition refuted.
+  F5: any accepted classical trial with residual != 0.0 -> exactness claim refuted.
+  F6: measured g separates from 2.0 as L grows -> claim must be restated as a fitted base, not Theta(2^L/L).
+
+GOVERNING LAW
+------------------------------------------------------------------------
+  CLAIM STRENGTH <= EVIDENCE STRENGTH. This pass LOWERS the published
+  headline by 2.24x, ADDS the out-of-sample predictions, and PROMOTES 4
+  discarded trials into the gate result. No number is multiplied across
+  domains. The admissible claim set strictly shrinks.

@@ -1,0 +1,128 @@
+{
+  "corrections_move_in_both_directions": true,
+  "defects": [
+    {
+      "defect": "Two accounting regimes in one report.",
+      "detail": "Header 'MAX VALID BRANCH SPEEDUP' is a no-overhead branch ratio (baseline/quotient). The COMPOSITION table is overhead-inclusive end-to-end (baseline/E2E). The header is the more favourable regime.",
+      "fix": "Publish one regime only: overhead-inclusive E2E. Branch ratios become diagnostic, not headline.",
+      "header_value_x": 385.9117915904936,
+      "id": "D1",
+      "overstatement_factor": 2.2376599634369287,
+      "same_configuration_overhead_inclusive_x": 172.46221405228758
+    },
+    {
+      "branch_switches": [
+        {
+          "branches": [
+            "Q0_site0",
+            "Q3_endpoint"
+          ],
+          "from_L": 6,
+          "to_L": 7
+        }
+      ],
+      "defect": "Per-L branch switching with no disclosed selection rule.",
+      "detail": "The COMPOSITION table mixes two branch families (L=2..6 vs L=7..8), so the trend is not one algorithm. The end_to_end_seconds values are not present in BRANCH_RESULTS.json, so the table is not reproducible from the emitted artifacts.",
+      "e2e_timings_absent_from_branch_artifact": true,
+      "fix": "Pin a single lane (Q0_site0) for all L and re-emit E2E into the artifact set.",
+      "id": "D2",
+      "suboptimal_selections": [
+        {
+          "L": 7,
+          "best_valid_branch": "Q0_site0",
+          "best_valid_x": 110.1345996732026,
+          "reported_branch": "Q3_endpoint",
+          "reported_x": 83.60355392156863
+        },
+        {
+          "L": 8,
+          "best_valid_branch": "Q0_site0",
+          "best_valid_x": 172.46221405228758,
+          "reported_branch": "Q3_endpoint",
+          "reported_x": 136.58047385620915
+        }
+      ]
+    },
+    {
+      "defect": "The speedup denominator is not a fixed reference.",
+      "detail": "Baseline is re-measured per branch and varies at fixed L, so cross-branch speedups are not commensurable.",
+      "fix": "One baseline per L, shared by all branches; branch ranking then compares numerators only.",
+      "id": "D3",
+      "max_spread_pct": 31.73435160008109,
+      "per_L_baseline_spread": [
+        {
+          "L": 2,
+          "max_s": 1.448e-05,
+          "min_s": 1.3334e-05,
+          "spread_pct": 8.594570271486424
+        },
+        {
+          "L": 3,
+          "max_s": 2.8646e-05,
+          "min_s": 2.6302e-05,
+          "spread_pct": 8.91186981978558
+        },
+        {
+          "L": 4,
+          "max_s": 5.9062e-05,
+          "min_s": 5.8333e-05,
+          "spread_pct": 1.2497214269795887
+        },
+        {
+          "L": 5,
+          "max_s": 0.000123386,
+          "min_s": 0.000114479,
+          "spread_pct": 7.780466286393128
+        },
+        {
+          "L": 6,
+          "max_s": 0.0002525,
+          "min_s": 0.00023974,
+          "spread_pct": 5.322432635354968
+        },
+        {
+          "L": 7,
+          "max_s": 0.000539219,
+          "min_s": 0.000409323,
+          "spread_pct": 31.73435160008109
+        },
+        {
+          "L": 8,
+          "max_s": 0.000844375,
+          "min_s": 0.000668698,
+          "spread_pct": 26.27150073725357
+        }
+      ]
+    },
+    {
+      "adversarial_trials_recorded": 0,
+      "defect": "An empty adversarial set was read as PASS.",
+      "detail": "ADVERSARIAL_RESULTS.json is []. Under a fail-closed constitution, zero adversarial trials is INDETERMINATE, not PASS. The report nevertheless prints 'ADVERSARIAL FAILURES []' next to 'STATUS: PASS'.",
+      "fail_closed_verdict": "INDETERMINATE",
+      "fix": "Report INDETERMINATE until a declared negative-control battery exists; see GATE_VALIDATION.json for the 4 that were already in the data.",
+      "id": "D4",
+      "incidental_negative_controls_found": 4
+    },
+    {
+      "defect": "Single-shot microsecond timings with no dispersion.",
+      "detail": "Quotient timings are 1.8-3.5 us and were taken without repeats, median or CI, yet per-L branch selection turns on differences of that order (L=8: 1.771us vs 2.188us = 24%). Selection is therefore noise-exposed.",
+      "fix": "Report median-of-N with IQR; require separation > dispersion before ranking branches.",
+      "id": "D5",
+      "inter_branch_spread_at_L8_pct": 137111517.36745885,
+      "quotient_seconds_range_s": [
+        2.188e-06,
+        2.864e-06
+      ]
+    },
+    {
+      "defect": "A constant was published where a law was measured.",
+      "detail": "'385.912x' is one point. The actual result is exponential-over-linear in L, which is falsifiable at L=9,10,11.",
+      "fix": "Publish the fitted law with R^2 and its out-of-sample predictions as the claim.",
+      "id": "D6"
+    }
+  ],
+  "defects_found": 6,
+  "net_effect": "Header is 2.238x too high (D1); the L=7,8 table rows are 1.32x and 1.26x too LOW (D2). Correcting both is what makes the single-lane claim monotone and defensible.",
+  "protocol": "EOF_HIERARCHICAL_ACCELERATION_ELEVATION_AUDIT",
+  "source_artifact_dir": "/root/EOF_HIERARCHICAL_ACCELERATION_VALIDATION"
+}

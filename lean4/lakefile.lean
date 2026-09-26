@@ -19,5 +19,6 @@ lean_lib «SpeedupLean» where
     `GODSQuotientClosure,
     `SpeedupLean,
     `HPL_AGD_01_Obligations,
-    `SIM2xrEquivalenceClosure
+    `SIM2xrEquivalenceClosure,
+    `HierarchicalScaling
   ]

@@ -1,0 +1,214 @@
+{
+  "accounting_regime": "overhead-inclusive end-to-end (single regime)",
+  "baseline_law": {
+    "A": 3.6594352418845505e-06,
+    "R2_log": 0.9973326333623956,
+    "form": "T_base(L) = A * g^L",
+    "g": 2.0080449496668296,
+    "g_minus_2_pct": 0.402247483341478,
+    "reading": "Baseline is exponential in L with growth 2.008/L-step, i.e. the workload really does pay 2^(L-1)."
+  },
+  "candidate_law": {
+    "R2": 0.9636034678997917,
+    "a_s": 3.785678571428572e-06,
+    "b_s_per_L": 1.4317857142857143e-07,
+    "form": "T_e2e(L) = a + b*L",
+    "reading": "O(1) quotient core plus O(L) reconstruction/section overhead. The core is 1.8-3.5us flat across L=2..8."
+  },
+  "corrected_headline": {
+    "correction_factor": 2.2376599634369287,
+    "new_header_x": 172.46221405228758,
+    "old_header_x": 385.9117915904936,
+    "statement": "At L=8 the defensible overhead-inclusive single-lane number is 172.46x, not 385.912x. The old header excluded reconstruction overhead, which is 55.3% of end-to-end time at L=8."
+  },
+  "corrected_single_lane_table": [
+    {
+      "L": 2,
+      "baseline_s": 1.448e-05,
+      "branch": "Q0_site0",
+      "branch_no_overhead_x": 5.449755363191569,
+      "e2e_s": 4.115e-06,
+      "e2e_speedup_x": 3.5188335358444713,
+      "overhead_pct_of_e2e": 35.431348724179834,
+      "overhead_s": 1.4580000000000003e-06,
+      "quotient_s": 2.657e-06,
+      "source_reported_x": 3.5188335358444713
+    },
+    {
+      "L": 3,
+      "baseline_s": 2.8646e-05,
+      "branch": "Q0_site0",
+      "branch_no_overhead_x": 10.996545105566218,
+      "e2e_s": 4.219e-06,
+      "e2e_speedup_x": 6.789760606778858,
+      "overhead_pct_of_e2e": 38.2555107845461,
+      "overhead_s": 1.6139999999999997e-06,
+      "quotient_s": 2.605e-06,
+      "source_reported_x": 6.789760606778858
+    },
+    {
+      "L": 4,
+      "baseline_s": 5.9062e-05,
+      "branch": "Q0_site0",
+      "branch_no_overhead_x": 21.399275362318843,
+      "e2e_s": 4.323e-06,
+      "e2e_speedup_x": 13.662271570668517,
+      "overhead_pct_of_e2e": 36.15544760582929,
+      "overhead_s": 1.5630000000000001e-06,
+      "quotient_s": 2.76e-06,
+      "source_reported_x": 13.662271570668517
+    },
+    {
+      "L": 5,
+      "baseline_s": 0.000123386,
+      "branch": "Q0_site0",
+      "branch_no_overhead_x": 45.546696197858985,
+      "e2e_s": 4.427e-06,
+      "e2e_speedup_x": 27.87124463519313,
+      "overhead_pct_of_e2e": 38.80731872599956,
+      "overhead_s": 1.7180000000000003e-06,
+      "quotient_s": 2.709e-06,
+      "source_reported_x": 27.87124463519313
+    },
+    {
+      "L": 6,
+      "baseline_s": 0.0002525,
+      "branch": "Q0_site0",
+      "branch_no_overhead_x": 93.20782576596531,
+      "e2e_s": 4.635e-06,
+      "e2e_speedup_x": 54.476806903991374,
+      "overhead_pct_of_e2e": 41.55339805825243,
+      "overhead_s": 1.926e-06,
+      "quotient_s": 2.709e-06,
+      "source_reported_x": 54.476806903991374
+    },
+    {
+      "L": 7,
+      "baseline_s": 0.000539219,
+      "branch": "Q0_site0",
+      "branch_no_overhead_x": 188.27479050279328,
+      "e2e_s": 4.896e-06,
+      "e2e_speedup_x": 110.1345996732026,
+      "overhead_pct_of_e2e": 41.50326797385621,
+      "overhead_s": 2.032e-06,
+      "quotient_s": 2.864e-06,
+      "source_reported_x": 83.60355392156863
+    },
+    {
+      "L": 8,
+      "baseline_s": 0.000844375,
+      "branch": "Q0_site0",
+      "branch_no_overhead_x": 385.9117915904936,
+      "e2e_s": 4.896e-06,
+      "e2e_speedup_x": 172.46221405228758,
+      "overhead_pct_of_e2e": 55.31045751633987,
+      "overhead_s": 2.708e-06,
+      "quotient_s": 2.188e-06,
+      "source_reported_x": 136.58047385620915
+    }
+  ],
+  "lane": "Q0_site0",
+  "prediction_band": {
+    "band": [
+      0.9136011490328603,
+      1.1375306608195543
+    ],
+    "basis": "The fit's own law/observed ratios span [0.914, 1.138] over the fitted range; that dispersion is carried onto the out-of-sample points."
+  },
+  "predictions": {
+    "S_at_L_with_band": {
+      "10": {
+        "band_x": [
+          683.0390290453806,
+          850.456283793041
+        ],
+        "point_x": 747.6337237189849
+      },
+      "11": {
+        "band_x": [
+          1334.9394303565498,
+          1662.1416621192834
+        ],
+        "point_x": 1461.1840536427947
+      },
+      "9": {
+        "band_x": [
+          349.7491420132749,
+          435.4749039628483
+        ],
+        "point_x": 382.82476153135303
+      }
+    },
+    "S_exceeds_x_at_L": {
+      "1000": 10.43,
+      "10000": 13.86,
+      "100000": 17.28,
+      "2000": 11.47,
+      "385.912": 9.01,
+      "500": 9.4,
+      "5000": 12.83
+    },
+    "note": "Out-of-sample and falsifiable. Each is a testable assertion about an unmeasured L."
+  },
+  "protocol": "EOF_HIERARCHICAL_SCALING_LAW_V2",
+  "residual_risk": "Fitted on 7 points over L=2..8 with single-shot timings. The g=2.008 estimate is not separated from 2.0 at this sample size, so the claim is stated as Theta(2^L/L) with g measured, not as an exact base.",
+  "speedup_law": {
+    "asymptotic_per_step_growth": 2.0080449496668296,
+    "complexity_class": "exponential-over-linear",
+    "form": "S(L) = A*g^L / (a + b*L)  =  Theta(2^L / L)",
+    "per_step_growth": [
+      null,
+      1.9295,
+      2.0122,
+      2.04,
+      1.9546,
+      2.0217,
+      1.5659
+    ],
+    "single_lane_points": [
+      {
+        "L": 2,
+        "law_x": 3.623675904459021,
+        "observed_x": 3.5188335358444713,
+        "ratio": 1.02979463721332
+      },
+      {
+        "L": 3,
+        "law_x": 7.029342415027318,
+        "observed_x": 6.789760606778858,
+        "ratio": 1.0352857519025433
+      },
+      {
+        "L": 4,
+        "law_x": 13.651532669880933,
+        "observed_x": 13.662271570668517,
+        "ratio": 0.9992139739916575
+      },
+      {
+        "L": 5,
+        "law_x": 26.54098712842358,
+        "observed_x": 27.87124463519313,
+        "ratio": 0.9522713275212035
+      },
+      {
+        "L": 6,
+        "law_x": 51.6526138747277,
+        "observed_x": 54.476806903991374,
+        "ratio": 0.9481578824133183
+      },
+      {
+        "L": 7,
+        "law_x": 100.61909680971198,
+        "observed_x": 110.1345996732026,
+        "ratio": 0.9136011490328603
+      },
+      {
+        "L": 8,
+        "law_x": 196.1810563173021,
+        "observed_x": 172.46221405228758,
+        "ratio": 1.1375306608195543
+      }
+    ]
+  },
+  "why_this_lane": "L=2..6 and L=7..8 in the source table used different branches; Q0_site0 is valid and residual-0 at every L in 2..8, so it is the only lane that spans the whole range."
+}

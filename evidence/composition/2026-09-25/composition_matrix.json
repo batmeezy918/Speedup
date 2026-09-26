@@ -1,0 +1,72 @@
+[
+ {
+  "mechanism_a": "QMULT-02",
+  "mechanism_b": "AQGE-02",
+  "composability_class": "COMPOSABLE",
+  "composition_type": "trajectory_deepening",
+  "measured_S": 22.1545,
+  "product_S1xS2": 146.24,
+  "interaction_factor": 0.1515,
+  "notes": "same Tbar; stay-in-Q 14 steps; single Q+R; C1"
+ },
+ {
+  "mechanism_a": "QMULT-02",
+  "mechanism_b": "AGD-GEMM",
+  "composability_class": "COMPOSABLE",
+  "composition_type": "trajectory_deepening",
+  "measured_S": null,
+  "product_S1xS2": null,
+  "interaction_factor": null,
+  "notes": "16 steps; C2 family"
+ },
+ {
+  "mechanism_a": "AQGE-02",
+  "mechanism_b": "AGD-GEMM",
+  "composability_class": "COMPOSABLE",
+  "composition_type": "trajectory_deepening",
+  "measured_S": null,
+  "product_S1xS2": null,
+  "interaction_factor": null,
+  "notes": "14 steps; C2 family"
+ },
+ {
+  "mechanism_a": "QMULT-02",
+  "mechanism_b": "SIM2XR",
+  "composability_class": "INCOMPATIBLE",
+  "composition_type": "none",
+  "measured_S": null,
+  "product_S1xS2": null,
+  "interaction_factor": null,
+  "notes": "representation_mismatch matrix<->vector; no certified morphism"
+ },
+ {
+  "mechanism_a": "AQGE-02",
+  "mechanism_b": "SIM2XR",
+  "composability_class": "INCOMPATIBLE",
+  "composition_type": "none",
+  "measured_S": null,
+  "product_S1xS2": null,
+  "interaction_factor": null,
+  "notes": "same"
+ },
+ {
+  "mechanism_a": "AGD-GEMM",
+  "mechanism_b": "SIM2XR",
+  "composability_class": "INCOMPATIBLE",
+  "composition_type": "none",
+  "measured_S": null,
+  "product_S1xS2": null,
+  "interaction_factor": null,
+  "notes": "same"
+ },
+ {
+  "mechanism_a": "SIM2XR",
+  "mechanism_b": "QMULT-02",
+  "composability_class": "INCOMPATIBLE",
+  "composition_type": "none",
+  "measured_S": null,
+  "product_S1xS2": null,
+  "interaction_factor": null,
+  "notes": "same"
+ }
+]

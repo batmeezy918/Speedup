@@ -1,0 +1,52 @@
+{
+  "defect_signature": {
+    "description": "Unit parity drift injected per layer; accumulates linearly, cancels at odd L.",
+    "detected_at_even_L": [
+      2,
+      4,
+      6,
+      8
+    ],
+    "residual_by_L": {
+      "2": 2.0,
+      "4": 4.0,
+      "6": 6.0,
+      "8": 8.0
+    },
+    "residual_equals": "L (exactly, for every rejected trial)",
+    "undetectable_at_odd_L": [
+      3,
+      5,
+      7
+    ]
+  },
+  "false_negatives": 0,
+  "false_positives": 0,
+  "finding": "The Q1_parity lane is a declared-in-effect negative control that the report discarded.",
+  "key_result": {
+    "consequence": "A drift of relative size L/2^(L-1) is caught with zero tolerance budget because the comparison happens in the O(1) reduced space, not the 2^(L-1) full space. At L=8 that is 6.25% relative drift detected exactly.",
+    "evidence": "All 24 accepted trials have residual identically 0.0; the 4 rejected have residual identically L.",
+    "novel_operational_claim": "Quotient projection makes error DETECTION exponentially cheaper than error PREVENTION: prevention must certify 2^(L-1) states, detection certifies 1.",
+    "relative_drift_by_L": {
+      "2": 1.0,
+      "4": 0.5,
+      "6": 0.1875,
+      "8": 0.0625
+    },
+    "statement": "The gate is exact, not tolerance-based."
+  },
+  "protocol": "EOF_NEGATIVE_CONTROL_PROMOTION",
+  "residual_budget_note": "No tolerance is recorded anywhere in the source artifacts. Exactness is therefore an observed property of this run, not a declared gate parameter. Publishing it as a tolerance-free claim requires recording epsilon=0 explicitly.",
+  "sensitivity": {
+    "definition": "P(reject | known-defective)",
+    "detected": 4,
+    "of": 4,
+    "value": 1.0
+  },
+  "specificity": {
+    "accepted": 24,
+    "definition": "P(accept | valid)",
+    "of": 24,
+    "value": 1.0
+  }
+}

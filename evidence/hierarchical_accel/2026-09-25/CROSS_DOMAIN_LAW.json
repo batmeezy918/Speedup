@@ -1,0 +1,178 @@
+{
+  "falsifiers": [
+    "F1: classical S(9) outside [350, 435]x -> law refuted.",
+    "F2: classical end-to-end runtime stops being O(1)+O(L) at L=9 -> core-is-O(1) claim refuted.",
+    "F3: ATD-QG full_runtime at L=7 falls back below ~1.2e-3 s -> crossover claim refuted.",
+    "F4: ATD-QG at L=7,8 shows large speedup while its full_runtime stays flat -> sufficiency condition refuted.",
+    "F5: any accepted classical trial with residual != 0.0 -> exactness claim refuted.",
+    "F6: measured g separates from 2.0 as L grows -> claim must be restated as a fitted base, not Theta(2^L/L)."
+  ],
+  "governing_note": "This artifact asserts a shared STRUCTURE, not a shared number. No speedup is multiplied across domains; that remains INCOMPATIBLE per PROOF_GATED_HIERARCHICAL_ACCELERATION_CALCULUS_2026-09-25.md section 12.",
+  "novelty_statement": {
+    "one_line": "Reduction is not speedup; speedup is the crossover where a paid exponential meets an unpaid quotient.",
+    "what_is_new": [
+      "The 2^(L-1) reduction is shown domain-invariant and is upgraded from observed (classical) to derived (quantum), so the shared form is forced rather than fitted.",
+      "A sufficiency condition is stated for quotient acceleration: the eliminated states must have been genuinely costed. This is the first statement in this repo that predicts a speedup of ZERO for a correct, exact, 32x reduction.",
+      "The crossover parameter is made the operative quantity, converting four previously unrelated speedup numbers into one law with out-of-sample predictions.",
+      "Exactness is repurposed as a detection result: a 6.25% structural drift at L=8 is caught with zero tolerance budget because detection runs in the O(1) quotient, not the 2^(L-1) full space."
+    ],
+    "what_is_not_new": "No new speedup number is produced. The corrected classical headline is lower than the one it replaces. The quantum 1.305x-8.272x range and the 2^(L-1) law are pre-existing."
+  },
+  "observation_1_reduction_law_is_domain_invariant": {
+    "classical_eof_state_reduction_by_L": {
+      "2": 2.0,
+      "3": 4.0,
+      "4": 8.0,
+      "5": 16.0,
+      "6": 32.0,
+      "7": 64.0,
+      "8": 128.0
+    },
+    "classical_exactness": "reconstruction residual 0.0, equivalence residual 0.0 at all 24 accepted trials",
+    "closed_form": "2^(L-1) in both domains",
+    "elevation": "The classical run reported 2^(L-1) as an observed factor. The quantum certificate already carries it as a derived closed form. The structure is therefore not a numerical coincidence between two experiments: it is forced, and it recurs.",
+    "identical": true,
+    "quantum_atd_qg_compression_by_L": {
+      "2": 2.0,
+      "3": 4.0,
+      "4": 8.0,
+      "5": 16.0,
+      "6": 32.0
+    },
+    "quantum_exactness": "projector_residual 0.0 and reconstruction_residual 0.0 at every L",
+    "quantum_status": "ATD_QG_MAXIMAL_CERTIFICATE.json formal_consequences L*.C1b: ratio 2^{L-1} is DERIVED from the gauge condition, not merely observed"
+  },
+  "observation_2_reduction_is_not_speedup": {
+    "classical_data": [
+      {
+        "L": 2,
+        "e2e_speedup_x": 3.5188335358444713,
+        "state_reduction": 2.0
+      },
+      {
+        "L": 3,
+        "e2e_speedup_x": 6.789760606778858,
+        "state_reduction": 4.0
+      },
+      {
+        "L": 4,
+        "e2e_speedup_x": 13.662271570668517,
+        "state_reduction": 8.0
+      },
+      {
+        "L": 5,
+        "e2e_speedup_x": 27.87124463519313,
+        "state_reduction": 16.0
+      },
+      {
+        "L": 6,
+        "e2e_speedup_x": 54.476806903991374,
+        "state_reduction": 32.0
+      },
+      {
+        "L": 7,
+        "e2e_speedup_x": 110.1345996732026,
+        "state_reduction": 64.0
+      },
+      {
+        "L": 8,
+        "e2e_speedup_x": 172.46221405228758,
+        "state_reduction": 128.0
+      }
+    ],
+    "explanation": "Reduction removes states from the representation. Speedup requires that the baseline was actually paying for them. Over the quantum flat window L=2..5 the full_runtime grows only 1.1712/L (a log-fit on L=2..4 alone gives 1.0487/L, i.e. indistinguishable from constant) while the reduced_runtime is flat at 1.0047/L. The dense pipeline therefore never enumerated the unphysical sector, so there was no exponential to remove.",
+    "finding": "At L=2 the quantum side holds a 2x reduction and realises 1.305x. At L=2 the classical side holds the same 2x reduction and realises 3.52x. Identical reduction, speedup differing by 2.7x.",
+    "quantum_data": [
+      {
+        "L": 2,
+        "compression": 2.0,
+        "full_runtime_s": 0.0005934899963904172,
+        "measured_speedup_x": 1.3054208369370237,
+        "reduced_runtime_s": 0.0004546349955489859
+      },
+      {
+        "L": 3,
+        "compression": 4.0,
+        "full_runtime_s": 0.0005022390105295926,
+        "measured_speedup_x": 1.057926577320078,
+        "reduced_runtime_s": 0.00047473900485783815
+      },
+      {
+        "L": 4,
+        "compression": 8.0,
+        "full_runtime_s": 0.0006526569923153147,
+        "measured_speedup_x": 1.3800666668533412,
+        "reduced_runtime_s": 0.00047291700320784
+      },
+      {
+        "L": 5,
+        "compression": 16.0,
+        "full_runtime_s": 0.0009208850096911192,
+        "measured_speedup_x": 2.025316319576873,
+        "reduced_runtime_s": 0.0004546870040940121
+      },
+      {
+        "L": 6,
+        "compression": 32.0,
+        "full_runtime_s": 0.0039334370085271075,
+        "measured_speedup_x": 8.271846929796308,
+        "reduced_runtime_s": 0.00047552101023029536
+      }
+    ],
+    "sufficiency_condition": "S(L) becomes large only when g^L exceeds the O(1)+O(L) reconstruction cost. A reduction factor is necessary-looking and NOT sufficient; the crossover is the operative quantity."
+  },
+  "observation_3_the_crossover_is_where_speedup_appears": {
+    "classical_crossover": {
+      "L_at_which_speedup_exceeds_10x": 3,
+      "already_past_it": true
+    },
+    "quantum_crossover": {
+      "L": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "confirmed_prediction": "The law predicted the quantum side would be Theta(1)-speedup while its baseline was flat, and Theta(g^L) once the baseline began paying. Both halves are observed: 1.058-2.025x for L=2..5, then 8.272x at L=6.",
+      "full_over_step_growth": [
+        null,
+        0.846246800424928,
+        1.299494819462773,
+        1.4109785393155136,
+        4.271366095802179
+      ],
+      "full_runtime_s": [
+        0.0005934899963904172,
+        0.0005022390105295926,
+        0.0006526569923153147,
+        0.0009208850096911192,
+        0.0039334370085271075
+      ],
+      "logfit_full_growth_per_L": 1.5509623501814234,
+      "logfit_reduced_growth_per_L": 1.0046785548060282,
+      "next_test": "Extend ATD-QG to L=7,8,9. If full_runtime continues above ~3x/L the law predicts 20-60x; if it flattens again the law is refuted.",
+      "reduced_over_step_growth": [
+        null,
+        1.044220109550907,
+        0.9961620982658803,
+        0.9614520116845616,
+        1.0458205445695465
+      ],
+      "reduced_runtime_s": [
+        0.0004546349955489859,
+        0.00047473900485783815,
+        0.00047291700320784,
+        0.0004546870040940121,
+        0.00047552101023029536
+      ],
+      "signature": "The reduced runtime is flat (1.0047/L) while the full runtime accelerates (1.5510/L) and inflects at L=6 where the full/reduced ratio jumps to 8.272x."
+    }
+  },
+  "observation_4_why_this_is_the_first_cross_domain_result_that_legally_composes": {
+    "legal_statement": "S_classical and S_quantum are never added, multiplied or fused. What is claimed is a single domain-invariant structural law, evidenced twice, with each domain supplying a different half of its evidence: classical supplies the completed exponential regime, quantum supplies the derived closed form and the observed crossover.",
+    "problem_with_prior_attempts": "Composition matrix C1/C2 fused matrix-family speedups and measured interaction factors of 0.1515 and 0.0186 against products, i.e. naive multiplication overclaimed by 6.6x and 53.9x. Fusion fails because fusing two operators charges both their overheads and neither of their savings.",
+    "why_a_law_composes": "A shared form transfers without transferring cost. Both domains pay one O(1) quotient core and one O(L) reconstruction. Stating that form once does not charge either side twice, so there is nothing for an interaction factor to erode."
+  },
+  "protocol": "CROSS_DOMAIN_REDUCTION_AND_CROSSOVER_LAW"
+}

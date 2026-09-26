@@ -1,0 +1,43 @@
+{
+  "governing_law": "CLAIM_STRENGTH <= EVIDENCE_STRENGTH",
+  "operator_chain": "O_total = T o S o M o K o E o U o R o Q o A",
+  "date": "2026-09-25",
+  "branch": "fix/lean4-green @ a051123",
+  "certified_end_to_end": {
+    "matrix_family_C2": 35.8222,
+    "matrix_family_C1": 22.1545,
+    "components": {
+      "QMULT-02": 14.9469,
+      "AQGE-02": 9.7841,
+      "AGD-GEMM": 13.2075,
+      "SIM2XR_kernel": 15.143
+    },
+    "vector_domain": {"equivalence_faithful_median": 18.886},
+    "compiler_domain": {"unfold_v2_median": 485.7},
+    "refuted_products": [
+      {"product": 146.24, "measured": 22.1545, "interaction": 0.1515, "overclaim_x": 6.6},
+      {"product": 1931.49, "measured": 35.8222, "interaction": 0.0186, "overclaim_x": 53.9}
+    ]
+  },
+  "nodes": {
+    "A": {"layer": "ADMISSIBILITY", "instance": "gate manifest", "S": 1.0, "class": "precondition gate"},
+    "Q": {"layer": "QUOTIENT", "instance": "matrix block-constancy 256:1", "S": "certified implicitly", "class": "state-space reduction"},
+    "R": {"layer": "REPRESENTATIONAL_EQUIVALENCE", "instance": "section/reconstruction", "S": 14.9469, "class": "trajectory_deepening with Q, K"},
+    "U": {"layer": "ALGORITHMIC", "instance": "unfold_bench2 v2 interpreter", "S": 485.7, "class": "compiler domain; not composable with matrix"},
+    "E": {"layer": "SIM2XR_EQUIVALENCE", "instance": "equivalence_faithful gaussian", "S": 18.886, "class": "vector domain"},
+    "K": {"layer": "KERNEL", "instance": "quotient/merge kernels", "S": [14.9469, 9.7841, 13.2075, 15.143], "class": "matrix domain"},
+    "M": {"layer": "MICROKERNEL", "instance": "C-cluster SIMD v6 8x8 packed", "S": 3.499, "class": "simd micro"},
+    "S": {"layer": "SILICON", "instance": "A78 silicon closure runs", "S": "19.99..457.1 empirical", "class": "REPRODUCED not published"},
+    "T": {"layer": "TELEMETRY", "instance": "threadlock/SIC/ATD/QG/COCO", "S": null, "class": "physical validation (COCO negative)"}
+  },
+  "edges": [
+    {"from": "A", "to": "Q", "action": "admit quotient claim", "composable": true},
+    {"from": "Q", "to": "R", "action": "project then reconstruct", "composable": true, "notes": "trajectory_deepening"},
+    {"from": "R", "to": "K", "action": "run kernel in reduced coords", "composable": true, "notes": "C1/C2 native measured"},
+    {"from": "E", "to": "K", "action": "equivalence-preserving kernel", "composable": false, "notes": "vector<->matrix mismatch"},
+    {"from": "U", "to": "R", "action": "interpreter uses quotient path", "composable": false, "notes": "compiler domain, no bridge"},
+    {"from": "K", "to": "M", "action": "pack kernel ops", "composable": false, "notes": "no certified composed micro cert"},
+    {"from": "M", "to": "S", "action": "map to silicon", "composable": false, "notes": "silicon empirical only"},
+    {"from": "S", "to": "T", "action": "telemetry probe", "composable": false, "notes": "COCO negative"}
+  ]
+}

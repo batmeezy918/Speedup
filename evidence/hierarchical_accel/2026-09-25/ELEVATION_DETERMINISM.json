@@ -1,0 +1,18 @@
+{
+  "determinism_note": "output_sha256 and report_sha256 exclude generated_utc and are stable across runs; re-running this script on unchanged inputs reproduces every hash above.",
+  "generated_utc": "2026-09-25T23:11:05Z",
+  "input_sha256": {
+    "ATD_QG_MAXIMAL_CERTIFICATE.json": "9d7d5b5dfba7b5ad2b6c9237dc046d910bc7cb7fb82f6e67273bfcce0f3cc98e",
+    "BRANCH_RESULTS.json": "092a4fc8dfa7c095f1fd7466243c8a16f209ed75bbd0aaac27d58f96c163a452",
+    "COMPOSITION_RESULTS.json": "49bc0de414dd70eb3a3b1077d8bd75ac65d4cac5488603524d626dbad5b04aa3",
+    "FINAL_VALIDATION.json": "be1cf4251564ca94fdb3b0272dc11e48f77c71d3cc03e5ddd04fbf8653f41f48"
+  },
+  "output_sha256": {
+    "AUDIT.json": "e754cd310240b60e0ffb9d9f52df405deb801ea453722897f6c22c930848032b",
+    "CROSS_DOMAIN_LAW.json": "c495afe1b2a154ab29804d78a1f979d153c0eb7e033bff34b30439919efefbc9",
+    "GATE_VALIDATION.json": "c0fca4d8932a6dfa38bfb807f27e64d951f50f104ddbee93a3b5ed1707395d85",
+    "SCALING_LAW.json": "22be731c120d6ed0fcd17f0bc405f822a822ca22d915b43ecfc3be1ec1b15105"
+  },
+  "protocol": "EOF_HIERARCHICAL_ELEVATION_DETERMINISM",
+  "report_sha256": "ebbade1c2d380bdfb58d7d4363ee6cc38c1960b0413d3c872d54ee5dad27d988"
+}
