@@ -18,6 +18,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+
+      - name: Install declared CI dependencies
+        run: python -m pip install --requirement requirements-ci.txt
+
       - name: Compile gap tools
         run: python3 -m py_compile formal_gap_isolator/gap_isolator.py formal_gap_isolator/gap_lifecycle.py
 
