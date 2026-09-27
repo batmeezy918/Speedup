@@ -119,15 +119,6 @@ theorem closed_loop_invariant_preservation
   have h₂ : Pquotient (π (ControlledIterate T (LiftedPolicy κbar π) n x₀)) := h₁ n
   exact h_inv (ControlledIterate T (LiftedPolicy κbar π) n x₀) h₂
 
-/-- Refinement relation between concrete and quotient closed-loop systems -/
-structure ClosedLoopRefinement
-    (T : ControlledStep X U) (Tbar : QuotientStep Q U) (π : X → Q)
-    (κbar : QuotientPolicy Q U) : Prop where
-  intertwines : ControlledIntertwines T Tbar π
-  trace_projection : ∀ (n : Nat) (x₀ : X),
-    π (ControlledIterate T (LiftedPolicy κbar π) n x₀) =
-      QuotientControlledIterate Tbar κbar n (π x₀)
-
 /-- The commuting square: π ∘ T_κ = T̄_κ̄ ∘ π -/
 theorem commuting_square
     (T : ControlledStep X U) (Tbar : QuotientStep Q U) (π : X → Q)
