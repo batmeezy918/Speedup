@@ -11,20 +11,20 @@ and iterate lemmas from ChronoFold/GODS/AGDGemmProjection.
 
 namespace Chronofold.AGD.T2
 
-universe u v
+universe u v w
 
 /-- Controlled transition on concrete state space: T : X → U → X -/
-def ControlledStep (X U : Type u) := X → U → X
+def ControlledStep (X : Type u) (U : Type w) := X → U → X
 
 /-- Controlled transition on quotient state space: quotientStep : Q → U → Q -/
-def QuotientStep (Q U : Type v) := Q → U → Q
+def QuotientStep (Q : Type v) (U : Type w) := Q → U → Q
 
 /-- Controlled intertwining law: π (T x u) = quotientStep (π x) u -/
 def ControlledIntertwines (T : ControlledStep X U) (Tbar : QuotientStep Q U) (π : X → Q) : Prop :=
   ∀ (x : X) (u : U), π (T x u) = Tbar (π x) u
 
 /-- Policy on quotient space: κ̄ : Q → U -/
-def QuotientPolicy (Q U : Type v) := Q → U
+def QuotientPolicy (Q : Type v) (U : Type w) := Q → U
 
 /-- Lifted policy on concrete space: κ x = κ̄ (π x) -/
 def LiftedPolicy (κbar : QuotientPolicy Q U) (π : X → Q) : X → U :=
