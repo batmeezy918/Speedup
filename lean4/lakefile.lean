@@ -10,6 +10,7 @@ lean_lib «SpeedupLean» where
   srcDir := "."
   roots := #[
     `PCSSCertificate,
+    `ClaimRegistry,
     `AGDGemmWork,
     `AGDGemmProjection,
     `AGDGemmReconstruction,

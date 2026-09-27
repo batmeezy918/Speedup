@@ -1,0 +1,180 @@
+{
+  "schema_version": "2026-09-26",
+  "authority": "publisher/gate.py + lean4/ClaimRegistry.lean + lean4/PCSSCertificate.lean",
+  "rule": "class is a function of gates, never of directory name",
+  "verified_count": 0,
+  "claims": [
+    {
+      "id": "cocoex-bbob-dim10-budget1000-20260910",
+      "class": "NEGATIVE",
+      "repo": "batmeezy918/Speedup",
+      "path": "evidence/official-coco/sandbox-run-20260910",
+      "gates": {
+        "integrity": true,
+        "reproducibility": true,
+        "quotient_forward": false,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": false,
+        "lean": false
+      },
+      "result": {
+        "problems": 360,
+        "equivalence_pass": "0/360",
+        "observable_pass": "0/360",
+        "measured_speedup": 0.8465,
+        "final_status": "GATE_FAILURE"
+      },
+      "may_say": "official-shaped cocoex 2.8.2 run failed Q and was slower",
+      "must_not_say": "COCO-verified speedup"
+    },
+    {
+      "id": "sim2xr-invariant-sector-20260908",
+      "class": "STRONG_LOCAL",
+      "repo": "batmeezy918/Speedup",
+      "path": "verified/sim2xr/2026-09-08",
+      "path_warning": "directory name verified/ is non-authoritative; certificate.lean is false",
+      "gates": {
+        "integrity": true,
+        "reproducibility": true,
+        "quotient_forward": true,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": true,
+        "lean": false
+      },
+      "result": {
+        "substrate": "Android/aarch64 Termux",
+        "witnesses": 5,
+        "intertwining_residual": 0.0,
+        "task_error": 0.0,
+        "reconstruction_error": 0.0,
+        "reported_speedups": [1.12, 1.64, 4.09, 15.93, 168.14],
+        "median": 4.09,
+        "certificate_max": 124.346
+      },
+      "may_say": "STRONG_LOCAL sector speedup on the named device with zero residual at stated tolerance",
+      "must_not_say": "VERIFIED, universal SIM2XR, Lean-proven wall-clock"
+    },
+    {
+      "id": "qrt-ej-1.0-20260910",
+      "class": "STRONG_LOCAL",
+      "repo": "batmeezy918/Speedup",
+      "path": "evidence/templates/CF_QRT_CANONICAL_RUNTIME_CERTIFICATE_v1.1_INSTANCE_20260910.md",
+      "result": {
+        "full_median_ns": 5254823488,
+        "quotient_median_ns": 266453542,
+        "measured_speedup": 19.721349727826098
+      },
+      "may_say": "closed local QRT-EJ runtime ratio",
+      "must_not_say": "COCO/BBOB speedup"
+    },
+    {
+      "id": "agd-real-speedup-gauntlet",
+      "class": "STRONG_LOCAL",
+      "repo": "batmeezy918/Speedup",
+      "path": "evidence/optimizer/HISTORICAL_RESULTS.md",
+      "result": {
+        "seed": 42,
+        "semantic_failures": 0,
+        "max_qualifying_ratio": 6.256345971119905,
+        "observable_error_bound": 1e-10
+      },
+      "may_say": "closed-world work-model speedup with observable-error gate",
+      "must_not_say": "hardware-independent or SOTA"
+    },
+    {
+      "id": "omega-gf2-pos-interval-xor-n500",
+      "class": "STRONG_LOCAL",
+      "path": "evidence/optimizer/HISTORICAL_RESULTS.md",
+      "result": {
+        "agree": true,
+        "speedup_range": [41.88, 43.55]
+      },
+      "may_say": "local SAT-style corpus GF2/OMEGA ratio with answer agreement",
+      "must_not_say": "SAT Competition placement"
+    },
+    {
+      "id": "vault-canonical-decider-20260531T112101Z",
+      "class": "CANDIDATE",
+      "repo": "batmeezy918/chronofold-evidence-vault",
+      "result": {"reported_wall_ratio": 1.021},
+      "may_say": "repeated wall files exist; X not established",
+      "must_not_say": "verified speedup"
+    },
+    {
+      "id": "graph500-official-reference-20260531T022948Z",
+      "class": "MEASURED_BASELINE",
+      "repo": "batmeezy918/chronofold-evidence-vault",
+      "path": "results/graph500_official_reference_live_20260531T022948Z",
+      "result": {
+        "kernel": "graph500_reference_bfs",
+        "scales": [10, 11, 12, 13],
+        "status": "PASS",
+        "harmonic_mean_TEPS_scale10": 7694580
+      },
+      "may_say": "official-style BFS baseline on scales 10-13",
+      "must_not_say": "digital-twin speedup or proof-carrying BFS win"
+    },
+    {
+      "id": "graph500-chronophole-20260531T045336Z",
+      "class": "MEASURED_BASELINE",
+      "path": "results/graph500_chronophole_20260531T045336Z",
+      "may_say": "structure-score vs log TEPS routing test; author note says no universal speedup",
+      "must_not_say": "verified BFS acceleration"
+    },
+    {
+      "id": "s6-s7-s8-coco-equivalent-20260515",
+      "class": "QUARANTINED",
+      "reason": "UNOFFICIAL_MUST_REBIND_TO_COCOEX",
+      "may_say": "historical optimizer-evolution scores on an equivalent script family",
+      "must_not_say": "official BBOB result"
+    },
+    {
+      "id": "snap-24-case-vs-cma",
+      "class": "CANDIDATE",
+      "result": {"snap_wins": 9, "cma_wins": 15},
+      "may_say": "SNAP won 9 of 24 cases on median objective in that runner",
+      "must_not_say": "verified optimizer speedup"
+    },
+    {
+      "id": "ledger-gs254-254.30x",
+      "class": "THEORETICAL_OR_SIMULATED",
+      "may_say": "source-reported ledger value",
+      "must_not_say": "verified, silicon, or PCSS-published"
+    },
+    {
+      "id": "ledger-sim2xr-c-1024x",
+      "class": "THEORETICAL_OR_SIMULATED",
+      "note": "q-square work identity wearing a product name",
+      "may_say": "Nat work-ratio identity",
+      "must_not_say": "measured 1024x"
+    },
+    {
+      "id": "ledger-s8-80.9x",
+      "class": "THEORETICAL_OR_SIMULATED",
+      "may_say": "source-reported ledger value",
+      "must_not_say": "verified"
+    },
+    {
+      "id": "ledger-omega-snap4-209.23x",
+      "class": "THEORETICAL_OR_SIMULATED",
+      "may_say": "source-reported ledger value",
+      "must_not_say": "verified"
+    },
+    {
+      "id": "kernel-agd-oic-pcss",
+      "class": "FORMAL_PARTIAL",
+      "repos": [
+        "batmeezy918/chronofold",
+        "batmeezy918/OIC-Core-Calculus",
+        "batmeezy918/Speedup"
+      ],
+      "green_modules_approx": 27,
+      "named_lemmas_approx": "80-100 including refl/symm/trans",
+      "distinct_permissions": "see claims/PERMISSIONS.md",
+      "may_say": "compiled intertwiner algebra, constitutional preservation, Nat work identities, publication AND",
+      "must_not_say": "103 independent results or Lean-proven wall-clock"
+    }
+  ]
+}
