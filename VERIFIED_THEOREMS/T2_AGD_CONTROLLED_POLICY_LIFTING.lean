@@ -85,10 +85,7 @@ theorem closed_loop_trace_projection
     simp [ControlledIterate, QuotientControlledIterate, LiftedPolicy] at h₁ h₂ ⊢
     <;> simp_all
 
-/-- Invariant structure for concrete and quotient systems -/
-structure ConcreteInvariant (T : ControlledStep X U) (κ : X → U) (P : X → Prop) : Prop where
-  base : ∀ x, P x → P (T x (κ x))
-
+/-- Quotient invariant structure -/
 structure QuotientInvariant (Tbar : QuotientStep Q U) (κbar : QuotientPolicy Q U) (P : Q → Prop) : Prop where
   base : ∀ q, P q → P (Tbar q (κbar q))
 
