@@ -1,4 +1,5 @@
 import PCSSCertificate
+import ClaimRegistry
 import AGDGemmWork
 import AGDGemmProjection
 import AGDGemmReconstruction
@@ -41,6 +42,12 @@ import GODSQuotientClosure
   PCSS
     PCSS.publish_requires_all_gates
     PCSS.lean_false_not_publishable
+
+  Claim registry
+    Claims.lean_false_not_verified
+    Claims.sim2xr_shape_is_not_verified
+    Claims.ofCertificate_lean_false_not_verified
+    Claims.formal_partial_not_auto_verified
 
   GODS quotient closure (len-3 kernel, no Mathlib)
     GODS.gods_descend
