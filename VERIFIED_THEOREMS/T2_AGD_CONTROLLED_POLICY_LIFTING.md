@@ -69,8 +69,8 @@ This module formalizes the controlled extension:
 
 ## 6. Relationship to Quotient Dynamics
 
-The quotient transition `quotientStep` is the unique map making the diagram commute.
-The lifted policy `κ = κ̄ ∘ π` is the unique policy making the closed-loop commute.
+The quotient transition `quotientStep` makes the diagram commute when it exists.
+The lifted policy `κ = κ̄ ∘ π` makes the closed-loop commute by definition.
 
 ## 7. Relationship to Policy Lifting
 
