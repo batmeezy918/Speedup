@@ -1,0 +1,104 @@
+schema: speedup-theorem-escalation-v1
+claim_strength_rule: CLAIM_STRENGTH <= EVIDENCE_STRENGTH
+status: CANDIDATE
+pipeline: 
+  required_order:
+    - scaffold
+    - formalize
+    - compile
+    - prove
+    - validate
+    - operational_mapping
+    - benchmark
+  promotion_requires:
+    - no_sorry
+    - no_admit
+    - successful_build
+    - explicit_assumptions
+    - proof_artifact
+    - provenance_binding
+
+priority:
+  - id: SCQ-001
+    name: Greatest Stable Constitutional Quotient
+    status: CANDIDATE
+    target: greatest_stable_constitutional_quotient
+    definition:
+      R0: "R0 x y <-> C x = C y"
+      Rn: "Rn+1 x y <-> Rn x y /\\ Rn (T x) (T y)"
+      Rinf: "Rinf x y <-> forall n, Rn n x y"
+    obligations:
+      - equivalence
+      - observational_containment
+      - T_stability
+      - greatestness
+      - quotient_existence
+  - id: SCQ-002
+    name: Unique Quotient Dynamics
+    status: CANDIDATE
+    target: exists_unique_Tbar
+    dependency: SCQ-001
+    equation: "pi * T = Tbar * pi"
+  - id: SCQ-003
+    name: Exact Recursive Projection
+    status: CANDIDATE
+    target: quotient_iterate
+    dependency: SCQ-002
+    equation: "pi * T^n = Tbar^n * pi"
+  - id: SCQ-004
+    name: Universal Observable Factorization
+    status: CANDIDATE
+    target: observable_factorization
+    dependency: SCQ-001
+  - id: SCQ-005
+    name: Bidirectional Constitutional Closure
+    status: FORMAL_PARTIAL
+    target: constitution_iff_admissibility
+    dependency: SCQ-001
+  - id: SCQ-006
+    name: Reconstruction and Fibre Collapse
+    status: FORMAL_PARTIAL
+    target: section_reconstruction
+    dependency: SCQ-001
+  - id: SCQ-007
+    name: Canonical Teleportation Operator
+    status: FORMAL_PARTIAL
+    target: TEL_equals_section_projection
+    dependency: SCQ-006
+    equation: "TEL = sigma * pi"
+  - id: SCQ-008
+    name: Directed Teleportation
+    status: CANDIDATE
+    target: directed_TEL
+    dependency: SCQ-007
+    equation: "DTEL_phi = sigma * G_phi * pi"
+  - id: SCQ-009
+    name: Bounded-Infinity Completion
+    status: CANDIDATE
+    target: bounded_infinity_semantic_calculus
+    dependency: SCQ-001
+  - id: OMEGA-001
+    name: Omega Rank Collapse
+    status: CANDIDATE
+    target: rank_collapse
+    dependency: none
+  - id: XR-001
+    name: XR Spectral Contraction
+    status: CANDIDATE
+    target: spectral_contraction
+    dependency: none
+
+operational_effects:
+  rule: "No operational effect is activated merely by theorem registration."
+  allowed_after_formal_green:
+    - quotient_execution
+    - exact_projected_trajectory
+    - observable_reduction
+    - conditional_reconstruction
+    - admissibility_governance
+  explicitly_not_implied:
+    - universal_runtime_speedup
+    - hardware_speedup
+    - physical_teleportation
+    - arbitrary_target_reachability
+    - microscopic_state_reconstruction
