@@ -3,3 +3,7 @@
 .lake/
 lean.workbook/__pycache__/
 *.pyc
+__pycache__/
+# native build outputs: rebuildable, and bound by SHA-256 in the receipts
+*.o
+*.so

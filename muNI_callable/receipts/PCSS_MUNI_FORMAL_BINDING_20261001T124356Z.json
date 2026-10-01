@@ -1,0 +1,228 @@
+{
+  "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+  "run_id": "20261001T124356Z",
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.29.0",
+    "lake_via": "/root/.elan/bin/lake",
+    "mathlib_used": false,
+    "mathlib_available_in_checkout": false,
+    "proof_assumptions_policy": "core Lean 4 only; no Mathlib required"
+  },
+  "lake_build": {
+    "command": "lake build",
+    "cwd": "/root/Speedup/lean4",
+    "exit_code": 0,
+    "green": true,
+    "wall_seconds": 6.122,
+    "jobs_summary": [
+      "Build completed successfully (18 jobs)."
+    ],
+    "stderr_tail": []
+  },
+  "source_hygiene": {
+    "files_scanned": {
+      "PCSSGemmRegisterBlock.lean": {
+        "sha256": "2f92cc335b87431e8c836de2e01cea553d69eb708a8027afae54688daca730e7",
+        "bytes": 10186,
+        "imports": [
+          "Lean.Elab.Tactic.Omega"
+        ],
+        "uses_mathlib": false
+      },
+      "PCSSCallableBinding.lean": {
+        "sha256": "3974f242170ae9a44ea4bfea16c6697ced7c89bddde60c485e9f8d22a0562d51",
+        "bytes": 2789,
+        "imports": [
+          "PCSSGemmRegisterBlock"
+        ],
+        "uses_mathlib": false
+      }
+    },
+    "forbidden_markers": [
+      "sorry",
+      "admit",
+      "axiom",
+      "native_decide",
+      "extern"
+    ],
+    "findings": [],
+    "clean": true,
+    "scanner_selftest": {
+      "cases": [
+        {
+          "source": "theorem t : True := by sorry",
+          "expected": [
+            "sorry"
+          ],
+          "detected": [
+            "sorry"
+          ],
+          "pass": true
+        },
+        {
+          "source": "theorem t : True := by exact t\\n  sorry",
+          "expected": [
+            "sorry"
+          ],
+          "detected": [
+            "sorry"
+          ],
+          "pass": true
+        },
+        {
+          "source": "axiom cheat : False",
+          "expected": [
+            "axiom"
+          ],
+          "detected": [
+            "axiom"
+          ],
+          "pass": true
+        },
+        {
+          "source": "theorem t : True := native_decide",
+          "expected": [
+            "native_decide"
+          ],
+          "detected": [
+            "native_decide"
+          ],
+          "pass": true
+        },
+        {
+          "source": "theorem t : Nat := by decide  -- sorry",
+          "expected": [],
+          "detected": [],
+          "pass": true
+        },
+        {
+          "source": "/-- doc mentioning sorry and axiom -/\ntheorem t : True := by decide",
+          "expected": [],
+          "detected": [],
+          "pass": true
+        },
+        {
+          "source": "theorem t : True := by\n  exact \"sorry\"",
+          "expected": [],
+          "detected": [
+            "sorry"
+          ],
+          "pass": false
+        }
+      ],
+      "all_pass": false
+    }
+  },
+  "obligations": [
+    {
+      "theorem": "PCSSGemmRegisterBlock.blockedSumObligation_holds",
+      "statement": "forall k, 0 < k, forall l, ((splitBlocks k l).map List.sum).sum = l.sum",
+      "licenses": "The previously UNPROVEN general-N statement. Licenses the k-axis reassociation at every blocking width and every axis length.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSGemmRegisterBlock.blockedSumObligation_proved",
+      "statement": "BlockedSumObligation k hk l",
+      "licenses": "The historical obligation identifier, now discharged rather than recorded.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSGemmRegisterBlock.blockedSum_concrete",
+      "statement": "splitBlocks 8 of range 20 re-sums to the original total",
+      "licenses": "Concrete instance; guards against a vacuous general statement.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSGemmRegisterBlock.FloatModel.float_add_not_associative",
+      "statement": "fadd (fadd 8 8) (-9) != fadd 8 (fadd 8 (-9))",
+      "licenses": "Machine-checked witness that floating-point addition is not associative. This is the formal reason the reassociation results are stated over Int and bitwise binary32 equality stays empirical.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCallableBinding.callable_kernel_respects_blocked_sum",
+      "statement": "BlockedSumObligation k hk l",
+      "licenses": "The transformation the callable operator implements, at the general level.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCallableBinding.callable_microkernel_identity",
+      "statement": "(w.sum + x.sum) + (y.sum + z.sum) = (w ++ x ++ y ++ z).sum",
+      "licenses": "The 2x2 register-block identity the microkernel actually evaluates.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCallableBinding.callable_work_ratio_is_one",
+      "statement": "flopCount 2048 / flopCount 2048 = 1",
+      "licenses": "work_ratio is exactly 1; no work reduction is available or claimed.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [],
+      "axiom_footprint_clean": true
+    }
+  ],
+  "discharged_previously": {
+    "obligation": "BlockedSumObligation (general k, all l)",
+    "previous_status": "UNRESOLVED",
+    "previous_justification": "Recorded as needing well-founded recursion unavailable without Mathlib in this checkout.",
+    "correction": "That justification was self-imposed and incorrect. Nat.strongRecOn (Init/WF.lean), List.take_append_drop, List.length_drop and List.sum_append are all core Lean 4; the checkout builds green with no Mathlib. The obligation is now discharged by PCSSGemmRegisterBlock.blockedSumObligation_holds.",
+    "new_status": "DISCHARGED"
+  },
+  "artifact_binding": {
+    "native_sources": {
+      "neon.c": "c2abd35017c06e525743dd045460999d50bceb81144867be53201c183f524ec5",
+      "baseline_scalar.c": "93b4f283f1c59399ae8f8504d9c3e4aaec0656b73aec801667431092bcf26a3f",
+      "muni_dispatch.c": "d0e20d32d0645ae45adfced30c1b9789881c64fef59c7fea08227b4f9dc08f10",
+      "muni_runtime.h": "60caa7bfa0e97994cb20e35f0b13f8d47161791a900e5143a5ff13d6d5ec6625",
+      "muni_runtime.py": "0ba6682060307060e4021b91373a22f6854056bf1111061b4d66f33723949f87",
+      "libmuni.so": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9"
+    },
+    "olean_artifacts": {
+      "PCSSGemmRegisterBlock.olean": "8926f5275029fbe953e2e528b056b9e093d6bd3239530a8784055b82907b8da5",
+      "PCSSCallableBinding.olean": "311528299ef63e32974cdd08484458bffce79928c2598ce1b8cfb64fb650bd0a"
+    },
+    "binds_to_benchmarked_library": "libmuni.so"
+  },
+  "gates": {
+    "formal_build_green": true,
+    "no_sorry_no_axiom": false,
+    "core_only_no_mathlib": true,
+    "axiom_footprint_clean": true,
+    "all_obligations_discharged": true,
+    "artifact_hashed": true,
+    "scanner_selftest_passed": false
+  },
+  "claim_strength": "FORMAL_PARTIAL",
+  "claim_boundary": [
+    "The Lean proofs bind to the exact libmuni.so SHA-256 recorded above.",
+    "The formal statements are over Int (exact sums). The shipped kernel accumulates in IEEE-754 binary32, where addition is NOT associative -- machine-checked in FloatModel.float_add_not_associative.",
+    "Therefore no theorem here proves bitwise Float32 equality of the two kernels. max|candidate-baseline| = 0.0 remains empirical evidence.",
+    "No wall-clock speedup is proved; the measured factor stays empirical and device-scoped.",
+    "work_ratio = 1 exactly: no FLOP reduction is claimed.",
+    "Formal obligations are discharged for the modelled domain only, so the strongest supported status remains FORMAL_PARTIAL, not VERIFIED, per CLAIM_POLICY.md. The Int/float32 gap is recorded, not closed."
+  ]
+}

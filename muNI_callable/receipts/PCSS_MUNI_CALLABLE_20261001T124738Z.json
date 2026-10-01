@@ -1,0 +1,197 @@
+{
+  "schema": "PCSS-MUNI-CALLABLE-1.1",
+  "supersedes": "PCSS-MUNI-CALLABLE-1.0",
+  "run_id": "20261001T124738Z",
+  "n": 2048,
+  "outer_runs": 3,
+  "warmups": 2,
+  "repetitions": 7,
+  "backend": "aarch64-neon-fma-register-block",
+  "version": "MuNi-callable-0.1",
+  "arch": "aarch64",
+  "kernel": "6.17.0-PRoot-Distro",
+  "omp_threads": 1,
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "runs": [
+    {
+      "outer": 0,
+      "max_abs_diff": 0.0,
+      "baseline": {
+        "timings_ns": [
+          2165061874,
+          2208000468,
+          2259265468,
+          2270191665,
+          2370754010,
+          2382729687,
+          2397387447
+        ],
+        "median_ns": 2270191665.0,
+        "min_ns": 2165061874,
+        "max_ns": 2397387447
+      },
+      "candidate": {
+        "timings_ns": [
+          913055208,
+          905726250,
+          899323072,
+          900794114,
+          900831666,
+          895883333,
+          901068385
+        ],
+        "median_ns": 900831666.0,
+        "min_ns": 895883333,
+        "max_ns": 913055208
+      },
+      "speedup": 2.5201064201932706,
+      "checksum": 20787316736.0
+    },
+    {
+      "outer": 1,
+      "max_abs_diff": 0.0,
+      "baseline": {
+        "timings_ns": [
+          2384160207,
+          2379215364,
+          2378317707,
+          2378358697,
+          2382061926,
+          2375365884,
+          2375264738
+        ],
+        "median_ns": 2378358697.0,
+        "min_ns": 2375264738,
+        "max_ns": 2384160207
+      },
+      "candidate": {
+        "timings_ns": [
+          924902239,
+          905326354,
+          906099792,
+          925370469,
+          913643490,
+          917008333,
+          909551770
+        ],
+        "median_ns": 913643490.0,
+        "min_ns": 905326354,
+        "max_ns": 925370469
+      },
+      "speedup": 2.6031583686980575,
+      "checksum": 20787316736.0
+    },
+    {
+      "outer": 2,
+      "max_abs_diff": 0.0,
+      "baseline": {
+        "timings_ns": [
+          2368709114,
+          2379423489,
+          2393210780,
+          2414682447,
+          2376622811,
+          2374423697,
+          2378495624
+        ],
+        "median_ns": 2378495624.0,
+        "min_ns": 2368709114,
+        "max_ns": 2414682447
+      },
+      "candidate": {
+        "timings_ns": [
+          914069479,
+          914300208,
+          904094948,
+          910726926,
+          935128176,
+          935800260,
+          907806354
+        ],
+        "median_ns": 914069479.0,
+        "min_ns": 904094948,
+        "max_ns": 935800260
+      },
+      "speedup": 2.602095003327422,
+      "checksum": 20787316736.0
+    }
+  ],
+  "semantic_reproducibility": {
+    "coverage": true,
+    "all_correctness": true,
+    "speedup_min": 2.5201064201932706,
+    "speedup_median": 2.602095003327422,
+    "speedup_max": 2.6031583686980575,
+    "all_gt_1x": true
+  },
+  "verification": {
+    "reconstruction_reverse": {
+      "protocol": "e_hat = R(q_c) by re-executing the candidate into a fresh buffer",
+      "domain": "A=all(1.1), B=all(2.2), n=2048, binary32",
+      "metric": "L-inf (max absolute elementwise difference)",
+      "tolerance": 0.0,
+      "max_error": 0.0,
+      "aggregate_error": 0.0,
+      "decision": "PASS"
+    },
+    "invariants": {
+      "output_finite": true,
+      "output_shape": [
+        2048,
+        2048
+      ],
+      "output_dtype": "float32",
+      "uniform_input_invariant": {
+        "predicted_sequential_binary32_per_element": 4956.08251953125,
+        "observed_min": 4956.08251953125,
+        "observed_max": 4956.08251953125,
+        "max_abs_error_vs_prediction": 0.0,
+        "decision": "PASS"
+      },
+      "float64_reference": {
+        "exact_real_per_element": 4956.160000000001,
+        "max_abs_error": 0.07769531249323336,
+        "relative_error": 1.5676514174932476e-05,
+        "tolerance_derived_n_eps32": 0.6050000000000001,
+        "tolerance_basis": "n * eps_32 * |exact| with eps_32 = 2^-24; derived from binary32 accumulation theory, not fitted to the observation",
+        "decision": "PASS"
+      }
+    }
+  },
+  "formal_binding": {
+    "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T124442Z.json",
+    "binding_run_id": "20261001T124442Z",
+    "library_sha256_in_binding": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+    "library_sha256_now": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+    "binds_to_this_binary": true,
+    "binding_gates": {
+      "formal_build_green": true,
+      "no_sorry_no_axiom": true,
+      "core_only_no_mathlib": true,
+      "axiom_footprint_clean": true,
+      "all_obligations_discharged": true,
+      "artifact_hashed": true,
+      "scanner_selftest_passed": true
+    },
+    "claim_strength_of_binding": "FORMAL_PARTIAL"
+  },
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": true,
+    "invariants": true,
+    "performance": true,
+    "lean": true
+  },
+  "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+  "claim_boundary": [
+    "Callable acceleration is demonstrated through Python ctypes into an AArch64 shared library.",
+    "The measured speedup includes native callable execution but excludes input allocation and Python-side matrix construction.",
+    "work_ratio=1.0: no FLOP reduction is claimed.",
+    "Correctness is empirical output equivalence between the two kernels (max_abs_diff == 0). It is NOT a theorem: the Lean results are stated over Int, while the kernels accumulate in binary32, which is not associative (machine-checked in PCSSGemmRegisterBlock.FloatModel).",
+    "The Lean binding is discharged for the modelled domain and is bound by SHA-256 to this exact libmuni.so; it proves neither the wall-clock speedup nor bitwise binary32 equality.",
+    "Speedup is scoped to this device, binary, compiler, thread count and runtime state.",
+    "Strongest supported formal status remains FORMAL_PARTIAL (binding receipt), not VERIFIED; the Int/binary32 gap is recorded, not closed."
+  ]
+}

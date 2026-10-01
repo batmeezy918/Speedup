@@ -20,5 +20,9 @@ lean_lib «SpeedupLean» where
     `SpeedupLean,
     `HPL_AGD_01_Obligations,
     `SIM2xrEquivalenceClosure,
-    `HierarchicalScaling
+    `HierarchicalScaling,
+    `PCSSGemmRegisterBlock,
+    `PCSSCompositionCriterion,
+    `LinearExactSector,
+    `PCSSCallableBinding
   ]

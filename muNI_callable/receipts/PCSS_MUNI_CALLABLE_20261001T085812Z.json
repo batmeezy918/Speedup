@@ -1,0 +1,143 @@
+{
+  "schema": "PCSS-MUNI-CALLABLE-1.0",
+  "run_id": "20261001T085812Z",
+  "n": 2048,
+  "outer_runs": 3,
+  "warmups": 2,
+  "repetitions": 7,
+  "backend": "aarch64-neon-fma-register-block",
+  "version": "MuNi-callable-0.1",
+  "arch": "aarch64",
+  "kernel": "6.17.0-PRoot-Distro",
+  "omp_threads": 1,
+  "library_sha256": "02a210e8f09cf389469dc14c348a45f7710fce655fb61fc27a9153c552bbec60",
+  "runs": [
+    {
+      "outer": 0,
+      "max_abs_diff": 0.0,
+      "baseline": {
+        "timings_ns": [
+          1867101301,
+          1859719270,
+          1841803281,
+          1873921822,
+          1853140625,
+          1859797864,
+          1875306145
+        ],
+        "median_ns": 1859797864.0,
+        "min_ns": 1841803281,
+        "max_ns": 1875306145
+      },
+      "candidate": {
+        "timings_ns": [
+          841991771,
+          833971458,
+          842091406,
+          834784531,
+          848480937,
+          836655990,
+          838572343
+        ],
+        "median_ns": 838572343.0,
+        "min_ns": 833971458,
+        "max_ns": 848480937
+      },
+      "speedup": 2.2178144551566734,
+      "checksum": 20787316736.0
+    },
+    {
+      "outer": 1,
+      "max_abs_diff": 0.0,
+      "baseline": {
+        "timings_ns": [
+          1594962968,
+          1571629271,
+          1567477344,
+          1589676301,
+          1603606926,
+          1572379739,
+          1584684948
+        ],
+        "median_ns": 1584684948.0,
+        "min_ns": 1567477344,
+        "max_ns": 1603606926
+      },
+      "candidate": {
+        "timings_ns": [
+          825771719,
+          826945104,
+          828798177,
+          834441094,
+          830128176,
+          829791354,
+          831999167
+        ],
+        "median_ns": 829791354.0,
+        "min_ns": 825771719,
+        "max_ns": 834441094
+      },
+      "speedup": 1.9097390450756613,
+      "checksum": 20787316736.0
+    },
+    {
+      "outer": 2,
+      "max_abs_diff": 0.0,
+      "baseline": {
+        "timings_ns": [
+          1567979531,
+          1586037760,
+          1596678698,
+          1533176874,
+          1554535260,
+          1591830572,
+          1608653541
+        ],
+        "median_ns": 1586037760.0,
+        "min_ns": 1533176874,
+        "max_ns": 1608653541
+      },
+      "candidate": {
+        "timings_ns": [
+          831106771,
+          829294010,
+          823671875,
+          826153385,
+          835315885,
+          823056250,
+          832233594
+        ],
+        "median_ns": 829294010.0,
+        "min_ns": 823056250,
+        "max_ns": 835315885
+      },
+      "speedup": 1.9125156348349845,
+      "checksum": 20787316736.0
+    }
+  ],
+  "semantic_reproducibility": {
+    "coverage": true,
+    "all_correctness": true,
+    "speedup_min": 1.9097390450756613,
+    "speedup_median": 1.9125156348349845,
+    "speedup_max": 2.2178144551566734,
+    "all_gt_1x": true
+  },
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": true,
+    "invariants": true,
+    "performance": true,
+    "lean": false
+  },
+  "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+  "claim_boundary": [
+    "Callable acceleration is demonstrated through Python ctypes into an AArch64 shared library.",
+    "The measured speedup includes native callable execution but excludes input allocation and Python-side matrix construction.",
+    "work_ratio=1.0: no FLOP reduction is claimed.",
+    "Correctness is empirical output equivalence; Lean has not yet certified this callable wrapper.",
+    "Speedup is scoped to this device, binary, compiler, thread count and runtime state."
+  ]
+}

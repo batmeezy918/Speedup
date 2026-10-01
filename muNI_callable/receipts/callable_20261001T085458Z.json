@@ -1,0 +1,137 @@
+{
+  "schema": "MUNI-CALLABLE-RUNTIME-0.1",
+  "arch": "aarch64",
+  "kernel": "6.17.0-PRoot-Distro",
+  "omp_threads": "1",
+  "library": "/root/Speedup/muNI_callable/libmuni.so",
+  "library_sha256": "480450c3adb1fbfa5c7430e6772c455c3b0d87688824cc0f37ecdcbd600215fd",
+  "results": [
+    {
+      "n": 512,
+      "backend": "aarch64-neon-fma-register-block",
+      "version": "MuNi-callable-0.1",
+      "work_ratio": 1.0,
+      "max_abs_diff": 0.0,
+      "checksum_baseline": 324807328.0,
+      "checksum_candidate": 324807328.0,
+      "baseline": {
+        "timings_ns": [
+          20078020,
+          20092865,
+          20128645,
+          20111875,
+          19976563,
+          19989115,
+          19982396
+        ],
+        "median_ns": 20078020.0,
+        "min_ns": 19976563,
+        "max_ns": 20128645
+      },
+      "candidate": {
+        "timings_ns": [
+          11808593,
+          11693750,
+          11410313,
+          11755729,
+          11594166,
+          11802969,
+          11739271
+        ],
+        "median_ns": 11739271.0,
+        "min_ns": 11410313,
+        "max_ns": 11808593
+      },
+      "speedup": 1.7103293722412576,
+      "baseline_gflops": 13.36961792049216,
+      "candidate_gflops": 22.866450225060824
+    },
+    {
+      "n": 1024,
+      "backend": "aarch64-neon-fma-register-block",
+      "version": "MuNi-callable-0.1",
+      "work_ratio": 1.0,
+      "max_abs_diff": 0.0,
+      "checksum_baseline": 2598457856.0,
+      "checksum_candidate": 2598457856.0,
+      "baseline": {
+        "timings_ns": [
+          155492396,
+          155486458,
+          155301979,
+          157004323,
+          155414896,
+          155004688,
+          157042657
+        ],
+        "median_ns": 155486458.0,
+        "min_ns": 155004688,
+        "max_ns": 157042657
+      },
+      "candidate": {
+        "timings_ns": [
+          84689948,
+          86447552,
+          89954271,
+          87712968,
+          85062500,
+          84943281,
+          83724896
+        ],
+        "median_ns": 85062500.0,
+        "min_ns": 83724896,
+        "max_ns": 89954271
+      },
+      "speedup": 1.827908396767083,
+      "baseline_gflops": 13.811387021241426,
+      "candidate_gflops": 25.245950307127114
+    },
+    {
+      "n": 2048,
+      "backend": "aarch64-neon-fma-register-block",
+      "version": "MuNi-callable-0.1",
+      "work_ratio": 1.0,
+      "max_abs_diff": 0.0,
+      "checksum_baseline": 20787316736.0,
+      "checksum_candidate": 20787316736.0,
+      "baseline": {
+        "timings_ns": [
+          1794596510,
+          1876515885,
+          1879504218,
+          1859713958,
+          1881302500,
+          1865555729,
+          1870783489
+        ],
+        "median_ns": 1870783489.0,
+        "min_ns": 1794596510,
+        "max_ns": 1881302500
+      },
+      "candidate": {
+        "timings_ns": [
+          830180573,
+          833497603,
+          825062343,
+          833749530,
+          823062864,
+          832189688,
+          824382083
+        ],
+        "median_ns": 830180573.0,
+        "min_ns": 823062864,
+        "max_ns": 833749530
+      },
+      "speedup": 2.253465751721463,
+      "baseline_gflops": 9.183248240651968,
+      "candidate_gflops": 20.69413539986559
+    }
+  ],
+  "claim_boundary": [
+    "Speedups are measured end-to-end from Python ctypes dispatch into native AArch64 code for preallocated matrices.",
+    "The mathematical work ratio is exactly 1.0; no reduction in 2*n^3 FLOPs is claimed.",
+    "The speedup is scoped to this device, compiler, binary and runtime configuration.",
+    "Correctness is empirical here: baseline and candidate output arrays are compared.",
+    "This receipt does not by itself establish the full PCSS publication gate or Lean theorem."
+  ]
+}
