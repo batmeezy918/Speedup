@@ -2,8 +2,10 @@
 
 Executed against PCSS Article 9: PUBLISH <=> I and R and Q and Qinv and Omega and X and L.
 
-No quarantined family was promoted. Missing gates were not invented.
-Lean file `lean4/PCSSQuarantine.lean` proves each recorded gate vector is not publishable.
+Gate execution: scripts/execute_quarantine_gates.py wrote evidence/quarantine/EXECUTION_20261001.json.
+published=0, executed=9. Missing gates were not invented.
+Lean file lean4/PCSSQuarantine.lean proves each recorded gate vector is not publishable.
+Core lane verify: LEAN4_CORE_ALL_PASS=1, source count 22, zero sorry.
 
 | Id | Disposition | Blocking gates |
 |---|---|---|

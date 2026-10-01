@@ -42,8 +42,8 @@ def Claim.allGates (c : Claim) : Bool :=
   c.reconstructionReverse && c.invariants && c.performance && c.lean
 
 /-- Elevation rule: Verified is exactly the seven-gate conjunction. -/
-def Claim.wellClassified : Claim → Prop
-  | c => (c.klass = ClaimClass.verified) ↔ (c.allGates = true)
+def Claim.wellClassified (c : Claim) : Prop :=
+  (c.klass = ClaimClass.verified) ↔ (c.allGates = true)
 
 theorem verified_iff_all_gates (c : Claim) :
     c.wellClassified ↔ ((c.klass = ClaimClass.verified) ↔ (c.allGates = true)) :=
@@ -51,20 +51,25 @@ theorem verified_iff_all_gates (c : Claim) :
 
 theorem lean_false_not_all_gates (c : Claim) (h : c.lean = false) :
     c.allGates = false := by
-  simp [Claim.allGates, h]
+  unfold Claim.allGates
+  rw [h]
+  simp
 
 theorem lean_false_not_verified
     (c : Claim) (hw : c.wellClassified) (hlean : c.lean = false) :
     c.klass ≠ ClaimClass.verified := by
   intro hv
-  have hall : c.allGates = true := (hw.mp hv)
+  have hall : c.allGates = true := hw.mp hv
   have hfalse : c.allGates = false := lean_false_not_all_gates c hlean
-  cases hall
-  cases hfalse
+  have contra : true = false := by
+    rw [← hall]
+    exact hfalse
+  cases contra
 
 /-- A PCSS certificate may be viewed as a claim skeleton.
-    Class is *not* inferred from a path. -/
-def ofCertificate (id : String) (klass : ClaimClass) (cert : PCSSCertificate) : Claim :=
+    Class is not inferred from a path. -/
+def ofCertificate (id : String) (klass : ClaimClass)
+    (cert : PCSS.EvidenceCertificate) : Claim :=
   { id := id
     klass := klass
     integrity := cert.integrity
@@ -76,27 +81,26 @@ def ofCertificate (id : String) (klass : ClaimClass) (cert : PCSSCertificate) : 
     lean := cert.lean }
 
 theorem ofCertificate_lean_false_not_verified
-    (id : String) (klass : ClaimClass) (cert : PCSSCertificate)
+    (id : String) (klass : ClaimClass) (cert : PCSS.EvidenceCertificate)
     (hw : (ofCertificate id klass cert).wellClassified)
     (hlean : cert.lean = false) :
-    klass ≠ ClaimClass.verified := by
-  have : (ofCertificate id klass cert).lean = false := by
-    simp [ofCertificate, hlean]
-  exact lean_false_not_verified (ofCertificate id klass cert) hw this
+    (ofCertificate id klass cert).klass ≠ ClaimClass.verified := by
+  have hclaim : (ofCertificate id klass cert).lean = false := by
+    unfold ofCertificate
+    exact hlean
+  exact lean_false_not_verified (ofCertificate id klass cert) hw hclaim
 
 /-- STRONG_LOCAL is the honest class when every empirical gate holds
     and the Lean identity obligation does not. -/
-def Claim.strongLocalShape (c : Claim) : Bool :=
-  c.integrity && c.reproducibility && c.quotientForward &&
-  c.reconstructionReverse && c.invariants && c.performance && !c.lean
+def Claim.strongLocalShape (c : Claim) : Prop :=
+  c.integrity = true ∧ c.reproducibility = true ∧ c.quotientForward = true ∧
+  c.reconstructionReverse = true ∧ c.invariants = true ∧
+  c.performance = true ∧ c.lean = false
 
 theorem sim2xr_shape_is_not_verified
-    (c : Claim) (hw : c.wellClassified) (h : c.strongLocalShape = true) :
-    c.klass ≠ ClaimClass.verified := by
-  have hlean : c.lean = false := by
-    simp [Claim.strongLocalShape] at h
-    exact h.2
-  exact lean_false_not_verified c hw hlean
+    (c : Claim) (hw : c.wellClassified) (h : c.strongLocalShape) :
+    c.klass ≠ ClaimClass.verified :=
+  lean_false_not_verified c hw h.2.2.2.2.2.2
 
 /-- Work-ratio identity is a formal-partial fact. It does not
     authorize the Verified class by itself. -/
@@ -105,7 +109,7 @@ theorem formal_partial_not_auto_verified
     (hklass : c.klass = ClaimClass.formalPartial) :
     c.klass ≠ ClaimClass.verified := by
   intro hv
-  cases hklass
+  rw [hklass] at hv
   cases hv
 
 end Claims

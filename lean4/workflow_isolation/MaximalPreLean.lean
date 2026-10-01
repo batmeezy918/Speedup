@@ -1,12 +1,12 @@
+/-
+  Pre-Lean objects that are candidates for formal closure.
+  Explicit parameters. No implicit section. Core only. No sorry.
+-/
 namespace SpeedupWorkflow
 
 universe u v w
 
-variable {X : Type u} {Q : Type v} {Y : Type w}
-
-/-! Pre-Lean objects that are candidates for formal closure. -/
-
-structure QuotientModel where
+structure QuotientModel (X : Type u) (Q : Type v) (Y : Type w) where
   π : X → Q
   T : X → X
   Tbar : Q → Q
@@ -14,13 +14,16 @@ structure QuotientModel where
   obs : X → Y
   obsBar : Q → Y
 
-class Intertwining (M : QuotientModel) : Prop where
+structure Intertwining (X : Type u) (Q : Type v) (Y : Type w)
+    (M : QuotientModel X Q Y) where
   step : ∀ x, M.π (M.T x) = M.Tbar (M.π x)
 
-class Reconstruction (M : QuotientModel) : Prop where
-  section : ∀ q, M.π (M.σ q) = q
+structure Reconstruction (X : Type u) (Q : Type v) (Y : Type w)
+    (M : QuotientModel X Q Y) where
+  section_ : ∀ q, M.π (M.σ q) = q
 
-class Observable (M : QuotientModel) : Prop where
+structure Observable (X : Type u) (Q : Type v) (Y : Type w)
+    (M : QuotientModel X Q Y) where
   preserved : ∀ x, M.obs x = M.obsBar (M.π x)
 
 def Iterate {α : Type u} (f : α → α) : Nat → α → α
@@ -28,8 +31,9 @@ def Iterate {α : Type u} (f : α → α) : Nat → α → α
   | n + 1, x => f (Iterate f n x)
 
 theorem finite_descent
-    (M : QuotientModel)
-    [h : Intertwining M] :
+    {X : Type u} {Q : Type v} {Y : Type w}
+    (M : QuotientModel X Q Y)
+    (h : Intertwining X Q Y M) :
     ∀ n x, M.π (Iterate M.T n x) = Iterate M.Tbar n (M.π x) := by
   intro n
   induction n with
@@ -38,19 +42,21 @@ theorem finite_descent
       rfl
   | succ n ih =>
       intro x
-      rw [Iterate, h.step x, ih x]
+      show M.π (M.T (Iterate M.T n x)) = M.Tbar (Iterate M.Tbar n (M.π x))
+      rw [h.step, ih]
 
 theorem reconstruction
-    (M : QuotientModel)
-    [h : Reconstruction M] :
-    ∀ q, M.π (M.σ q) = q := h.section
+    {X : Type u} {Q : Type v} {Y : Type w}
+    (M : QuotientModel X Q Y)
+    (h : Reconstruction X Q Y M) :
+    ∀ q, M.π (M.σ q) = q := h.section_
 
 theorem observable_preservation
-    (M : QuotientModel)
-    [h : Observable M] :
+    {X : Type u} {Q : Type v} {Y : Type w}
+    (M : QuotientModel X Q Y)
+    (h : Observable X Q Y M) :
     ∀ x, M.obs x = M.obsBar (M.π x) := h.preserved
 
-/- Modeled GEMM work identities. -/
 def fullWork (m n k : Nat) := 2 * m * n * k
 def reducedWork (r s k : Nat) := 2 * r * s * k
 
@@ -64,7 +70,6 @@ theorem reduced_is_strictly_smaller :
       fullWork 1024 1024 1024 := by
   decide
 
-/- Runtime evidence must remain external to the mathematical theorem. -/
 structure RuntimeBinding where
   baselineNs : Nat
   candidateNs : Nat

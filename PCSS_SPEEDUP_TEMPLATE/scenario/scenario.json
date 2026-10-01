@@ -1,13 +1,28 @@
 {
-  "schema": "pcss-scenario-v1",
-  "run_id": "REPLACE_ME",
-  "workload": "",
-  "baseline": "",
-  "candidate": "",
-  "environment": "",
-  "repetitions": 3,
-  "warmup": "",
-  "timing_source": "",
-  "seed": null,
-  "observables": []
+  "template": "PCSS_SPEEDUP_TEMPLATE",
+  "rule": "Do not bake a specimen speedup into this file.",
+  "required_gates": [
+    "integrity",
+    "reproducibility",
+    "quotient_forward",
+    "reconstruction_reverse",
+    "invariants",
+    "performance",
+    "lean"
+  ],
+  "publish_iff": "I and R and Q and Qinv and Omega and X and L",
+  "fields": [
+    "run_id",
+    "source_hash",
+    "input_hash",
+    "environment",
+    "output_hash",
+    "correctness",
+    "invariants",
+    "reproducibility",
+    "timing_distribution",
+    "speedup",
+    "certificate",
+    "lean_theorems"
+  ]
 }

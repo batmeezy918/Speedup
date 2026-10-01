@@ -1,0 +1,136 @@
+{
+  "predicate": "PUBLISH <=> I and R and Q and Qinv and Omega and X and L",
+  "published": 0,
+  "executed": 9,
+  "results": [
+    {
+      "id": "cocoex-bbob-dim10-budget1000-20260910",
+      "class": "NEGATIVE",
+      "gate_exit": 1,
+      "publishable": false,
+      "missing": [
+        "quotient_forward",
+        "performance",
+        "lean"
+      ],
+      "stdout": "QUARANTINED: mandatory gates not proven\n - quotient_forward\n - performance\n - lean"
+    },
+    {
+      "id": "sim2xr-invariant-sector-20260908",
+      "class": "STRONG_LOCAL",
+      "gate_exit": 1,
+      "publishable": false,
+      "missing": [
+        "lean"
+      ],
+      "stdout": "QUARANTINED: mandatory gates not proven\n - lean"
+    },
+    {
+      "id": "s6-s7-s8-coco-equivalent-20260515",
+      "class": "QUARANTINED",
+      "gate_exit": 1,
+      "publishable": false,
+      "missing": [
+        "integrity",
+        "reproducibility",
+        "quotient_forward",
+        "reconstruction_reverse",
+        "invariants",
+        "performance",
+        "lean"
+      ],
+      "stdout": "QUARANTINED: mandatory gates not proven\n - integrity\n - reproducibility\n - quotient_forward\n - reconstruction_reverse\n - invariants\n - performance\n - lean"
+    },
+    {
+      "id": "vault-canonical-decider-20260531T112101Z",
+      "class": "CANDIDATE",
+      "gate_exit": 1,
+      "publishable": false,
+      "missing": [
+        "integrity",
+        "reproducibility",
+        "quotient_forward",
+        "reconstruction_reverse",
+        "invariants",
+        "performance",
+        "lean"
+      ],
+      "stdout": "QUARANTINED: mandatory gates not proven\n - integrity\n - reproducibility\n - quotient_forward\n - reconstruction_reverse\n - invariants\n - performance\n - lean"
+    },
+    {
+      "id": "iqvf-coco",
+      "class": "QUARANTINED",
+      "gate_exit": 1,
+      "publishable": false,
+      "missing": [
+        "integrity",
+        "reproducibility",
+        "quotient_forward",
+        "reconstruction_reverse",
+        "invariants",
+        "performance",
+        "lean"
+      ],
+      "stdout": "QUARANTINED: mandatory gates not proven\n - integrity\n - reproducibility\n - quotient_forward\n - reconstruction_reverse\n - invariants\n - performance\n - lean"
+    },
+    {
+      "id": "snap-24-case-vs-cma",
+      "class": "CANDIDATE",
+      "gate_exit": 1,
+      "publishable": false,
+      "missing": [
+        "integrity",
+        "reproducibility",
+        "quotient_forward",
+        "reconstruction_reverse",
+        "invariants",
+        "performance",
+        "lean"
+      ],
+      "stdout": "QUARANTINED: mandatory gates not proven\n - integrity\n - reproducibility\n - quotient_forward\n - reconstruction_reverse\n - invariants\n - performance\n - lean"
+    },
+    {
+      "id": "ledger-reported-ratios",
+      "class": "THEORETICAL_OR_SIMULATED",
+      "gate_exit": 1,
+      "publishable": false,
+      "missing": [
+        "integrity",
+        "reproducibility",
+        "quotient_forward",
+        "reconstruction_reverse",
+        "invariants",
+        "performance",
+        "lean"
+      ],
+      "stdout": "QUARANTINED: mandatory gates not proven\n - integrity\n - reproducibility\n - quotient_forward\n - reconstruction_reverse\n - invariants\n - performance\n - lean"
+    },
+    {
+      "id": "graph500-reference",
+      "class": "MEASURED_BASELINE",
+      "gate_exit": 1,
+      "publishable": false,
+      "missing": [
+        "reproducibility",
+        "quotient_forward",
+        "reconstruction_reverse",
+        "invariants",
+        "performance",
+        "lean"
+      ],
+      "stdout": "QUARANTINED: mandatory gates not proven\n - reproducibility\n - quotient_forward\n - reconstruction_reverse\n - invariants\n - performance\n - lean"
+    },
+    {
+      "id": "PCSS_NEON_GEMM_N512_20261001T052954Z",
+      "class": "CERTIFICATE_BOUND",
+      "gate_exit": 1,
+      "publishable": false,
+      "missing": [
+        "quotient_forward",
+        "reconstruction_reverse",
+        "invariants"
+      ],
+      "stdout": "QUARANTINED: mandatory gates not proven\n - quotient_forward\n - reconstruction_reverse\n - invariants"
+    }
+  ]
+}

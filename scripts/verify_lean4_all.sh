@@ -41,12 +41,14 @@ scan_file() {
 
 if [[ "$MODE" == "core" ]]; then
   FIND_ROOT="$ROOT_ABS"
-  mapfile -d '' files < <(
-    find "$FIND_ROOT" -type f -name '*.lean' \
-      ! -path '*/Mathlib/*' \
-      ! -name 'lakefile.lean' \
-      -print0 | sort -z
-  )
+  find "$FIND_ROOT" -type f -name '*.lean' \
+    ! -path '*/Mathlib/*' \
+    ! -name 'lakefile.lean' \
+    -print0 | sort -z > "$TMPDIR_VERIFIER/files0"
+  files=()
+  while IFS= read -r -d '' file; do
+    files+=("$file")
+  done < "$TMPDIR_VERIFIER/files0"
   for file in "${files[@]}"; do
     rel="${file#${ROOT_ABS}/}"
     out="$TMPDIR_VERIFIER/${rel//\//__}.txt"
@@ -79,6 +81,7 @@ if [[ "${#files[@]}" -eq 0 ]]; then
 fi
 
 find "$ROOT_ABS" -type f \( -name '*.olean' -o -name '*.ilean' \) -delete
+export LEAN_PATH="$ROOT_ABS${LEAN_PATH:+:$LEAN_PATH}"
 
 pass=0
 pending=("${files[@]}")
@@ -99,8 +102,8 @@ while [[ "${#pending[@]}" -gt 0 ]]; do
         next+=("$file")
       fi
     else
-      echo "--- lean --root $ROOT_ABS $file"
-      if lean --root="$ROOT_ABS" "$file"; then
+      echo "--- lean -o $rel"
+      if lean -o "${file%.lean}.olean" --root="$ROOT_ABS" "$file"; then
         progress=$((progress + 1))
       else
         next+=("$file")
