@@ -1,132 +1,135 @@
-/-!
-Progress–Target Coupling bridge for the ChronoFold/Speedup formal layer.
+/-
+  ChronoFold lane — Progress–Target Coupling.
 
-Self-contained core-lane file. No empirical speedup is asserted here.
+  Lean core only. No Mathlib. No unfinished-proof markers.
+  Standalone: no sibling-module import (lean --root compiles each file).
 -/
-namespace ChronoFold
+
+namespace SiliconSpeedup
+
+set_option autoImplicit false
 
 universe u v
 
-def iter {α : Type u} : Nat → (α → α) → α → α
-  | 0, _, x => x
-  | n + 1, f, x => f (iter n f x)
-
 variable {X : Type u} {Q : Type v}
 
-def Intertwines (π : X → Q) (T : X → X) (Tbar : Q → Q) : Prop :=
-  ∀ x, π (T x) = Tbar (π x)
+def Intertwines (pi : X → Q) (T : X → X) (Tbar : Q → Q) : Prop :=
+  ∀ x, pi (T x) = Tbar (pi x)
 
-def Section (π : X → Q) (σ : Q → X) : Prop :=
-  ∀ q, π (σ q) = q
+def Section (pi : X → Q) (sigma : Q → X) : Prop :=
+  ∀ q, pi (sigma q) = q
 
-theorem forward_iterate
-    (π : X → Q) (T : X → X) (Tbar : Q → Q)
-    (hT : Intertwines π T Tbar) :
-    ∀ n x, π (iter n T x) = iter n Tbar (π x) := by
+def iter {α : Type _} (n : Nat) (f : α → α) (x : α) : α :=
+  match n with
+  | 0 => x
+  | n + 1 => f (iter n f x)
+
+theorem quotient_iterate
+    (pi : X → Q) (T : X → X) (Tbar : Q → Q)
+    (h : Intertwines pi T Tbar) :
+    ∀ n x, pi (iter n T x) = iter n Tbar (pi x) := by
   intro n
   induction n with
-  | zero => intro x; rfl
+  | zero =>
+      intro x
+      rfl
   | succ n ih =>
       intro x
-      show π (T (iter n T x)) = Tbar (iter n Tbar (π x))
-      rw [hT, ih]
+      change pi (T (iter n T x)) = Tbar (iter n Tbar (pi x))
+      rw [h, ih]
 
 theorem reconstructed_iterate
-    (π : X → Q) (T : X → X) (Tbar : Q → Q) (σ : Q → X)
-    (hσ : Section π σ) (hT : Intertwines π T Tbar) :
-    ∀ n q, π (iter n T (σ q)) = iter n Tbar q := by
+    (pi : X → Q) (T : X → X) (Tbar : Q → Q) (sigma : Q → X)
+    (hσ : Section pi sigma)
+    (hT : Intertwines pi T Tbar) :
+    ∀ n q, pi (iter n T (sigma q)) = iter n Tbar q := by
   intro n q
-  have hfwd := forward_iterate π T Tbar hT n (σ q)
-  calc
-    π (iter n T (σ q)) = iter n Tbar (π (σ q)) := hfwd
-    _ = iter n Tbar q := by rw [hσ q]
+  rw [quotient_iterate pi T Tbar hT]
+  exact congrArg (iter n Tbar) (hσ q)
 
-/-- A quotient-space target reached by an iterated transition. -/
 def Reaches (Target : Q → Prop) (Tbar : Q → Q) (q : Q) : Prop :=
   ∃ n, Target (iter n Tbar q)
-
-theorem iter_comm {α : Type u} (f : α → α) (n : Nat) (x : α) :
-    iter n f (f x) = f (iter n f x) := by
-  induction n with
-  | zero => rfl
-  | succ n ih =>
-      show f (iter n f (f x)) = f (f (iter n f x))
-      rw [ih]
 
 theorem progress_target_coupling
     (D : Q → Nat)
     (Target : Q → Prop)
     (Tbar : Q → Q)
-    (h_zero : ∀ q, D q = 0 → Target q)
+    (_h_zero : ∀ q, D q = 0 → Target q)
     (h_dec : ∀ q, ¬ Target q → D (Tbar q) < D q) :
     ∀ q, Reaches Target Tbar q := by
-  have wf : WellFounded (fun a b : Q => D a < D b) :=
-    InvImage.wf D Nat.lt_wfRel.wf
-  refine WellFounded.fix wf ?_
-  intro q ih
-  by_cases ht : Target q
-  · exact ⟨0, ht⟩
-  · have hlt : D (Tbar q) < D q := h_dec q ht
-    obtain ⟨n, hn⟩ := ih (Tbar q) hlt
-    refine ⟨n + 1, ?_⟩
-    have hstep : iter (n + 1) Tbar q = iter n Tbar (Tbar q) := by
-      show Tbar (iter n Tbar q) = iter n Tbar (Tbar q)
-      exact (iter_comm Tbar n q).symm
-    rw [hstep]
-    exact hn
+  intro q0
+  have hstep : ∀ n q, D q < n → Reaches Target Tbar q := by
+    intro n
+    induction n with
+    | zero =>
+        intro q hq
+        cases hq
+    | succ n ih =>
+        intro q hq
+        by_cases ht : Target q
+        · exact ⟨0, by simpa [iter] using ht⟩
+        · have hlt : D (Tbar q) < D q := h_dec q ht
+          have hbound : D (Tbar q) < n :=
+            Nat.lt_of_lt_of_le hlt (Nat.le_of_lt_succ hq)
+          obtain ⟨k, hk⟩ := ih (Tbar q) hbound
+          exact ⟨k + 1, by simpa [iter] using hk⟩
+  exact hstep (D q0 + 1) q0 (Nat.lt_succ_self _)
 
 theorem zero_defect_is_target
     (D : Q → Nat)
     (Target : Q → Prop)
     (h_zero : ∀ q, D q = 0 → Target q) :
-    ∀ q, D q = 0 → Target q := h_zero
+    ∀ q, D q = 0 → Target q := by
+  intro q hq
+  exact h_zero q hq
 
 theorem literal_target_transfer
-    (π : X → Q)
+    (pi : X → Q)
     (T : X → X)
     (Tbar : Q → Q)
     (Target : Q → Prop)
-    (hT : Intertwines π T Tbar)
+    (hT : Intertwines pi T Tbar)
     (x : X)
-    (hreach : Reaches Target Tbar (π x)) :
-    ∃ n, Target (π (iter n T x)) := by
+    (hreach : Reaches Target Tbar (pi x)) :
+    ∃ n, Target (pi (iter n T x)) := by
   obtain ⟨n, hn⟩ := hreach
   exact ⟨n, by
-    rw [forward_iterate π T Tbar hT n x]
+    rw [quotient_iterate pi T Tbar hT]
     exact hn
   ⟩
 
 theorem reconstructed_target_transfer
-    (π : X → Q)
+    (pi : X → Q)
     (T : X → X)
     (Tbar : Q → Q)
-    (σ : Q → X)
+    (sigma : Q → X)
     (Target : Q → Prop)
-    (hσ : Section π σ)
-    (hT : Intertwines π T Tbar)
+    (hσ : Section pi sigma)
+    (hT : Intertwines pi T Tbar)
     (q : Q)
     (hreach : Reaches Target Tbar q) :
-    ∃ n, Target (π (iter n T (σ q))) := by
+    ∃ n, Target (pi (iter n T (sigma q))) := by
   obtain ⟨n, hn⟩ := hreach
   exact ⟨n, by
-    rw [reconstructed_iterate π T Tbar σ hσ hT n q]
+    have hrec := reconstructed_iterate pi T Tbar sigma hσ hT n q
+    rw [hrec]
     exact hn
   ⟩
 
 theorem progress_target_literal_closure
-    (π : X → Q)
+    (pi : X → Q)
     (T : X → X)
     (Tbar : Q → Q)
-    (σ : Q → X)
+    (sigma : Q → X)
     (D : Q → Nat)
     (Target : Q → Prop)
     (h_zero : ∀ q, D q = 0 → Target q)
     (h_dec : ∀ q, ¬ Target q → D (Tbar q) < D q)
-    (hσ : Section π σ)
-    (hT : Intertwines π T Tbar) :
-    ∀ q, ∃ n, Target (π (iter n T (σ q))) := by
+    (hσ : Section pi sigma)
+    (hT : Intertwines pi T Tbar) :
+    ∀ q, ∃ n, Target (pi (iter n T (sigma q))) := by
   intro q
-  exact reconstructed_target_transfer π T Tbar σ Target hσ hT q
-    (progress_target_coupling D Target Tbar h_zero h_dec q)
+  apply reconstructed_target_transfer pi T Tbar sigma Target hσ hT q
+  exact progress_target_coupling D Target Tbar h_zero h_dec q
 
-end ChronoFold
+end SiliconSpeedup

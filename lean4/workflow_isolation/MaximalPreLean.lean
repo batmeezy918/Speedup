@@ -6,6 +6,8 @@ namespace SpeedupWorkflow
 
 universe u v w
 
+variable {X : Type u} {Q : Type v} {Y : Type w}
+
 structure QuotientModel (X : Type u) (Q : Type v) (Y : Type w) where
   π : X → Q
   T : X → X
@@ -14,16 +16,16 @@ structure QuotientModel (X : Type u) (Q : Type v) (Y : Type w) where
   obs : X → Y
   obsBar : Q → Y
 
-structure Intertwining (X : Type u) (Q : Type v) (Y : Type w)
-    (M : QuotientModel X Q Y) where
+class Intertwining {X : Type u} {Q : Type v} {Y : Type w}
+    (M : QuotientModel X Q Y) : Prop where
   step : ∀ x, M.π (M.T x) = M.Tbar (M.π x)
 
-structure Reconstruction (X : Type u) (Q : Type v) (Y : Type w)
-    (M : QuotientModel X Q Y) where
+class Reconstruction {X : Type u} {Q : Type v} {Y : Type w}
+    (M : QuotientModel X Q Y) : Prop where
   section_ : ∀ q, M.π (M.σ q) = q
 
-structure Observable (X : Type u) (Q : Type v) (Y : Type w)
-    (M : QuotientModel X Q Y) where
+class Observable {X : Type u} {Q : Type v} {Y : Type w}
+    (M : QuotientModel X Q Y) : Prop where
   preserved : ∀ x, M.obs x = M.obsBar (M.π x)
 
 def Iterate {α : Type u} (f : α → α) : Nat → α → α
@@ -33,28 +35,27 @@ def Iterate {α : Type u} (f : α → α) : Nat → α → α
 theorem finite_descent
     {X : Type u} {Q : Type v} {Y : Type w}
     (M : QuotientModel X Q Y)
-    (h : Intertwining X Q Y M) :
+    [h : Intertwining M] :
     ∀ n x, M.π (Iterate M.T n x) = Iterate M.Tbar n (M.π x) := by
   intro n
   induction n with
-  | zero =>
-      intro x
-      rfl
+  | zero => intro x; rfl
   | succ n ih =>
       intro x
-      show M.π (M.T (Iterate M.T n x)) = M.Tbar (Iterate M.Tbar n (M.π x))
-      rw [h.step, ih]
+      change M.π (M.T (Iterate M.T n x)) =
+        M.Tbar (Iterate M.Tbar n (M.π x))
+      rw [h.step, ih x]
 
 theorem reconstruction
     {X : Type u} {Q : Type v} {Y : Type w}
     (M : QuotientModel X Q Y)
-    (h : Reconstruction X Q Y M) :
+    [h : Reconstruction M] :
     ∀ q, M.π (M.σ q) = q := h.section_
 
 theorem observable_preservation
     {X : Type u} {Q : Type v} {Y : Type w}
     (M : QuotientModel X Q Y)
-    (h : Observable X Q Y M) :
+    [h : Observable M] :
     ∀ x, M.obs x = M.obsBar (M.π x) := h.preserved
 
 def fullWork (m n k : Nat) := 2 * m * n * k
