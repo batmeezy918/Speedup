@@ -1,0 +1,13 @@
+{
+  "schema": "pcss-scenario-v1",
+  "run_id": "REPLACE_ME",
+  "workload": "",
+  "baseline": "",
+  "candidate": "",
+  "environment": "",
+  "repetitions": 3,
+  "warmup": "",
+  "timing_source": "",
+  "seed": null,
+  "observables": []
+}

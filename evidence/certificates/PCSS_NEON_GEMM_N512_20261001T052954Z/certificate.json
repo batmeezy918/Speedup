@@ -1,0 +1,33 @@
+{
+  "run_id": "PCSS_NEON_GEMM_N512_20261001T052954Z",
+  "benchmark_sha256": "b6d1187d5d6e7b2189bf5ed3b0298b764227babcd1dae71143efe78697195fca",
+  "arch": "aarch64",
+  "kernel": "4x4 NEON FMA",
+  "precision": "FP32",
+  "n": 512,
+  "runs": [11.294605, 9.562833, 11.691331],
+  "canonical_median": 11.294605,
+  "minimum": 9.562833,
+  "maximum": 11.691331,
+  "scalar_median_s": 0.319142604,
+  "neon_median_s": 0.027621615,
+  "correctness": "PASS",
+  "semantic_reproducibility": "PASS",
+  "performance_gate": "PASS",
+  "independent_runs_gt_1x": "3/3",
+  "class": "CERTIFICATE_BOUND",
+  "verified_count_contribution": 0,
+  "scope": "Lean proves arithmetic of the supplied record. Lean did not measure the device.",
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "quotient_forward": false,
+    "reconstruction_reverse": false,
+    "invariants": false,
+    "performance": true,
+    "lean": true
+  },
+  "missing": ["quotient_forward", "reconstruction_reverse", "invariants"],
+  "may_say": "frozen aarch64 N=512 NEON median 11.294605x, min 9.562833x, 3/3 above 1x, correctness and semantic reproducibility marked PASS",
+  "must_not_say": "PCSS-VERIFIED universal GEMM speedup; Lean-measured wall-clock"
+}
