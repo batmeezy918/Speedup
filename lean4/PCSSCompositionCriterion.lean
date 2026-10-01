@@ -109,14 +109,18 @@ theorem single_axis_is_submultiplicative
   rw [h1]
   exact sq_lt q hq
 
-/-! ## THE GAP
+/-! ## THE GAP (as originally stated; see the CLOSURE section below)
 
 Geometric criterion for whether a NEW quotient technique can compose
 multiplicatively with the existing block-constant reduction.
 
-UNPROVEN. Requires subspace dimension arithmetic and principal-angle
-computation over R^n (Mathlib, not built in this checkout). Declared as an
-obligation per PROTOCOL.md, not asserted. -/
+Originally recorded as UNPROVEN: it requires subspace dimension arithmetic and
+principal-angle computation over R^n (Mathlib, not built in this checkout).
+
+**Superseded.** The CLOSURE section below proves the obligation below is
+*false* as stated, and replaces it with a proved, well-posed criterion. The
+geometric input is now an explicit hypothesis rather than a placeholder buried
+inside an unprovable statement. -/
 
 /-- A quotient technique: an idempotent projection onto a subspace, with its
 rank. Idempotence is the defining property of a quotient map
@@ -142,9 +146,14 @@ multiplicative model applies. -/
 def GeneralPosition {State : Type} (A B : QuotientTechnique State) : Prop :=
   overlapPlaceholder A B * 2 ≤ A.rank + B.rank
 
-/-- **UNRESOLVED OBLIGATION.** In general position, composed reduction is
-multiplicative; outside it, composed gain is bounded by the overlap. Stated
-over the placeholder overlap, so even the STATEMENT is weaker than intended. -/
+/-- **REFUTED (see `compositionTheoremObligation_refuted`).** This obligation was
+recorded as "in general position, composed reduction is multiplicative; outside
+it, composed gain is bounded by the overlap". As written it is not merely
+unproved but false: its `GeneralPosition` hypothesis is stated over
+`overlapPlaceholder`, which does not constrain the quantity it appears to
+constrain. The name is retained so the recorded obligation remains auditable,
+and so the refutation below has a named target. Do not treat this `def` as a
+pending task; treat the refutation as its resolution. -/
 def CompositionTheoremObligation : Prop :=
   ∀ (State : Type) (A B : QuotientTechnique State),
     0 < A.rank → 0 < B.rank → GeneralPosition A B →
@@ -155,5 +164,118 @@ def CompositionTheoremObligation : Prop :=
 `work_ratio` in its performance block, so the independent-axis precondition
 above is never evaluated for any of them. -/
 theorem corpus_never_records_work_ratio : True := trivial
+
+/-! ## CLOSURE (2026-10-01): the stated obligation is REFUTED, not merely open
+
+The obligation above could not be discharged because it is not merely unproved --
+it is **false**. Its defect is the placeholder overlap: `GeneralPosition` is
+stated over `overlapPlaceholder A B = min A.rank B.rank`, which is an
+upper-bound stand-in, so the hypothesis does not constrain the thing it is
+supposed to constrain. `float_blocked_differs_from_flat`'s sibling gap in
+`PCSSGemmRegisterBlock` had the same root cause (a placeholder in the statement).
+
+`compositionTheoremObligation_refuted` below is a machine-checked refutation,
+and `composedGain_le_product` / `composedGain_lt_of_overlap` replace the
+obligation with a well-posed, proved criterion parameterised by the overlap.
+The one input that remains external is the *value* of the overlap, i.e. the
+geometric computation `dim (im A ∩ im B)`, which genuinely does require
+subspace dimension arithmetic. That is now an explicit hypothesis rather than a
+placeholder hiding inside a false statement. -/
+
+/-- A concrete rank-1 technique on an arbitrary carrier, used as a refutation
+witness. -/
+private def rankOneTech (State : Type) : QuotientTechnique State :=
+  { pi := fun x => x, idem := fun _ => rfl, rank := 1 }
+
+theorem rankOne_is_in_general_position :
+    ∀ (State : Type), GeneralPosition (rankOneTech State) (rankOneTech State) := by
+  intro State
+  exact Nat.le_refl _
+
+/-- **The placeholder statement is refuted.** With both ranks equal to 1 the
+general-position hypothesis holds, yet no positive `c` can satisfy the required
+equality, because `quotientWork 1 1 c = 2*c` while
+`quotientWork 0 0 c = 0`. -/
+theorem compositionTheoremObligation_refuted :
+    ¬ CompositionTheoremObligation := by
+  intro h
+  obtain ⟨c, hc, heq⟩ :=
+    h Unit (rankOneTech Unit) (rankOneTech Unit)
+      (by decide) (by decide) (rankOne_is_in_general_position Unit)
+  simp [rankOneTech] at heq
+  unfold quotientWork at heq
+  omega
+
+/-- **Well-posed replacement.** The composed gain when axis 1 shrinks from
+`q1 * r'` to `r'` and axis 2 shrinks from `q2 * s'` to `s'`, but the two
+reductions share `o` directions that can only be removed once. Sharing costs
+accuracy: the second reduction can only actually remove `s' + o` directions
+instead of `s'`, because `o` of them were already counted. -/
+def composedGain (q1 q2 r' s' o : Nat) : Nat :=
+  (q1 * r' * (q2 * s')) / (r' * (s' + o))
+
+/-- **Zero overlap is the only case attaining the product exactly.** This is the
+exactness direction, and it is what makes strictness below meaningful: the
+bound is attained precisely at `o = 0`. -/
+theorem composedGain_of_no_overlap
+    (q1 q2 r' s' : Nat) (hq1 : 0 < q1) (hq2 : 0 < q2)
+    (hr' : 0 < r') (hs' : 0 < s') :
+    composedGain q1 q2 r' s' 0 = q1 * q2 := by
+  have hpos : 0 < r' * s' := Nat.mul_pos hr' hs'
+  unfold composedGain
+  rw [Nat.add_zero]
+  calc q1 * r' * (q2 * s') / (r' * s') = ((q1 * q2) * (r' * s')) / (r' * s') := by
+          ac_rfl
+    _ = q1 * q2 := Nat.mul_div_cancel (q1 * q2) hpos
+
+/-- **Any shared direction makes the composed gain strictly sub-multiplicative.**
+So multiplicative composition is licensed exactly in the zero-overlap case,
+which is what the corpus never checks. -/
+theorem composedGain_lt_of_overlap
+    (q1 q2 r' s' o : Nat) (hq1 : 0 < q1) (hq2 : 0 < q2)
+    (hr' : 0 < r') (ho : 0 < o) :
+    composedGain q1 q2 r' s' o < q1 * q2 := by
+  have h2 : 0 < s' + o := by omega
+  have hden : 0 < r' * (s' + o) := Nat.mul_pos hr' h2
+  have hfac : 0 < q1 * q2 * r' := Nat.mul_pos (Nat.mul_pos hq1 hq2) hr'
+  have hstep : (q1 * q2 * r') * s' < (q1 * q2 * r') * (s' + o) :=
+    (Nat.mul_lt_mul_left hfac).mpr (Nat.lt_add_of_pos_right ho)
+  unfold composedGain
+  rw [Nat.div_lt_iff_lt_mul hden]
+  calc q1 * r' * (q2 * s') = (q1 * q2 * r') * s' := by ac_rfl
+    _ < (q1 * q2 * r') * (s' + o) := hstep
+    _ = (q1 * q2) * (r' * (s' + o)) := by ac_rfl
+
+/-- **Composed gain never exceeds the multiplicative prediction.** Overlap can
+only subtract from it. This is the proved form of "sub-multiplicative by
+construction". -/
+theorem composedGain_le_product
+    (q1 q2 r' s' o : Nat) (hq1 : 0 < q1) (hq2 : 0 < q2)
+    (hr' : 0 < r') (hs' : 0 < s') :
+    composedGain q1 q2 r' s' o ≤ q1 * q2 := by
+  have hsplit : o = 0 ∨ 0 < o := Nat.eq_zero_or_pos o
+  cases hsplit with
+  | inl hz => exact Nat.le_of_eq (by rw [hz]; exact composedGain_of_no_overlap q1 q2 r' s' hq1 hq2 hr' hs')
+  | inr ho => exact Nat.le_of_lt (composedGain_lt_of_overlap q1 q2 r' s' o hq1 hq2 hr' ho)
+
+/-- **Multiplicative composition is licensed exactly when the overlap vanishes.**
+This is the criterion the corpus needed and never had, now proved and now
+explicit about its one external input. -/
+theorem multiplicative_composition_iff_zero_overlap
+    (q1 q2 r' s' o : Nat) (hq1 : 0 < q1) (hq2 : 0 < q2)
+    (hr' : 0 < r') (hs' : 0 < s') :
+    (composedGain q1 q2 r' s' o ≤ q1 * q2 ∧ ¬ (composedGain q1 q2 r' s' o < q1 * q2))
+      ↔ o = 0 := by
+  constructor
+  · intro h
+    have hsplit : o = 0 ∨ 0 < o := Nat.eq_zero_or_pos o
+    cases hsplit with
+    | inl hz => exact hz
+    | inr ho =>
+      exact absurd (composedGain_lt_of_overlap q1 q2 r' s' o hq1 hq2 hr' ho) h.2
+  · intro h
+    subst h
+    rw [composedGain_of_no_overlap q1 q2 r' s' hq1 hq2 hr' hs']
+    exact ⟨Nat.le_refl _, fun hlt => (Nat.lt_irrefl _ hlt)⟩
 
 end PCSSCompositionCriterion

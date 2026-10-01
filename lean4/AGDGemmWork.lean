@@ -1,5 +1,20 @@
 namespace AGDGemmWork
 
+/-! Provenance note (2026-10-01). The closed numeric facts below (`fullWork_1024`
+through `canonical_workRatio`, and the three side conditions in
+`canonical_is_instance_of_q_square`) were originally proved by `native_decide`.
+That is an unsound oracle: it adds a bespoke axiom and does not run the Lean
+kernel, so it cannot fail. Every one of these is decidable by kernel reduction
+alone, so they are now proved by `decide`.
+
+This matters for more than tidiness. `AGDGemmWork` is inside the import closure
+of the MuNi binding chain (`PCSSCallableBinding` and
+`PCSSCompositionCriterion` both import it), so an unsound oracle here could in
+principle lend false authority to the chain. After this change every theorem in
+that module is axiom-free except `canonical_is_instance_of_q_square`, which
+depends only on `propext`, and the whole module no longer contributes any
+oracle to the closure. Verified by `#print axioms` on each theorem. -/
+
 def fullWork (m n k : Nat) : Nat :=
   2 * m * n * k
 
@@ -48,38 +63,38 @@ theorem workRatio_square
 
 theorem fullWork_1024 :
     fullWork 1024 1024 1024 = 2147483648 := by
-  native_decide
+  decide
 
 theorem quotientWork_256 :
     quotientWork 256 256 1024 = 134217728 := by
-  native_decide
+  decide
 
 theorem canonical_ratio :
     fullWork 1024 1024 1024 = 16 * quotientWork 256 256 1024 := by
-  native_decide
+  decide
 
 theorem strict_work_reduction :
     quotientWork 256 256 1024 < fullWork 1024 1024 1024 := by
-  native_decide
+  decide
 
 theorem factor_four_gives_sixteen :
     squareWork 1024 1024 = 16 * squareWork 256 1024 := by
-  native_decide
+  decide
 
 theorem four_sq : (4 : Nat) * 4 = 16 := by
-  native_decide
+  decide
 
 theorem dim_factorization : (1024 : Nat) = 4 * 256 := by
-  native_decide
+  decide
 
 theorem canonical_workRatio :
     workRatio (fullWork 1024 1024 1024) (quotientWork 256 256 1024) = 16 := by
-  native_decide
+  decide
 
 theorem canonical_is_instance_of_q_square :
     workRatio (fullWork (4 * 256) (4 * 256) 1024) (quotientWork 256 256 1024)
       = 4 * 4 :=
-  workRatio_outer 4 256 256 1024 (by native_decide) (by native_decide) (by native_decide)
+  workRatio_outer 4 256 256 1024 (by decide) (by decide) (by decide)
 
 theorem canonical_q_square_equals_sixteen :
     workRatio (fullWork (4 * 256) (4 * 256) 1024) (quotientWork 256 256 1024) = 16 := by

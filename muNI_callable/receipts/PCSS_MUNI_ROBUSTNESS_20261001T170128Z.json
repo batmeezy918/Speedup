@@ -1,0 +1,381 @@
+{
+  "schema": "PCSS-MUNI-ROBUSTNESS-1.0",
+  "run_id": "20261001T170128Z",
+  "arch": "aarch64",
+  "kernel": "6.17.0-PRoot-Distro",
+  "omp_threads": 1,
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "purpose": "Test whether the bitwise-equality correctness witness generalises beyond the constant-input family used by every prior receipt.",
+  "sizes": [
+    33,
+    64,
+    129,
+    257,
+    512
+  ],
+  "rows": [
+    {
+      "n": 33,
+      "family": "constant_uniform",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 1.2407302818928656e-05,
+      "candidate_err_vs_f64": 1.2407302818928656e-05,
+      "baseline_rel_err": 1.5536316405067094e-07,
+      "candidate_rel_err": 1.5536316405067094e-07
+    },
+    {
+      "n": 33,
+      "family": "random_uniform",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 2.382087309626968e-06,
+      "candidate_err_vs_f64": 2.382087309626968e-06,
+      "baseline_rel_err": 2.0380214693928803e-07,
+      "candidate_rel_err": 2.0380214693928803e-07
+    },
+    {
+      "n": 33,
+      "family": "random_normal",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 3.170845605637851e-06,
+      "candidate_err_vs_f64": 3.170845605637851e-06,
+      "baseline_rel_err": 1.6043943449846649e-07,
+      "candidate_rel_err": 1.6043943449846649e-07
+    },
+    {
+      "n": 33,
+      "family": "mixed_scale_pow2",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 101764.81860351562,
+      "candidate_err_vs_f64": 101764.81860351562,
+      "baseline_rel_err": 4.627635281110966e-08,
+      "candidate_rel_err": 4.627635281110966e-08
+    },
+    {
+      "n": 33,
+      "family": "alternating_sign",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 0.0,
+      "candidate_err_vs_f64": 0.0,
+      "baseline_rel_err": 0.0,
+      "candidate_rel_err": 0.0
+    },
+    {
+      "n": 33,
+      "family": "absorption_extreme",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 6.923182880912698e+27,
+      "candidate_err_vs_f64": 6.923182880912698e+27,
+      "baseline_rel_err": 6.92318309820719e-09,
+      "candidate_rel_err": 6.92318309820719e-09
+    },
+    {
+      "n": 64,
+      "family": "constant_uniform",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 4.7607421947759576e-05,
+      "candidate_err_vs_f64": 4.7607421947759576e-05,
+      "baseline_rel_err": 3.0738261805290214e-07,
+      "candidate_rel_err": 3.0738261805290214e-07
+    },
+    {
+      "n": 64,
+      "family": "random_uniform",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 6.3638093479312374e-06,
+      "candidate_err_vs_f64": 6.3638093479312374e-06,
+      "baseline_rel_err": 2.770740338096014e-07,
+      "candidate_rel_err": 2.770740338096014e-07
+    },
+    {
+      "n": 64,
+      "family": "random_normal",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 6.659730622970983e-06,
+      "candidate_err_vs_f64": 6.659730622970983e-06,
+      "baseline_rel_err": 2.129041997272505e-07,
+      "candidate_rel_err": 2.129041997272505e-07
+    },
+    {
+      "n": 64,
+      "family": "mixed_scale_pow2",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 242295.10205078125,
+      "candidate_err_vs_f64": 242295.10205078125,
+      "baseline_rel_err": 1.0571008800470387e-07,
+      "candidate_rel_err": 1.0571008800470387e-07
+    },
+    {
+      "n": 64,
+      "family": "alternating_sign",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 0.0,
+      "candidate_err_vs_f64": 0.0,
+      "baseline_rel_err": 0.0,
+      "candidate_rel_err": 0.0
+    },
+    {
+      "n": 64,
+      "family": "absorption_extreme",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 6.923182880912698e+27,
+      "candidate_err_vs_f64": 6.923182880912698e+27,
+      "baseline_rel_err": 6.92318309820719e-09,
+      "candidate_rel_err": 6.92318309820719e-09
+    },
+    {
+      "n": 129,
+      "family": "constant_uniform",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 0.000192766189456961,
+      "candidate_err_vs_f64": 0.000192766189456961,
+      "baseline_rel_err": 6.174840832236915e-07,
+      "candidate_rel_err": 6.174840832236915e-07
+    },
+    {
+      "n": 129,
+      "family": "random_uniform",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 2.2903247590022602e-05,
+      "candidate_err_vs_f64": 2.2903247590022602e-05,
+      "baseline_rel_err": 5.411840991015126e-07,
+      "candidate_rel_err": 5.411840991015126e-07
+    },
+    {
+      "n": 129,
+      "family": "random_normal",
+      "bitwise_agree": false,
+      "max_abs_diff_between_kernels": 1.9073486328125e-06,
+      "rel_diff_between_kernels": 4.05824604910688e-08,
+      "baseline_err_vs_f64": 2.077446804094052e-05,
+      "candidate_err_vs_f64": 2.077446804094052e-05,
+      "baseline_rel_err": 4.42016217691293e-07,
+      "candidate_rel_err": 4.42016217691293e-07
+    },
+    {
+      "n": 129,
+      "family": "mixed_scale_pow2",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 573011.3549804688,
+      "candidate_err_vs_f64": 573011.3549804688,
+      "baseline_rel_err": 1.8773294302295608e-07,
+      "candidate_rel_err": 1.8773294302295608e-07
+    },
+    {
+      "n": 129,
+      "family": "alternating_sign",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 0.0,
+      "candidate_err_vs_f64": 0.0,
+      "baseline_rel_err": 0.0,
+      "candidate_rel_err": 0.0
+    },
+    {
+      "n": 129,
+      "family": "absorption_extreme",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 6.923182880912698e+27,
+      "candidate_err_vs_f64": 6.923182880912698e+27,
+      "baseline_rel_err": 6.92318309820719e-09,
+      "candidate_rel_err": 6.92318309820719e-09
+    },
+    {
+      "n": 257,
+      "family": "constant_uniform",
+      "bitwise_agree": false,
+      "max_abs_diff_between_kernels": 0.00018310546875,
+      "rel_diff_between_kernels": 2.944101694899703e-07,
+      "baseline_err_vs_f64": 0.000524797439879876,
+      "candidate_err_vs_f64": 0.000524797439879876,
+      "baseline_rel_err": 8.438071472015322e-07,
+      "candidate_rel_err": 8.438071472015322e-07
+    },
+    {
+      "n": 257,
+      "family": "random_uniform",
+      "bitwise_agree": false,
+      "max_abs_diff_between_kernels": 4.57763671875e-05,
+      "rel_diff_between_kernels": 5.869212718362847e-07,
+      "baseline_err_vs_f64": 6.722825818883393e-05,
+      "candidate_err_vs_f64": 6.722825818883393e-05,
+      "baseline_rel_err": 8.61966495460634e-07,
+      "candidate_rel_err": 8.61966495460634e-07
+    },
+    {
+      "n": 257,
+      "family": "random_normal",
+      "bitwise_agree": false,
+      "max_abs_diff_between_kernels": 1.52587890625e-05,
+      "rel_diff_between_kernels": 1.9233270054477215e-07,
+      "baseline_err_vs_f64": 4.301386437788324e-05,
+      "candidate_err_vs_f64": 4.301386437788324e-05,
+      "baseline_rel_err": 5.421775386486282e-07,
+      "candidate_rel_err": 5.421775386486282e-07
+    },
+    {
+      "n": 257,
+      "family": "mixed_scale_pow2",
+      "bitwise_agree": false,
+      "max_abs_diff_between_kernels": 786432.0,
+      "rel_diff_between_kernels": 1.5534700772861578e-07,
+      "baseline_err_vs_f64": 2007168.720703125,
+      "candidate_err_vs_f64": 2007168.720703125,
+      "baseline_rel_err": 3.964839360144351e-07,
+      "candidate_rel_err": 3.964839360144351e-07
+    },
+    {
+      "n": 257,
+      "family": "alternating_sign",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 0.0,
+      "candidate_err_vs_f64": 0.0,
+      "baseline_rel_err": 0.0,
+      "candidate_rel_err": 0.0
+    },
+    {
+      "n": 257,
+      "family": "absorption_extreme",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 6.923182880912698e+27,
+      "candidate_err_vs_f64": 6.923182880912698e+27,
+      "baseline_rel_err": 6.92318309820719e-09,
+      "candidate_rel_err": 6.92318309820719e-09
+    },
+    {
+      "n": 512,
+      "family": "constant_uniform",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 0.0015722656266916601,
+      "candidate_err_vs_f64": 0.0015722656266916601,
+      "baseline_rel_err": 1.2689384995930605e-06,
+      "candidate_rel_err": 1.2689384995930605e-06
+    },
+    {
+      "n": 512,
+      "family": "random_uniform",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 0.0002149011742176299,
+      "candidate_err_vs_f64": 0.0002149011742176299,
+      "baseline_rel_err": 1.4361502976497174e-06,
+      "candidate_rel_err": 1.4361502976497174e-06
+    },
+    {
+      "n": 512,
+      "family": "random_normal",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 9.618431627700375e-05,
+      "candidate_err_vs_f64": 9.618431627700375e-05,
+      "baseline_rel_err": 9.034079629435812e-07,
+      "candidate_rel_err": 9.034079629435812e-07
+    },
+    {
+      "n": 512,
+      "family": "mixed_scale_pow2",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 4048515.5224609375,
+      "candidate_err_vs_f64": 4048515.5224609375,
+      "baseline_rel_err": 5.676679240629632e-07,
+      "candidate_rel_err": 5.676679240629632e-07
+    },
+    {
+      "n": 512,
+      "family": "alternating_sign",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 0.0,
+      "candidate_err_vs_f64": 0.0,
+      "baseline_rel_err": 0.0,
+      "candidate_rel_err": 0.0
+    },
+    {
+      "n": 512,
+      "family": "absorption_extreme",
+      "bitwise_agree": true,
+      "max_abs_diff_between_kernels": 0.0,
+      "rel_diff_between_kernels": 0.0,
+      "baseline_err_vs_f64": 6.92318302848665e+27,
+      "candidate_err_vs_f64": 6.92318302848665e+27,
+      "baseline_rel_err": 6.923183245781146e-09,
+      "candidate_rel_err": 6.923183245781146e-09
+    }
+  ],
+  "summary": {
+    "cases": 30,
+    "bitwise_agree_cases": 25,
+    "bitwise_disagree_cases": 5,
+    "families_tested": [
+      "absorption_extreme",
+      "alternating_sign",
+      "constant_uniform",
+      "mixed_scale_pow2",
+      "random_normal",
+      "random_uniform"
+    ],
+    "families_with_disagreement": [
+      "constant_uniform",
+      "mixed_scale_pow2",
+      "random_normal",
+      "random_uniform"
+    ],
+    "constant_family_agrees": false,
+    "worst_disagreement": {
+      "n": 257,
+      "family": "random_uniform",
+      "bitwise_agree": false,
+      "max_abs_diff_between_kernels": 4.57763671875e-05,
+      "rel_diff_between_kernels": 5.869212718362847e-07,
+      "baseline_err_vs_f64": 6.722825818883393e-05,
+      "candidate_err_vs_f64": 6.722825818883393e-05,
+      "baseline_rel_err": 8.61966495460634e-07,
+      "candidate_rel_err": 8.61966495460634e-07
+    }
+  },
+  "finding": "Constant inputs agree bitwise, as prior receipts recorded. General inputs do NOT: the two kernels accumulate the k axis in different orders and binary32 addition is not associative, so bitwise equality is an artefact of the constant-input family rather than a property of the transformation.",
+  "consequence": "The historical `max_abs_diff == 0` correctness witness is INPUT-FAMILY DEPENDENT and must not be read as a general equivalence claim. The Lean results are stated over Int, where blocking IS value-preserving (blockedSumObligation_holds); over binary32 it is not. Empirical agreement on general inputs is a matter of magnitude within rounding error, not of bitwise identity."
+}
