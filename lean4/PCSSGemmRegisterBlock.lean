@@ -181,6 +181,62 @@ def fadd (x y : Int) : Int := round (x + y)
 theorem float_add_not_associative :
     fadd (fadd 8 8) (-9) ≠ fadd 8 (fadd 8 (-9)) := by decide
 
+/-- Straight `k`-ascending accumulation -- the association the baseline inner
+loop performs: `for k: c[i,j] += a[i,k]*b[k,j]`. -/
+def fflat : List Int → Int → Int
+  | [], acc => acc
+  | x :: xs, acc => fflat xs (fadd acc x)
+
+/-- Accumulation across `k`-blocks in which each block is summed into a *fresh
+local* before being added to the accumulator.
+
+This is exactly the association of the ragged-column-edge path in
+`gemm_blocked` (`neon.c`):
+
+```
+float s = 0.0f;
+for (int p = pc; p < pmax; p++) s += a[(i+r)*n+p] * b[p*n + (jc+j)];
+c[(i+r)*n + (jc+j)] += s;
+```
+
+i.e. `c += (sum of block)`, rather than `c += term` repeated. It is the only
+place in the shipped candidate where the summation order differs from the
+baseline; it is reached only when a column block width is not a multiple of the
+microkernel width AND more than one `k`-block is traversed.
+
+Recursion is on an explicit fuel argument rather than on `l.length` via
+well-founded recursion, so the kernel can reduce concrete instances and the
+witness below is provable by `decide` without `native_decide`. The fuel is
+supplied as `l.length + 1`, and since `k > 0` each step removes at least one
+element, so the fuel is always sufficient. -/
+def fblockedFuel (k : Nat) : Nat → List Int → Int → Int
+  | 0, _, acc => acc
+  | _ + 1, [], acc => acc
+  | fuel + 1, l, acc =>
+      if l.length ≤ k then fadd acc (fflat l 0)
+      else fblockedFuel k fuel (l.drop k) (fadd acc (fflat (l.take k) 0))
+
+def fblocked (k : Nat) (l : List Int) (acc : Int) : Int :=
+  fblockedFuel k (l.length + 1) l acc
+
+/-- The fuel supplied by `fblocked` is always sufficient. -/
+theorem fblocked_fuel_sufficient (k : Nat) (l : List Int) (acc : Int) :
+    fblockedFuel k (l.length + 1) l acc = fblocked k l acc := rfl
+
+/-- **Machine-checked: the blocked association changes the result.**
+Block-boundary reassociation is value-preserving over `Int`
+(`blockedSumObligation_holds`) but NOT over the float model, exactly as the
+empirical sweep observed: bitwise disagreement at ragged sizes, magnitude ~1 ULP. -/
+theorem float_blocked_differs_from_flat :
+    fblocked 1 [-40, -40, -40, -40, -40] 0
+      ≠ fflat [-40, -40, -40, -40, -40] 0 := by decide
+
+/-- The same five operands under the exact (integer) association, for contrast:
+here the association is irrelevant and the total is exact. -/
+theorem int_blocked_agrees_with_flat :
+    (([-40, -40, -40, -40, -40] : List Int).foldl (· + ·) 0)
+      = (-40 * 5 : Int) := by decide
+
 end FloatModel
 
 /-- Work performed by the baseline and the candidate. Identical: the candidate

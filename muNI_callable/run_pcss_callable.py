@@ -219,6 +219,8 @@ def main():
             'The measured speedup includes native callable execution but excludes input allocation and Python-side matrix construction.',
             'work_ratio=1.0: no FLOP reduction is claimed.',
             'Correctness is empirical output equivalence between the two kernels (max_abs_diff == 0). It is NOT a theorem: the Lean results are stated over Int, while the kernels accumulate in binary32, which is not associative (machine-checked in PCSSGemmRegisterBlock.FloatModel).',
+            'At n=2048 the bitwise witness is structural, not luck: 2048 is a multiple of KC=128 and of the 8-wide microkernel, so no ragged-column-edge path is taken and both kernels accumulate k in the same ascending order. Verified bitwise-identical at n=256/512/1024 across seeds.',
+            'At ragged sizes (n>128 with a column block not a multiple of 8) the candidate reassociates via a per-block local accumulator and differs from the baseline by ~1 ULP (rel ~1e-7..6e-7), data-dependently. See receipts/PCSS_MUNI_ROBUSTNESS_*.json. Bitwise equality must NOT be generalised beyond aligned sizes.',
             'The Lean binding is discharged for the modelled domain and is bound by SHA-256 to this exact libmuni.so; it proves neither the wall-clock speedup nor bitwise binary32 equality.',
             'Speedup is scoped to this device, binary, compiler, thread count and runtime state.',
             'Strongest supported formal status remains FORMAL_PARTIAL (binding receipt), not VERIFIED; the Int/binary32 gap is recorded, not closed.',

@@ -47,6 +47,16 @@ THEOREMS = [
      'Machine-checked witness that floating-point addition is not associative. '
      'This is the formal reason the reassociation results are stated over Int '
      'and bitwise binary32 equality stays empirical.'),
+    (MODEL_MODULE, 'FloatModel.float_blocked_differs_from_flat',
+     'fblocked 1 [-40,-40,-40,-40,-40] 0 != fflat [-40,-40,-40,-40,-40] 0',
+     'Machine-checked counterexample for the block-boundary reassociation the '
+     'ragged-column-edge path performs: over Int blocking is value-preserving, '
+     'over the float model it is not. Explains the ~1 ULP bitwise disagreement '
+     'measured at ragged sizes.'),
+    (MODEL_MODULE, 'FloatModel.int_blocked_agrees_with_flat',
+     '[-40,-40,-40,-40,-40].foldl (+) 0 = -200',
+     'Contrast case: under exact integer association the same operands are '
+     'value-preserving.'),
     (BINDING_MODULE, 'callable_kernel_respects_blocked_sum',
      'BlockedSumObligation k hk l',
      'The transformation the callable operator implements, at the general level.'),

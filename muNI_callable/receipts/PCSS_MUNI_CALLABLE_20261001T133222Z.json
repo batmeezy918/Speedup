@@ -1,0 +1,199 @@
+{
+  "schema": "PCSS-MUNI-CALLABLE-1.1",
+  "supersedes": "PCSS-MUNI-CALLABLE-1.0",
+  "run_id": "20261001T133222Z",
+  "n": 2048,
+  "outer_runs": 3,
+  "warmups": 2,
+  "repetitions": 7,
+  "backend": "aarch64-neon-fma-register-block",
+  "version": "MuNi-callable-0.1",
+  "arch": "aarch64",
+  "kernel": "6.17.0-PRoot-Distro",
+  "omp_threads": 1,
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "runs": [
+    {
+      "outer": 0,
+      "max_abs_diff": 0.0,
+      "baseline": {
+        "timings_ns": [
+          2303879374,
+          2306177083,
+          2297703020,
+          2289995989,
+          2290404895,
+          2293847238,
+          2299414843
+        ],
+        "median_ns": 2297703020.0,
+        "min_ns": 2289995989,
+        "max_ns": 2306177083
+      },
+      "candidate": {
+        "timings_ns": [
+          905896250,
+          906269219,
+          908284270,
+          917884948,
+          924734166,
+          908160989,
+          911897552
+        ],
+        "median_ns": 908284270.0,
+        "min_ns": 905896250,
+        "max_ns": 924734166
+      },
+      "speedup": 2.5297179483247025,
+      "checksum": 20787316736.0
+    },
+    {
+      "outer": 1,
+      "max_abs_diff": 0.0,
+      "baseline": {
+        "timings_ns": [
+          2297030415,
+          2301281510,
+          2354606353,
+          2306535416,
+          2302523541,
+          2286212343,
+          2286114687
+        ],
+        "median_ns": 2301281510.0,
+        "min_ns": 2286114687,
+        "max_ns": 2354606353
+      },
+      "candidate": {
+        "timings_ns": [
+          903103854,
+          900279896,
+          901145364,
+          905990260,
+          905958333,
+          902811563,
+          902885937
+        ],
+        "median_ns": 902885937.0,
+        "min_ns": 900279896,
+        "max_ns": 905990260
+      },
+      "speedup": 2.5488064612529233,
+      "checksum": 20787316736.0
+    },
+    {
+      "outer": 2,
+      "max_abs_diff": 0.0,
+      "baseline": {
+        "timings_ns": [
+          2290564947,
+          2292090468,
+          2293867812,
+          2298480312,
+          2298480936,
+          2294757343,
+          2299951093
+        ],
+        "median_ns": 2294757343.0,
+        "min_ns": 2290564947,
+        "max_ns": 2299951093
+      },
+      "candidate": {
+        "timings_ns": [
+          911324374,
+          930776250,
+          910371458,
+          926731354,
+          921485729,
+          907011927,
+          920806562
+        ],
+        "median_ns": 920806562.0,
+        "min_ns": 907011927,
+        "max_ns": 930776250
+      },
+      "speedup": 2.492116626553754,
+      "checksum": 20787316736.0
+    }
+  ],
+  "semantic_reproducibility": {
+    "coverage": true,
+    "all_correctness": true,
+    "speedup_min": 2.492116626553754,
+    "speedup_median": 2.5297179483247025,
+    "speedup_max": 2.5488064612529233,
+    "all_gt_1x": true
+  },
+  "verification": {
+    "reconstruction_reverse": {
+      "protocol": "e_hat = R(q_c) by re-executing the candidate into a fresh buffer",
+      "domain": "A=all(1.1), B=all(2.2), n=2048, binary32",
+      "metric": "L-inf (max absolute elementwise difference)",
+      "tolerance": 0.0,
+      "max_error": 0.0,
+      "aggregate_error": 0.0,
+      "decision": "PASS"
+    },
+    "invariants": {
+      "output_finite": true,
+      "output_shape": [
+        2048,
+        2048
+      ],
+      "output_dtype": "float32",
+      "uniform_input_invariant": {
+        "predicted_sequential_binary32_per_element": 4956.08251953125,
+        "observed_min": 4956.08251953125,
+        "observed_max": 4956.08251953125,
+        "max_abs_error_vs_prediction": 0.0,
+        "decision": "PASS"
+      },
+      "float64_reference": {
+        "exact_real_per_element": 4956.160000000001,
+        "max_abs_error": 0.07769531249323336,
+        "relative_error": 1.5676514174932476e-05,
+        "tolerance_derived_n_eps32": 0.6050000000000001,
+        "tolerance_basis": "n * eps_32 * |exact| with eps_32 = 2^-24; derived from binary32 accumulation theory, not fitted to the observation",
+        "decision": "PASS"
+      }
+    }
+  },
+  "formal_binding": {
+    "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T133037Z.json",
+    "binding_run_id": "20261001T133037Z",
+    "library_sha256_in_binding": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+    "library_sha256_now": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+    "binds_to_this_binary": true,
+    "binding_gates": {
+      "formal_build_green": true,
+      "no_sorry_no_axiom": true,
+      "core_only_no_mathlib": true,
+      "axiom_footprint_clean": true,
+      "all_obligations_discharged": true,
+      "artifact_hashed": true,
+      "scanner_selftest_passed": true
+    },
+    "claim_strength_of_binding": "FORMAL_PARTIAL"
+  },
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": true,
+    "invariants": true,
+    "performance": true,
+    "lean": true
+  },
+  "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+  "claim_boundary": [
+    "Callable acceleration is demonstrated through Python ctypes into an AArch64 shared library.",
+    "The measured speedup includes native callable execution but excludes input allocation and Python-side matrix construction.",
+    "work_ratio=1.0: no FLOP reduction is claimed.",
+    "Correctness is empirical output equivalence between the two kernels (max_abs_diff == 0). It is NOT a theorem: the Lean results are stated over Int, while the kernels accumulate in binary32, which is not associative (machine-checked in PCSSGemmRegisterBlock.FloatModel).",
+    "At n=2048 the bitwise witness is structural, not luck: 2048 is a multiple of KC=128 and of the 8-wide microkernel, so no ragged-column-edge path is taken and both kernels accumulate k in the same ascending order. Verified bitwise-identical at n=256/512/1024 across seeds.",
+    "At ragged sizes (n>128 with a column block not a multiple of 8) the candidate reassociates via a per-block local accumulator and differs from the baseline by ~1 ULP (rel ~1e-7..6e-7), data-dependently. See receipts/PCSS_MUNI_ROBUSTNESS_*.json. Bitwise equality must NOT be generalised beyond aligned sizes.",
+    "The Lean binding is discharged for the modelled domain and is bound by SHA-256 to this exact libmuni.so; it proves neither the wall-clock speedup nor bitwise binary32 equality.",
+    "Speedup is scoped to this device, binary, compiler, thread count and runtime state.",
+    "Strongest supported formal status remains FORMAL_PARTIAL (binding receipt), not VERIFIED; the Int/binary32 gap is recorded, not closed."
+  ]
+}
