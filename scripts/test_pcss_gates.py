@@ -26,7 +26,7 @@ def main() -> int:
         }.items():
             artifacts[name] = write(d / name, data)
         proof_artifacts = {}
-        for gate, name, data in {
+        for gate, (name, data) in {
             "quotient_forward": ("quotient.proof", b"quotient proof\n"),
             "reconstruction_reverse": ("reverse.proof", b"reconstruction proof\n"),
             "invariants": ("invariants.proof", b"invariant proof\n"),
