@@ -35,6 +35,7 @@ jobs:
           curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
             | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.elan/bin:$PATH"
           cd "$GITHUB_WORKSPACE/lean4/Mathlib"
           elan toolchain install "$(tr -d '\r\n' < lean-toolchain)"
           elan default "$(tr -d '\r\n' < lean-toolchain)"
