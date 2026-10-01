@@ -19,6 +19,7 @@ lean_lib «SpeedupLean» where
     `AGDMaximallyTypedClaim,
     `GODSQuotientClosure,
     `PCSS_NEON_N512,
+    `PCSS_SIM2XR_20260908,
     `PCSSQuarantine,
     `SpeedupLean
   ]

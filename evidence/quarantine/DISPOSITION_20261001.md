@@ -10,7 +10,7 @@ Core lane verify: LEAN4_CORE_ALL_PASS=1, source count 22, zero sorry.
 | Id | Disposition | Blocking gates |
 |---|---|---|
 | cocoex-bbob-dim10-budget1000-20260910 | stays NEGATIVE | Q false, X false, L false on the run |
-| sim2xr-invariant-sector-20260908 | stays STRONG_LOCAL | L false on the original certificate |
+| sim2xr-invariant-sector-20260908 | STRONG_LOCAL, formal L discharged by lean4/PCSS_SIM2XR_20260908.lean | historical L false; identity stack proved; wall-clock not Lean-measured |
 | s6-s7-s8-coco-equivalent-20260515 | stays QUARANTINED | unofficial suite, all gates false |
 | vault-canonical-decider-20260531T112101Z | stays CANDIDATE | X not established |
 | iqvf-coco | stays QUARANTINED | official suite empty or stale |
