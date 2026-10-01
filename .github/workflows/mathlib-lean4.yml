@@ -29,15 +29,15 @@ jobs:
 
       - name: Install elan and repository-pinned Lean
         shell: bash
-        working-directory: .
+        working-directory: ${{ github.workspace }}
         run: |
           set -euo pipefail
           curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
             | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-          cd lean4/Mathlib
-          elan toolchain install "$(cat lean-toolchain)"
-          elan default "$(cat lean-toolchain)"
+          cd "$GITHUB_WORKSPACE/lean4/Mathlib"
+          elan toolchain install "$(tr -d '\r\n' < lean-toolchain)"
+          elan default "$(tr -d '\r\n' < lean-toolchain)"
           lean --version
           lake --version
 
