@@ -48,6 +48,30 @@ AV, BV = 1.1, 2.2
 a = np.full((N, N), AV, np.float32)
 b = np.full((N, N), BV, np.float32)
 
+# Seed status: this harness draws NO random data -- the input domain is the
+# constant family A=1.1, B=2.2, fixed above at schema-1.0 parity. So there is no
+# RNG stream to pin, and recording a seed here would imply a randomness that does
+# not exist. The seed is therefore recorded as explicitly null with a reason,
+# rather than omitted (which would look like an oversight) or filled in
+# decoratively (which would be false).
+#
+# Consequence, and it is a real limitation: constant operands accumulate
+# identically under any summing order, so this harness cannot by itself
+# distinguish "reassociation preserves the result" from "this input family is
+# order-insensitive". That is precisely why run_robustness.py exists. This
+# receipt's correctness gate is NOT the general correctness witness; the
+# non-constant families in PCSS_MUNI_ROBUSTNESS_* are.
+SEED_STATUS = {
+    'rng_used': False,
+    'seed': None,
+    'reason': 'deterministic constant input family; no RNG stream to pin',
+    'input_domain': 'A=all(1.1), B=all(2.2) in binary32',
+    'limitation': 'constant operands are order-insensitive, so this harness is a '
+                  'weak correctness witness by construction; see '
+                  'PCSS_MUNI_ROBUSTNESS_* for the non-constant families',
+    'cross_check': 'PCSS-MUNI-ROBUSTNESS-* (seeded, 6 families)',
+}
+
 
 def outer(i):
     cb = np.empty_like(a)
@@ -186,6 +210,7 @@ def main():
         'schema': 'PCSS-MUNI-CALLABLE-1.1',
         'supersedes': 'PCSS-MUNI-CALLABLE-1.0',
         'run_id': time.strftime('%Y%m%dT%H%M%SZ', time.gmtime()),
+        'seed_status': SEED_STATUS,
         'n': N, 'outer_runs': OUTER, 'warmups': W, 'repetitions': R,
         'backend': lib.muni_backend().decode(),
         'version': lib.muni_version().decode(),

@@ -20,6 +20,7 @@ import hashlib, json, os, platform, time
 from pathlib import Path
 import numpy as np
 from muni_runtime import lib, ptr, call
+from muni_seeds import seed_for, SEED_MANIFEST
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'receipts'
@@ -64,7 +65,7 @@ def families(n, rng):
 
 
 def main():
-    rng = np.random.default_rng(20261001)
+    rng = np.random.default_rng(seed_for('robustness'))
     sizes = [33, 64, 129, 257, 512]
     rows = []
     for n in sizes:
@@ -92,6 +93,8 @@ def main():
     receipt = {
         'schema': 'PCSS-MUNI-ROBUSTNESS-1.0',
         'run_id': time.strftime('%Y%m%dT%H%M%SZ', time.gmtime()),
+        'seed': seed_for('robustness'),
+        'seed_policy': SEED_MANIFEST,
         'arch': platform.machine(), 'kernel': platform.release(),
         'omp_threads': 1,
         'library_sha256': hashlib.sha256((ROOT / 'libmuni.so').read_bytes()).hexdigest(),

@@ -1,0 +1,50 @@
+{
+  "pass": true,
+  "definition": "preserve count, target set, loss and latency statistics",
+  "baseline": {
+    "1.1.1.1": {
+      "count": 8,
+      "ok": 8,
+      "mean_ms": 44.725,
+      "jitter_ms": 9.895927192537343,
+      "loss_pct": 0.0
+    },
+    "8.8.8.8": {
+      "count": 8,
+      "ok": 8,
+      "mean_ms": 57.9125,
+      "jitter_ms": 38.07562991928039,
+      "loss_pct": 0.0
+    },
+    "9.9.9.9": {
+      "count": 8,
+      "ok": 8,
+      "mean_ms": 92.22500000000001,
+      "jitter_ms": 58.914084691183994,
+      "loss_pct": 0.0
+    }
+  },
+  "candidate": {
+    "1.1.1.1": {
+      "count": 8,
+      "ok": 8,
+      "mean_ms": 44.725,
+      "jitter_ms": 9.895927192537343,
+      "loss_pct": 0.0
+    },
+    "8.8.8.8": {
+      "count": 8,
+      "ok": 8,
+      "mean_ms": 57.9125,
+      "jitter_ms": 38.07562991928039,
+      "loss_pct": 0.0
+    },
+    "9.9.9.9": {
+      "count": 8,
+      "ok": 8,
+      "mean_ms": 92.22500000000001,
+      "jitter_ms": 58.914084691183994,
+      "loss_pct": 0.0
+    }
+  }
+}

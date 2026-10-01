@@ -1,0 +1,17 @@
+{
+  "schema": "GOVERNOR-CAPABILITY-REGISTRY-0.1",
+  "capability_id": "AGD.QG.F_HET.N10.S3",
+  "status": "VERIFIED",
+  "selection_condition": "AGD quotient-invariant structure detected; exact forward/reverse and invariant checks required before execution",
+  "operator_family": "F_HeterogeneousProduct",
+  "composition_depth": 5,
+  "measured_speedups": {
+    "kernel_x": 497.7852961835635,
+    "composed_x": 206.662771984035,
+    "e2e_x": 115.4264988764045,
+    "compression_x": 32.0
+  },
+  "certificate": "/root/Speedup/evidence/quantum_pcss_20261001/certificate.json",
+  "lean_binding": "/root/Speedup/lean4/AGDQuantumPCSSBinding.lean",
+  "source_hash": "72ebf1fe11c555f225b488324fc022e8d7697e9bc6ce6280aba83e816cb6436c"
+}

@@ -24,5 +24,6 @@ lean_lib «SpeedupLean» where
     `PCSSGemmRegisterBlock,
     `PCSSCompositionCriterion,
     `LinearExactSector,
-    `PCSSCallableBinding
+    `PCSSCallableBinding,
+    `PCSSErrorBound
   ]

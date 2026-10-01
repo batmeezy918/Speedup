@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "baseline_median_ns": 304609.0,
+  "candidate_median_ns": 220338.5,
+  "direct_speedup": 1.3824592615453042,
+  "baseline_samples": 40,
+  "candidate_samples": 40,
+  "timing_source": "clock_gettime_monotonic"
+}

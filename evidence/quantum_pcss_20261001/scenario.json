@@ -1,0 +1,74 @@
+{
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "scenario_id": "AGD-QG-F-HET-N10-SEED3-PCSS-20261001",
+  "workload": {
+    "kind": "python_plugin",
+    "module": "AGD_QUANTUM_GENERALITY_DEFINITIVE_EOF",
+    "function_name": "F_HeterogeneousProduct"
+  },
+  "mathematical_object": {
+    "state_space": "C^1024 quotient-invariant sector",
+    "quotient_space": "C^32",
+    "transition": "U = V tensor I_32 with F_HeterogeneousProduct composition depth <=5",
+    "projection": "Pi = I_q tensor 1_m^T/sqrt(m)",
+    "reconstruction": "R = I_q tensor 1_m/sqrt(m)",
+    "invariant": "quotient-invariant sector Range(R)",
+    "observable": "state/observable preservation"
+  },
+  "baseline": {
+    "implementation_id": "AGD_QG_full_state_F_HET_N10_S3",
+    "kind": "plugin",
+    "hash": "56995a71fffe8d1c746438db4abcc1b6b8afa7528e06627ca3d232ad4d8f47b1"
+  },
+  "candidate": {
+    "implementation_id": "AGD_QG_quotient_reconstruct_F_HET_N10_S3",
+    "kind": "plugin",
+    "hash": "56995a71fffe8d1c746438db4abcc1b6b8afa7528e06627ca3d232ad4d8f47b1"
+  },
+  "quotient": {
+    "definition": "Pi = I_q tensor 1_m^T/sqrt(m); q=32,m=32; exact on Range(R)",
+    "function_name": "AGD_QUANTUM_GENERALITY_DEFINITIVE_EOF",
+    "tolerance": 1e-12,
+    "relation": "exact"
+  },
+  "reconstruction": {
+    "definition": "R = I_q tensor 1_m/sqrt(m), Pi R = I_q",
+    "function_name": "AGD_QUANTUM_GENERALITY_DEFINITIVE_EOF",
+    "tolerance": 1e-12,
+    "metric": "max"
+  },
+  "invariant": {
+    "definition": "Range(R) / quotient-invariant state family and operator intertwining",
+    "function_name": "AGD_QUANTUM_GENERALITY_DEFINITIVE_EOF"
+  },
+  "parameters": {
+    "n": 10,
+    "seed": 3,
+    "operator_family": "F_HeterogeneousProduct",
+    "composition_max_depth": 5,
+    "compression": 32.0
+  },
+  "dimensions": {
+    "d": 1024,
+    "r": 32
+  },
+  "repetitions": 1,
+  "warmups": 0,
+  "warmup_policy": "none",
+  "timing_source": "custom",
+  "seed": 3,
+  "expected_observables": [
+    "state_max_error <= 1e-12",
+    "reverse_error <= 1e-12",
+    "observable_error <= 1e-12",
+    "composition_max_depth=5",
+    "composition_max_state_error <= 1e-12",
+    "PASS/FAIL=PASS"
+  ],
+  "environment": {
+    "python": "3.13.5",
+    "arch": "aarch64",
+    "os": "Linux-6.17.0-PRoot-Distro-aarch64-with-glibc2.41"
+  }
+}

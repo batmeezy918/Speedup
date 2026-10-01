@@ -1,0 +1,9 @@
+{
+  "closure_residual": 0.0,
+  "compression": 32.0,
+  "n": 10,
+  "operator_family": "F_HeterogeneousProduct",
+  "pass": true,
+  "quotient_hash": "727305dcb4b310a0969bac239618d27d4a99b9a28fa6152555ca82be75f3bd87",
+  "seed": 3
+}

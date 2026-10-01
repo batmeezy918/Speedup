@@ -1,0 +1,6 @@
+{
+  "pass": true,
+  "definition": "R(Q(raw)) reconstructs canonical telemetry observables",
+  "max_error": 0.0,
+  "canonical_equal": true
+}

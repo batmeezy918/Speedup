@@ -1,0 +1,54 @@
+{
+  "baseline_trace_hash": "a892ba44a84b5beb5ea996750ffb578351e8d003c6574a2e757d78bf782bde40",
+  "candidate_trace_hash": "6e813bd3c06e29936a8e5a328185fc26e1e2b0736b0b4b0be592c19126c30fc8",
+  "certificate_sha256": "135509a983779f59cf3cda1f17134cded48a880b5d5675c152bab579d8a566db",
+  "claim_boundary": "Verified classical network-telemetry processing acceleration on captured Termux network observations; this is not a claim of faster packet transport or lower physical network latency.",
+  "claim_strength": "VERIFIED",
+  "environment_hash": "34040b2c305ee4af206c8bf514f471395c64f20feb4d6fe3496e0c140f16bc1b",
+  "gates": {
+    "integrity": true,
+    "invariants": true,
+    "lean": true,
+    "performance": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": true,
+    "reproducibility": true
+  },
+  "implementation_identity": {
+    "baseline": "redundant parse per observable",
+    "candidate": "shared-prefix single parse",
+    "device": "TMRV08P5G"
+  },
+  "input_hash": "05c21361a16f59d031b61bdaf7428999917b26410a702d0c8c731e427f9c329d",
+  "invariant_hash": "2d5f68afdcd53c6dc2bad6cfa5a77e340452e7997bfe41d4bc6e1f8593bb153a",
+  "lean_hash": "e4627794ceafa095e5da6df7b485acd24149b5a819430eeb3770dd85edab8c46",
+  "performance": {
+    "baseline_median_ns": 304609.0,
+    "baseline_samples": 40,
+    "candidate_median_ns": 220338.5,
+    "candidate_samples": 40,
+    "direct_speedup": 1.3824592615453042,
+    "pass": true,
+    "timing_source": "clock_gettime_monotonic"
+  },
+  "performance_hash": "c8b8bd55b30dfc03bedbc1022829e2f25de64bb25d9d23cd7266885e0a3bee5c",
+  "quotient_hash": "27cc0a46a17844780b64aaa651762896302191428d34ffc23b0f1197633a2c56",
+  "reconstruction_hash": "76ee3ab674e10b590dd63c0aed0c2148105e6124daa52ad321011ce35581f159",
+  "run_id": "PCSS_NETWORK_TELEMETRY_20261001",
+  "scenario_hash": "250f615824dccee96304d613673cf3b08ea19ca29e810adf3570f6a0da031162",
+  "scenario_id": "NETWORK-TELEMETRY-SIM2XR-20261001",
+  "schema_version": "1.0",
+  "semantic_witness": {
+    "closure_residual": 0.0,
+    "equivalent": true,
+    "reconstruction_error": 0.0,
+    "samples": 24,
+    "targets": [
+      "1.1.1.1",
+      "8.8.8.8",
+      "9.9.9.9"
+    ]
+  },
+  "source_hash": "a12bd8e1a99aea91310409b3aecc6106062428e252478c791e0c7cada704d989",
+  "timestamp": "2026-10-01T18:14:21Z"
+}

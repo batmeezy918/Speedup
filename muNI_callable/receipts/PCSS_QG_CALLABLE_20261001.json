@@ -1,0 +1,15 @@
+{
+  "callable": "AGD_QG_F_HET_N10_S3",
+  "n": 10,
+  "q": 32,
+  "m": 32,
+  "seed": 3,
+  "baseline_median_ms": 1.8656505,
+  "candidate_median_ms": 0.060495,
+  "e2e_speedup": 30.83974708653608,
+  "exact_error": 1.4719616800160393e-17,
+  "pi_r_error": 1.1102230246251565e-16,
+  "bitwise_equal": false,
+  "composition_depth": 5,
+  "status": "PASS"
+}

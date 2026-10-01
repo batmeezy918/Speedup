@@ -1,0 +1,18 @@
+{
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "scenario_id": "NETWORK-TELEMETRY-SIM2XR-20261001",
+  "workload": {"kind": "custom_command", "command": "network_pcss_adapter.py"},
+  "mathematical_object": {"state_space": "canonical network telemetry observables"},
+  "baseline": {"implementation": "redundant_parse_per_observable"},
+  "candidate": {"implementation": "shared_prefix_single_parse"},
+  "quotient": {"definition": "Q maps each raw observation to one canonical parsed observable", "relation": "exact", "tolerance": 0.0},
+  "reconstruction": {"definition": "R preserves the canonical observable record", "metric": "exact", "tolerance": 0.0},
+  "invariant": {"definition": "target/sample/loss/latency summary preservation", "relation": "exact", "tolerance": 0.0},
+  "timing_source": "clock_gettime_monotonic",
+  "seed": 20261001,
+  "repetitions": 40,
+  "warmups": 5,
+  "expected_observables": ["target", "sample", "latency_ms", "loss", "mean_ms", "jitter_ms"],
+  "environment": {"device": "TMRV08P5G", "substrate": "Termux/ARM64", "domain": "network telemetry processing"}
+}

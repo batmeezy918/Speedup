@@ -1,0 +1,122 @@
+[
+  {
+    "target": "1.1.1.1",
+    "sample": 0,
+    "raw": "PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=52 time=36.8 ms\n\n--- 1.1.1.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 36.869/36.869/36.869/0.000 ms\n"
+  },
+  {
+    "target": "1.1.1.1",
+    "sample": 1,
+    "raw": "PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=52 time=45.4 ms\n\n--- 1.1.1.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 45.406/45.406/45.406/0.000 ms\n"
+  },
+  {
+    "target": "1.1.1.1",
+    "sample": 2,
+    "raw": "PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=52 time=45.1 ms\n\n--- 1.1.1.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 45.138/45.138/45.138/0.000 ms\n"
+  },
+  {
+    "target": "1.1.1.1",
+    "sample": 3,
+    "raw": "PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=52 time=56.8 ms\n\n--- 1.1.1.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 56.801/56.801/56.801/0.000 ms\n"
+  },
+  {
+    "target": "1.1.1.1",
+    "sample": 4,
+    "raw": "PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=52 time=40.3 ms\n\n--- 1.1.1.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 40.364/40.364/40.364/0.000 ms\n"
+  },
+  {
+    "target": "1.1.1.1",
+    "sample": 5,
+    "raw": "PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=52 time=44.5 ms\n\n--- 1.1.1.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 44.589/44.589/44.589/0.000 ms\n"
+  },
+  {
+    "target": "1.1.1.1",
+    "sample": 6,
+    "raw": "PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=52 time=27.8 ms\n\n--- 1.1.1.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 27.838/27.838/27.838/0.000 ms\n"
+  },
+  {
+    "target": "1.1.1.1",
+    "sample": 7,
+    "raw": "PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.\n64 bytes from 1.1.1.1: icmp_seq=1 ttl=52 time=61.1 ms\n\n--- 1.1.1.1 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 61.125/61.125/61.125/0.000 ms\n"
+  },
+  {
+    "target": "8.8.8.8",
+    "sample": 0,
+    "raw": "PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.\n64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=38.9 ms\n\n--- 8.8.8.8 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 38.948/38.948/38.948/0.000 ms\n"
+  },
+  {
+    "target": "8.8.8.8",
+    "sample": 1,
+    "raw": "PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.\n64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=39.1 ms\n\n--- 8.8.8.8 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 39.148/39.148/39.148/0.000 ms\n"
+  },
+  {
+    "target": "8.8.8.8",
+    "sample": 2,
+    "raw": "PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.\n64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=33.2 ms\n\n--- 8.8.8.8 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 33.270/33.270/33.270/0.000 ms\n"
+  },
+  {
+    "target": "8.8.8.8",
+    "sample": 3,
+    "raw": "PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.\n64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=47.1 ms\n\n--- 8.8.8.8 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 47.180/47.180/47.180/0.000 ms\n"
+  },
+  {
+    "target": "8.8.8.8",
+    "sample": 4,
+    "raw": "PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.\n64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=39.5 ms\n\n--- 8.8.8.8 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 39.562/39.562/39.562/0.000 ms\n"
+  },
+  {
+    "target": "8.8.8.8",
+    "sample": 5,
+    "raw": "PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.\n64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=156 ms\n\n--- 8.8.8.8 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 156.318/156.318/156.318/0.000 ms\n"
+  },
+  {
+    "target": "8.8.8.8",
+    "sample": 6,
+    "raw": "PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.\n64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=45.4 ms\n\n--- 8.8.8.8 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 45.403/45.403/45.403/0.000 ms\n"
+  },
+  {
+    "target": "8.8.8.8",
+    "sample": 7,
+    "raw": "PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.\n64 bytes from 8.8.8.8: icmp_seq=1 ttl=112 time=64.1 ms\n\n--- 8.8.8.8 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 64.121/64.121/64.121/0.000 ms\n"
+  },
+  {
+    "target": "9.9.9.9",
+    "sample": 0,
+    "raw": "PING 9.9.9.9 (9.9.9.9) 56(84) bytes of data.\n64 bytes from 9.9.9.9: icmp_seq=1 ttl=53 time=58.2 ms\n\n--- 9.9.9.9 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 58.299/58.299/58.299/0.000 ms\n"
+  },
+  {
+    "target": "9.9.9.9",
+    "sample": 1,
+    "raw": "PING 9.9.9.9 (9.9.9.9) 56(84) bytes of data.\n64 bytes from 9.9.9.9: icmp_seq=1 ttl=53 time=78.9 ms\n\n--- 9.9.9.9 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 78.909/78.909/78.909/0.000 ms\n"
+  },
+  {
+    "target": "9.9.9.9",
+    "sample": 2,
+    "raw": "PING 9.9.9.9 (9.9.9.9) 56(84) bytes of data.\n64 bytes from 9.9.9.9: icmp_seq=1 ttl=53 time=67.9 ms\n\n--- 9.9.9.9 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 67.913/67.913/67.913/0.000 ms\n"
+  },
+  {
+    "target": "9.9.9.9",
+    "sample": 3,
+    "raw": "PING 9.9.9.9 (9.9.9.9) 56(84) bytes of data.\n64 bytes from 9.9.9.9: icmp_seq=1 ttl=53 time=173 ms\n\n--- 9.9.9.9 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 173.338/173.338/173.338/0.000 ms\n"
+  },
+  {
+    "target": "9.9.9.9",
+    "sample": 4,
+    "raw": "PING 9.9.9.9 (9.9.9.9) 56(84) bytes of data.\n64 bytes from 9.9.9.9: icmp_seq=1 ttl=53 time=209 ms\n\n--- 9.9.9.9 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 209.144/209.144/209.144/0.000 ms\n"
+  },
+  {
+    "target": "9.9.9.9",
+    "sample": 5,
+    "raw": "PING 9.9.9.9 (9.9.9.9) 56(84) bytes of data.\n64 bytes from 9.9.9.9: icmp_seq=1 ttl=53 time=60.0 ms\n\n--- 9.9.9.9 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 60.045/60.045/60.045/0.000 ms\n"
+  },
+  {
+    "target": "9.9.9.9",
+    "sample": 6,
+    "raw": "PING 9.9.9.9 (9.9.9.9) 56(84) bytes of data.\n64 bytes from 9.9.9.9: icmp_seq=1 ttl=53 time=34.1 ms\n\n--- 9.9.9.9 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 34.173/34.173/34.173/0.000 ms\n"
+  },
+  {
+    "target": "9.9.9.9",
+    "sample": 7,
+    "raw": "PING 9.9.9.9 (9.9.9.9) 56(84) bytes of data.\n64 bytes from 9.9.9.9: icmp_seq=1 ttl=53 time=56.7 ms\n\n--- 9.9.9.9 ping statistics ---\n1 packets transmitted, 1 received, 0% packet loss, time 0ms\nrtt min/avg/max/mdev = 56.753/56.753/56.753/0.000 ms\n"
+  }
+]

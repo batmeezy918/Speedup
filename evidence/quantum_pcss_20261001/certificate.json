@@ -1,0 +1,47 @@
+{
+  "run_id": "PCSS_AGD_QG_FHET_N10_S3_20261001",
+  "scenario_hash": "2fdb91c6dd5acde4fe89b642f4fddc95aa74a18c7f8e3c6a169a0b6970ad31f5",
+  "source_hash": "72ebf1fe11c555f225b488324fc022e8d7697e9bc6ce6280aba83e816cb6436c",
+  "input_hash": "56995a71fffe8d1c746438db4abcc1b6b8afa7528e06627ca3d232ad4d8f47b1",
+  "environment_hash": "4d98868984ebdebf1075556ccd808d045812b6988933c2533733369ec9905e47",
+  "trace_hash": "56995a71fffe8d1c746438db4abcc1b6b8afa7528e06627ca3d232ad4d8f47b1",
+  "quotient_hash": "727305dcb4b310a0969bac239618d27d4a99b9a28fa6152555ca82be75f3bd87",
+  "reverse_hash": "63ec39eebd2b450096768ec1e5431a73614a0d69cd263f4ad23e6c2f93194450",
+  "proof_hash": "c6266761446bace05e8203973e93963f8251339ba6bef30690f3a1a7f78f19b5",
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": true,
+    "invariants": true,
+    "performance": true,
+    "lean": true
+  },
+  "performance": {
+    "metric": "fresh end-to-end speedup",
+    "baseline": 0.002126041,
+    "candidate": 0.00011125,
+    "direct_speedup": 115.4264988764045,
+    "kernel_speedup": 497.7852961835635,
+    "composed_speedup": 206.662771984035,
+    "compression": 32.0,
+    "samples": 1,
+    "operator_family": "F_HeterogeneousProduct",
+    "n": 10,
+    "seed": 3,
+    "composition_max_depth": 5
+  },
+  "semantic_witness": {
+    "state_max_error": 2.797157557069881e-17,
+    "state_L2_error": 3.796077787873838e-16,
+    "observable_error": 3.2959746043559335e-17,
+    "reverse_error": 7.06141132964231e-17,
+    "composition_max_state_error": 3.538155541877298e-17,
+    "composition_max_closure_residual": 0.0,
+    "PASS/FAIL": "PASS"
+  },
+  "cross_certificate": {
+    "ATD_QG_MAXIMAL": "110/110 tests passed; 20/20 negative controls correctly rejected",
+    "AGD_QG_GENERALITY": "189/189 positive semantic cases passed; 24/24 negative controls correctly rejected"
+  }
+}

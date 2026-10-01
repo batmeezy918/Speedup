@@ -1,0 +1,11 @@
+{
+  "candidate_time_s": 0.00011125,
+  "composed_speedup": 206.662771984035,
+  "composition_depth": 5,
+  "compression": 32.0,
+  "direct_speedup": 115.4264988764045,
+  "kernel_speedup": 497.7852961835635,
+  "metric": "fresh end-to-end speedup",
+  "pass": true,
+  "reference_time_s": 0.002126041
+}

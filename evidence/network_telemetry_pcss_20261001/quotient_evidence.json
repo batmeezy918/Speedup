@@ -1,0 +1,11 @@
+{
+  "pass": true,
+  "definition": "Q(raw)=one canonical parse per observation",
+  "samples": 24,
+  "targets": [
+    "1.1.1.1",
+    "8.8.8.8",
+    "9.9.9.9"
+  ],
+  "closure_residual": 0.0
+}

@@ -1,0 +1,7 @@
+{
+  "composition_max_closure_residual": 0.0,
+  "composition_max_state_error": 3.538155541877298e-17,
+  "invariant": "quotient-invariant sector",
+  "observable_error": 3.2959746043559335e-17,
+  "pass": true
+}

@@ -1,0 +1,2 @@
+LEAN4_CORE_ALL_PASS=1
+AGDQuantumPCSSBinding.lean exit_code=0
