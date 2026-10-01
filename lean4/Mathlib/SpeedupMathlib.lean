@@ -23,7 +23,8 @@ theorem finite_descent (h : Intertwines π T Tbar) :
   | zero => intro x; rfl
   | succ n ih =>
       intro x
-      simp [Iterate, h, ih]
+      show π (T (Iterate T n x)) = Tbar (Iterate Tbar n (π x))
+      rw [h, ih]
 
 theorem reconstructed_operator
     (hσ : Section π σ) (hT : Intertwines π T Tbar) :
@@ -43,10 +44,10 @@ def quotientWork (r s k : Nat) : Nat := 2 * r * s * k
 
 theorem canonical_work_ratio :
     fullWork 1024 1024 1024 = 16 * quotientWork 256 256 1024 := by
-  norm_num [fullWork, quotientWork]
+  decide
 
 theorem strict_work_reduction :
     quotientWork 256 256 1024 < fullWork 1024 1024 1024 := by
-  norm_num [fullWork, quotientWork]
+  decide
 
 end SpeedupMathlib
