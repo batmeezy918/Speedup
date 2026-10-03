@@ -1,0 +1,95 @@
+{
+  "schema": "PCSS-ELEVATED-V1",
+  "date": "2026-10-03",
+  "classification": "STRONG_LOCAL_ELEVATED_WITNESS",
+  "environment": {
+    "kernel": "6.17.0-PRoot-Distro",
+    "arch": "aarch64",
+    "compiler": "Debian clang 19.1.7",
+    "lean": "4.29.0"
+  },
+  "suite": {
+    "regimes": 4,
+    "repetitions": 5,
+    "warmups": 1,
+    "correctness_tolerance": 0.0001
+  },
+  "results": [
+    {
+      "name": "balanced",
+      "B": 64,
+      "C": 8,
+      "D": 4096,
+      "P": 100,
+      "S": 20,
+      "seed": 101,
+      "speedup": 9.601571,
+      "reconstruction_error": 0.0000381469727,
+      "invariant_error": 0.00000165281243,
+      "gate": "PASS"
+    },
+    {
+      "name": "quotient_pressure",
+      "B": 128,
+      "C": 8,
+      "D": 8192,
+      "P": 120,
+      "S": 30,
+      "seed": 211,
+      "speedup": 19.978818,
+      "reconstruction_error": 0.0000562667847,
+      "invariant_error": 0.00000264223537,
+      "gate": "PASS"
+    },
+    {
+      "name": "class_fragmentation",
+      "B": 256,
+      "C": 32,
+      "D": 4096,
+      "P": 80,
+      "S": 20,
+      "seed": 307,
+      "speedup": 10.001282,
+      "reconstruction_error": 0.000129699707,
+      "invariant_error": 0.00000173214461,
+      "gate": "PASS"
+    },
+    {
+      "name": "numerical_cancellation",
+      "B": 128,
+      "C": 16,
+      "D": 4096,
+      "P": 100,
+      "S": 20,
+      "seed": 401,
+      "speedup": 9.59568,
+      "reconstruction_error": 0,
+      "invariant_error": 1.9635164e-7,
+      "gate": "PASS"
+    }
+  ],
+  "gates": {
+    "integrity": true,
+    "reproducibility": true,
+    "forward_quotient": true,
+    "reverse_reconstruction": true,
+    "invariants": true,
+    "performance": true,
+    "lean": true,
+    "publication": false
+  },
+  "notes": [
+    "Fresh rerun reproduced all four regime gates with exit code 0.",
+    "Lean proves arithmetic consequences of the measured certificate fields; it does not prove wall-clock measurement provenance.",
+    "This is a mechanism-level composition witness, not a re-execution of every historical SIM2XR/AGD/NEON artifact.",
+    "No universal speedup claim is made.",
+    "Full publication gate remains closed until independent provenance binding and repository-integrated PCSS validator execution are completed."
+  ],
+  "hashes": {
+    "source_sha256": "dde671e548822c01057166f11c01498fce2fa114f51e931103963da3e741494a",
+    "binary_sha256": "a828af209f30ce8ef1ea0de8f17d93511c5378a46e4681e0b848673ab833a312",
+    "rerun_sha256": "7726f6961d20a50b7cc41dbc9413b6bf40d7306bf5c45eb4f95a3b74a5cb1c16",
+    "lean_source_sha256": "e1c2ae61500355048c677c88cfe5e882eb5809575bd775108fe77e1d687025e2",
+    "lean_olean_sha256": "2f80adb6d87e70c4ae7b8b17ed1c7eb22ee8e06b6f2bd655b2fcbb970516df76"
+  }
+}
