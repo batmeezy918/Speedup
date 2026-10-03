@@ -1,6 +1,6 @@
 {
   "run_id":"PCSS_COMPOSITION_SIM2XR_AGD_NEON_20261003",
-  "scenario":{"branches":64,"classes":8,"dim":4096,"prefix":1000,"suffix":200,"repeats_per_run":7,"fresh_runs":4},
+  "scenario":{"branches":64,"classes":8,"dim":4096,"prefix":1000,"suffix":200,"repeats_per_run":7,"fresh_runs":5},
   "mechanisms":["shared_prefix_elimination","class_quotient_reconstruction","aarch64_neon_fma"],
   "platform":"connected Android aarch64 Termux host",
   "compiler":"clang -O3 -march=armv8-a+simd",
@@ -10,7 +10,8 @@
     {"baseline_ns":898721667,"composed_ns":14059636,"ratio":63.922114840},
     {"baseline_ns":1119208801,"composed_ns":13046823,"ratio":85.784010483},
     {"baseline_ns":443345885,"composed_ns":5670678,"ratio":78.182165342},
-    {"baseline_ns":943374635,"composed_ns":11464427,"ratio":82.287116050}
+    {"baseline_ns":943374635,"composed_ns":11464427,"ratio":82.287116050},
+    {"baseline_ns":636605000,"composed_ns":6081354,"ratio":104.681457452}
   ],
   "reported_summary":{"median_ratio_x":82.287116050,"numerical_relative_error":0.00006731814,"reconstruction_error":0.0,"class_reduction":0.875},
   "gates":{
@@ -26,5 +27,5 @@
   "classification":"STRONG_LOCAL_COMPOSITION_WITNESS",
   "boundary":"fresh synthetic composition workload; not a re-execution of the historical SIM2XR/AGD/NEON artifacts and not a universal speedup claim",
   "failed_or_missing":"independent reverse reconstruction certificate and Lean binding",
-  "note":"Initial composition attempts were rejected due to semantic mismatch/compiler optimization; only the corrected volatile/function-pointer run is retained as evidence. Receipt metadata corrected so fresh_runs matches the four recorded execution rows."
+  "note":"Initial composition attempts were rejected due to semantic mismatch/compiler optimization; only the corrected volatile/function-pointer run is retained as evidence. Receipt metadata corrected to match all five recorded execution rows."
 }
