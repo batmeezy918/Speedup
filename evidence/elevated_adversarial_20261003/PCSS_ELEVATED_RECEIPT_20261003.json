@@ -71,8 +71,8 @@
   "gates": {
     "integrity": true,
     "reproducibility": true,
-    "forward_quotient": true,
-    "reverse_reconstruction": true,
+    "forward_quotient": false,
+    "reverse_reconstruction": false,
     "invariants": true,
     "performance": true,
     "lean": true,
@@ -83,6 +83,7 @@
     "Lean proves arithmetic consequences of the measured certificate fields; it does not prove wall-clock measurement provenance.",
     "This is a mechanism-level composition witness, not a re-execution of every historical SIM2XR/AGD/NEON artifact.",
     "No universal speedup claim is made.",
+    "forward_quotient and reverse_reconstruction are false: the harness compares rv[b] with bv[b] in-process only, and this directory stores no hash-bound quotient or reverse-reconstruction artifact, so neither gate has evidence behind it.",
     "Full publication gate remains closed until independent provenance binding and repository-integrated PCSS validator execution are completed."
   ],
   "hashes": {
