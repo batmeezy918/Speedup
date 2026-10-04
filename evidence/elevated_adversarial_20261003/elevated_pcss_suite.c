@@ -13,7 +13,7 @@ static uint64_t ns(){struct timespec t;if(clock_gettime(CLOCK_MONOTONIC_RAW,&t)!
 static uint32_t rng(uint32_t*z){*z=1664525u*(*z)+1013904223u;return*z;}
 static float sd(const float*x,const float*w,int D){float z=0;for(int i=0;i<D;i++)z+=x[i]*w[i];return z;}
 static float nd(const float*x,const float*w,int D){float32x4_t a=vdupq_n_f32(0);int i=0;for(;i+4<=D;i+=4)a=vmlaq_f32(a,vld1q_f32(x+i),vld1q_f32(w+i));float t[4];vst1q_f32(t,a);float z=t[0]+t[1]+t[2]+t[3];for(;i<D;i++)z+=x[i]*w[i];return z;}
-static void fill(float*x,float*w,int D,uint32_t s,int adv){for(int i=0;i<D;i++){float u=((rng(&s)>>8)&65535)/65535.0f-.5f;if(adv)u=(i&1)?1e-3f:-1e-3f;x[i]=u;}for(int i=0;i<D;i++){float u=((rng(&s)>>8)&65535)/65535.0f-.5f;if(adv)u=(i&3)?-1e3f:1e3f;w[i]=u;}}
+static void fill(float*x,float*w,int D,uint32_t s,int adv){for(int i=0;i<D;i++){float u=((rng(&s)>>8)&65535)/65535.0f-.5f;if(adv)u=(i&1)?1e-3f:-1e-3f;x[i]=u;}for(int i=0;i<D;i++){float u=((rng(&s)>>8)&65535)/65535.0f-.5f;if(adv){float d=((rng(&s)>>8)&65535)/32768.0f-1.f;u=-1e3f*(1.f+2e-4f*d);}w[i]=u;}}
 static int cl(int b,int B,int C){return(b*C)/B;}
 static float bb(const float*x,const float*w,int B,int C,int D,int P,int S,int b){int c=cl(b,B,C);float scale=1+.0001f*c,p=0,t=0;for(int k=0;k<P;k++)p+=sd(x,w,D)*scale*.00001f;for(int s=0;s<S;s++)t+=sd(x,w,D)*scale+p+c*.0001f;return t;}
 static float cc(const float*x,const float*w,int B,int C,int D,int P,int S,float*r){float d[MAXC],p[MAXC],tot=0;for(int c=0;c<C;c++){float scale=1+.0001f*c,q=0;for(int k=0;k<P;k++)q+=sd(x,w,D)*scale*.00001f;p[c]=q;d[c]=nd(x,w,D)*scale;}for(int b=0;b<B;b++){int c=cl(b,B,C);float v=0;for(int s=0;s<S;s++)v+=d[c]+p[c]+c*.0001f;r[b]=v;tot+=v;}return tot;}
