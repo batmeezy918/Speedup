@@ -134,3 +134,13 @@ The native benchmark measured:
 This V2 result is stronger than the prior run because the quotient path now actually exploits observed class reuse. It remains a finite native replay over 50 fresh Level-2 sequence changes, not a claim of continuous WebSocket operation, profitability, or silicon-causal acceleration.
 
 The next scaling gate should increase the captured sequence-change count substantially while retaining the same invariant definition and exact semantic gate.
+
+## V5 verified-closure operational elevation
+
+The V5 kernel operationalizes the already-verified quotient theorems as a **materialized closure cache**. The mathematical facts being reused are `projection_step`, `projection_iterate`, `observable_respects`, `reconstructed_iterate`, `exact_quotient_closure`, `gods_recursive_descent`, and `gods_bidirectional_closure`. Their operational consequence is: once a state has been mapped into a quotient class and the downstream observables factor through that class, those observables need not be re-derived from the original state for every downstream consumer.
+
+V5 therefore performs, in order: original-state invariant derivation once; semantic validation once; unique quotient-class construction; downstream observable-bundle materialization once per unique class; repeated consumers read only the materialized bundle. The benchmark compares this against a baseline that re-derives the signature and full 32-observable bundle for every event/consumer invocation. This is a workload transformation, not multiplication of isolated speedup ratios.
+
+Fresh native result on the preserved 50-event Coinbase BTC-USD L2 replay: 50 states -> 26 invariant classes (1.92307692308x compression), semantic equivalence true, one-time invariant derivation 0.003021 ms, closure materialization 0.006823 ms, baseline median 520.152031 ms, cached quotient median 16.281875 ms, fully amortized quotient 16.291719 ms, measured speedup 31.9273878343x, sink 0. The 31.9274x result is a finite native replay workload demonstrating materialized invariant reuse. It is not a claim of market-wide HFT speedup, profitability, continuous-feed performance, or silicon causality.
+
+The formal boundary remains explicit: the Lean theorems prove the quotient/factorization/recursive/bidirectional closure pattern; the concrete market signature and the 32-observable workload are runtime artifacts and are validated empirically. Continuous WebSocket transport and hardware attribution remain separate gates.

@@ -1,0 +1,40 @@
+{
+  "run_id": "QKXR_LIVE_TOWER_NATIVE_V5_20261004T085709Z",
+  "commit_before": "3cea1217b2d683e48912e71895a8419ad6b4f06e",
+  "method": "verified quotient closure materialization",
+  "theorem_pattern_reused": [
+    "projection_step",
+    "projection_iterate",
+    "observable_respects",
+    "reconstructed_iterate",
+    "exact_quotient_closure",
+    "gods_recursive_descent",
+    "gods_bidirectional_closure"
+  ],
+  "source": "Coinbase BTC-USD Level-2 replay; 50 preserved fresh sequence changes",
+  "live_websocket": false,
+  "states": 50,
+  "unique_invariant_classes": 26,
+  "compression_ratio": 1.92307692308,
+  "fanout": 32,
+  "downstream_K": 100000,
+  "semantic_equivalent": true,
+  "one_time_derivation_ms": 0.003021,
+  "closure_materialization_ms": 0.006823,
+  "baseline_median_ms": 520.152031,
+  "quotient_cached_median_ms": 16.281875,
+  "quotient_amortized_ms": 16.291719,
+  "speedup": 31.9273878343,
+  "sink": 0,
+  "claim_boundary": "Finite native replay workload. Demonstrates materialized invariant/observable reuse. Does not establish market-wide HFT speedup, profitability, continuous WebSocket performance, or silicon causality.",
+  "formal_boundary": "Lean verifies the generic quotient descent/factorization/recursive/bidirectional closure pattern. Concrete market invariants and runtime workload remain empirically validated.",
+  "hashes": {
+    "benchmarks/qkxr_tower_native_v5.cpp": "fe5d2c7e16c128ac2a4a218fdecf2be34465a379374481524e401a60f783eb88",
+    "lean4/QKXRTower.lean": "3f31f1bb0c5273046ebefaebaa71e3011eb4d0847d58bd07a3b3ccd4d1305dda",
+    "lean4/GODSQuotientClosure.lean": "18259ce914ae59696700b728c84b875d8f04e4c75af19986d7549a46115551a0",
+    "lean4/chronofold/ExactQuotientClosure.lean": "38f548253ae2bf306be96715a48a369e856f77b560ea4ffc11f9fa1772642a4b",
+    "lean4/SpeedupExactInvariant.lean": "74a57791e251e7357fa8962e288228a51fe7f459a1cf4249214efb663d80a6ca",
+    "docs/QKXR_TOWER_FORMAL_GAP_DERIVATION.md": "b3e3e73bff1cf377d537e8e83a872793649d4824f87f58cd3f68879d3ac3f96b",
+    "evidence/qkxr/live_btcusd_stream_20261004T0718Z.csv": "f7809ce58fbbee0c2438a204426ff938ab32a79c0428d72d0674010524336455"
+  }
+}
