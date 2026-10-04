@@ -98,3 +98,39 @@ No speedup is promoted from this experiment unless:
 7. hardware causality is not inferred merely from software timing.
 
 The experiment therefore separates **semantic preservation**, **compression**, and **native acceleration** instead of conflating them.
+
+
+## 10. V2 cache-compression correction
+
+The first native run measured reuse of a pre-derived signature but still iterated over every observed state in the downstream loop. That isolated the invariant-recomputation saving but did not measure cross-event quotient-class reuse.
+
+V2 corrects this by making the quotient cache explicit:
+
+1. derive the selected invariant signature once for each captured live state;
+2. validate exact decision equivalence;
+3. construct a one-time unique-signature index;
+4. execute the downstream workload once per unique quotient class;
+5. include derivation, validation, and cache construction in the amortized quotient cost.
+
+For the fresh live replay used in V2:
+
+50 live sequence changes -> 26 unique execution-preserving signatures
+
+so the observed quotient compression is
+
+50 / 26 = 1.92307692308x.
+
+The native benchmark measured:
+
+- baseline median: 66.204948 ms;
+- unique-class quotient downstream median: 19.051822 ms;
+- one-time derivation: 0.010000 ms;
+- one-time semantic validation: 0.001458 ms;
+- one-time cache construction: 0.006094 ms;
+- total amortized quotient: 19.069374 ms;
+- end-to-end native replay ratio: 3.47179451198x;
+- exact decision equivalence: true.
+
+This V2 result is stronger than the prior run because the quotient path now actually exploits observed class reuse. It remains a finite native replay over 50 fresh Level-2 sequence changes, not a claim of continuous WebSocket operation, profitability, or silicon-causal acceleration.
+
+The next scaling gate should increase the captured sequence-change count substantially while retaining the same invariant definition and exact semantic gate.
