@@ -1,0 +1,23 @@
+{
+  "run_id": "QKXR_EXECUTION_QUOTIENT_20261004T063919Z",
+  "timestamp_utc": "20261004T063919Z",
+  "git_base": "afe12e015fef4faf443149575796e1e40124a832",
+  "branch": "qkxr-hft-pcss-impl",
+  "scope": "execution-preserving quotient semantic gate",
+  "adversarial_case": {
+    "states": [
+      {"bid": 84797.19, "ask": 84797.20, "imbalance": -0.43653},
+      {"bid": 84797.19, "ask": 84797.20, "imbalance": -0.43773},
+      {"bid": 84797.19, "ask": 84797.20, "imbalance": -0.49741}
+    ],
+    "coarse_bucket": "spread_ticks=1, imbalance_bucket=-5",
+    "execution_signatures": ["HOLD", "HOLD", "SELL"],
+    "result": "coarse quotient rejected; semantic refinement separates signatures"
+  },
+  "tests": {
+    "python_qkxr": {"status": "PASS", "cases": 3},
+    "lean_QKXRExecutionQuotient": {"status": "PASS", "exit_code": 0},
+    "pcss_gate_matrix": {"status": "PASS", "accepted": 1, "rejected": 127, "total": 128}
+  },
+  "claim_boundary": "This establishes a deterministic semantic gate and formal preservation lemmas only; it does not establish trading profitability, wall-clock speedup, or market-wide quotient validity."
+}
