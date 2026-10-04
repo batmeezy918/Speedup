@@ -11,7 +11,7 @@ static volatile float sink;
 static uint64_t ns(){struct timespec t;clock_gettime(CLOCK_MONOTONIC_RAW,&t);return(uint64_t)t.tv_sec*1000000000ULL+t.tv_nsec;}
 static uint32_t rng(uint32_t*z){*z=1664525u*(*z)+1013904223u;return*z;}
 static float sd(const float*x,const float*w,int D){float z=0;for(int i=0;i<D;i++)z+=x[i]*w[i];return z;}
-static float nd(const float*x,const float*w,int D){float32x4_t a=vdupq_n_f32(0);for(int i=0;i<D;i+=4)a=vmlaq_f32(a,vld1q_f32(x+i),vld1q_f32(w+i));float t[4];vst1q_f32(t,a);return t[0]+t[1]+t[2]+t[3];}
+static float nd(const float*x,const float*w,int D){float32x4_t a=vdupq_n_f32(0);int i=0;for(;i+4<=D;i+=4)a=vmlaq_f32(a,vld1q_f32(x+i),vld1q_f32(w+i));float t[4];vst1q_f32(t,a);float z=t[0]+t[1]+t[2]+t[3];for(;i<D;i++)z+=x[i]*w[i];return z;}
 static void fill(float*x,float*w,int D,uint32_t s,int adv){for(int i=0;i<D;i++){float u=((rng(&s)>>8)&65535)/65535.0f-.5f;if(adv)u=(i&1)?1e-3f:-1e-3f;x[i]=u;}for(int i=0;i<D;i++){float u=((rng(&s)>>8)&65535)/65535.0f-.5f;if(adv)u=(i&3)?-1e3f:1e3f;w[i]=u;}}
 static int cl(int b,int B,int C){return(b*C)/B;}
 static float bb(const float*x,const float*w,int B,int C,int D,int P,int S,int b){int c=cl(b,B,C);float scale=1+.0001f*c,p=0,t=0;for(int k=0;k<P;k++)p+=sd(x,w,D)*scale*.00001f;for(int s=0;s<S;s++)t+=sd(x,w,D)*scale+p+c*.0001f;return t;}
