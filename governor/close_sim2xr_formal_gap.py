@@ -31,8 +31,9 @@ for t in ("one_step", "finite_descent", "reconstruction",
           "invariant_preserved", "identity_stack", "bound_to_run_id"):
     if f"theorem {t}" not in formal:
         fail(f"missing formal theorem: {t}")
-if "sorry" in formal.lower():
-    fail("formal source contains sorry")
+import re
+if re.search(r"(?m)\\b(?:sorry|admit)\\b", formal):
+    fail("formal source contains a proof hole token")
 
 cases = w.get("cases", [])
 if len(cases) != 5:
