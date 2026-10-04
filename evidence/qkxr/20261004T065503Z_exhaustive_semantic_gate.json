@@ -1,0 +1,30 @@
+{
+  "run_id": "QKXR_EXHAUSTIVE_SEMANTIC_20261004T065503Z",
+  "timestamp_utc": "20261004T065503Z",
+  "git_commit": "db427c312b7a586f5c007c7aff7a3ce043903919",
+  "branch": "qkxr-hft-pcss-impl",
+  "domain": {
+    "spreads_ticks": "1..8",
+    "imbalance": "-1.00..1.00 step 0.01",
+    "states": 1608
+  },
+  "results": {
+    "refined_classes": 160,
+    "refined_collision_classes": 0,
+    "reconstruction_failures": 0,
+    "coarse_non_preserving_classes": 8,
+    "threshold": {
+      "-0.46": "SELL",
+      "-0.45": "HOLD",
+      "-0.44": "HOLD"
+    },
+    "status": "PASS"
+  },
+  "claim_boundary": "Finite deterministic semantic/reconstruction validation only; no claim of market-wide validity, profitability, or wall-clock speedup.",
+  "hashes": {
+    "qkxr/execution_quotient.py": "ac5c1c7474a44e124eb6613a7095fcae0a36ab563378ead9224563da386e2055",
+    "tests/qkxr/test_execution_preserving_quotient.py": "65d98cf3f34471d0d37394f221c22623759a4b6e4eb97ca51a5bb6b3f23281f1",
+    "tests/qkxr/test_bidirectional_reconstruction.py": "e0990b17a27b4a70d850e07ec82fad2e03744b7396b8d24fa9dfd41fcbf31f9c",
+    "lean4/QKXRExecutionQuotient.lean": "521d315d0e6994590f562427933af182dbd221b8d91afed5e1418d2ab9367c80"
+  }
+}

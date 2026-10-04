@@ -10,6 +10,9 @@ def ExecutionPreserving (π : X → Q) (exec : X → A) : Prop :=
 def RefinedQuotient (π : X → Q) (exec : X → A) : X → Q × A :=
   fun x => (π x, exec x)
 
+def Section (π : X → Q) (σ : Q → X) : Prop :=
+  ∀ q, π (σ q) = q
+
 theorem execution_preserved_by_refinement
     (π : X → Q) (exec : X → A) :
     ∀ ⦃x y : X⦄,
@@ -32,10 +35,20 @@ theorem coarse_execution_collision_rejects
   apply h
   exact ⟨x, y, hxy, hne⟩
 
-theorem execution_preserving_class
-    (π : X → Q) (exec : X → A)
-    (h : ExecutionPreserving π exec) :
-    ∀ ⦃x y : X⦄, π x = π y → exec x = exec y := by
+theorem section_right_inverse
+    (π : X → Q) (σ : Q → X)
+    (h : Section π σ) :
+    ∀ q, π (σ q) = q := by
   exact h
+
+theorem reconstructed_execution_preserved
+    (π : X → Q) (exec : X → A)
+    (σ : Q → X)
+    (hsec : Section π σ)
+    (hpres : ExecutionPreserving π exec) :
+    ∀ x, exec x = exec (σ (π x)) := by
+  intro x
+  apply hpres
+  exact (hsec (π x)).symm
 
 end SiliconSpeedup

@@ -11,7 +11,7 @@ or economic profitability.
 """
 
 from dataclasses import dataclass
-from typing import Iterable, Tuple
+from typing import Iterable, Optional, Tuple
 
 
 @dataclass(frozen=True)
@@ -66,6 +66,22 @@ def execution_preserving(
 
 
 def execution_quotient(state: MarketState) -> Tuple[int, int, str]:
-    """Minimal semantic refinement of the coarse quotient."""
+    """Semantic refinement of the coarse quotient."""
     coarse = coarse_quotient(state)
     return (*coarse, execution_signature(state))
+
+
+def representative_reconstruct(
+    states: Iterable[MarketState],
+    quotient: Tuple[int, int, str],
+) -> Optional[MarketState]:
+    """Reconstruct a canonical representative from a finite observed fibre.
+
+    The representative is the first observed state whose refined quotient
+    equals the requested quotient. Returning an observed representative makes
+    the reverse check exact on the execution observable for this finite fibre.
+    """
+    for state in states:
+        if execution_quotient(state) == quotient:
+            return state
+    return None
