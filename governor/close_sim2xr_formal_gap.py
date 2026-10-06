@@ -66,7 +66,7 @@ cert_max = entry.get("result", {}).get("certificate_max")
 if cert_max is not None and abs(float(cert_max) - maximum) > 1e-9:
     fail(f"stale registry certificate_max {cert_max} != witness max {maximum}")
 
-if "not an asymptotic theorem" not in claim or "universal-speedup claims remain rejected" not in claim:
+if "not an asymptotic theorem" not in claim or "universal-speedup claims remain rejected." not in claim.lower():
     fail("claim boundary language weakened")
 if "Lean workflow binding pending" in claim:
     fail("claim still declares Lean binding pending")
