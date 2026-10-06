@@ -9,7 +9,7 @@ The tested implementation performs exact coordinate reduction onto an invariant 
 
 Five fresh bidirectional witnesses passed. The observed speedups were approximately 1.12x, 1.64x, 4.09x, 15.93x, and 168.14x. Median = 4.09x; maximum = 168.14x.
 
-These are **local wall-clock measurements on the specified Android/aarch64 Termux environment**. They are not an asymptotic theorem, hardware-independent guarantee, or universal SIM2XR speedup.
+These are **local wall-clock measurements on the specified Android/aarch64 Termux environment**. They are not an asymptotic theorem, hardware-independent guarantee, or universal SIM2XR speedup. This is **not a universal speedup theorem**.
 
 ## Proof obligations
 
