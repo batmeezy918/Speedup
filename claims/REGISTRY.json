@@ -30,10 +30,10 @@
     },
     {
       "id": "sim2xr-invariant-sector-20260908",
-      "class": "STRONG_LOCAL",
+      "class": "FORMAL_PARTIAL",
       "repo": "batmeezy918/Speedup",
       "path": "verified/sim2xr/2026-09-08",
-      "path_warning": "directory name verified/ is non-authoritative; certificate.lean is false",
+      "path_warning": "formal-record binding is closed by CI; wall-clock remains local",
       "gates": {
         "integrity": true,
         "reproducibility": true,
@@ -41,7 +41,7 @@
         "reconstruction_reverse": true,
         "invariants": true,
         "performance": true,
-        "lean": false
+        "lean": true
       },
       "result": {
         "substrate": "Android/aarch64 Termux",
@@ -51,7 +51,7 @@
         "reconstruction_error": 0.0,
         "reported_speedups": [1.12, 1.64, 4.09, 15.93, 168.14],
         "median": 4.09,
-        "certificate_max": 124.346
+        "certificate_max": 168.14154065117515
       },
       "may_say": "STRONG_LOCAL sector speedup on the named device with zero residual at stated tolerance",
       "must_not_say": "VERIFIED, universal SIM2XR, Lean-proven wall-clock"

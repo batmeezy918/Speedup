@@ -1,0 +1,50 @@
+name: SIM2XR Formal-Gap Closure
+
+on:
+  push:
+    branches: [formal-gap-closure-20261003]
+  pull_request:
+    branches: [main]
+
+jobs:
+  close-formal-gap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify evidence-derived closure
+        run: python3 governor/close_sim2xr_formal_gap.py
+
+      - name: Install exact Lean toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -sSfL https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.29.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/lean" --version
+          "$HOME/.elan/bin/lake" --version
+
+      - name: Kernel-check original SIM2XR proof
+        working-directory: lean4
+        run: lean PCSS_SIM2XR_20260908.lean
+
+      - name: Kernel-check generated evidence binding
+        working-directory: lean4
+        run: lean PCSS_SIM2XR_FORMAL_BINDING_GENERATED.lean
+
+      - name: Require clean formal source
+        run: |
+          set -euo pipefail
+          if grep -RniE '(^|[[:space:]])(sorry|admit)([[:space:]]|$)' lean4/PCSS_SIM2XR_20260908.lean; then
+            echo "FAIL: forbidden proof hole"
+            exit 1
+          fi
+
+      - name: Upload binding manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: sim2xr-formal-binding-${{ github.sha }}
+          path: |
+            lean4/PCSS_SIM2XR_FORMAL_BINDING_GENERATED.lean
+            verified/sim2xr/2026-09-08/bidirectional_witness.json
+            verified/sim2xr/2026-09-08/CLAIM.md

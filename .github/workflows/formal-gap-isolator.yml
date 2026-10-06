@@ -21,6 +21,9 @@ jobs:
       - name: Compile gap tools
         run: python3 -m py_compile formal_gap_isolator/gap_isolator.py formal_gap_isolator/gap_lifecycle.py
 
+      - name: Install test dependency
+        run: python3 -m pip install --disable-pip-version-check pytest
+
       - name: Run gap unit tests
         run: python3 -m pytest -q formal_gap_isolator/tests
 
