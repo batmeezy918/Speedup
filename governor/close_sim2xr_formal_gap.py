@@ -95,7 +95,13 @@ theorem five_witnesses_gt_one : ∀ x ∈ witnessRatios, x > scale := by
   rcases hx with rfl | rfl | rfl | rfl | rfl <;> decide
 
 structure Gates where
-  I R Q Qinv Omega X L : Bool
+  I : Bool
+  R : Bool
+  Q : Bool
+  Qinv : Bool
+  Omega : Bool
+  X : Bool
+  L : Bool
 
 def closed : Gates := {{ I:=true, R:=true, Q:=true, Qinv:=true, Omega:=true, X:=true, L:=true }}
 
