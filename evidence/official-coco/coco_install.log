@@ -1,0 +1,49 @@
+Collecting coco-experiment==2.8.2
+  Using cached coco_experiment-2.8.2.tar.gz (3.9 MB)
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'error'
+  error: subprocess-exited-with-error
+  
+  × Preparing metadata (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [30 lines of output]
+      + meson setup /tmp/pip-install-5ndwbalx/coco-experiment_d1a1f8035327420d97f2fef05aaeee82 /tmp/pip-install-5ndwbalx/coco-experiment_d1a1f8035327420d97f2fef05aaeee82/.mesonpy-7frub07f -Dbuildtype=release -Db_ndebug=if-release -Db_vscrt=md --native-file=/tmp/pip-install-5ndwbalx/coco-experiment_d1a1f8035327420d97f2fef05aaeee82/.mesonpy-7frub07f/meson-python-native-file.ini
+      The Meson build system
+      Version: 1.12.1
+      Source dir: /tmp/pip-install-5ndwbalx/coco-experiment_d1a1f8035327420d97f2fef05aaeee82
+      Build dir: /tmp/pip-install-5ndwbalx/coco-experiment_d1a1f8035327420d97f2fef05aaeee82/.mesonpy-7frub07f
+      Build type: native build
+      Project name: coco-experiment
+      Project version: 2.8.2
+      C compiler for the host machine: cc (gcc 14.2.0 "cc (Debian 14.2.0-19) 14.2.0")
+      C linker for the host machine: cc ld.bfd 2.44
+      C++ compiler for the host machine: c++ (gcc 14.2.0 "c++ (Debian 14.2.0-19) 14.2.0")
+      C++ linker for the host machine: c++ ld.bfd 2.44
+      Cython compiler for the host machine: cython (cython 3.2.9)
+      Host machine cpu family: aarch64
+      Host machine cpu: aarch64
+      Program python found: YES (/root/Speedup/.venv-coco/bin/python)
+      Found pkg-config: YES (/usr/bin/pkg-config) 1.8.1
+      Run-time dependency python found: YES 3.13
+      Program cython found: YES (/data/data/com.termux/files/usr/bin/cython)
+      Compiler for C supports arguments -Wno-unused-but-set-variable: YES
+      Compiler for C supports arguments -Wno-unused-function: YES
+      Compiler for C supports arguments -ffp-contract=off: YES
+      Library m found: YES
+      Compiler for C++ supports arguments -Wno-unused-but-set-variable: YES
+      Compiler for C++ supports arguments -Wno-unused-function: YES
+      Compiler for C++ supports arguments -ffp-contract=off: YES
+      
+      ../meson.build:50:14: ERROR: Command `/root/Speedup/.venv-coco/bin/python -c 'import os; os.chdir(".."); import numpy; print(numpy.get_include())'` failed with status 1.
+      
+      A full log can be found at /tmp/pip-install-5ndwbalx/coco-experiment_d1a1f8035327420d97f2fef05aaeee82/.mesonpy-7frub07f/meson-logs/meson-log.txt
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: metadata-generation-failed
+
+× Encountered error while generating package metadata.
+╰─> See above for output.
+
+note: This is an issue with the package mentioned above, not pip.
+hint: See above for details.

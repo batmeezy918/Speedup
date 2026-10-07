@@ -7,3 +7,21 @@ __pycache__/
 # native build outputs: rebuildable, and bound by SHA-256 in the receipts
 *.o
 *.so
+
+# --- 2026-10-07: bulk local evidence and third-party/proprietary binaries ---
+# Regenerable local run trees; too large for git and not part of the claim corpus.
+evidence/live_top2_20261001T090904Z/
+evidence/archives/
+evidence/quarantine/pcss_full_advancement_corpus_20260930/
+evidence/official-coco/coco_bfs_twin_exact_full_20261001/
+evidence/official-coco/coco_bfs_twin_full_20261001/
+evidence/official-coco/coco_bfs_twin_smoke_20261001/
+# Third-party redistributed wheels (meson/ninja/packaging) - fetch at setup time.
+evidence/official-coco/wheels/
+# Proprietary third-party app binary (Tasker, Apache-2.0 app redistributed by Play).
+# Not ours to redistribute; obtain from the vendor.
+android_bridge/*.apk
+# Third-party benchmark corpora cloned as full git repos. Not ours to vendor;
+# fetch upstream at benchmark time. Adding them directly creates broken gitlinks.
+benchmarks/official/PutnamBench/
+benchmarks/official/miniF2F/

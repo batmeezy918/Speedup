@@ -1,0 +1,190 @@
+{
+  "artifact_paths": {
+    "baseline_trace": "evidence/20261007T023617Z/baseline_trace.json",
+    "candidate_trace": "evidence/20261007T023617Z/candidate_trace.json",
+    "environment": "evidence/20261007T023617Z/environment.json",
+    "invariant": "evidence/20261007T023617Z/invariant_evidence.json",
+    "lean": "evidence/20261007T023617Z/lean_evidence.json",
+    "performance": "evidence/20261007T023617Z/performance_evidence.json",
+    "quotient": "evidence/20261007T023617Z/quotient_evidence.json",
+    "reconstruction": "evidence/20261007T023617Z/reconstruction_evidence.json",
+    "scenario": "evidence/20261007T023617Z/scenario.json"
+  },
+  "baseline_measurement": {
+    "max": 1835269791.0,
+    "mean": 1707015719.7667,
+    "median": 1696708984.0,
+    "metric": "wall_clock_ns",
+    "min": 1670598853.0,
+    "samples": 30,
+    "timings_ns": [
+      1835269791.0,
+      1752956926.0,
+      1722706510.0,
+      1742482656.0,
+      1712124166.0,
+      1751791510.0,
+      1704435989.0,
+      1698577604.0,
+      1726180416.0,
+      1717702551.0,
+      1707204895.0,
+      1718120885.0,
+      1727827344.0,
+      1726594062.0,
+      1682068957.0,
+      1694840364.0,
+      1681906301.0,
+      1672655885.0,
+      1678705051.0,
+      1688407499.0,
+      1691134583.0,
+      1677037812.0,
+      1670598853.0,
+      1690297604.0,
+      1674436041.0,
+      1673923072.0,
+      1676468645.0,
+      1692978957.0,
+      1728214686.0,
+      1692821978.0
+    ],
+    "unit": "ns"
+  },
+  "baseline_trace_hash": "05f711a85e9b2790e56888ede74f670efe35bc7351d5278d6082c4e4eaa3a659",
+  "candidate_measurement": {
+    "max": 1029488541.0,
+    "mean": 889968334.7667,
+    "median": 885037630.0,
+    "metric": "wall_clock_ns",
+    "min": 871553385.0,
+    "samples": 30,
+    "timings_ns": [
+      1029488541.0,
+      888563750.0,
+      896545208.0,
+      892839166.0,
+      894566666.0,
+      897541563.0,
+      882169688.0,
+      901213645.0,
+      889298072.0,
+      894658490.0,
+      893536094.0,
+      888355260.0,
+      892558698.0,
+      903692656.0,
+      872461041.0,
+      875370573.0,
+      874940000.0,
+      878346927.0,
+      873935416.0,
+      913701250.0,
+      871553385.0,
+      873680676.0,
+      872503958.0,
+      874378437.0,
+      872554479.0,
+      874710989.0,
+      873934843.0,
+      881875312.0,
+      883435261.0,
+      886639999.0
+    ],
+    "unit": "ns"
+  },
+  "candidate_trace_hash": "ab791f5e4f4c2bcdb3002481fc9f2c3e12daa21d4824af34ab4d4d768dcca30a",
+  "claim_boundary": [
+    "work_ratio is exactly 1.0. Both kernels execute the same 2n^3 flops. This is a constant-factor data-movement win, NOT a work reduction.",
+    "The 1.92x factor is scoped to this machine (aarch64 PRoot, 1 core, clock_gettime_monotonic). It is not hardware-independent.",
+    "Candidate output is bitwise identical to baseline (max abs diff 0.0). This is empirical evidence, not a theorem.",
+    "Lean proves the N=4 k-reassociation identity the microkernel evaluates. The general N-block statement is an UNRESOLVED OBLIGATION.",
+    "The absolute 1.57e-5 relative error is inherited from the baseline's own fp32 accumulation over K=2048, not introduced by the candidate.",
+    "A first execution declared tol=1e-2 absolute and FAILED at 7.77e-2 for BOTH kernels. The mis-specified gate is recorded, not deleted.",
+    "NOT VERIFIED: the general-N formal obligation is unresolved.",
+    "NOT a scientific novelty claim: register blocking, cache blocking and software prefetch are standard GotoBLAS-class techniques."
+  ],
+  "claim_strength": "FORMAL_PARTIAL",
+  "environment_hash": "adaed1d1be8a498bcb2329727ce0f1d591ae31b89880d446a6149ebdd5932b95",
+  "gates": {
+    "integrity": true,
+    "invariants": true,
+    "lean": true,
+    "performance": true,
+    "quotient_forward": true,
+    "reconstruction_reverse": true,
+    "reproducibility": true
+  },
+  "implementation_identity": {
+    "baseline": "gemm_optimized_column_streaming (/root/sovereign_kernel.c)",
+    "candidate": "gemm_blocked_8x8_register (/root/sovereign_kernel_opt.c)"
+  },
+  "input_hash": "46352c225f0c7daff6f5f515c231f7eaf355a18bfcde17b8f7d1dde6394e135d",
+  "invariant_hash": "92b42b7bc730155cb26312e5628ffa314222e2dda3f534d32331f77d38ff090f",
+  "invariants": {
+    "general_N": "unresolved_obligation",
+    "k_reassociation": "machine_checked (N=4 instance)"
+  },
+  "lean": {
+    "exit_code": 0,
+    "file": "lean4/PCSSGemmRegisterBlock.lean",
+    "general_N_obligation": "declared_not_proven"
+  },
+  "lean_hash": "0a27b8510bb93cfa5853127fa8b0476a04b61eb2b6eca6cdcbfcc905cef0b85c",
+  "metric": "wall_clock_ns",
+  "parameters": {
+    "KC": 128,
+    "MC": 128,
+    "NC": 128,
+    "microkernel": "8x8 NEON FMA",
+    "prefetch_distance": 8,
+    "threads": 1
+  },
+  "performance": {
+    "direct_speedup_median": 1.917104,
+    "work_ratio": 1.0
+  },
+  "performance_hash": "6b5aa55f2a7e72173351a6c078bf852af0e22975db03849733432245800214a9",
+  "quotient": {
+    "observed": 0,
+    "tolerance": 0.0
+  },
+  "quotient_hash": "5280d1e2365be5a4e700a586eecc669e97d77dd497c49d429b585415f6271886",
+  "reconstruction": {
+    "metric": "max",
+    "observed_err": 0,
+    "tolerance": 0.0
+  },
+  "reconstruction_hash": "2a8be0a3bf2750d099674f7ced5bb0d0b0e1aed5bc3fde21ed827d5710759368",
+  "repetitions": 30,
+  "run_id": "20261007T023617Z",
+  "scenario_hash": "04e6f6317056138fea5ace4f74510f3d0b1d20e21f01f6f2dd063a4a3fa9a5a1",
+  "scenario_id": "gemm-register-block-20261007T023617Z",
+  "schema_version": "2.0",
+  "seed": 0,
+  "source_hash": "c2abd35017c06e525743dd045460999d50bceb81144867be53201c183f524ec5",
+  "speedup": 1.917104,
+  "timestamp": "20261007T023617Z",
+  "tolerance": {
+    "absolute": {
+      "declared_before_execution": true,
+      "metric": "max_rel_err_vs_exact",
+      "value": 0.0001
+    },
+    "absolute_model": "sqrt(K)*eps_fp32*|sum| = 0.027 expected, K*eps*|sum| = 1.2 worst case",
+    "equivalence": {
+      "declared_before_execution": true,
+      "metric": "max_abs_diff_candidate_vs_baseline",
+      "value": 0
+    }
+  },
+  "toolchain": {
+    "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+    "lean": "3.13.5"
+  },
+  "uncertainty": {
+    "baseline_spread": 0.09705314202544471,
+    "worst_case": 1.622746
+  },
+  "warmups": 5
+}

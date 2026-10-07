@@ -1,0 +1,25 @@
+{
+  "budget": 1000,
+  "classification_counts": {
+    "BOTH": 1,
+    "CMA_ONLY": 1,
+    "NEITHER": 357,
+    "S6X_ONLY": 1
+  },
+  "cma_results_sha256": "f5c589c68d15d7c0aac967f777aa0b3ea290525c38fcad3ee950096f4163ee56",
+  "cma_success_rate": 0.005555555555555556,
+  "comparison_sha256": "ce5985edb7839204656c05dfe51e47ef9c7c5d504554c471d3107814f3a8cef2",
+  "dimension": 10,
+  "head_to_head_claims": {
+    "BOTH": "both algorithms reached the final target; evaluation counts are retained for runtime comparison",
+    "CMA_ONLY": "observed CMA-ES final-target successes where S6X did not succeed within the benchmark budget",
+    "NEITHER": "neither algorithm reached the final target within the benchmark budget",
+    "S6X_ONLY": "observed S6X final-target successes where CMA-ES did not succeed within the benchmark budget"
+  },
+  "problem_count": 360,
+  "s6x_results_sha256": "b8d6e9ee5194f33fee0ea87811dbcfc52da07affd8e848209625133ba36b4f82",
+  "s6x_success_rate": 0.005555555555555556,
+  "scope": "reference is the repo harness CMA-ES (popsize=10, sigma0=0.3, single run, no restart); not a claim vs tuned BIPOP-CMA-ES",
+  "seed": 20260810,
+  "suite": "bbob"
+}

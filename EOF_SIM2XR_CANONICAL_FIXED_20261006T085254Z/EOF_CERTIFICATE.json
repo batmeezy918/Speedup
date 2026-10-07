@@ -1,0 +1,8 @@
+{
+  "schema": "SIM2XR_CANONICAL_EOF_CLOSURE_FIXED_V2",
+  "status": "FAIL_CLOSED",
+  "reason": "canonical source not found: /root/Speedup/isolation_20260908/clean_source/sim2xr_definitive_corrected.py",
+  "canonical_source": "/root/Speedup/isolation_20260908/clean_source/sim2xr_definitive_corrected.py",
+  "expected_sha256": "c83819a8f80435ac249d7fa7a008a6f98b603d580722882ac6a783a3bcd749bf",
+  "timestamp_utc": "2026-10-06T08:52:54.425040+00:00"
+}

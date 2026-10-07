@@ -1,0 +1,29 @@
+{
+  "schema": "PCSS-QUARANTINE-1.0",
+  "verdict": "INVALID_PREMISE",
+  "date": "2026-10-06",
+  "subjects": [
+    "verified/sim2xr/2026-09-23-qm02_aqge02_composed",
+    "verified/sim2xr/2026-09-23-qm02_aqge02_agd_composed"
+  ],
+  "summary": "Both 'composed' claims compose an operator with ITSELF. The two constituent claims (qmult02, aqge02) instantiate the identical model with identical projection, so the overlap is maximal and there is no composition of two reductions to attribute.",
+  "finding": {
+    "load_bearing_assumption": "That qmult02 and aqge02 are two distinct reductions whose gains can be multiplied.",
+    "that_assumption_is": "false",
+    "evidence": [
+      "verified/sim2xr/2026-09-23-qmult02/scenario.json and .../2026-09-23-aqge02/scenario.json have byte-identical `workload` and `dimensions` fields.",
+      "Both declare function_name engines.linear_exact.LinearExactMatrixModel with n=512, tile=16, a=3, b=1.",
+      "Reconstructing each projection from engines/linear_exact.py under those declared parameters: rank(pi) = 1024 for both; pi index maps equal elementwise; class_weights equal; max |wbar_QMULT - wbar_AQGE| = 0.0.",
+      "dim(im A n im B) = 262144, which equals the ambient dimension n^2 = 512^2. The overlap is TOTAL.",
+      "The two claims differ only in step count (8 vs 6).",
+      "Numeric SVD cross-check on a reduced instance (n=60, tile=15): principal angles min = 0.0, max = 8.5e-07 degrees, i.e. identical subspaces."
+    ],
+    "consequence": "multiplicative_composition_iff_zero_overlap requires o = 0 for the product to be attributable. Here o is maximal. The observed ratios (22.15x, 35.82x) are both strictly below the 14.95x * 9.78x = 146.2x product, which is exactly what composedGain_lt_of_overlap REQUIRES when o > 0. The numbers are therefore PREDICTED by the criterion, not anomalies, and no re-measurement can make them inheritable."
+  },
+  "why_not_merely_unattested": [
+    "A missing noise floor, host provenance, or reproduction record could be fixed by re-running the measurement. This cannot: the premise is false, so re-running would reproduce the same defect.",
+    "The same-operator finding is derivable today from files already in the repository; it does not depend on any missing artifact."
+  ],
+  "supersedes": "the empirical basis previously cited at lean4/PCSSCompositionCriterion.lean (an out-of-repo scratch file comparing tile 4 vs 5 and 4 vs 6, whereas both claims use tile 16). That paragraph has been corrected in place.",
+  "residual_caveat": "engines/linear_exact.py was not confirmed to be the exact runtime path of the original runs: all four certificates share source_hash 5f3b2d9d..., which matches no file among the 1446 .py files in this repository. The finding is therefore computed from the code the certificates DECLARE, not from a hash-verified executed source. If the original runs used a different implementation, this quarantine must be revisited."
+}

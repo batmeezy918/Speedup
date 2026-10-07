@@ -25,5 +25,10 @@ lean_lib «SpeedupLean» where
     `PCSSCompositionCriterion,
     `LinearExactSector,
     `PCSSCallableBinding,
-    `PCSSErrorBound
+    `PCSSErrorBound,
+    `ToProveThreadLock,
+    `ToProveCognitiveTensor,
+    `ToProveOperatorContraction,
+    `ToProveQFIDossier,
+    `ToProveChronoFold
   ]

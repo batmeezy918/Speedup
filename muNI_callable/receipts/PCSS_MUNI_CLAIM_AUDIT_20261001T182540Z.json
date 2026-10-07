@@ -1,0 +1,1608 @@
+{
+  "schema": "PCSS-MUNI-CLAIM-AUDIT-1.0",
+  "run_id": "20261001T182540Z",
+  "seed": 20261001,
+  "seed_policy": {
+    "policy": "all repeated device runs use a pinned seed from this module",
+    "default_seed": 20261001,
+    "seeds": {
+      "default": 20261001,
+      "robustness": 20261001,
+      "callable_base": 20261001,
+      "composition": 20261001,
+      "floor_sweep": 20261001,
+      "claim_audit": 20261001
+    },
+    "derivation": "case_seed(name,label) = stable int hash of (base_seed, label)",
+    "note": "a changed seed is a new measurement, not a rerun; receipts are immutable"
+  },
+  "purpose": "re-read every speedup receipt and re-derive what each claim supports, attributing composite factors to their true source and downgrading any claim that exceeds its evidence",
+  "auditor_capability": "can only downgrade or annotate; never upgrades a claim, so it cannot launder weak evidence",
+  "device": {
+    "arch": "aarch64",
+    "kernel": "6.17.0-PRoot-Distro"
+  },
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "governing_law": {
+    "claim_policy": "CLAIM_POLICY.md (origin/main)",
+    "monotonicity": "CLAIM_STRENGTH <= EVIDENCE_STRENGTH",
+    "theorem_scope": "a Lean theorem validates only what it encodes",
+    "conflict_rule": "disagreement reduces the strongest supported status, or quarantines the artifact",
+    "composition_diagnostic": "CT-002: K12 = S12/(S1*S2); exact multiplication iff K12 = 1; K12 is descriptive, not predictive"
+  },
+  "theorem_inventory": {
+    "lean_probe_exit_code": 0,
+    "theorems": {
+      "PCSSCallableBinding.callable_kernel_respects_blocked_sum": {
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Quot.sound"
+      },
+      "PCSSCallableBinding.callable_microkernel_identity": {
+        "axioms": [
+          "propext"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext"
+      },
+      "PCSSCallableBinding.callable_work_ratio_is_one": {
+        "axioms": [],
+        "class": "PROVEN",
+        "basis": "kernel-checked, no axioms"
+      },
+      "PCSSCompositionCriterion.composedGain_le_product": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Classical.choice, Quot.sound"
+      },
+      "PCSSCompositionCriterion.composedGain_lt_of_overlap": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Classical.choice, Quot.sound"
+      },
+      "PCSSCompositionCriterion.compositionTheoremObligation_refuted": {
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Quot.sound"
+      },
+      "PCSSCompositionCriterion.multiplicative_composition_iff_zero_overlap": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Classical.choice, Quot.sound"
+      },
+      "PCSSGemmRegisterBlock.FloatModel.float_add_not_associative": {
+        "axioms": [],
+        "class": "PROVEN",
+        "basis": "kernel-checked, no axioms"
+      },
+      "PCSSGemmRegisterBlock.FloatModel.float_blocked_differs_from_flat": {
+        "axioms": [
+          "propext"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext"
+      },
+      "PCSSGemmRegisterBlock.blockedSumObligation_holds": {
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Quot.sound"
+      }
+    },
+    "tracked_but_not_found": [],
+    "oracle_free": true
+  },
+  "formal_to_speedup_mapping": [
+    {
+      "speedup_claim": "the two kernels compute the same result",
+      "theorem": "PCSSCallableBinding.callable_kernel_respects_blocked_sum",
+      "class": "PROVEN",
+      "verdict": "ILL_SCOPED",
+      "why": "proved over Int; the shipped kernels accumulate in binary32, which is not associative (machine-checked). Bitwise equality is therefore empirical, not proven, and fails at ragged sizes by ~1 ULP."
+    },
+    {
+      "speedup_claim": "the microkernel evaluates the block identity",
+      "theorem": "PCSSCallableBinding.callable_microkernel_identity",
+      "class": "PROVEN",
+      "verdict": "PROVEN",
+      "scope": "the algebraic 2x2 regrouping only; says nothing about time"
+    },
+    {
+      "speedup_claim": "fewer FLOPs are performed",
+      "theorem": "PCSSCallableBinding.callable_work_ratio_is_one",
+      "class": "PROVEN",
+      "verdict": "REFUTED",
+      "why": "work_ratio = 1 exactly. NO flop reduction is available; any speedup is memory/state traffic, not arithmetic."
+    },
+    {
+      "speedup_claim": "composed speedups multiply",
+      "theorem": "PCSSCompositionCriterion.multiplicative_composition_iff_zero_overlap",
+      "class": "PROVEN",
+      "verdict": "REFUTED",
+      "why": "machine-checked that the original composition obligation was FALSE, and proved that multiplicative composition holds iff subspace overlap is zero. CT-002 is CANDIDATE, not VERIFIED. No corpus artifact records a work_ratio, so no measured factor is licensed to compose multiplicatively."
+    },
+    {
+      "speedup_claim": "reassociation preserves the value",
+      "theorem": "PCSSGemmRegisterBlock.FloatModel.float_blocked_differs_from_flat",
+      "class": "PROVEN",
+      "verdict": "REFUTED",
+      "why": "machine-checked counterexample; this is a formal refutation of value-preserving reassociation in floating point"
+    }
+  ],
+  "composed_speedup_audit": [
+    {
+      "receipt": "PCSS_MUNI_COMPOSITION_SEEDED_REPLICATION_20261001T181657Z.json",
+      "schema": "PCSS-MUNI-COMPOSITION-SEEDED-REPLICATION-1.0",
+      "claimed_strength": null,
+      "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+      "seed_status": {
+        "rng_used": true,
+        "seed_base": 20261001,
+        "per_case_rule": "case_seed(harness, family_rN_NN) -- stable across processes, independent of PYTHONHASHSEED",
+        "seed_policy": {
+          "policy": "all repeated device runs use a pinned seed from this module",
+          "default_seed": 20261001,
+          "seeds": {
+            "default": 20261001,
+            "robustness": 20261001,
+            "callable_base": 20261001,
+            "composition": 20261001,
+            "floor_sweep": 20261001,
+            "claim_audit": 20261001
+          },
+          "derivation": "case_seed(name,label) = stable int hash of (base_seed, label)",
+          "note": "a changed seed is a new measurement, not a rerun; receipts are immutable"
+        }
+      },
+      "cases": [
+        {
+          "T0_full_baseline_ns": 2520282811.0,
+          "T1_quotient_baseline_ns": 78177.0,
+          "T2_quotient_neon_ns": 361458.0,
+          "T_reconstruction_ns": 5850469.0,
+          "T12_composed_e2e_ns": 6399427.0,
+          "S1_literal_CT002_T0_over_T1": 32238.162259999743,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 425.1025969504673,
+          "S2_kernel_raw": 0.21628238965522964,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9543972425947697,
+          "S12_composed_e2e": 393.8294492616292,
+          "product_S1_x_S2": 405.7167463494017,
+          "K12_recomputed": 0.9707005017792999,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 74.83619223045142,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.029299498220700104,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 393.8294492616292,
+            "state_reduction_S1_e2e_incl_reconstruction": 425.1025969504673,
+            "state_reduction_S1_literal_excl_reconstruction": 32238.162259999743,
+            "kernel_factor_conditional_S2": 0.9543972425947697,
+            "kernel_factor_raw_S2": 0.21628238965522964,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.9707, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 74.84x the quotient compute it expands (TR/T1 = 74.8). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 425.10 while the reconstruction-free CT-002 literal S1 = T0/T1 = 32238.16 overstates it by 75.8x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.2163 (raw), S2_conditional = 0.9544. The composed speedup of 393.83x therefore does NOT come from faster arithmetic; it comes from computing a 425x smaller state (S1_e2e = 425.10)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2393862030.0,
+          "T1_quotient_baseline_ns": 99114.0,
+          "T2_quotient_neon_ns": 135104.0,
+          "T_reconstruction_ns": 5038541.0,
+          "T12_composed_e2e_ns": 4863646.0,
+          "S1_literal_CT002_T0_over_T1": 24152.612446273986,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 465.9444882928106,
+          "S2_kernel_raw": 0.7336126243486499,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9930435891909862,
+          "S12_composed_e2e": 492.19495621186246,
+          "product_S1_x_S2": 462.70318701805013,
+          "K12_recomputed": 1.0637379858649252,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 50.83581532376859,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.06373798586492518,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 492.19495621186246,
+            "state_reduction_S1_e2e_incl_reconstruction": 465.9444882928106,
+            "state_reduction_S1_literal_excl_reconstruction": 24152.612446273986,
+            "kernel_factor_conditional_S2": 0.9930435891909862,
+            "kernel_factor_raw_S2": 0.7336126243486499,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 1.0637, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 50.84x the quotient compute it expands (TR/T1 = 50.8). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 465.94 while the reconstruction-free CT-002 literal S1 = T0/T1 = 24152.61 overstates it by 51.8x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7336 (raw), S2_conditional = 0.9930. The composed speedup of 492.19x therefore does NOT come from faster arithmetic; it comes from computing a 466x smaller state (S1_e2e = 465.94)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2460803854.0,
+          "T1_quotient_baseline_ns": 193333.0,
+          "T2_quotient_neon_ns": 178802.0,
+          "T_reconstruction_ns": 5782136.0,
+          "T12_composed_e2e_ns": 6195625.0,
+          "S1_literal_CT002_T0_over_T1": 12728.317741927141,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 411.81769230164196,
+          "S2_kernel_raw": 1.0812686658985917,
+          "S2_kernel_conditional_reconstruction_fixed": 1.0024377035963132,
+          "S12_composed_e2e": 397.18411847069507,
+          "product_S1_x_S2": 412.82158177119106,
+          "K12_recomputed": 0.9621205285988097,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 29.907651564916492,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.0378794714011903,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 397.18411847069507,
+            "state_reduction_S1_e2e_incl_reconstruction": 411.81769230164196,
+            "state_reduction_S1_literal_excl_reconstruction": 12728.317741927141,
+            "kernel_factor_conditional_S2": 1.0024377035963132,
+            "kernel_factor_raw_S2": 1.0812686658985917,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.9621, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 29.91x the quotient compute it expands (TR/T1 = 29.9). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 411.82 while the reconstruction-free CT-002 literal S1 = T0/T1 = 12728.32 overstates it by 30.9x.",
+            "S2_conditional = 1.0024: with reconstruction held fixed the kernel is within 5% of the baseline, i.e. no measurable kernel speedup."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SPEEDUP_NEGLIGIBLE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2402180937.0,
+          "T1_quotient_baseline_ns": 88386.0,
+          "T2_quotient_neon_ns": 326875.0,
+          "T_reconstruction_ns": 5084062.0,
+          "T12_composed_e2e_ns": 5383802.0,
+          "S1_literal_CT002_T0_over_T1": 27178.29675514222,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 464.4185764651476,
+          "S2_kernel_raw": 0.27039694072657744,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9559246392999955,
+          "S12_composed_e2e": 446.18671656201326,
+          "product_S1_x_S2": 443.9491601916636,
+          "K12_recomputed": 1.0050401184887559,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 57.521123254814114,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.0050401184887558514,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 446.18671656201326,
+            "state_reduction_S1_e2e_incl_reconstruction": 464.4185764651476,
+            "state_reduction_S1_literal_excl_reconstruction": 27178.29675514222,
+            "kernel_factor_conditional_S2": 0.9559246392999955,
+            "kernel_factor_raw_S2": 0.27039694072657744,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "reconstruction costs 57.52x the quotient compute it expands (TR/T1 = 57.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 464.42 while the reconstruction-free CT-002 literal S1 = T0/T1 = 27178.30 overstates it by 58.5x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.2704 (raw), S2_conditional = 0.9559. The composed speedup of 446.19x therefore does NOT come from faster arithmetic; it comes from computing a 464x smaller state (S1_e2e = 464.42)."
+          ],
+          "labels": [
+            "K12_NEAR_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2872477082.0,
+          "T1_quotient_baseline_ns": 109896.0,
+          "T2_quotient_neon_ns": 149740.0,
+          "T_reconstruction_ns": 5315469.0,
+          "T12_composed_e2e_ns": 5695938.0,
+          "S1_literal_CT002_T0_over_T1": 26138.140441872314,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 529.4532408418604,
+          "S2_kernel_raw": 0.7339121143315079,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9927095194346639,
+          "S12_composed_e2e": 504.30272976988164,
+          "product_S1_x_S2": 525.5932722792486,
+          "K12_recomputed": 0.9594923610474693,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 48.36817536580039,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.04050763895253073,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 504.30272976988164,
+            "state_reduction_S1_e2e_incl_reconstruction": 529.4532408418604,
+            "state_reduction_S1_literal_excl_reconstruction": 26138.140441872314,
+            "kernel_factor_conditional_S2": 0.9927095194346639,
+            "kernel_factor_raw_S2": 0.7339121143315079,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.9595, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 48.37x the quotient compute it expands (TR/T1 = 48.4). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 529.45 while the reconstruction-free CT-002 literal S1 = T0/T1 = 26138.14 overstates it by 49.4x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7339 (raw), S2_conditional = 0.9927. The composed speedup of 504.30x therefore does NOT come from faster arithmetic; it comes from computing a 529x smaller state (S1_e2e = 529.45)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2610445207.0,
+          "T1_quotient_baseline_ns": 106875.0,
+          "T2_quotient_neon_ns": 157188.0,
+          "T_reconstruction_ns": 5609844.0,
+          "T12_composed_e2e_ns": 5955677.0,
+          "S1_literal_CT002_T0_over_T1": 24425.21831111111,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 456.6334652796473,
+          "S2_kernel_raw": 0.6799183143751432,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9912757550157516,
+          "S12_composed_e2e": 438.312085594971,
+          "product_S1_x_S2": 452.64968306054135,
+          "K12_recomputed": 0.9683251794884109,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 52.48976842105263,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.0316748205115891,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 438.312085594971,
+            "state_reduction_S1_e2e_incl_reconstruction": 456.6334652796473,
+            "state_reduction_S1_literal_excl_reconstruction": 24425.21831111111,
+            "kernel_factor_conditional_S2": 0.9912757550157516,
+            "kernel_factor_raw_S2": 0.6799183143751432,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.9683, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 52.49x the quotient compute it expands (TR/T1 = 52.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 456.63 while the reconstruction-free CT-002 literal S1 = T0/T1 = 24425.22 overstates it by 53.5x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.6799 (raw), S2_conditional = 0.9913. The composed speedup of 438.31x therefore does NOT come from faster arithmetic; it comes from computing a 457x smaller state (S1_e2e = 456.63)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2369166197.0,
+          "T1_quotient_baseline_ns": 97552.0,
+          "T2_quotient_neon_ns": 140469.0,
+          "T_reconstruction_ns": 5412969.0,
+          "T12_composed_e2e_ns": 6264375.0,
+          "S1_literal_CT002_T0_over_T1": 24286.187848532067,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 429.93506367183795,
+          "S2_kernel_raw": 0.6944735137290078,
+          "S2_kernel_conditional_reconstruction_fixed": 0.992271994393383,
+          "S12_composed_e2e": 378.1967390202534,
+          "product_S1_x_S2": 426.61252308930074,
+          "K12_recomputed": 0.8865111044597426,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 55.48803714941775,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.11348889554025743,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 378.1967390202534,
+            "state_reduction_S1_e2e_incl_reconstruction": 429.93506367183795,
+            "state_reduction_S1_literal_excl_reconstruction": 24286.187848532067,
+            "kernel_factor_conditional_S2": 0.992271994393383,
+            "kernel_factor_raw_S2": 0.6944735137290078,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.8865, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 55.49x the quotient compute it expands (TR/T1 = 55.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 429.94 while the reconstruction-free CT-002 literal S1 = T0/T1 = 24286.19 overstates it by 56.5x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.6945 (raw), S2_conditional = 0.9923. The composed speedup of 378.20x therefore does NOT come from faster arithmetic; it comes from computing a 430x smaller state (S1_e2e = 429.94)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2396623749.0,
+          "T1_quotient_baseline_ns": 102448.0,
+          "T2_quotient_neon_ns": 132500.0,
+          "T_reconstruction_ns": 7718229.0,
+          "T12_composed_e2e_ns": 6206146.0,
+          "S1_literal_CT002_T0_over_T1": 23393.563066140872,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 306.4470951811461,
+          "S2_kernel_raw": 0.7731924528301887,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9961720752302111,
+          "S12_composed_e2e": 386.16941158006915,
+          "product_S1_x_S2": 305.2740387548723,
+          "K12_recomputed": 1.264992637943097,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 75.33801538341403,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.2649926379430969,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 386.16941158006915,
+            "state_reduction_S1_e2e_incl_reconstruction": 306.4470951811461,
+            "state_reduction_S1_literal_excl_reconstruction": 23393.563066140872,
+            "kernel_factor_conditional_S2": 0.9961720752302111,
+            "kernel_factor_raw_S2": 0.7731924528301887,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 1.2650, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 75.34x the quotient compute it expands (TR/T1 = 75.3). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 306.45 while the reconstruction-free CT-002 literal S1 = T0/T1 = 23393.56 overstates it by 76.3x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7732 (raw), S2_conditional = 0.9962. The composed speedup of 386.17x therefore does NOT come from faster arithmetic; it comes from computing a 306x smaller state (S1_e2e = 306.45)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2376198905.0,
+          "T1_quotient_baseline_ns": 108959.0,
+          "T2_quotient_neon_ns": 151666.0,
+          "T_reconstruction_ns": 5247813.0,
+          "T12_composed_e2e_ns": 5569323.0,
+          "S1_literal_CT002_T0_over_T1": 21808.19303591259,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 443.58783704066553,
+          "S2_kernel_raw": 0.7184141468753709,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9920905331792197,
+          "S12_composed_e2e": 426.65848344583355,
+          "product_S1_x_S2": 440.0792937614907,
+          "K12_recomputed": 0.9695036542143453,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 48.16318982369515,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.030496345785654744,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 426.65848344583355,
+            "state_reduction_S1_e2e_incl_reconstruction": 443.58783704066553,
+            "state_reduction_S1_literal_excl_reconstruction": 21808.19303591259,
+            "kernel_factor_conditional_S2": 0.9920905331792197,
+            "kernel_factor_raw_S2": 0.7184141468753709,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.9695, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 48.16x the quotient compute it expands (TR/T1 = 48.2). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 443.59 while the reconstruction-free CT-002 literal S1 = T0/T1 = 21808.19 overstates it by 49.2x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7184 (raw), S2_conditional = 0.9921. The composed speedup of 426.66x therefore does NOT come from faster arithmetic; it comes from computing a 444x smaller state (S1_e2e = 443.59)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2368501718.0,
+          "T1_quotient_baseline_ns": 94740.0,
+          "T2_quotient_neon_ns": 186302.0,
+          "T_reconstruction_ns": 5076093.0,
+          "T12_composed_e2e_ns": 5863177.0,
+          "S1_literal_CT002_T0_over_T1": 25000.01813383998,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 458.0503214859192,
+          "S2_kernel_raw": 0.5085291623278333,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9826006979711709,
+          "S12_composed_e2e": 403.9621723853808,
+          "product_S1_x_S2": 450.0805655979834,
+          "K12_recomputed": 0.897533026889688,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 53.57919569347688,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.10246697311031205,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 403.9621723853808,
+            "state_reduction_S1_e2e_incl_reconstruction": 458.0503214859192,
+            "state_reduction_S1_literal_excl_reconstruction": 25000.01813383998,
+            "kernel_factor_conditional_S2": 0.9826006979711709,
+            "kernel_factor_raw_S2": 0.5085291623278333,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.8975, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 53.58x the quotient compute it expands (TR/T1 = 53.6). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 458.05 while the reconstruction-free CT-002 literal S1 = T0/T1 = 25000.02 overstates it by 54.6x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.5085 (raw), S2_conditional = 0.9826. The composed speedup of 403.96x therefore does NOT come from faster arithmetic; it comes from computing a 458x smaller state (S1_e2e = 458.05)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2497322812.0,
+          "T1_quotient_baseline_ns": 126510.0,
+          "T2_quotient_neon_ns": 167657.0,
+          "T_reconstruction_ns": 5761927.0,
+          "T12_composed_e2e_ns": 6667604.0,
+          "S1_literal_CT002_T0_over_T1": 19740.12182436171,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 424.10622920819225,
+          "S2_kernel_raw": 0.7545763075803575,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9930607273629988,
+          "S12_composed_e2e": 374.54576066605034,
+          "product_S1_x_S2": 421.1632404566661,
+          "K12_recomputed": 0.889312562653691,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 45.545229626116516,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.11068743734630904,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 374.54576066605034,
+            "state_reduction_S1_e2e_incl_reconstruction": 424.10622920819225,
+            "state_reduction_S1_literal_excl_reconstruction": 19740.12182436171,
+            "kernel_factor_conditional_S2": 0.9930607273629988,
+            "kernel_factor_raw_S2": 0.7545763075803575,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.8893, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 45.55x the quotient compute it expands (TR/T1 = 45.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 424.11 while the reconstruction-free CT-002 literal S1 = T0/T1 = 19740.12 overstates it by 46.5x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7546 (raw), S2_conditional = 0.9931. The composed speedup of 374.55x therefore does NOT come from faster arithmetic; it comes from computing a 424x smaller state (S1_e2e = 424.11)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2366531250.0,
+          "T1_quotient_baseline_ns": 279895.0,
+          "T2_quotient_neon_ns": 147604.0,
+          "T_reconstruction_ns": 5507135.0,
+          "T12_composed_e2e_ns": 6960886.0,
+          "S1_literal_CT002_T0_over_T1": 8455.06797191804,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 408.9370972675103,
+          "S2_kernel_raw": 1.8962561990189968,
+          "S2_kernel_conditional_reconstruction_fixed": 1.023394713708272,
+          "S12_composed_e2e": 339.97557925815767,
+          "product_S1_x_S2": 418.5040635827755,
+          "K12_recomputed": 0.8123590876218918,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 19.675717679844226,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.1876409123781082,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 339.97557925815767,
+            "state_reduction_S1_e2e_incl_reconstruction": 408.9370972675103,
+            "state_reduction_S1_literal_excl_reconstruction": 8455.06797191804,
+            "kernel_factor_conditional_S2": 1.023394713708272,
+            "kernel_factor_raw_S2": 1.8962561990189968,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.8124, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 19.68x the quotient compute it expands (TR/T1 = 19.7). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 408.94 while the reconstruction-free CT-002 literal S1 = T0/T1 = 8455.07 overstates it by 20.7x.",
+            "S2_conditional = 1.0234: with reconstruction held fixed the kernel is within 5% of the baseline, i.e. no measurable kernel speedup."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SPEEDUP_NEGLIGIBLE"
+          ]
+        }
+      ],
+      "cases_excluded_inadmissible": [],
+      "aggregated_labels": [
+        "K12_DEVIATES_FROM_ONE",
+        "K12_NEAR_ONE",
+        "KERNEL_SLOWER_THAN_BASELINE",
+        "KERNEL_SPEEDUP_NEGLIGIBLE",
+        "RECONSTRUCTION_DOMINATES"
+      ],
+      "verdict": "ILL_SCOPED",
+      "verdict_reason": "claimed composed speedup is attributable to state reduction, not to a faster kernel; phrasing it as a kernel speedup would exceed the evidence (CLAIM_POLICY conflict rule)"
+    },
+    {
+      "receipt": "PCSS_MUNI_MAX_EDGE_COMPOSITION_20261001T141006Z.json",
+      "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-1.0",
+      "claimed_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E",
+      "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+      "seed_status": null,
+      "cases": [
+        {
+          "T0_full_baseline_ns": 2274062863.0,
+          "T1_quotient_baseline_ns": 104114.0,
+          "T2_quotient_neon_ns": 152605.0,
+          "T_reconstruction_ns": 5013073.0,
+          "T12_composed_e2e_ns": 5353542.0,
+          "S1_literal_CT002_T0_over_T1": 21842.04682367405,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 444.397060924293,
+          "S2_kernel_raw": 0.6822450116313358,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9906128488845026,
+          "S12_composed_e2e": 424.7772527048447,
+          "product_S1_x_S2": 440.22543855811375,
+          "K12_recomputed": 0.9649084662079797,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 48.14984536181493,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.035091533792020346,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 424.7772527048447,
+            "state_reduction_S1_e2e_incl_reconstruction": 444.397060924293,
+            "state_reduction_S1_literal_excl_reconstruction": 21842.04682367405,
+            "kernel_factor_conditional_S2": 0.9906128488845026,
+            "kernel_factor_raw_S2": 0.6822450116313358,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.9649, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 48.15x the quotient compute it expands (TR/T1 = 48.1). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 444.40 while the reconstruction-free CT-002 literal S1 = T0/T1 = 21842.05 overstates it by 49.1x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.6822 (raw), S2_conditional = 0.9906. The composed speedup of 424.78x therefore does NOT come from faster arithmetic; it comes from computing a 444x smaller state (S1_e2e = 444.40)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2271011978.0,
+          "T1_quotient_baseline_ns": 93021.0,
+          "T2_quotient_neon_ns": 113125.0,
+          "T_reconstruction_ns": 4272343.0,
+          "T12_composed_e2e_ns": 4637395.0,
+          "S1_literal_CT002_T0_over_T1": 24413.970802291955,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 520.2342755380765,
+          "S2_kernel_raw": 0.8222850828729282,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9954157686249221,
+          "S12_composed_e2e": 489.71717483630357,
+          "product_S1_x_S2": 517.8494012497639,
+          "K12_recomputed": 0.9456748885958606,
+          "K12_receipt_value": null,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 45.92880102342482,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.054325111404139426,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 489.71717483630357,
+            "state_reduction_S1_e2e_incl_reconstruction": 520.2342755380765,
+            "state_reduction_S1_literal_excl_reconstruction": 24413.970802291955,
+            "kernel_factor_conditional_S2": 0.9954157686249221,
+            "kernel_factor_raw_S2": 0.8222850828729282,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.9457, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 45.93x the quotient compute it expands (TR/T1 = 45.9). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 520.23 while the reconstruction-free CT-002 literal S1 = T0/T1 = 24413.97 overstates it by 46.9x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.8223 (raw), S2_conditional = 0.9954. The composed speedup of 489.72x therefore does NOT come from faster arithmetic; it comes from computing a 520x smaller state (S1_e2e = 520.23)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        }
+      ],
+      "cases_excluded_inadmissible": [],
+      "aggregated_labels": [
+        "K12_DEVIATES_FROM_ONE",
+        "KERNEL_SLOWER_THAN_BASELINE",
+        "RECONSTRUCTION_DOMINATES"
+      ],
+      "verdict": "ILL_SCOPED",
+      "verdict_reason": "claimed composed speedup is attributable to state reduction, not to a faster kernel; phrasing it as a kernel speedup would exceed the evidence (CLAIM_POLICY conflict rule)"
+    },
+    {
+      "receipt": "PCSS_MUNI_MAX_EDGE_COMPOSITION_V2_20261001T142653Z.json",
+      "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-2.0",
+      "claimed_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E_WITH_EXPLICIT_COMPOSITION_CLOSURE",
+      "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+      "seed_status": null,
+      "cases": [
+        {
+          "T0_full_baseline_ns": 2399619687.0,
+          "T1_quotient_baseline_ns": 125260.0,
+          "T2_quotient_neon_ns": 178021.0,
+          "T_reconstruction_ns": 5257604.0,
+          "T12_composed_e2e_ns": 5504219.0,
+          "S1_literal_CT002_T0_over_T1": 19157.110705732077,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 445.7886521004432,
+          "S2_kernel_raw": 0.7036248532476506,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9902934805105209,
+          "S12_composed_e2e": 435.96006754091724,
+          "product_S1_x_S2": 441.46159586064164,
+          "K12_recomputed": 0.9875379231821989,
+          "K12_receipt_value": 0.9875379231821989,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 41.973527063707486,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.012462076817801093,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 435.96006754091724,
+            "state_reduction_S1_e2e_incl_reconstruction": 445.7886521004432,
+            "state_reduction_S1_literal_excl_reconstruction": 19157.110705732077,
+            "kernel_factor_conditional_S2": 0.9902934805105209,
+            "kernel_factor_raw_S2": 0.7036248532476506,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "reconstruction costs 41.97x the quotient compute it expands (TR/T1 = 42.0). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 445.79 while the reconstruction-free CT-002 literal S1 = T0/T1 = 19157.11 overstates it by 43.0x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7036 (raw), S2_conditional = 0.9903. The composed speedup of 435.96x therefore does NOT come from faster arithmetic; it comes from computing a 446x smaller state (S1_e2e = 445.79)."
+          ],
+          "labels": [
+            "K12_NEAR_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2319175468.0,
+          "T1_quotient_baseline_ns": 113750.0,
+          "T2_quotient_neon_ns": 143020.0,
+          "T_reconstruction_ns": 4838698.0,
+          "T12_composed_e2e_ns": 4723906.0,
+          "S1_literal_CT002_T0_over_T1": 20388.355762637362,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 468.28870651443486,
+          "S2_kernel_raw": 0.7953433086281639,
+          "S2_kernel_conditional_reconstruction_fixed": 0.994124516883533,
+          "S12_composed_e2e": 490.9444574045292,
+          "product_S1_x_S2": 465.5372841256771,
+          "K12_recomputed": 1.054576022469541,
+          "K12_receipt_value": 1.054576022469541,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 42.538004395604396,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.054576022469541074,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 490.9444574045292,
+            "state_reduction_S1_e2e_incl_reconstruction": 468.28870651443486,
+            "state_reduction_S1_literal_excl_reconstruction": 20388.355762637362,
+            "kernel_factor_conditional_S2": 0.994124516883533,
+            "kernel_factor_raw_S2": 0.7953433086281639,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 1.0546, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 42.54x the quotient compute it expands (TR/T1 = 42.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 468.29 while the reconstruction-free CT-002 literal S1 = T0/T1 = 20388.36 overstates it by 43.5x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7953 (raw), S2_conditional = 0.9941. The composed speedup of 490.94x therefore does NOT come from faster arithmetic; it comes from computing a 468x smaller state (S1_e2e = 468.29)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        }
+      ],
+      "cases_excluded_inadmissible": [],
+      "aggregated_labels": [
+        "K12_DEVIATES_FROM_ONE",
+        "K12_NEAR_ONE",
+        "KERNEL_SLOWER_THAN_BASELINE",
+        "RECONSTRUCTION_DOMINATES"
+      ],
+      "verdict": "ILL_SCOPED",
+      "verdict_reason": "claimed composed speedup is attributable to state reduction, not to a faster kernel; phrasing it as a kernel speedup would exceed the evidence (CLAIM_POLICY conflict rule)"
+    },
+    {
+      "receipt": "PCSS_MUNI_MAX_EDGE_FLOOR_SWEEP_20261001T142846Z.json",
+      "schema": "PCSS-MUNI-MAX-EDGE-FLOOR-SWEEP-1.0",
+      "claimed_strength": null,
+      "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+      "seed_status": null,
+      "cases": [
+        {
+          "T0_full_baseline_ns": 2428817655.0,
+          "T1_quotient_baseline_ns": 121093.0,
+          "T2_quotient_neon_ns": 211354.0,
+          "T_reconstruction_ns": 3998386.0,
+          "T12_composed_e2e_ns": 4382500.0,
+          "S1_literal_CT002_T0_over_T1": 20057.45711973442,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 589.5934061079083,
+          "S2_kernel_raw": 0.572939239380376,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9785590083948177,
+          "S12_composed_e2e": 554.2082498573874,
+          "product_S1_x_S2": 576.9519388370778,
+          "K12_recomputed": 0.9605795778665146,
+          "K12_receipt_value": 0.9605795778665146,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 33.01913405399156,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.0394204221334854,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 554.2082498573874,
+            "state_reduction_S1_e2e_incl_reconstruction": 589.5934061079083,
+            "state_reduction_S1_literal_excl_reconstruction": 20057.45711973442,
+            "kernel_factor_conditional_S2": 0.9785590083948177,
+            "kernel_factor_raw_S2": 0.572939239380376,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.9606, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 33.02x the quotient compute it expands (TR/T1 = 33.0). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 589.59 while the reconstruction-free CT-002 literal S1 = T0/T1 = 20057.46 overstates it by 34.0x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.5729 (raw), S2_conditional = 0.9786. The composed speedup of 554.21x therefore does NOT come from faster arithmetic; it comes from computing a 590x smaller state (S1_e2e = 589.59)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2401026249.0,
+          "T1_quotient_baseline_ns": 85313.0,
+          "T2_quotient_neon_ns": 111771.0,
+          "T_reconstruction_ns": 3037500.0,
+          "T12_composed_e2e_ns": 3463854.0,
+          "S1_literal_CT002_T0_over_T1": 28143.732479223567,
+          "S1_e2e_T0_over_T1_plus_reconstruction": 768.8664831996024,
+          "S2_kernel_raw": 0.763283857172254,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9915986906176064,
+          "S12_composed_e2e": 693.1661233412262,
+          "product_S1_x_S2": 762.4069980004896,
+          "K12_recomputed": 0.9091812183769871,
+          "K12_receipt_value": 0.9091812183769871,
+          "K12_basis": "S1_e2e = T0/(T1+TR); using the reconstruction-free CT-002 literal S1 = T0/T1 here would compare a bare quotient against a reconstruction-bearing product and make K12 meaningless",
+          "reconstruction_overhead_fraction_of_T1": 35.604186935168144,
+          "reconstruction_dominates_quotient": true,
+          "K12_abs_deviation_from_one": 0.09081878162301293,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 693.1661233412262,
+            "state_reduction_S1_e2e_incl_reconstruction": 768.8664831996024,
+            "state_reduction_S1_literal_excl_reconstruction": 28143.732479223567,
+            "kernel_factor_conditional_S2": 0.9915986906176064,
+            "kernel_factor_raw_S2": 0.763283857172254,
+            "dominant_contribution": "state/memory-traffic reduction",
+            "bottleneck": "reconstruction (TR), not the quotient kernel"
+          },
+          "findings": [
+            "K12 = 0.9092, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "reconstruction costs 35.60x the quotient compute it expands (TR/T1 = 35.6). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 768.87 while the reconstruction-free CT-002 literal S1 = T0/T1 = 28143.73 overstates it by 36.6x.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7633 (raw), S2_conditional = 0.9916. The composed speedup of 693.17x therefore does NOT come from faster arithmetic; it comes from computing a 769x smaller state (S1_e2e = 768.87)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECONSTRUCTION_DOMINATES",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        }
+      ],
+      "cases_excluded_inadmissible": [],
+      "aggregated_labels": [
+        "K12_DEVIATES_FROM_ONE",
+        "KERNEL_SLOWER_THAN_BASELINE",
+        "RECONSTRUCTION_DOMINATES"
+      ],
+      "verdict": "ILL_SCOPED",
+      "verdict_reason": "claimed composed speedup is attributable to state reduction, not to a faster kernel; phrasing it as a kernel speedup would exceed the evidence (CLAIM_POLICY conflict rule)"
+    }
+  ],
+  "legacy_routed_audit": [
+    {
+      "schema": null,
+      "verdict": "UNSUPPORTED",
+      "e2e_speedup": 30.83974708653608,
+      "declared_status": "PASS",
+      "labels": [
+        "PASS_WITHOUT_BITWISE_EQUALITY",
+        "NO_CLAIM_BOUNDARY",
+        "NO_CLAIM_STRENGTH",
+        "SEED_OUTSIDE_POLICY",
+        "UNDECLARED_SCHEMA"
+      ],
+      "findings": [
+        "status is PASS but bitwise_equal is False; \"PASS\" must be defined against an explicit tolerance (exact_error=1.4719616800160393e-17), otherwise it reads as an unqualified correctness claim",
+        "no claim_boundary: scope, correctness basis and FLOP work ratio are unstated, so the 30.83974708653608 speedup is ungoverned by CLAIM_POLICY",
+        "no claim_strength field; status cannot be placed on the evidence lattice",
+        "seed 3 is not produced by muni_seeds (default 20261001), so this run is not reproducible under the pinned-seed policy",
+        "no schema field; the receipt cannot be routed by type"
+      ],
+      "recommendation": "either regenerate under a current PCSS harness with an explicit claim_boundary and a muni_seeds seed, or move to quarantine; do not cite the 30.83974708653608 speedup meanwhile",
+      "receipt": "PCSS_QG_CALLABLE_20261001.json"
+    },
+    {
+      "schema": "MUNI-CALLABLE-RUNTIME-0.1",
+      "verdict": "EMPIRICAL",
+      "rows": [
+        {
+          "n": 512,
+          "declared_speedup": 1.7103293722412576,
+          "recomputed_speedup_from_raw_timings": 1.7103293722412576,
+          "agrees_within_1e-6_relative": true,
+          "work_ratio": 1.0,
+          "flop_reduction_claimed": false,
+          "max_abs_diff": 0.0,
+          "bitwise_equal": true,
+          "checksums_agree": true
+        },
+        {
+          "n": 1024,
+          "declared_speedup": 1.827908396767083,
+          "recomputed_speedup_from_raw_timings": 1.827908396767083,
+          "agrees_within_1e-6_relative": true,
+          "work_ratio": 1.0,
+          "flop_reduction_claimed": false,
+          "max_abs_diff": 0.0,
+          "bitwise_equal": true,
+          "checksums_agree": true
+        },
+        {
+          "n": 2048,
+          "declared_speedup": 2.253465751721463,
+          "recomputed_speedup_from_raw_timings": 2.253465751721463,
+          "agrees_within_1e-6_relative": true,
+          "work_ratio": 1.0,
+          "flop_reduction_claimed": false,
+          "max_abs_diff": 0.0,
+          "bitwise_equal": true,
+          "checksums_agree": true
+        }
+      ],
+      "labels": [
+        "BITWISE_EQUAL_ALL_SIZES"
+      ],
+      "findings": [
+        "n=512: bitwise identical (max_abs_diff = 0)",
+        "n=1024: bitwise identical (max_abs_diff = 0)",
+        "n=2048: bitwise identical (max_abs_diff = 0)"
+      ],
+      "has_claim_boundary": true,
+      "seed_status_present": false,
+      "receipt": "callable_20261001T085458Z.json"
+    },
+    {
+      "schema": "MUNI-CALLABLE-RUNTIME-0.1",
+      "verdict": "EMPIRICAL",
+      "rows": [
+        {
+          "n": 512,
+          "declared_speedup": 2.53481585310489,
+          "recomputed_speedup_from_raw_timings": 2.53481585310489,
+          "agrees_within_1e-6_relative": true,
+          "work_ratio": 1.0,
+          "flop_reduction_claimed": false,
+          "max_abs_diff": 0.0,
+          "bitwise_equal": true,
+          "checksums_agree": true
+        },
+        {
+          "n": 1024,
+          "declared_speedup": 2.5061882306403334,
+          "recomputed_speedup_from_raw_timings": 2.5061882306403334,
+          "agrees_within_1e-6_relative": true,
+          "work_ratio": 1.0,
+          "flop_reduction_claimed": false,
+          "max_abs_diff": 0.0,
+          "bitwise_equal": true,
+          "checksums_agree": true
+        },
+        {
+          "n": 2048,
+          "declared_speedup": 3.075146662822983,
+          "recomputed_speedup_from_raw_timings": 3.075146662822983,
+          "agrees_within_1e-6_relative": true,
+          "work_ratio": 1.0,
+          "flop_reduction_claimed": false,
+          "max_abs_diff": 0.0,
+          "bitwise_equal": true,
+          "checksums_agree": true
+        }
+      ],
+      "labels": [
+        "BITWISE_EQUAL_ALL_SIZES"
+      ],
+      "findings": [
+        "n=512: bitwise identical (max_abs_diff = 0)",
+        "n=1024: bitwise identical (max_abs_diff = 0)",
+        "n=2048: bitwise identical (max_abs_diff = 0)"
+      ],
+      "has_claim_boundary": true,
+      "seed_status_present": false,
+      "receipt": "callable_20261001T120501Z.json"
+    }
+  ],
+  "coverage": {
+    "receipts_seen": 27,
+    "receipts_audited": 16,
+    "speedup_claims_not_audited": [],
+    "detection": "structural (timing keys present), not glob-based, so a receipt from a newly named harness is still audited",
+    "note": "a gap listed here means the receipt asserts a speedup but no auditor in this file routed it; it is reported rather than ignored",
+    "per_receipt": [
+      {
+        "receipt": "PCSS_MUNI_CALLABLE_20261001T085637Z.json",
+        "schema": "PCSS-MUNI-CALLABLE-1.0",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_CALLABLE_20261001T085812Z.json",
+        "schema": "PCSS-MUNI-CALLABLE-1.0",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_CALLABLE_20261001T090052Z.json",
+        "schema": "PCSS-MUNI-CALLABLE-1.0",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_CALLABLE_20261001T121053Z.json",
+        "schema": "PCSS-MUNI-CALLABLE-1.0",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_CALLABLE_20261001T123749Z.json",
+        "schema": "PCSS-MUNI-CALLABLE-1.0",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_CALLABLE_20261001T123857Z.json",
+        "schema": "PCSS-MUNI-CALLABLE-1.0",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_CALLABLE_20261001T124738Z.json",
+        "schema": "PCSS-MUNI-CALLABLE-1.1",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_CALLABLE_20261001T133222Z.json",
+        "schema": "PCSS-MUNI-CALLABLE-1.1",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_CALLABLE_20261001T163744Z.json",
+        "schema": "PCSS-MUNI-CALLABLE-1.1",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_COMPOSITION_SEEDED_REPLICATION_20261001T181657Z.json",
+        "schema": "PCSS-MUNI-COMPOSITION-SEEDED-REPLICATION-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": true,
+        "audited": true,
+        "claim_strength": null,
+        "seed_status_present": true
+      },
+      {
+        "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T124246Z.json",
+        "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": "FORMAL_PARTIAL",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T124356Z.json",
+        "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": "FORMAL_PARTIAL",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T124442Z.json",
+        "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": "FORMAL_PARTIAL",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T133037Z.json",
+        "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": "FORMAL_PARTIAL",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T155050Z.json",
+        "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": "FORMAL_PARTIAL",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T162449Z.json",
+        "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": "FORMAL_PARTIAL",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T162923Z.json",
+        "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": "FORMAL_PARTIAL",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T163342Z.json",
+        "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": "FORMAL_PARTIAL",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_FORMAL_BINDING_20261001T163503Z.json",
+        "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": "FORMAL_PARTIAL",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_MAX_EDGE_COMPOSITION_20261001T141006Z.json",
+        "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": true,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_MAX_EDGE_COMPOSITION_V2_20261001T142653Z.json",
+        "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-2.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": true,
+        "audited": true,
+        "claim_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E_WITH_EXPLICIT_COMPOSITION_CLOSURE",
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_MAX_EDGE_FLOOR_SWEEP_20261001T142846Z.json",
+        "schema": "PCSS-MUNI-MAX-EDGE-FLOOR-SWEEP-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": true,
+        "audited": true,
+        "claim_strength": null,
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_ROBUSTNESS_20261001T132514Z.json",
+        "schema": "PCSS-MUNI-ROBUSTNESS-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": null,
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_MUNI_ROBUSTNESS_20261001T170128Z.json",
+        "schema": "PCSS-MUNI-ROBUSTNESS-1.0",
+        "parsed": true,
+        "claims_speedup": false,
+        "is_composition": false,
+        "audited": false,
+        "claim_strength": null,
+        "seed_status_present": false
+      },
+      {
+        "receipt": "PCSS_QG_CALLABLE_20261001.json",
+        "schema": null,
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": null,
+        "seed_status_present": false
+      },
+      {
+        "receipt": "callable_20261001T085458Z.json",
+        "schema": "MUNI-CALLABLE-RUNTIME-0.1",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": null,
+        "seed_status_present": false
+      },
+      {
+        "receipt": "callable_20261001T120501Z.json",
+        "schema": "MUNI-CALLABLE-RUNTIME-0.1",
+        "parsed": true,
+        "claims_speedup": true,
+        "is_composition": false,
+        "audited": true,
+        "claim_strength": null,
+        "seed_status_present": false
+      }
+    ]
+  },
+  "callable_speedup_audit": [
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T085637Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "reproducibility",
+        "quotient_forward",
+        "lean"
+      ],
+      "speedup_min": 1.8710164448353295,
+      "speedup_median": 1.8907645023710338,
+      "speedup_max": 2.239304152729197,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: reproducibility, quotient_forward, lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T085812Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 1.9097390450756613,
+      "speedup_median": 1.9125156348349845,
+      "speedup_max": 2.2178144551566734,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T090052Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 2.4699221678953696,
+      "speedup_median": 2.4794780385764854,
+      "speedup_max": 2.486793845377883,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T121053Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 2.241516763582241,
+      "speedup_median": 2.6915696548320542,
+      "speedup_max": 3.2644349184204393,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T123749Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 2.3546881285684527,
+      "speedup_median": 2.593500476563795,
+      "speedup_max": 2.618636627607472,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T123857Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 2.354447293273974,
+      "speedup_median": 2.3650610867682027,
+      "speedup_max": 2.537631093993737,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T124738Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.1",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": true,
+      "failed_gates": [],
+      "speedup_min": 2.5201064201932706,
+      "speedup_median": 2.602095003327422,
+      "speedup_max": 2.6031583686980575,
+      "has_seed_record": false,
+      "verdict": "EMPIRICAL",
+      "verdict_reason": "directly measured at one size on one device; speedup is work_ratio == 1 plus memory-traffic reduction, not fewer FLOPs",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T133222Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.1",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": true,
+      "failed_gates": [],
+      "speedup_min": 2.492116626553754,
+      "speedup_median": 2.5297179483247025,
+      "speedup_max": 2.5488064612529233,
+      "has_seed_record": false,
+      "verdict": "EMPIRICAL",
+      "verdict_reason": "directly measured at one size on one device; speedup is work_ratio == 1 plus memory-traffic reduction, not fewer FLOPs",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T163744Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.1",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": true,
+      "failed_gates": [],
+      "speedup_min": 2.357946973242467,
+      "speedup_median": 2.542903565279859,
+      "speedup_max": 2.5803660474095373,
+      "has_seed_record": false,
+      "verdict": "EMPIRICAL",
+      "verdict_reason": "directly measured at one size on one device; speedup is work_ratio == 1 plus memory-traffic reduction, not fewer FLOPs",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    }
+  ],
+  "remote_cross_check": {
+    "remote": "https://github.com/batmeezy918/Speedup.git",
+    "available": true,
+    "candidate_theorems": [
+      {
+        "path": "candidate/theorems/CT-001-Quotient-Sufficiency.md",
+        "declared_status": "CANDIDATE / FORMAL-PARTIAL TARGET",
+        "proves_a_wall_clock_speedup": false
+      },
+      {
+        "path": "candidate/theorems/CT-002-Composition-Interaction-Bound.md",
+        "declared_status": "CANDIDATE / DERIVED TARGET",
+        "proves_a_wall_clock_speedup": false
+      },
+      {
+        "path": "candidate/theorems/CT-003-Attribution-Conservation.md",
+        "declared_status": "CANDIDATE / FORMAL-PARTIAL TARGET",
+        "proves_a_wall_clock_speedup": false
+      },
+      {
+        "path": "candidate/theorems/CT-004-Scaling-Extrapolation-Bound.md",
+        "declared_status": "CANDIDATE / DERIVED TARGET",
+        "proves_a_wall_clock_speedup": false
+      }
+    ],
+    "all_candidate_not_verified": true,
+    "conclusion": "No theorem on origin/main proves a wall-clock speedup. CLAIM_POLICY.md: \"A Lean theorem proves the proposition encoded by the theorem. It does not validate facts that were never encoded or supplied as assumptions.\" Therefore no measured speedup in this lane may be described as proven."
+  },
+  "quarantine": {
+    "path": "evidence/quarantine/",
+    "role": "retained candidates excluded from claims per CLAIM_POLICY.md (status QUARANTINED)",
+    "speedup_claims_admitted": 0,
+    "rationale": "quarantined material is excluded from claims by definition; it cannot raise any measured or formal status"
+  },
+  "verdict_counts": {
+    "ILL_SCOPED": 4,
+    "REFUTED": 6,
+    "EMPIRICAL": 5,
+    "UNSUPPORTED": 1
+  },
+  "findings": [
+    "K12 = 0.8124, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.8865, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.8893, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.8975, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.9092, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.9457, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.9595, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.9606, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.9621, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.9649, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.9683, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.9695, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.9707, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 1.0546, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 1.0637, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 1.2650, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "S2_conditional = 1.0024: with reconstruction held fixed the kernel is within 5% of the baseline, i.e. no measurable kernel speedup.",
+    "S2_conditional = 1.0234: with reconstruction held fixed the kernel is within 5% of the baseline, i.e. no measurable kernel speedup.",
+    "reconstruction costs 19.68x the quotient compute it expands (TR/T1 = 19.7). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 408.94 while the reconstruction-free CT-002 literal S1 = T0/T1 = 8455.07 overstates it by 20.7x.",
+    "reconstruction costs 29.91x the quotient compute it expands (TR/T1 = 29.9). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 411.82 while the reconstruction-free CT-002 literal S1 = T0/T1 = 12728.32 overstates it by 30.9x.",
+    "reconstruction costs 33.02x the quotient compute it expands (TR/T1 = 33.0). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 589.59 while the reconstruction-free CT-002 literal S1 = T0/T1 = 20057.46 overstates it by 34.0x.",
+    "reconstruction costs 35.60x the quotient compute it expands (TR/T1 = 35.6). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 768.87 while the reconstruction-free CT-002 literal S1 = T0/T1 = 28143.73 overstates it by 36.6x.",
+    "reconstruction costs 41.97x the quotient compute it expands (TR/T1 = 42.0). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 445.79 while the reconstruction-free CT-002 literal S1 = T0/T1 = 19157.11 overstates it by 43.0x.",
+    "reconstruction costs 42.54x the quotient compute it expands (TR/T1 = 42.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 468.29 while the reconstruction-free CT-002 literal S1 = T0/T1 = 20388.36 overstates it by 43.5x.",
+    "reconstruction costs 45.55x the quotient compute it expands (TR/T1 = 45.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 424.11 while the reconstruction-free CT-002 literal S1 = T0/T1 = 19740.12 overstates it by 46.5x.",
+    "reconstruction costs 45.93x the quotient compute it expands (TR/T1 = 45.9). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 520.23 while the reconstruction-free CT-002 literal S1 = T0/T1 = 24413.97 overstates it by 46.9x.",
+    "reconstruction costs 48.15x the quotient compute it expands (TR/T1 = 48.1). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 444.40 while the reconstruction-free CT-002 literal S1 = T0/T1 = 21842.05 overstates it by 49.1x.",
+    "reconstruction costs 48.16x the quotient compute it expands (TR/T1 = 48.2). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 443.59 while the reconstruction-free CT-002 literal S1 = T0/T1 = 21808.19 overstates it by 49.2x.",
+    "reconstruction costs 48.37x the quotient compute it expands (TR/T1 = 48.4). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 529.45 while the reconstruction-free CT-002 literal S1 = T0/T1 = 26138.14 overstates it by 49.4x.",
+    "reconstruction costs 50.84x the quotient compute it expands (TR/T1 = 50.8). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 465.94 while the reconstruction-free CT-002 literal S1 = T0/T1 = 24152.61 overstates it by 51.8x.",
+    "reconstruction costs 52.49x the quotient compute it expands (TR/T1 = 52.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 456.63 while the reconstruction-free CT-002 literal S1 = T0/T1 = 24425.22 overstates it by 53.5x.",
+    "reconstruction costs 53.58x the quotient compute it expands (TR/T1 = 53.6). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 458.05 while the reconstruction-free CT-002 literal S1 = T0/T1 = 25000.02 overstates it by 54.6x.",
+    "reconstruction costs 55.49x the quotient compute it expands (TR/T1 = 55.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 429.94 while the reconstruction-free CT-002 literal S1 = T0/T1 = 24286.19 overstates it by 56.5x.",
+    "reconstruction costs 57.52x the quotient compute it expands (TR/T1 = 57.5). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 464.42 while the reconstruction-free CT-002 literal S1 = T0/T1 = 27178.30 overstates it by 58.5x.",
+    "reconstruction costs 74.84x the quotient compute it expands (TR/T1 = 74.8). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 425.10 while the reconstruction-free CT-002 literal S1 = T0/T1 = 32238.16 overstates it by 75.8x.",
+    "reconstruction costs 75.34x the quotient compute it expands (TR/T1 = 75.3). The state-reduction win is therefore largely consumed paying for the expansion back to full size, which is why S1_e2e = 306.45 while the reconstruction-free CT-002 literal S1 = T0/T1 = 23393.56 overstates it by 76.3x.",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.2163 (raw), S2_conditional = 0.9544. The composed speedup of 393.83x therefore does NOT come from faster arithmetic; it comes from computing a 425x smaller state (S1_e2e = 425.10).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.2704 (raw), S2_conditional = 0.9559. The composed speedup of 446.19x therefore does NOT come from faster arithmetic; it comes from computing a 464x smaller state (S1_e2e = 464.42).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.5085 (raw), S2_conditional = 0.9826. The composed speedup of 403.96x therefore does NOT come from faster arithmetic; it comes from computing a 458x smaller state (S1_e2e = 458.05).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.5729 (raw), S2_conditional = 0.9786. The composed speedup of 554.21x therefore does NOT come from faster arithmetic; it comes from computing a 590x smaller state (S1_e2e = 589.59).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.6799 (raw), S2_conditional = 0.9913. The composed speedup of 438.31x therefore does NOT come from faster arithmetic; it comes from computing a 457x smaller state (S1_e2e = 456.63).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.6822 (raw), S2_conditional = 0.9906. The composed speedup of 424.78x therefore does NOT come from faster arithmetic; it comes from computing a 444x smaller state (S1_e2e = 444.40).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.6945 (raw), S2_conditional = 0.9923. The composed speedup of 378.20x therefore does NOT come from faster arithmetic; it comes from computing a 430x smaller state (S1_e2e = 429.94).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7036 (raw), S2_conditional = 0.9903. The composed speedup of 435.96x therefore does NOT come from faster arithmetic; it comes from computing a 446x smaller state (S1_e2e = 445.79).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7184 (raw), S2_conditional = 0.9921. The composed speedup of 426.66x therefore does NOT come from faster arithmetic; it comes from computing a 444x smaller state (S1_e2e = 443.59).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7336 (raw), S2_conditional = 0.9930. The composed speedup of 492.19x therefore does NOT come from faster arithmetic; it comes from computing a 466x smaller state (S1_e2e = 465.94).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7339 (raw), S2_conditional = 0.9927. The composed speedup of 504.30x therefore does NOT come from faster arithmetic; it comes from computing a 529x smaller state (S1_e2e = 529.45).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7546 (raw), S2_conditional = 0.9931. The composed speedup of 374.55x therefore does NOT come from faster arithmetic; it comes from computing a 424x smaller state (S1_e2e = 424.11).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7633 (raw), S2_conditional = 0.9916. The composed speedup of 693.17x therefore does NOT come from faster arithmetic; it comes from computing a 769x smaller state (S1_e2e = 768.87).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7732 (raw), S2_conditional = 0.9962. The composed speedup of 386.17x therefore does NOT come from faster arithmetic; it comes from computing a 306x smaller state (S1_e2e = 306.45).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7953 (raw), S2_conditional = 0.9941. The composed speedup of 490.94x therefore does NOT come from faster arithmetic; it comes from computing a 468x smaller state (S1_e2e = 468.29).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.8223 (raw), S2_conditional = 0.9954. The composed speedup of 489.72x therefore does NOT come from faster arithmetic; it comes from computing a 520x smaller state (S1_e2e = 520.23)."
+  ],
+  "elapsed_seconds": 15.445,
+  "claim_boundary": [
+    "This audit performs NO timing of its own; it re-derives conclusions from receipts already on disk plus a live Lean axiom probe.",
+    "It cannot upgrade any claim. Its only power is to downgrade.",
+    "A speedup quoted from this lane must state whether it is a state/memory-traffic reduction or a kernel arithmetic speedup. work_ratio = 1, so no arithmetic reduction exists.",
+    "All measured factors remain scoped to this device, binary, compiler, thread count and input distribution.",
+    "No claim here is VERIFIED. Formal status remains FORMAL_PARTIAL and measured status is capped at EMPIRICAL."
+  ]
+}

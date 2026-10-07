@@ -1,0 +1,25 @@
+{
+  "absolute_accuracy": {
+    "baseline": 1.567651e-05,
+    "candidate": 1.567651e-05,
+    "metric": "max_rel_err_vs_exact",
+    "note": "inherited from the BASELINE's own fp32 accumulation over K=2048; expected magnitude sqrt(K)*eps*|sum| = 0.027, worst case K*eps*|sum| = 1.2",
+    "pass": true,
+    "tolerance": 0.0001
+  },
+  "definition": "for any w x y z : List Int, ((w++x).sum + (y++z).sum) = (w++x++y++z).sum",
+  "first_declared_tolerance": {
+    "disposition": "recorded, not deleted: the gate was mis-specified, not the kernel. Replaced by a relative tolerance grounded in the fp32 error model.",
+    "metric": "max_abs",
+    "result": "FAIL at 7.77e-2 for BOTH kernels",
+    "value": 0.01
+  },
+  "general_form": "PCSSGemmRegisterBlock.BlockedSumObligation (k, hk, l)",
+  "general_form_status": "UNRESOLVED OBLIGATION",
+  "invariant": "k-axis reassociation preserves the accumulated sum",
+  "machine_checked": "PCSSGemmRegisterBlock.microkernel_reassociation",
+  "pass": true,
+  "scenario_id": "gemm-register-block-20260926T055730Z",
+  "schema": "PCSS-INVARIANT",
+  "why_unresolved": "requires induction on List.length with well-founded recursion; Mathlib is git-required and not built in this checkout, so the general N statement is declared, not proven"
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "PCSS-TRACE",
+  "n": 2048, "repetitions": 30, "warmups": 5,
+  "work_ratio": 1.0,
+  "work_ratio_note": "both kernels execute the same 2*n^3 flops; no work reduction",
+  "flops": 17179869184,
+  "tolerance": {
+    "equivalence": {"metric": "max_abs_diff_candidate_vs_baseline", "value": 0, "declared_before_execution": true},
+    "absolute": {"metric": "max_rel_err_vs_exact", "value": 0.0001, "declared_before_execution": true},
+    "absolute_model": "sqrt(K)*eps_fp32*|sum| = 0.027 expected, K*eps*|sum| = 1.2 worst case"
+  },
+  "relative_errors": {"baseline": 1.567651e-05, "candidate": 1.567651e-05},
+  "gate_equivalence": {"metric": "max_abs_diff_candidate_vs_baseline", "observed": 0, "tolerance": 0, "pass": true},
+  "gate_absolute": {"metric": "max_rel_err_vs_exact", "observed": 1.56765135e-05, "tolerance": 0.0001, "pass": true},
+  "expected_element": 4956.160215,
+  "errors": {"baseline_vs_exact": 0.0776953125, "candidate_vs_exact": 0.0776953125, "candidate_vs_baseline": 0},
+  "correctness_pass": true,
+  "baseline_measurement": {"unit": "ns", "metric": "wall_clock_ns", "timings_ns": [1835269791.0000, 1752956926.0000, 1722706510.0000, 1742482656.0000, 1712124166.0000, 1751791510.0000, 1704435989.0000, 1698577604.0000, 1726180416.0000, 1717702551.0000, 1707204895.0000, 1718120885.0000, 1727827344.0000, 1726594062.0000, 1682068957.0000, 1694840364.0000, 1681906301.0000, 1672655885.0000, 1678705051.0000, 1688407499.0000, 1691134583.0000, 1677037812.0000, 1670598853.0000, 1690297604.0000, 1674436041.0000, 1673923072.0000, 1676468645.0000, 1692978957.0000, 1728214686.0000, 1692821978.0000], "median": 1696708984.0000, "mean": 1707015719.7667, "min": 1670598853.0000, "max": 1835269791.0000, "samples": 30},
+  "candidate_measurement": {"unit": "ns", "metric": "wall_clock_ns", "timings_ns": [1029488541.0000, 888563750.0000, 896545208.0000, 892839166.0000, 894566666.0000, 897541563.0000, 882169688.0000, 901213645.0000, 889298072.0000, 894658490.0000, 893536094.0000, 888355260.0000, 892558698.0000, 903692656.0000, 872461041.0000, 875370573.0000, 874940000.0000, 878346927.0000, 873935416.0000, 913701250.0000, 871553385.0000, 873680676.0000, 872503958.0000, 874378437.0000, 872554479.0000, 874710989.0000, 873934843.0000, 881875312.0000, 883435261.0000, 886639999.0000], "median": 885037630.0000, "mean": 889968334.7667, "min": 871553385.0000, "max": 1029488541.0000, "samples": 30},
+  "baseline_gflops": 10.1254,
+  "candidate_gflops": 19.4115,
+  "direct_speedup_median": 1.917104,
+  "direct_speedup_min": 1.916806,
+  "speedup_range_worst_case": 1.622746,
+  "pass": true
+}

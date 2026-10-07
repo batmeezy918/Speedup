@@ -1,0 +1,361 @@
+{
+  "schema": "PCSS-E2E-CLOSURE-CANDIDATE-1.0",
+  "timestamp": "2026-10-01T16:24:06Z",
+  "device": "localhost",
+  "repo_head": "76a5d171c021e909dfa72d9b476b2ed8e5a3809c",
+  "working_tree": [
+    " M lean4/PCSSCompositionCriterion.lean",
+    " M muNI_callable/run_formal_binding.py",
+    "?? evidence/hierarchical_accel/2026-09-26/sovereign/",
+    "?? evidence/live_top2_20261001T090904Z/",
+    "?? evidence/official-coco/occurrence-s6x-20260926T0300Z/",
+    "?? evidence/official-coco/occurrence-s6x-v2-20260926T0315Z/",
+    "?? evidence/official-coco/occurrence-s6x-v4-whitened-orbit-20260926T051019Z/",
+    "?? evidence/official-coco/occurrence-s6x-v5-adaptive-rank-REJECTED-20260926T051736Z/",
+    "?? evidence/quarantine/pcss_candidates_20260930/",
+    "?? evidence/quarantine/pcss_full_advancement_corpus_20260930/",
+    "?? evidence/quarantine/pcss_terminal_corpus_20260930/",
+    "?? lean4/_pcss_axiom_probe.lean",
+    "?? muNI_callable/pcss_dd_bridge.py",
+    "?? muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T155050Z.json",
+    "?? muNI_callable/receipts/PCSS_MUNI_MAX_EDGE_COMPOSITION_20261001T141006Z.json",
+    "?? muNI_callable/receipts/PCSS_MUNI_MAX_EDGE_COMPOSITION_V2_20261001T142653Z.json",
+    "?? muNI_callable/receipts/PCSS_MUNI_MAX_EDGE_FLOOR_SWEEP_20261001T142846Z.json",
+    "?? muNI_callable/run_max_edge_composition.py",
+    "?? muNI_callable/run_max_edge_composition_v2.py",
+    "?? muNI_callable/run_max_edge_floor_sweep.py",
+    "?? workloads/gemm_register_block/"
+  ],
+  "artifacts": [
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T085637Z.json",
+      "sha256": "6b9f65da220ad3a3dabc364392c76149ee51c6b422ce66cbecfb907ffcc54e3b",
+      "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "gates": {
+        "integrity": true,
+        "reproducibility": false,
+        "quotient_forward": false,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": true,
+        "lean": false
+      },
+      "schema": "PCSS-MUNI-CALLABLE-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T085812Z.json",
+      "sha256": "605e7056826265bec81b7b955a6cc302945baa096d68d7eeeb83ad1c14ad815d",
+      "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "gates": {
+        "integrity": true,
+        "reproducibility": true,
+        "quotient_forward": true,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": true,
+        "lean": false
+      },
+      "schema": "PCSS-MUNI-CALLABLE-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T090052Z.json",
+      "sha256": "ddfadfbb390817a1f2d82ec03983afa6a19e2706a90f75f38b5756fbf8097819",
+      "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "gates": {
+        "integrity": true,
+        "reproducibility": true,
+        "quotient_forward": true,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": true,
+        "lean": false
+      },
+      "schema": "PCSS-MUNI-CALLABLE-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T121053Z.json",
+      "sha256": "bcbf851c23503031b791a4fa4f5b9f729a8a407deccbc30f342df10e2416097e",
+      "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "gates": {
+        "integrity": true,
+        "reproducibility": true,
+        "quotient_forward": true,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": true,
+        "lean": false
+      },
+      "schema": "PCSS-MUNI-CALLABLE-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T123749Z.json",
+      "sha256": "d5b8695d07c3c8347bfbd7dfff856d65ad7b98b6d687217109444c463fea81ef",
+      "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "gates": {
+        "integrity": true,
+        "reproducibility": true,
+        "quotient_forward": true,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": true,
+        "lean": false
+      },
+      "schema": "PCSS-MUNI-CALLABLE-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T123857Z.json",
+      "sha256": "50c0b4b3ddc63c8a02c0adb4869c6d404c21c4e412afc575dfc6da1804745c6f",
+      "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "gates": {
+        "integrity": true,
+        "reproducibility": true,
+        "quotient_forward": true,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": true,
+        "lean": false
+      },
+      "schema": "PCSS-MUNI-CALLABLE-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T124738Z.json",
+      "sha256": "a09033ae6adcf94d9e7cacb10d616c3173e18c2944608685685a26a3b95917b5",
+      "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "gates": {
+        "integrity": true,
+        "reproducibility": true,
+        "quotient_forward": true,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": true,
+        "lean": true
+      },
+      "schema": "PCSS-MUNI-CALLABLE-1.1"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T133222Z.json",
+      "sha256": "5ec40bd8d4e552b26934219c9604a836ff3d5adebd7037e813eb58232d3c86ae",
+      "claim_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "gates": {
+        "integrity": true,
+        "reproducibility": true,
+        "quotient_forward": true,
+        "reconstruction_reverse": true,
+        "invariants": true,
+        "performance": true,
+        "lean": true
+      },
+      "schema": "PCSS-MUNI-CALLABLE-1.1"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T124246Z.json",
+      "sha256": "2277bd58813c8a224b6af08167665e3a74c5a99b3325d46bf6c4080197388f96",
+      "claim_strength": "FORMAL_PARTIAL",
+      "gates": {
+        "formal_build_green": true,
+        "no_sorry_no_axiom": false,
+        "core_only_no_mathlib": true,
+        "axiom_footprint_clean": true,
+        "all_obligations_discharged": true,
+        "artifact_hashed": true
+      },
+      "schema": "PCSS-MUNI-FORMAL-BINDING-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T124356Z.json",
+      "sha256": "5924f87bab27742824f332f88e6f29d6616960765c9d3d056e4c1ffbc0938dcd",
+      "claim_strength": "FORMAL_PARTIAL",
+      "gates": {
+        "formal_build_green": true,
+        "no_sorry_no_axiom": false,
+        "core_only_no_mathlib": true,
+        "axiom_footprint_clean": true,
+        "all_obligations_discharged": true,
+        "artifact_hashed": true,
+        "scanner_selftest_passed": false
+      },
+      "schema": "PCSS-MUNI-FORMAL-BINDING-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T124442Z.json",
+      "sha256": "0b242c4d951963b3b98507616e5a029ecfa40bee0853a5ce6200e76759a564fc",
+      "claim_strength": "FORMAL_PARTIAL",
+      "gates": {
+        "formal_build_green": true,
+        "no_sorry_no_axiom": true,
+        "core_only_no_mathlib": true,
+        "axiom_footprint_clean": true,
+        "all_obligations_discharged": true,
+        "artifact_hashed": true,
+        "scanner_selftest_passed": true
+      },
+      "schema": "PCSS-MUNI-FORMAL-BINDING-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T133037Z.json",
+      "sha256": "3f97231f54772b9d8551ec84ef77538edddaaf174fe0a4eb847367b564a550f8",
+      "claim_strength": "FORMAL_PARTIAL",
+      "gates": {
+        "formal_build_green": true,
+        "no_sorry_no_axiom": true,
+        "core_only_no_mathlib": true,
+        "axiom_footprint_clean": true,
+        "all_obligations_discharged": true,
+        "artifact_hashed": true,
+        "scanner_selftest_passed": true
+      },
+      "schema": "PCSS-MUNI-FORMAL-BINDING-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T155050Z.json",
+      "sha256": "324311a55fafefeb950bdfc9259413da03c2196838f8efd02f6665e1c264eaf5",
+      "claim_strength": "FORMAL_PARTIAL",
+      "gates": {
+        "formal_build_green": true,
+        "no_sorry_no_axiom": true,
+        "core_only_no_mathlib": true,
+        "axiom_footprint_clean": false,
+        "all_obligations_discharged": false,
+        "artifact_hashed": true,
+        "scanner_selftest_passed": true,
+        "repo_wide_hygiene_clean": false
+      },
+      "schema": "PCSS-MUNI-FORMAL-BINDING-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_MAX_EDGE_COMPOSITION_20261001T141006Z.json",
+      "sha256": "a88c6c37dbed44bf0723db7f5289b4ea4d3638541b6c10c3f767310b1f20b554",
+      "claim_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E",
+      "gates": null,
+      "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_MAX_EDGE_COMPOSITION_V2_20261001T142653Z.json",
+      "sha256": "df537764fac8643e1438584708d2967ab2395a4b8629f48b72e47d057f6d72fc",
+      "claim_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E_WITH_EXPLICIT_COMPOSITION_CLOSURE",
+      "gates": null,
+      "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-2.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_MAX_EDGE_FLOOR_SWEEP_20261001T142846Z.json",
+      "sha256": "732baeff8ff61a3002dd4327b9dfd980594437ae49962f5b993a5cc48918a5d3",
+      "claim_strength": null,
+      "gates": null,
+      "schema": "PCSS-MUNI-MAX-EDGE-FLOOR-SWEEP-1.0"
+    },
+    {
+      "path": "muNI_callable/receipts/PCSS_MUNI_ROBUSTNESS_20261001T132514Z.json",
+      "sha256": "42189ae0592f5574d435dd0d2000e4da5bdefda6d6f245adf9f6816bca643ce5",
+      "claim_strength": null,
+      "gates": null,
+      "schema": "PCSS-MUNI-ROBUSTNESS-1.0"
+    }
+  ],
+  "claims": [
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T085637Z.json",
+      "type": "callable",
+      "status": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_true": false
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T085812Z.json",
+      "type": "callable",
+      "status": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_true": false
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T090052Z.json",
+      "type": "callable",
+      "status": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_true": false
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T121053Z.json",
+      "type": "callable",
+      "status": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_true": false
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T123749Z.json",
+      "type": "callable",
+      "status": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_true": false
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T123857Z.json",
+      "type": "callable",
+      "status": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_true": false
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T124738Z.json",
+      "type": "callable",
+      "status": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_true": true
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_CALLABLE_20261001T133222Z.json",
+      "type": "callable",
+      "status": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_true": true
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T124246Z.json",
+      "type": "formal_binding",
+      "status": "FORMAL_PARTIAL",
+      "all_gates_true": false
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T124356Z.json",
+      "type": "formal_binding",
+      "status": "FORMAL_PARTIAL",
+      "all_gates_true": false
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T124442Z.json",
+      "type": "formal_binding",
+      "status": "FORMAL_PARTIAL",
+      "all_gates_true": true
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T133037Z.json",
+      "type": "formal_binding",
+      "status": "FORMAL_PARTIAL",
+      "all_gates_true": true
+    },
+    {
+      "artifact": "muNI_callable/receipts/PCSS_MUNI_FORMAL_BINDING_20261001T155050Z.json",
+      "type": "formal_binding",
+      "status": "FORMAL_PARTIAL",
+      "all_gates_true": false
+    }
+  ],
+  "gaps": [
+    {
+      "id": "CI_PCSS_REGRESSION",
+      "status": "OPEN",
+      "note": "PR13 repair exists; Actions rerun not yet observed from device."
+    },
+    {
+      "id": "INT_FLOAT32_SCOPE",
+      "status": "OPEN",
+      "note": "Lean formal domain is exact Int; shipped binary32 bitwise equality remains empirical."
+    },
+    {
+      "id": "GENERAL_TRANSFORMATION_GENERATOR",
+      "status": "PARTIAL",
+      "note": "Callable native transformation exists; generic workload-to-transformation generator/registry is not yet a closed universal implementation."
+    },
+    {
+      "id": "RECONSTRUCTION_FLOOR",
+      "status": "MEASURED",
+      "note": "materialized reconstruction limits asymptotic wall-clock acceleration; lazy/implicit reconstruction remains next architectural closure."
+    },
+    {
+      "id": "EXTERNAL_CALIBRATION_BINDING",
+      "status": "OPEN",
+      "note": "external calibration exists in conversation/corpus history but exact source artifact/hash must be bound into evidence ledger."
+    }
+  ]
+}

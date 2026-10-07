@@ -1,0 +1,9 @@
+{
+  "arch": "aarch64",
+  "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+  "cpu_model_note": "CPU model/frequency masked by PRoot; no peak-fraction claims",
+  "date": "20260926T055730Z",
+  "kernel": "6.17.0-PRoot-Distro",
+  "nproc": 8,
+  "python": "3.13.5"
+}

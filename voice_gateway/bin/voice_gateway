@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+ROOT=/root/Speedup/voice_gateway; mode=${AGD_VOICE_MODE:-OFFLINE}; text="${*:-}"
+if [ -z "$text" ] && command -v termux-speech-to-text >/dev/null 2>&1; then text=$(termux-speech-to-text); fi
+[ -n "$text" ] || { echo '{"status":"REJECTED","reason":"no_transcript"}'; exit 2; }
+printf '%s\n' "$text" > "$ROOT/inbox/last_transcript.txt"
+case "$(printf '%s' "$text" | tr '[:upper:]' '[:lower:]')" in status*|"what's running"*|"what is running"*) exec "$ROOT/bin/agdctl" status;; stop*|cancel*) exec "$ROOT/bin/agdctl" cancel;; *) printf '%s\n' '{"status":"REJECTED","reason":"unmapped_voice_intent","next":"local_llm_intent_parser"}'; exit 4;; esac

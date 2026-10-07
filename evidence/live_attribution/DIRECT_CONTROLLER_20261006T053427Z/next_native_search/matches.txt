@@ -1,0 +1,13 @@
+./evidence/runs/closures-2026-09-23/agd_gemm_matrix/scenario.json
+./evidence/runs/closures-2026-09-23/agd_gemm_matrix/performance_evidence.json
+./evidence/runs/closures-2026-09-23/agd_gemm_matrix/attribution.json
+./evidence/runs/closures-2026-09-23/agd_gemm_matrix/native_evidence.json
+./evidence/final/2026-09-23/pcss/agd_gemm_matrix.certificate.json
+./evidence/composition/2026-09-23/stage_records/STAGE_0.json
+./verified/sim2xr/2026-09-23-agd/scenario.json
+./verified/sim2xr/2026-09-23-agd/performance_evidence.json
+./verified/sim2xr/2026-09-23-agd/attribution.json
+./verified/sim2xr/2026-09-23-agd/native_evidence.json
+./verified/sim2xr/2026-09-23-agd/pcss_certificate.json
+./scenarios/closures/2026-09-23/agd_gemm_matrix.json
+./attribution_test.py

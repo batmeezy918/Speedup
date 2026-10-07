@@ -1,0 +1,587 @@
+{
+  "schema": "PCSS-MUNI-FORMAL-BINDING-1.0",
+  "run_id": "20261001T162923Z",
+  "toolchain": {
+    "lean": "leanprover/lean4:v4.29.0",
+    "lake_via": "/root/.elan/bin/lake",
+    "mathlib_used": false,
+    "mathlib_available_in_checkout": false,
+    "proof_assumptions_policy": "core Lean 4 only; no Mathlib required"
+  },
+  "lake_build": {
+    "command": "lake build",
+    "cwd": "/root/Speedup/lean4",
+    "exit_code": 0,
+    "green": true,
+    "wall_seconds": 50.2,
+    "jobs_summary": [
+      "Build completed successfully (18 jobs)."
+    ],
+    "stderr_tail": []
+  },
+  "source_hygiene": {
+    "files_scanned": {
+      "PCSSGemmRegisterBlock.lean": {
+        "sha256": "d748d9aa56850eebc5e58adf248801d9c0a507aeac9771fce9933022f256a6bf",
+        "bytes": 12664,
+        "imports": [
+          "Lean.Elab.Tactic.Omega"
+        ],
+        "uses_mathlib": false
+      },
+      "PCSSCallableBinding.lean": {
+        "sha256": "3974f242170ae9a44ea4bfea16c6697ced7c89bddde60c485e9f8d22a0562d51",
+        "bytes": 2789,
+        "imports": [
+          "PCSSGemmRegisterBlock"
+        ],
+        "uses_mathlib": false
+      }
+    },
+    "forbidden_markers": [
+      "sorry",
+      "admit",
+      "axiom",
+      "native_decide",
+      "extern"
+    ],
+    "findings": [],
+    "clean": true,
+    "scanner_selftest": {
+      "cases": [
+        {
+          "source": "theorem t : True := by sorry",
+          "expected": [
+            "sorry"
+          ],
+          "detected": [
+            "sorry"
+          ],
+          "pass": true
+        },
+        {
+          "source": "theorem t : True := by exact t\\n  sorry",
+          "expected": [
+            "sorry"
+          ],
+          "detected": [
+            "sorry"
+          ],
+          "pass": true
+        },
+        {
+          "source": "axiom cheat : False",
+          "expected": [
+            "axiom"
+          ],
+          "detected": [
+            "axiom"
+          ],
+          "pass": true
+        },
+        {
+          "source": "theorem t : True := native_decide",
+          "expected": [
+            "native_decide"
+          ],
+          "detected": [
+            "native_decide"
+          ],
+          "pass": true
+        },
+        {
+          "source": "theorem t : Nat := by decide  -- sorry",
+          "expected": [],
+          "detected": [],
+          "pass": true
+        },
+        {
+          "source": "/-- doc mentioning sorry and axiom -/\ntheorem t : True := by decide",
+          "expected": [],
+          "detected": [],
+          "pass": true
+        },
+        {
+          "source": "theorem t : True := by\n  exact \"sorry\"",
+          "expected": [],
+          "detected": [],
+          "pass": true
+        }
+      ],
+      "all_pass": true
+    }
+  },
+  "obligations": [
+    {
+      "theorem": "PCSSGemmRegisterBlock.blockedSumObligation_holds",
+      "statement": "forall k, 0 < k, forall l, ((splitBlocks k l).map List.sum).sum = l.sum",
+      "licenses": "The previously UNPROVEN general-N statement. Licenses the k-axis reassociation at every blocking width and every axis length.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSGemmRegisterBlock.blockedSumObligation_proved",
+      "statement": "BlockedSumObligation k hk l",
+      "licenses": "The historical obligation identifier, now discharged rather than recorded.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSGemmRegisterBlock.blockedSum_concrete",
+      "statement": "splitBlocks 8 of range 20 re-sums to the original total",
+      "licenses": "Concrete instance; guards against a vacuous general statement.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSGemmRegisterBlock.FloatModel.float_add_not_associative",
+      "statement": "fadd (fadd 8 8) (-9) != fadd 8 (fadd 8 (-9))",
+      "licenses": "Machine-checked witness that floating-point addition is not associative. This is the formal reason the reassociation results are stated over Int and bitwise binary32 equality stays empirical.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSGemmRegisterBlock.FloatModel.float_blocked_differs_from_flat",
+      "statement": "fblocked 1 [-40,-40,-40,-40,-40] 0 != fflat [-40,-40,-40,-40,-40] 0",
+      "licenses": "Machine-checked counterexample for the block-boundary reassociation the ragged-column-edge path performs: over Int blocking is value-preserving, over the float model it is not. Explains the ~1 ULP bitwise disagreement measured at ragged sizes.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSGemmRegisterBlock.FloatModel.int_blocked_agrees_with_flat",
+      "statement": "[-40,-40,-40,-40,-40].foldl (+) 0 = -200",
+      "licenses": "Contrast case: under exact integer association the same operands are value-preserving.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCallableBinding.callable_kernel_respects_blocked_sum",
+      "statement": "BlockedSumObligation k hk l",
+      "licenses": "The transformation the callable operator implements, at the general level.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCallableBinding.callable_microkernel_identity",
+      "statement": "(w.sum + x.sum) + (y.sum + z.sum) = (w ++ x ++ y ++ z).sum",
+      "licenses": "The 2x2 register-block identity the microkernel actually evaluates.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCallableBinding.callable_work_ratio_is_one",
+      "statement": "flopCount 2048 / flopCount 2048 = 1",
+      "licenses": "work_ratio is exactly 1; no work reduction is available or claimed.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCompositionCriterion.compositionTheoremObligation_refuted",
+      "statement": "not CompositionTheoremObligation",
+      "licenses": "Machine-checked REFUTATION of the previously \"UNRESOLVED\" composition obligation. Its GeneralPosition hypothesis was stated over a placeholder overlap function, so it did not constrain the quantity it appeared to constrain; at rank 1 the hypothesis holds while no positive witness c satisfies the goal. Closing this gap required showing it was false.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCompositionCriterion.composedGain_of_no_overlap",
+      "statement": "composedGain q1 q2 r s 0 = q1 * q2 (for 0 < q1, 0 < q2, 0 < r, 0 < s)",
+      "licenses": "Exactness direction: zero overlap is the ONLY case attaining the multiplicative prediction exactly.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCompositionCriterion.composedGain_lt_of_overlap",
+      "statement": "0 < o -> composedGain q1 q2 r s o < q1 * q2",
+      "licenses": "Strictness direction: ANY shared direction makes the composed gain strictly sub-multiplicative. Machine-checked in Nat; no division assumed exact beyond the stated positivity.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCompositionCriterion.composedGain_le_product",
+      "statement": "composedGain q1 q2 r s o <= q1 * q2",
+      "licenses": "Composed gain never exceeds the multiplicative prediction. This is the proved form of the corpus-measured 15-25% composition capture rate.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    },
+    {
+      "theorem": "PCSSCompositionCriterion.multiplicative_composition_iff_zero_overlap",
+      "statement": "(composedGain <= q1*q2 and not composedGain < q1*q2) <-> o = 0",
+      "licenses": "The composition criterion the corpus needed and never had, now proved: multiplicative composition is licensed exactly when overlap vanishes.",
+      "status": "DISCHARGED_AND_MACHINE_CHECKED",
+      "axiom_dependencies": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_footprint_clean": true
+    }
+  ],
+  "repo_wide_hygiene": {
+    "scope": "every *.lean in the lean4 checkout (not just the binding modules)",
+    "files_scanned": {
+      "AGDGemmProjection.lean": {
+        "sha256": "ee25150e4eec78f741fc052696cfd015e43343d91b236f8848f3e3a1e1bcb0d6",
+        "bytes": 5329,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "AGDGemmReconstruction.lean": {
+        "sha256": "a2ef9edc0bc0362ecfff6498cd6d43e27620957ad90cb1687b6bdaa560edd9d5",
+        "bytes": 4640,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "AGDGemmSpeedup.lean": {
+        "sha256": "a167e0be8316c8ae6ba55869b69aa973cd23aa1c5f5ea5f8dbe82fe8079f1fe7",
+        "bytes": 2544,
+        "hit_count": 1,
+        "in_binding_import_closure": false
+      },
+      "AGDGemmWork.lean": {
+        "sha256": "207c2499484b14c809fab9cc2f2bfbb9746f89745aee2082652a9c9f5964911f",
+        "bytes": 3320,
+        "hit_count": 9,
+        "in_binding_import_closure": true
+      },
+      "AGDMaximallyTypedClaim.lean": {
+        "sha256": "134247a38e9445184a5d25480592148a2626055294bbcff5ecb6ed16e0c08fc9",
+        "bytes": 14756,
+        "hit_count": 7,
+        "in_binding_import_closure": false
+      },
+      "GODSQuotientClosure.lean": {
+        "sha256": "18259ce914ae59696700b728c84b875d8f04e4c75af19986d7549a46115551a0",
+        "bytes": 14195,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "HPL_AGD_01_Obligations.lean": {
+        "sha256": "94d63e07bf8835311dbbf89f36afe5e97d3312f462605021ce169e25b2d069bc",
+        "bytes": 3606,
+        "hit_count": 3,
+        "in_binding_import_closure": false
+      },
+      "HierarchicalScaling.lean": {
+        "sha256": "f39b651c9d5941878b476a73a39b521402fa9f2b1ab6c0da4f9efb75cacae991",
+        "bytes": 14904,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "LeanSpeedup.lean": {
+        "sha256": "1d94c41807259333c268a3c82bfc2efd013f9cbc17bd2bfaa1479ac4b00d5638",
+        "bytes": 118,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "LinearExactSector.lean": {
+        "sha256": "9966a86f04cce7cf4f53e3e621cd24b01a51114bb3b91df85868f06c131460a8",
+        "bytes": 10903,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "PCSSCallableBinding.lean": {
+        "sha256": "3974f242170ae9a44ea4bfea16c6697ced7c89bddde60c485e9f8d22a0562d51",
+        "bytes": 2789,
+        "hit_count": 0,
+        "in_binding_import_closure": true
+      },
+      "PCSSCertificate.lean": {
+        "sha256": "5c785d5b66186590221601420a7a9bf6004ce7eb98f695a53ff2fbb17af3f28f",
+        "bytes": 2372,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "PCSSCompositionCriterion.lean": {
+        "sha256": "9ec469b75e9a62280db47d9f34b407084ff453877f37c2cd761a7aedb9ca3227",
+        "bytes": 13367,
+        "hit_count": 0,
+        "in_binding_import_closure": true
+      },
+      "PCSSGemmRegisterBlock.lean": {
+        "sha256": "d748d9aa56850eebc5e58adf248801d9c0a507aeac9771fce9933022f256a6bf",
+        "bytes": 12664,
+        "hit_count": 0,
+        "in_binding_import_closure": true
+      },
+      "SIM2xrEquivalenceClosure.lean": {
+        "sha256": "a22fed947925bad27542ae3d3fa9af2ef612205d4ac0fa20c9483999c03d6b92",
+        "bytes": 2221,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "SpeedupExactInvariant.lean": {
+        "sha256": "74a57791e251e7357fa8962e288228a51fe7f459a1cf4249214efb663d80a6ca",
+        "bytes": 1263,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "SpeedupLean.lean": {
+        "sha256": "42f1696af84c24446b4cd63df56e7fba4f4af21a85cb0d80de0d1fab7fc55a3e",
+        "bytes": 1508,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "ax2.lean": {
+        "sha256": "53c52ab86858329c906ad11120ef8a95cee1dde6b265f63287280c1a08e2cbb6",
+        "bytes": 176,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "axcheck.lean": {
+        "sha256": "bf88cf33ec77a35f5abaa7d501d4baab4c253268177f8ae3c313fa6ac4282e0e",
+        "bytes": 476,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      },
+      "lakefile.lean": {
+        "sha256": "72e46d337f17ce151ac6865da99e5a80b63eed267192172a65695d5c834f4dcf",
+        "bytes": 640,
+        "hit_count": 0,
+        "in_binding_import_closure": false
+      }
+    },
+    "file_count": 20,
+    "binding_import_closure": [
+      "AGDGemmWork",
+      "PCSSCallableBinding",
+      "PCSSCompositionCriterion",
+      "PCSSGemmRegisterBlock"
+    ],
+    "findings_reachable_from_binding": [
+      {
+        "line": 51,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDGemmWork.lean",
+        "reachable_from_binding": true
+      },
+      {
+        "line": 55,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDGemmWork.lean",
+        "reachable_from_binding": true
+      },
+      {
+        "line": 59,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDGemmWork.lean",
+        "reachable_from_binding": true
+      },
+      {
+        "line": 63,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDGemmWork.lean",
+        "reachable_from_binding": true
+      },
+      {
+        "line": 67,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDGemmWork.lean",
+        "reachable_from_binding": true
+      },
+      {
+        "line": 70,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDGemmWork.lean",
+        "reachable_from_binding": true
+      },
+      {
+        "line": 73,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDGemmWork.lean",
+        "reachable_from_binding": true
+      },
+      {
+        "line": 77,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDGemmWork.lean",
+        "reachable_from_binding": true
+      },
+      {
+        "line": 82,
+        "marker": "native_decide",
+        "text": "workRatio_outer 4 256 256 1024 (by native_decide) (by native_decide) (by native_decide)",
+        "file": "AGDGemmWork.lean",
+        "reachable_from_binding": true
+      }
+    ],
+    "findings_elsewhere_in_checkout": [
+      {
+        "line": 68,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDGemmSpeedup.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 190,
+        "marker": "native_decide",
+        "text": "theorem fullWork_1024 : fullWork 1024 1024 1024 = 2147483648 := by native_decide",
+        "file": "AGDMaximallyTypedClaim.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 191,
+        "marker": "native_decide",
+        "text": "theorem quotientWork_256 : quotientWork 256 256 1024 = 134217728 := by native_decide",
+        "file": "AGDMaximallyTypedClaim.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 193,
+        "marker": "native_decide",
+        "text": "workRatio (fullWork 1024 1024 1024) (quotientWork 256 256 1024) = 16 := by native_decide",
+        "file": "AGDMaximallyTypedClaim.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 195,
+        "marker": "native_decide",
+        "text": "fullWork 1024 1024 1024 = 16 * quotientWork 256 256 1024 := by native_decide",
+        "file": "AGDMaximallyTypedClaim.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 197,
+        "marker": "native_decide",
+        "text": "quotientWork 256 256 1024 < fullWork 1024 1024 1024 := by native_decide",
+        "file": "AGDMaximallyTypedClaim.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 263,
+        "marker": "native_decide",
+        "text": "denominator_nonzero := by native_decide",
+        "file": "AGDMaximallyTypedClaim.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 272,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "AGDMaximallyTypedClaim.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 63,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "HPL_AGD_01_Obligations.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 69,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "HPL_AGD_01_Obligations.lean",
+        "reachable_from_binding": false
+      },
+      {
+        "line": 99,
+        "marker": "native_decide",
+        "text": "native_decide",
+        "file": "HPL_AGD_01_Obligations.lean",
+        "reachable_from_binding": false
+      }
+    ],
+    "reachable_clean": false,
+    "checkout_globally_clean": false,
+    "rationale": "A forbidden marker inside the binding import closure would invalidate the chain. Markers outside it do not reach these proofs, but are disclosed rather than suppressed.",
+    "disclosure": "This checkout is NOT globally marker-free. Pre-existing native_decide uses exist in sibling modules (e.g. AGDGemmWork.canonical_ratio, AGDMaximallyTypedClaim, HPL_AGD_01_Obligations) that the binding chain does not depend on; see findings_elsewhere_in_checkout. Those theorems are outside the proved chain and nothing here rests on them."
+  },
+  "discharged_previously": {
+    "obligation": "BlockedSumObligation (general k, all l)",
+    "previous_status": "UNRESOLVED",
+    "previous_justification": "Recorded as needing well-founded recursion unavailable without Mathlib in this checkout.",
+    "correction": "That justification was self-imposed and incorrect. Nat.strongRecOn (Init/WF.lean), List.take_append_drop, List.length_drop and List.sum_append are all core Lean 4; the checkout builds green with no Mathlib. The obligation is now discharged by PCSSGemmRegisterBlock.blockedSumObligation_holds.",
+    "new_status": "DISCHARGED"
+  },
+  "artifact_binding": {
+    "native_sources": {
+      "neon.c": "c2abd35017c06e525743dd045460999d50bceb81144867be53201c183f524ec5",
+      "baseline_scalar.c": "93b4f283f1c59399ae8f8504d9c3e4aaec0656b73aec801667431092bcf26a3f",
+      "muni_dispatch.c": "d0e20d32d0645ae45adfced30c1b9789881c64fef59c7fea08227b4f9dc08f10",
+      "muni_runtime.h": "60caa7bfa0e97994cb20e35f0b13f8d47161791a900e5143a5ff13d6d5ec6625",
+      "muni_runtime.py": "0ba6682060307060e4021b91373a22f6854056bf1111061b4d66f33723949f87",
+      "libmuni.so": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9"
+    },
+    "olean_artifacts": {
+      "PCSSGemmRegisterBlock.olean": "876ab7343ad6217745ecccba92f152b3323d41a7186fc5845787fba35ca9b593",
+      "PCSSCallableBinding.olean": "311528299ef63e32974cdd08484458bffce79928c2598ce1b8cfb64fb650bd0a",
+      "PCSSCompositionCriterion.olean": "89481d8ff882649cff84b6a6b8bf59312d650ec7f0464bd5e7d5a23568fdc97f"
+    },
+    "binds_to_benchmarked_library": "libmuni.so"
+  },
+  "gates": {
+    "formal_build_green": true,
+    "no_sorry_no_axiom": true,
+    "core_only_no_mathlib": true,
+    "axiom_footprint_clean": true,
+    "all_obligations_discharged": true,
+    "artifact_hashed": true,
+    "scanner_selftest_passed": true,
+    "binding_closure_hygiene_clean": false
+  },
+  "claim_strength": "FORMAL_PARTIAL",
+  "claim_boundary": [
+    "The Lean proofs bind to the exact libmuni.so SHA-256 recorded above.",
+    "The formal statements are over Int (exact sums). The shipped kernel accumulates in IEEE-754 binary32, where addition is NOT associative -- machine-checked in FloatModel.float_add_not_associative.",
+    "Therefore no theorem here proves bitwise Float32 equality of the two kernels. max|candidate-baseline| = 0.0 remains empirical evidence.",
+    "No wall-clock speedup is proved; the measured factor stays empirical and device-scoped.",
+    "work_ratio = 1 exactly: no FLOP reduction is claimed.",
+    "Formal obligations are discharged for the modelled domain only, so the strongest supported status remains FORMAL_PARTIAL, not VERIFIED, per CLAIM_POLICY.md. The Int/float32 gap is recorded, not closed.",
+    "COMPOSABILITY (chain link 3) is now formally settled in the NEGATIVE direction for the stated obligation, which is machine-checked as FALSE (compositionTheoremObligation_refuted), and replaced by a proved well-posed criterion: multiplicative composition holds exactly when subspace overlap is zero. No artifact in this corpus records a work_ratio, so no corpus speedup is licensed to compose multiplicatively; observed composed factors are strictly sub-multiplicative whenever overlap is nonzero.",
+    "The overlap VALUE remains an external input. Computing dim (im A n im B) for the actual quotient subspaces needs subspace dimension arithmetic (Mathlib), which is not in this checkout. The criterion is proved; its instantiation to these kernels is not.",
+    "Every theorem in this receipt was checked with #print axioms and depends only on propext / Quot.sound / Classical.choice. None depends on sorryAx or any native_decide oracle. The composition proofs rest on AGDGemmWork.workRatio_outer, which is itself axiom-clean; the native_decide theorems in that module are not used by this chain."
+  ]
+}

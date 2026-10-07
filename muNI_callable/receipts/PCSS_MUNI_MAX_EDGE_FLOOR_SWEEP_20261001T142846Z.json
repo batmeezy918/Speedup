@@ -1,0 +1,244 @@
+{
+  "schema": "PCSS-MUNI-MAX-EDGE-FLOOR-SWEEP-1.0",
+  "run_id": "20261001T142846Z",
+  "device": {
+    "arch": "aarch64",
+    "kernel": "6.17.0-PRoot-Distro",
+    "backend": "aarch64-neon-fma-register-block",
+    "version": "MuNi-callable-0.1"
+  },
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "cases": [
+    {
+      "case": "N2048_r8_block256",
+      "N": 2048,
+      "r": 8,
+      "block": 256,
+      "theoretical_state_op_ratio": 16777216.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true
+      },
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2428817655,
+            2438448854,
+            2416152811,
+            2442760207,
+            2458376822,
+            2440367082,
+            2408385624,
+            2389177134,
+            2415767030,
+            2426989061,
+            2468675676
+          ],
+          "median_ns": 2428817655.0,
+          "min_ns": 2389177134,
+          "max_ns": 2468675676
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            127604,
+            122448,
+            118594,
+            120937,
+            121093,
+            118907,
+            118334,
+            118698,
+            130989,
+            135105,
+            141198
+          ],
+          "median_ns": 121093.0,
+          "min_ns": 118334,
+          "max_ns": 141198
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            507760,
+            364115,
+            301458,
+            231250,
+            206197,
+            211354,
+            215781,
+            201666,
+            206771,
+            201615,
+            203490
+          ],
+          "median_ns": 211354.0,
+          "min_ns": 201615,
+          "max_ns": 507760
+        },
+        "reconstruction": {
+          "timings_ns": [
+            3990156,
+            4072760,
+            4029428,
+            3986042,
+            3998386,
+            4072604,
+            4269375,
+            3907657,
+            3992187,
+            4092240,
+            3953594
+          ],
+          "median_ns": 3998386.0,
+          "min_ns": 3907657,
+          "max_ns": 4269375
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            4382500,
+            4308802,
+            4417083,
+            4551458,
+            4111666,
+            4379427,
+            4656458,
+            4325573,
+            4276197,
+            4400260,
+            4837448
+          ],
+          "median_ns": 4382500.0,
+          "min_ns": 4111666,
+          "max_ns": 4837448
+        }
+      },
+      "speedups": {
+        "state_reduction": 589.5934061079083,
+        "execution_raw_quotient": 0.572939239380376,
+        "execution_conditional_with_reconstruction": 0.9785590083948177,
+        "composed_e2e": 554.2082498573874,
+        "compositional_product": 576.9519388370778,
+        "composition_K": 0.9605795778665146,
+        "composition_residual": -22.743688979690432
+      }
+    },
+    {
+      "case": "N2048_r4_block512",
+      "N": 2048,
+      "r": 4,
+      "block": 512,
+      "theoretical_state_op_ratio": 134217728.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true
+      },
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2471448176,
+            2529773801,
+            2455406978,
+            2366175259,
+            2401026249,
+            2429071249,
+            2368233176,
+            2525408384,
+            2358934322,
+            2342664635,
+            2345927655
+          ],
+          "median_ns": 2401026249.0,
+          "min_ns": 2342664635,
+          "max_ns": 2529773801
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            102864,
+            98594,
+            112187,
+            113490,
+            82500,
+            77031,
+            69531,
+            86406,
+            85313,
+            79167,
+            75469
+          ],
+          "median_ns": 85313.0,
+          "min_ns": 69531,
+          "max_ns": 113490
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            123593,
+            110156,
+            110209,
+            125886,
+            111198,
+            105521,
+            109011,
+            139584,
+            111771,
+            112188,
+            137136
+          ],
+          "median_ns": 111771.0,
+          "min_ns": 105521,
+          "max_ns": 139584
+        },
+        "reconstruction": {
+          "timings_ns": [
+            2858906,
+            2977084,
+            3064635,
+            3094270,
+            3184531,
+            3113594,
+            3095000,
+            3037344,
+            3037500,
+            2988958,
+            2877396
+          ],
+          "median_ns": 3037500.0,
+          "min_ns": 2858906,
+          "max_ns": 3184531
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            3305052,
+            3216354,
+            3394479,
+            3463854,
+            3484896,
+            3398073,
+            4129375,
+            4218021,
+            4443073,
+            4252657,
+            3312969
+          ],
+          "median_ns": 3463854.0,
+          "min_ns": 3216354,
+          "max_ns": 4443073
+        }
+      },
+      "speedups": {
+        "state_reduction": 768.8664831996024,
+        "execution_raw_quotient": 0.763283857172254,
+        "execution_conditional_with_reconstruction": 0.9915986906176064,
+        "composed_e2e": 693.1661233412262,
+        "compositional_product": 762.4069980004896,
+        "composition_K": 0.9091812183769871,
+        "composition_residual": -69.24087465926334
+      }
+    }
+  ],
+  "claim_boundary": [
+    "Direct E2E timing only. Operation ratios are theoretical, not runtime speedups.",
+    "Exact equality is scoped to the constructed binary32 invariant sector.",
+    "Purpose is to identify the asymptotic reconstruction floor, not to manufacture a headline multiplier."
+  ]
+}

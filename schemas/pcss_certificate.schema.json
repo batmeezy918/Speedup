@@ -34,121 +34,325 @@
     "gates",
     "claim_strength",
     "claim_boundary",
-    "artifact_paths"
+    "artifact_paths",
+    "environment",
+    "reproduction",
+    "mechanism"
   ],
   "properties": {
-    "schema_version": { "const": "1.0" },
-    "run_id": { "type": "string", "minLength": 1 },
-    "scenario_id": { "type": "string", "minLength": 1 },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scenario_id": {
+      "type": "string",
+      "minLength": 1
+    },
     "scenario_hash": {
       "type": "string",
       "pattern": "^[0-9a-f]{64}$",
       "description": "SHA-256 of canonical scenario manifest bytes"
     },
-    "source_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "input_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "environment_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "baseline_trace_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "candidate_trace_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "quotient_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "reconstruction_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "invariant_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "performance_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "lean_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-    "timestamp": { "type": "string", "format": "date-time" },
-    "toolchain": { "type": "string" },
-    "implementation_identity": { "type": "string" },
-    "parameters": { "type": "object", "additionalProperties": true },
-    "seed": { "type": "integer" },
-    "tolerance": { "type": "number", "minimum": 0 },
-    "metric": { "type": "string" },
-    "repetitions": { "type": "integer", "minimum": 1 },
-    "warmups": { "type": "integer", "minimum": 0 },
+    "source_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "environment_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "baseline_trace_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "candidate_trace_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "quotient_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "reconstruction_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "invariant_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "performance_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "lean_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "toolchain": {
+      "type": "string"
+    },
+    "implementation_identity": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "tolerance": {
+      "type": "number",
+      "minimum": 0
+    },
+    "metric": {
+      "type": "string"
+    },
+    "repetitions": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "warmups": {
+      "type": "integer",
+      "minimum": 0
+    },
     "baseline_measurement": {
       "type": "object",
-      "required": ["median_s", "samples"],
+      "required": [
+        "median_s",
+        "samples"
+      ],
       "properties": {
-        "median_s": { "type": "number", "minimum": 0 },
-        "mean_s": { "type": "number", "minimum": 0 },
-        "p95_s": { "type": "number", "minimum": 0 },
-        "samples": { "type": "integer", "minimum": 1 },
-        "time_unit": { "type": "string" }
+        "median_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "mean_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "p95_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "samples": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "time_unit": {
+          "type": "string"
+        }
       },
       "additionalProperties": true
     },
     "candidate_measurement": {
       "type": "object",
-      "required": ["median_s", "samples"],
+      "required": [
+        "median_s",
+        "samples"
+      ],
       "properties": {
-        "median_s": { "type": "number", "minimum": 0 },
-        "mean_s": { "type": "number", "minimum": 0 },
-        "p95_s": { "type": "number", "minimum": 0 },
-        "samples": { "type": "integer", "minimum": 1 },
-        "time_unit": { "type": "string" }
+        "median_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "mean_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "p95_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "samples": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "time_unit": {
+          "type": "string"
+        }
       },
       "additionalProperties": true
     },
-    "speedup": { "type": "number" },
+    "speedup": {
+      "type": "number"
+    },
     "uncertainty": {
       "type": "object",
       "properties": {
-        "treatment": { "type": "string" },
-        "baseline_std_s": { "type": "number", "minimum": 0 },
-        "candidate_std_s": { "type": "number", "minimum": 0 },
-        "speedup_low_s": { "type": "number" },
-        "speedup_high_s": { "type": "number" }
+        "treatment": {
+          "type": "string"
+        },
+        "baseline_std_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "candidate_std_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "speedup_low_s": {
+          "type": "number"
+        },
+        "speedup_high_s": {
+          "type": "number"
+        }
       },
       "additionalProperties": true
     },
     "quotient": {
       "type": "object",
-      "required": ["forward_pass", "equivalence_relation", "evidence_map"],
+      "required": [
+        "forward_pass",
+        "equivalence_relation",
+        "evidence_map"
+      ],
       "properties": {
-        "forward_pass": { "type": "boolean" },
-        "equivalence_relation": { "type": "string" },
-        "evidence_map": { "type": "object", "additionalProperties": true }
+        "forward_pass": {
+          "type": "boolean"
+        },
+        "equivalence_relation": {
+          "type": "string"
+        },
+        "evidence_map": {
+          "type": "object",
+          "additionalProperties": true
+        }
       },
       "additionalProperties": true
     },
     "reconstruction": {
       "type": "object",
-      "required": ["reverse_pass", "metric", "tolerance", "max_error", "mean_error", "domain"],
+      "required": [
+        "reverse_pass",
+        "metric",
+        "tolerance",
+        "max_error",
+        "mean_error",
+        "domain"
+      ],
       "properties": {
-        "reverse_pass": { "type": "boolean" },
-        "metric": { "type": "string" },
-        "tolerance": { "type": "number", "minimum": 0 },
-        "max_error": { "type": "number", "minimum": 0 },
-        "mean_error": { "type": "number", "minimum": 0 },
-        "domain": { "type": "string" }
+        "reverse_pass": {
+          "type": "boolean"
+        },
+        "metric": {
+          "type": "string"
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_error": {
+          "type": "number",
+          "minimum": 0
+        },
+        "mean_error": {
+          "type": "number",
+          "minimum": 0
+        },
+        "domain": {
+          "type": "string"
+        }
       },
       "additionalProperties": true
     },
     "invariants": {
       "type": "object",
-      "required": ["preserved"],
+      "required": [
+        "preserved"
+      ],
       "properties": {
-        "preserved": { "type": "boolean" },
-        "details": { "type": "object", "additionalProperties": true }
+        "preserved": {
+          "type": "boolean"
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        }
       },
       "additionalProperties": true
     },
     "performance": {
       "type": "object",
-      "required": ["reported_metric", "timing_source"],
+      "required": [
+        "reported_metric",
+        "timing_source"
+      ],
       "properties": {
-        "reported_metric": { "type": "string" },
-        "timing_source": { "type": "string" },
-        "attribution": { "type": "object", "additionalProperties": true }
+        "reported_metric": {
+          "type": "string"
+        },
+        "timing_source": {
+          "type": "string"
+        },
+        "attribution": {
+          "type": "object",
+          "description": "Declares which conditions the reported ratio depends on. No free-form claims.",
+          "required": [
+            "work_ratio",
+            "inheritable_conditions"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "work_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "description": "candidate work / baseline work. 1.0 means constant-factor gain, which transfers to any call site doing the same flops."
+            },
+            "inheritable_conditions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "explicit conditions under which this gain may be applied elsewhere"
+            },
+            "composed": {
+              "type": "boolean",
+              "description": "true if two or more substitutions were fused; requires an overlap witness o=0 per multiplicative_composition_iff_zero_overlap"
+            },
+            "overlap": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "description": "overlap witness between fused stages; must be 0 for the product to be attributable"
+            }
+          }
+        }
       },
       "additionalProperties": true
     },
     "lean": {
       "type": "object",
-      "required": ["pass", "obligation_source"],
+      "required": [
+        "pass",
+        "obligation_source"
+      ],
       "properties": {
-        "pass": { "type": "boolean" },
-        "obligation_source": { "type": "string" },
-        "theorems": { "type": "array", "items": { "type": "string" } }
+        "pass": {
+          "type": "boolean"
+        },
+        "obligation_source": {
+          "type": "string"
+        },
+        "theorems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       },
       "additionalProperties": true
     },
@@ -164,34 +368,209 @@
         "lean"
       ],
       "properties": {
-        "integrity": { "type": "boolean" },
-        "reproducibility": { "type": "boolean" },
-        "quotient_forward": { "type": "boolean" },
-        "reconstruction_reverse": { "type": "boolean" },
-        "invariants": { "type": "boolean" },
-        "performance": { "type": "boolean" },
-        "lean": { "type": "boolean" }
+        "integrity": {
+          "type": "boolean"
+        },
+        "reproducibility": {
+          "type": "boolean"
+        },
+        "quotient_forward": {
+          "type": "boolean"
+        },
+        "reconstruction_reverse": {
+          "type": "boolean"
+        },
+        "invariants": {
+          "type": "boolean"
+        },
+        "performance": {
+          "type": "boolean"
+        },
+        "lean": {
+          "type": "boolean"
+        }
       },
       "additionalProperties": false,
       "description": "PUBLISH <=> I AND R AND Q AND Q^-1 AND OMEGA AND X AND L. Any value that is not true is a quarantine."
     },
     "claim_strength": {
       "type": "string",
-      "enum": ["CANDIDATE", "STRONG_LOCAL", "FORMAL_PARTIAL", "VERIFIED", "FAILED", "QUARANTINED", "NOT_VERIFIED"]
+      "enum": [
+        "CANDIDATE",
+        "STRONG_LOCAL",
+        "FORMAL_PARTIAL",
+        "VERIFIED",
+        "FAILED",
+        "QUARANTINED",
+        "NOT_VERIFIED"
+      ]
     },
-    "claim_boundary": { "type": "string" },
+    "claim_boundary": {
+      "type": "string"
+    },
     "artifact_paths": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["path", "sha256"],
+        "required": [
+          "path",
+          "sha256"
+        ],
         "properties": {
-          "path": { "type": "string" },
-          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
         },
         "additionalProperties": true
       }
+    },
+    "environment": {
+      "type": "object",
+      "description": "Host conditions under which the timing was observed. A gain is a function of these; without them a ratio is unattributable and must not be inherited. Hashing the environment is not the same as recording it.",
+      "required": [
+        "cores_pinned",
+        "cores_total",
+        "core_type",
+        "governor",
+        "max_freq_mhz",
+        "arch"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "cores_pinned": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "CPUs this run was pinned to. 1 means the measurement saw a single core."
+        },
+        "cores_total": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "core_type": {
+          "type": "string",
+          "description": "e.g. Cortex-A55, Cortex-A78, x86_64. Determines memory-level parallelism, which bounds how much a memory-bound kernel can hide."
+        },
+        "governor": {
+          "type": "string",
+          "description": "cpufreq governor in force. walt/powersave are not comparable to performance."
+        },
+        "max_freq_mhz": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "arch": {
+          "type": "string"
+        },
+        "cache_kb": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "cache geometry; the register-blocking cliff occurs where the C tile stops fitting"
+        }
+      }
+    },
+    "reproduction": {
+      "type": "object",
+      "description": "Independent re-measurements of the SAME arms under the SAME environment. One run is a hypothesis. A ratio nobody re-measured is UNEXPLAINED, not inheritable.",
+      "required": [
+        "runs"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "runs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "ratios": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "ratio observed on each independent run"
+        },
+        "agreement": {
+          "type": "string",
+          "enum": [
+            "REPRODUCED",
+            "DIVERGENT",
+            "SINGLE_RUN",
+            "UNRESOLVED"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "mechanism": {
+      "type": "string",
+      "enum": [
+        "work_reduction",
+        "constant_factor"
+      ],
+      "description": "WHICH mechanism the candidate actually implements. 'work_reduction' means the flops themselves were removed (a quotient/rank-decomposition). 'constant_factor' means the same flops were executed more cheaply (register blocking, fusion, better instruction mix). These are different claims and must never be interchanged: a work-reduction theorem does not license a constant-factor number, and a constant-factor measurement does not evidence a quotient reduction."
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mechanism": {
+            "const": "constant_factor"
+          }
+        },
+        "required": [
+          "mechanism"
+        ]
+      },
+      "then": {
+        "properties": {
+          "performance": {
+            "properties": {
+              "attribution": {
+                "properties": {
+                  "work_ratio": {
+                    "const": 1.0,
+                    "description": "a constant-factor claim performs the SAME work; any other ratio is a different claim"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mechanism": {
+            "const": "work_reduction"
+          }
+        },
+        "required": [
+          "mechanism"
+        ]
+      },
+      "then": {
+        "properties": {
+          "performance": {
+            "properties": {
+              "attribution": {
+                "properties": {
+                  "work_ratio": {
+                    "exclusiveMaximum": 1.0,
+                    "description": "a work-reduction claim must actually reduce work"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

@@ -1,0 +1,242 @@
+{
+  "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-1.0",
+  "run_id": "20261001T141006Z",
+  "device": {
+    "arch": "aarch64",
+    "kernel": "6.17.0-PRoot-Distro",
+    "backend": "aarch64-neon-fma-register-block",
+    "version": "MuNi-callable-0.1"
+  },
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "cases": [
+    {
+      "case": "N2048_r32_block64",
+      "N": 2048,
+      "r": 32,
+      "block": 64,
+      "theoretical_state_op_ratio": 262144.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true
+      },
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2316940937,
+            2307305572,
+            2281522655,
+            2277759270,
+            2273186145,
+            2271792968,
+            2276268905,
+            2274062863,
+            2272524583,
+            2271824894,
+            2272260832
+          ],
+          "median_ns": 2274062863.0,
+          "min_ns": 2271792968,
+          "max_ns": 2316940937
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            108698,
+            121771,
+            103334,
+            97084,
+            98698,
+            123072,
+            99479,
+            111250,
+            195572,
+            104114,
+            102917
+          ],
+          "median_ns": 104114.0,
+          "min_ns": 97084,
+          "max_ns": 195572
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            154895,
+            220521,
+            150000,
+            153906,
+            138802,
+            135677,
+            152605,
+            176823,
+            151823,
+            139896,
+            160208
+          ],
+          "median_ns": 152605.0,
+          "min_ns": 135677,
+          "max_ns": 220521
+        },
+        "reconstruction": {
+          "timings_ns": [
+            4981511,
+            4994636,
+            4950729,
+            5168437,
+            5099062,
+            4958907,
+            4932343,
+            5148386,
+            5231927,
+            5013073,
+            5014427
+          ],
+          "median_ns": 5013073.0,
+          "min_ns": 4932343,
+          "max_ns": 5231927
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5378958,
+            5263854,
+            5476302,
+            5253802,
+            5353542,
+            5309114,
+            5297343,
+            5269219,
+            5513490,
+            5398542,
+            5435104
+          ],
+          "median_ns": 5353542.0,
+          "min_ns": 5253802,
+          "max_ns": 5513490
+        }
+      },
+      "speedups": {
+        "state_vs_qplus_reconstruct": 444.397060924293,
+        "execution_on_quotient": 0.6822450116313358,
+        "composed_e2e": 424.7772527048447,
+        "naive_product_bound": 303.1876779992257,
+        "composition_interaction_K": 1.4010373228490163
+      }
+    },
+    {
+      "case": "N2048_r16_block128",
+      "N": 2048,
+      "r": 16,
+      "block": 128,
+      "theoretical_state_op_ratio": 2097152.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true
+      },
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2269271197,
+            2275061406,
+            2269355676,
+            2260102499,
+            2261272864,
+            2271011978,
+            2274920520,
+            2276220677,
+            2282013853,
+            2281513437,
+            2270785259
+          ],
+          "median_ns": 2271011978.0,
+          "min_ns": 2260102499,
+          "max_ns": 2282013853
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            124011,
+            85417,
+            90729,
+            111459,
+            93021,
+            96875,
+            90417,
+            155104,
+            95157,
+            91302,
+            87032
+          ],
+          "median_ns": 93021.0,
+          "min_ns": 85417,
+          "max_ns": 155104
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            131094,
+            113125,
+            702447,
+            114010,
+            113386,
+            111302,
+            178698,
+            111042,
+            108229,
+            111406,
+            108021
+          ],
+          "median_ns": 113125.0,
+          "min_ns": 108021,
+          "max_ns": 702447
+        },
+        "reconstruction": {
+          "timings_ns": [
+            4226927,
+            4359739,
+            4272343,
+            4311406,
+            4245052,
+            4291250,
+            4309844,
+            4233594,
+            4183229,
+            4234635,
+            4456666
+          ],
+          "median_ns": 4272343.0,
+          "min_ns": 4183229,
+          "max_ns": 4456666
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            4575781,
+            4509271,
+            4894479,
+            4922604,
+            4751719,
+            4534583,
+            4522448,
+            4647032,
+            4503907,
+            4697291,
+            4637395
+          ],
+          "median_ns": 4637395.0,
+          "min_ns": 4503907,
+          "max_ns": 4922604
+        }
+      },
+      "speedups": {
+        "state_vs_qplus_reconstruct": 520.2342755380765,
+        "execution_on_quotient": 0.8222850828729282,
+        "composed_e2e": 489.71717483630357,
+        "naive_product_bound": 427.78088437416505,
+        "composition_interaction_K": 1.1447850820934884
+      }
+    }
+  ],
+  "claim_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E",
+  "claim_boundary": [
+    "This is a real end-to-end composition test: full GEMM baseline versus quotient extraction, reduced NEON execution, exact scaling and materialized reconstruction.",
+    "No isolated speedups are multiplied to obtain composed_e2e; composed_e2e is directly timed.",
+    "Theoretical operation ratio is not a wall-clock speedup.",
+    "Exact equality is scoped to the integer-valued constructed invariant sector and this binary32 implementation."
+  ]
+}

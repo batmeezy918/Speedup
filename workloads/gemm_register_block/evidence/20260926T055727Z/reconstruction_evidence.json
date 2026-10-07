@@ -1,0 +1,11 @@
+{
+  "direction": "reverse",
+  "domain": "R^{n x n}",
+  "metric": "max",
+  "note": "quotient is the identity, so reconstruction is exact by construction; confirmed empirically at 0.0.",
+  "observed_err": 0,
+  "pass": true,
+  "scenario_id": "gemm-register-block-20260926T055727Z",
+  "schema": "PCSS-RECONSTRUCTION",
+  "tolerance": 0.0
+}

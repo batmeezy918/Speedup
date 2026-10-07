@@ -1,0 +1,266 @@
+{
+  "omp_num_threads": 1,
+  "observable": "full C=A*B matrix, elementwise vs timed scalar baseline",
+  "sweep": [
+    {
+      "n": 128,
+      "omp_num_threads": 1,
+      "baseline": {
+        "median_s": 0.001994739,
+        "gflops": 2.1027
+      },
+      "candidates": [
+        {
+          "name": "neon_naive_1x4",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.001903072,
+          "gflops": 2.204,
+          "speedup": 1.0482
+        },
+        {
+          "name": "neon_4x4",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.000612187,
+          "gflops": 6.8513,
+          "speedup": 3.2584
+        },
+        {
+          "name": "neon_4x8",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.000504792,
+          "gflops": 8.309,
+          "speedup": 3.9516
+        },
+        {
+          "name": "neon_8x8_fixed",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.000502083,
+          "gflops": 8.3538,
+          "speedup": 3.9729
+        }
+      ],
+      "best_accepted": "neon_8x8_fixed",
+      "best_speedup": 3.9729
+    },
+    {
+      "n": 256,
+      "omp_num_threads": 1,
+      "baseline": {
+        "median_s": 0.016009479,
+        "gflops": 2.0959
+      },
+      "candidates": [
+        {
+          "name": "neon_naive_1x4",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.017667292,
+          "gflops": 1.8992,
+          "speedup": 0.9062
+        },
+        {
+          "name": "neon_4x4",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.006106406,
+          "gflops": 5.495,
+          "speedup": 2.6218
+        },
+        {
+          "name": "neon_4x8",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.004540312,
+          "gflops": 7.3903,
+          "speedup": 3.5261
+        },
+        {
+          "name": "neon_8x8_fixed",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.00416224,
+          "gflops": 8.0616,
+          "speedup": 3.8464
+        }
+      ],
+      "best_accepted": "neon_8x8_fixed",
+      "best_speedup": 3.8464
+    },
+    {
+      "n": 384,
+      "omp_num_threads": 1,
+      "baseline": {
+        "median_s": 0.060450521,
+        "gflops": 1.8734
+      },
+      "candidates": [
+        {
+          "name": "neon_naive_1x4",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.074522969,
+          "gflops": 1.5196,
+          "speedup": 0.8112
+        },
+        {
+          "name": "neon_4x4",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.0236575,
+          "gflops": 4.7869,
+          "speedup": 2.5552
+        },
+        {
+          "name": "neon_4x8",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.018437552,
+          "gflops": 6.1421,
+          "speedup": 3.2787
+        },
+        {
+          "name": "neon_8x8_fixed",
+          "observable_ok": true,
+          "max_error": 6.1e-05,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.015067135,
+          "gflops": 7.5161,
+          "speedup": 4.0121
+        }
+      ],
+      "best_accepted": "neon_8x8_fixed",
+      "best_speedup": 4.0121
+    },
+    {
+      "n": 512,
+      "omp_num_threads": 1,
+      "baseline": {
+        "median_s": 0.138215,
+        "gflops": 1.9422
+      },
+      "candidates": [
+        {
+          "name": "neon_naive_1x4",
+          "observable_ok": true,
+          "max_error": 0.000122,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.249950052,
+          "gflops": 1.074,
+          "speedup": 0.553
+        },
+        {
+          "name": "neon_4x4",
+          "observable_ok": true,
+          "max_error": 0.000122,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.065032657,
+          "gflops": 4.1277,
+          "speedup": 2.1253
+        },
+        {
+          "name": "neon_4x8",
+          "observable_ok": true,
+          "max_error": 0.000122,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.053821198,
+          "gflops": 4.9875,
+          "speedup": 2.568
+        },
+        {
+          "name": "neon_8x8_fixed",
+          "observable_ok": true,
+          "max_error": 0.000122,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.036700105,
+          "gflops": 7.3143,
+          "speedup": 3.7661
+        }
+      ],
+      "best_accepted": "neon_8x8_fixed",
+      "best_speedup": 3.7661
+    },
+    {
+      "n": 640,
+      "omp_num_threads": 1,
+      "baseline": {
+        "median_s": 0.293795989,
+        "gflops": 1.7845
+      },
+      "candidates": [
+        {
+          "name": "neon_naive_1x4",
+          "observable_ok": true,
+          "max_error": 0.000122,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.523193125,
+          "gflops": 1.0021,
+          "speedup": 0.5615
+        },
+        {
+          "name": "neon_4x4",
+          "observable_ok": true,
+          "max_error": 0.000122,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.151191667,
+          "gflops": 3.4677,
+          "speedup": 1.9432
+        },
+        {
+          "name": "neon_4x8",
+          "observable_ok": true,
+          "max_error": 0.000122,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.103073281,
+          "gflops": 5.0866,
+          "speedup": 2.8504
+        },
+        {
+          "name": "neon_8x8_fixed",
+          "observable_ok": true,
+          "max_error": 0.000122,
+          "coverage_frac": 1.0,
+          "result_frac_of_baseline": 1.0,
+          "median_s": 0.075690937,
+          "gflops": 6.9267,
+          "speedup": 3.8815
+        }
+      ],
+      "best_accepted": "neon_8x8_fixed",
+      "best_speedup": 3.8815
+    }
+  ]
+}

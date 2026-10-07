@@ -1,0 +1,21 @@
+{
+  "schema": "PCSS-DIRECT-AB-1.0",
+  "workload": "SIM2XR exact invariant sector",
+  "d": 65536,
+  "tile": 2048,
+  "nclasses": 32,
+  "steps": 500,
+  "seed": 20260908,
+  "warmups": 5,
+  "repetitions": 30,
+  "timing_source": "clock_gettime_monotonic via Python monotonic_ns",
+  "baseline_median_ns": 2695694582.5,
+  "candidate_median_ns": 3180495.0,
+  "speedup": 847.570765714142,
+  "max_reconstruction_error": 0.0,
+  "exact_equivalent": true,
+  "baseline_mad_ns": 33197161.0,
+  "candidate_mad_ns": 20026.5,
+  "platform": "Linux-6.17.0-PRoot-Distro-aarch64-with-glibc2.41",
+  "python": "3.13.5"
+}

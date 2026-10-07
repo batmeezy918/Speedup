@@ -139,7 +139,8 @@ private theorem blockedSum_gen (k : Nat) (hk : 0 < k) :
 Blocking a sum into consecutive blocks of size at most `k` preserves the total,
 for every `k > 0` and every `l`. This is the identity the shipped `gemm_blocked`
 kernel relies on when it accumulates `C` across `kc`-sized `k` blocks instead of
-a single flat `k` loop. Core Lean 4 only; no Mathlib; no `sorry`, no `axiom`. -/
+a single flat `k` loop. Core Lean 4 only; no Mathlib; no proof holes and no
+postulated constants. -/
 theorem blockedSumObligation_holds :
     ∀ (k : Nat) (hk : 0 < k) (l : List Int),
       ((splitBlocks k hk l).map List.sum).sum = l.sum := by
@@ -169,15 +170,82 @@ evidence in the certificate rather than proved. -/
 
 namespace FloatModel
 
-/-- Round-to-zero to 3 fractional bits: the integer `x` is a significand scaled
-by `2^-3`. A deliberately minimal, fully explicit rounding model. -/
+/-! ### A recorded defect and its correction
+
+The first definition of `round` in this model was
+
+```
 def round (x : Int) : Int := if 0 ≤ x then x / 8 else -((-x) / 8)
+```
+
+which does not round: it DIVIDES by 8, moving the radix point rather than
+truncating the low three bits. A round-to-zero to three fractional bits must fix
+a value already on the 8-grid and must be idempotent; that function satisfies
+neither, and its `fadd` shrank its operands instead of adding them. The original
+non-associativity witnesses were therefore artifacts of the defect: the cited
+witness `(8 +. 8) +. (-9)` does not even disagree in real IEEE-754 binary32
+(`(8+8)+(-9) = 7 = 8+(8+(-9))` there).
+
+The defect is recorded below as a machine-checked refutation, and `round` is
+redefined as an actual quantizer. The identifier `round` is kept because it is
+the model's public name; `roundDivide` preserves the historical behaviour for
+the refutation. -/
+
+/-- Historical (defective) definition, retained only so the defect can be
+machine-checked rather than described in prose. -/
+def roundDivide (x : Int) : Int := if 0 ≤ x then x / 8 else -((-x) / 8)
+
+/-- The historical function's addition, retained for the same reason. -/
+def faddDivide (x y : Int) : Int := roundDivide (x + y)
+
+/-- **Machine-checked defect (1):** a quantizer to 3 fractional bits must leave
+a value already on the grid unchanged. `roundDivide` divides it by 8. -/
+theorem roundDivide_not_a_quantizer : roundDivide 8 ≠ 8 := by decide
+
+/-- **Machine-checked defect (2):** a quantizer is idempotent; `roundDivide` is
+not (each pass divides again). -/
+theorem roundDivide_not_idempotent :
+    roundDivide (roundDivide 8) ≠ roundDivide 8 := by decide
+
+/-- **Machine-checked defect (3):** consequently the historical `fadd` was not an
+adder at all -- `800 +. 800` collapsed below `800`. -/
+theorem faddDivide_shrinks : faddDivide 800 800 < 800 := by decide
+
+/-- **The corrected model.** Round-to-zero to 3 fractional bits: truncate the
+low three bits toward zero, i.e. move to the nearest multiple of `2^3 = 8`.
+This FIXES grid points and is idempotent, which is what makes it a rounding
+model rather than a rescaling. -/
+def round (x : Int) : Int := if 0 ≤ x then (x / 8) * 8 else -(((-x) / 8) * 8)
+
+/-- Faithfulness of the corrected model: points already on the 8-grid survive. -/
+theorem round_fixes_grid (x : Int) (h : 8 ∣ x) : round x = x := by
+  obtain ⟨c, rfl⟩ := h
+  have h8 : (8 : Int) ≠ 0 := by decide
+  rcases (show (0 ≤ 8 * c) ∨ (0 < -(8 * c)) by omega) with _ | _
+  · rw [round, if_pos (by omega : 0 ≤ 8 * c), Int.mul_ediv_cancel_left c h8,
+      Int.mul_comm]
+  · rw [round, if_neg (by omega : ¬(0 ≤ 8 * c))]
+    have heq : -(8 * c) = 8 * -c := (Int.mul_neg 8 c).symm
+    have hd : -(8 * c) / 8 = -c := by
+      rw [heq, Int.mul_ediv_cancel_left _ h8]
+    rw [hd, Int.neg_mul, Int.neg_neg, Int.mul_comm]
+
+/-- Faithfulness of the corrected model: it is idempotent. -/
+theorem round_idempotent (x : Int) : round (round x) = round x := by
+  have h : 8 ∣ round x := by
+    unfold round
+    split
+    · simp [Int.mul_comm, Int.dvd_mul_right]
+    · simp [Int.mul_comm]
+  obtain ⟨c, hc⟩ := h
+  rw [hc]
+  exact round_fixes_grid (8 * c) ⟨c, rfl⟩
 
 /-- Addition in this 3-bit-mantissa model. -/
 def fadd (x y : Int) : Int := round (x + y)
 
-/-- Machine-checked non-associativity witness:
-`(8 +. 8) +. (-9) = 0` while `8 +. (8 +. (-9)) = 1`. -/
+/-- Machine-checked non-associativity witness for the corrected model:
+`(8 +. 8) +. (-9) = 0` while `8 +. (8 +. (-9)) = 8`. -/
 theorem float_add_not_associative :
     fadd (fadd 8 8) (-9) ≠ fadd 8 (fadd 8 (-9)) := by decide
 
@@ -226,10 +294,25 @@ theorem fblocked_fuel_sufficient (k : Nat) (l : List Int) (acc : Int) :
 /-- **Machine-checked: the blocked association changes the result.**
 Block-boundary reassociation is value-preserving over `Int`
 (`blockedSumObligation_holds`) but NOT over the float model, exactly as the
-empirical sweep observed: bitwise disagreement at ragged sizes, magnitude ~1 ULP. -/
+empirical sweep observed: bitwise disagreement at ragged sizes, magnitude ~1
+ULP.
+
+The witness is a 5-element list with a ragged tail. `fblocked` splits it as
+`[8,8,8] ++ [-9,9]`, sums each block into a *fresh* local accumulator and then
+combines them, giving `round(24 + round(-18)) = round(24 + (-16)) = 8`, whereas
+straight `fflat` accumulation gives `round(round(round(8+8)+8)+(-9))+9 = 16`. -/
 theorem float_blocked_differs_from_flat :
+    fblocked 3 [8, 8, 8, -9, 9] 0
+      ≠ fflat [8, 8, 8, -9, 9] 0 := by decide
+
+/-- **The disagreement requires a block width of at least 2.**
+For singleton blocks (`k = 1`) the partition *is* the singleton decomposition,
+so the recursion degenerates to exactly the flat left-to-right fold and the two
+agree. This is the machine-checked statement that the disagreement above is
+caused by block-boundary reassociation, not by the blocked code path itself. -/
+theorem singleton_blocks_agree_with_flat :
     fblocked 1 [-40, -40, -40, -40, -40] 0
-      ≠ fflat [-40, -40, -40, -40, -40] 0 := by decide
+      = fflat [-40, -40, -40, -40, -40] 0 := by decide
 
 /-- The same five operands under the exact (integer) association, for contrast:
 here the association is irrelevant and the total is exact. -/

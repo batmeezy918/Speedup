@@ -1,0 +1,12 @@
+{
+  "direction": "forward",
+  "metric": "max_abs_diff_candidate_vs_baseline",
+  "note": "candidate output is BITWISE IDENTICAL to baseline output. max|candidate - baseline| = 0.0 over all 4194304 elements.",
+  "observed": 0,
+  "pass": true,
+  "relation": "exact",
+  "scenario_id": "gemm-register-block-20260926T055754Z",
+  "schema": "PCSS-QUOTIENT",
+  "tolerance": 0.0,
+  "tolerance_declared": 0
+}

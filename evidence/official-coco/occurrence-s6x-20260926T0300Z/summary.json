@@ -1,0 +1,39 @@
+{
+  "protocol": {
+    "suite": "cocoex 2.8.2 official bbob",
+    "filter": "dimensions: 10, instances 1-5+71-80 (15/f)",
+    "budget": 1000,
+    "seed": 20260810,
+    "dimension": 10,
+    "problem_count": 360,
+    "note": "S6X vs repo reference CMA-ES (popsize=10, sigma0=0.3, no restart). Two-pass byte-identical replay gate PASSED.",
+    "algorithms": {
+      "S6X": "benchmarks/coco_head_to_head/s6x.py",
+      "CMA_ES": "cma.CMAEvolutionStrategy popsize=10"
+    },
+    "harness": "benchmarks/coco_head_to_head/s6x_head_to_head.py (run1==run2 cmp verified)"
+  },
+  "counts": {
+    "BOTH": 0,
+    "CMA_ONLY": 2,
+    "NEITHER": 358,
+    "S6X_ONLY": 0
+  },
+  "s6x_final_target_success_rate": 0.0,
+  "cma_final_target_success_rate": 0.005555555555555556,
+  "s6x_mean_best_f": 1011.6398289538116,
+  "cma_mean_best_f": 96.82481678413068,
+  "per_instance_best_f": {
+    "s6x_better": 66,
+    "cma_better": 294,
+    "ties": 0
+  },
+  "s6x_best_families": "f019(7/15) f021(2/15 bf) f023(8/15)",
+  "cma_best_families_smooth_illcond": "f001 f002 f005 f006 f010 f012 f014 f015 f016 f024",
+  "determinism": "PASS (run1==run2 byte-identical; results sha256 9e213550... / d1b51e58...)",
+  "comparison_sha256": "ed3c810e847c83a6ce5776bf071f562e4f567eac094d370c2c7bbf5f82e66708",
+  "s6x_results_sha256": "9e213550d9e6492de8960348d7bb8bd9e66cb842102d13b225adee288676c4fb",
+  "cma_results_sha256": "d1b51e5850655cc8e81c9859691d8ed0e3a4af2b1259bc5594dc383159a89e15",
+  "verdict": "NEGATIVE. S6X does NOT beat the reference CMA-ES on official BBOB@d10 budget 1000. 0/360 final-target hits vs CMA 2/360; CMA better on 294/360 instances by best-f. Wins multimodal families (f019/f021/f023) but loses smooth and ill-conditioned families decisively (f002/f010/f012). No speedup claim licensed.",
+  "claim_status": "NEGATIVE_LOCAL"
+}

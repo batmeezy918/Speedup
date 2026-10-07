@@ -1,0 +1,272 @@
+{
+  "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-2.0",
+  "run_id": "20261003T081507Z",
+  "seed_status": {
+    "rng_used": false,
+    "seed": null,
+    "reason": "structured deterministic operands (i%8 patterns), no RNG stream",
+    "input_domain": "A,B from rank-r patterns expanded by block replication",
+    "limitation": "structured operands may be unusually favourable to the block-replicated microkernel; see run_max_edge_composition_v3 for a seeded non-structured replication of the same measurement",
+    "seed_policy": {
+      "policy": "all repeated device runs use a pinned seed from this module",
+      "default_seed": 20261001,
+      "seeds": {
+        "default": 20261001,
+        "robustness": 20261001,
+        "callable_base": 20261001,
+        "composition": 20261001,
+        "floor_sweep": 20261001,
+        "claim_audit": 20261001
+      },
+      "derivation": "case_seed(name,label) = stable int hash of (base_seed, label)",
+      "note": "a changed seed is a new measurement, not a rerun; receipts are immutable"
+    }
+  },
+  "device": {
+    "arch": "aarch64",
+    "kernel": "6.17.0-PRoot-Distro",
+    "backend": "aarch64-neon-fma-register-block",
+    "version": "MuNi-callable-0.1"
+  },
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "cases": [
+    {
+      "case": "N2048_r32_block64",
+      "N": 2048,
+      "r": 32,
+      "block": 64,
+      "theoretical_state_op_ratio": 262144.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true
+      },
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            521154687,
+            590098958,
+            545470625,
+            573939843,
+            579403437,
+            600614948,
+            611266354,
+            586525624,
+            579449896,
+            598199531,
+            598783281
+          ],
+          "median_ns": 586525624.0,
+          "min_ns": 521154687,
+          "max_ns": 611266354
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            1637031,
+            773906,
+            912500,
+            2610156,
+            733334,
+            909688,
+            1468489,
+            1006719,
+            626354,
+            489115,
+            709115
+          ],
+          "median_ns": 909688.0,
+          "min_ns": 489115,
+          "max_ns": 2610156
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            1498541,
+            1282396,
+            4521875,
+            1922708,
+            330886,
+            538802,
+            542188,
+            859323,
+            780104,
+            1197812,
+            1150209
+          ],
+          "median_ns": 1150209.0,
+          "min_ns": 330886,
+          "max_ns": 4521875
+        },
+        "reconstruction": {
+          "timings_ns": [
+            5415417,
+            5661458,
+            5775313,
+            5229323,
+            5230208,
+            5356719,
+            5379479,
+            5027865,
+            5001927,
+            5048281,
+            4875677
+          ],
+          "median_ns": 5230208.0,
+          "min_ns": 4875677,
+          "max_ns": 5775313
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5449688,
+            5755834,
+            5710209,
+            8226302,
+            10358385,
+            7475521,
+            6167864,
+            6599011,
+            7041250,
+            8294948,
+            6025678
+          ],
+          "median_ns": 6599011.0,
+          "min_ns": 5449688,
+          "max_ns": 10358385
+        }
+      },
+      "speedups": {
+        "state_reduction": 95.5269639746341,
+        "execution_raw_quotient": 0.7908893079431651,
+        "execution_conditional_with_reconstruction": 0.9623032475777054,
+        "composed_e2e": 88.88083744670224,
+        "compositional_product": 91.92590766402886,
+        "composition_K": 0.9668747331986566,
+        "composition_residual": -3.045070217326611
+      }
+    },
+    {
+      "case": "N2048_r16_block128",
+      "N": 2048,
+      "r": 16,
+      "block": 128,
+      "theoretical_state_op_ratio": 2097152.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true
+      },
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            590858958,
+            541681771,
+            516988854,
+            518877291,
+            512683645,
+            2145559322,
+            3942320207,
+            3566422811,
+            3715299582,
+            3834177811,
+            3852134686
+          ],
+          "median_ns": 2145559322.0,
+          "min_ns": 512683645,
+          "max_ns": 3942320207
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            1526719,
+            5033178,
+            1515833,
+            2486822,
+            4365989,
+            3058594,
+            2975208,
+            3277969,
+            2976093,
+            3997291,
+            2419531
+          ],
+          "median_ns": 2976093.0,
+          "min_ns": 1515833,
+          "max_ns": 5033178
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            4979844,
+            5406979,
+            3672708,
+            2800781,
+            4846042,
+            2878177,
+            4639896,
+            4667343,
+            5405834,
+            4063437,
+            5379584
+          ],
+          "median_ns": 4667343.0,
+          "min_ns": 2800781,
+          "max_ns": 5406979
+        },
+        "reconstruction": {
+          "timings_ns": [
+            8832135,
+            8818802,
+            8783229,
+            8961771,
+            8773594,
+            8822708,
+            8678698,
+            8658282,
+            8713542,
+            8798646,
+            8823646
+          ],
+          "median_ns": 8798646.0,
+          "min_ns": 8658282,
+          "max_ns": 8961771
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            13580782,
+            14578281,
+            17927604,
+            19242604,
+            13427552,
+            16300729,
+            14334427,
+            11784636,
+            15190209,
+            14127656,
+            13830573
+          ],
+          "median_ns": 14334427.0,
+          "min_ns": 11784636,
+          "max_ns": 19242604
+        }
+      },
+      "speedups": {
+        "state_reduction": 182.21714485560997,
+        "execution_raw_quotient": 0.6376418017703006,
+        "execution_conditional_with_reconstruction": 0.8744058085893283,
+        "composed_e2e": 149.6787644179987,
+        "compositional_product": 159.3317298863084,
+        "composition_K": 0.9394159250313946,
+        "composition_residual": -9.652965468309702
+      }
+    }
+  ],
+  "claim_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E_WITH_EXPLICIT_COMPOSITION_CLOSURE",
+  "claim_boundary": [
+    "E2E is directly timed; isolated speedups are not multiplied to obtain it.",
+    "The compositional product uses the conditional execution factor with reconstruction held fixed.",
+    "K near 1 is the algebraic closure criterion; deviations require measurement/error analysis.",
+    "Theoretical operation ratio is not wall-clock speedup.",
+    "Exact equality is scoped to the constructed integer invariant sector and this binary32 implementation."
+  ],
+  "datadog_integration": {
+    "status": "NO_HOST_TELEMETRY_FOUND",
+    "note": "Datadog organization was queried; no matching observed host/service was returned, so no false telemetry binding is asserted."
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "schema": "PCSS-CERT-2.0",
+  "run_id": "ab-host-2048-1791291480",
+  "scenario_id": "gemm_register_block_n2048",
+  "metric": "median_ns",
+  "n": 2048,
+  "iters": 25,
+  "warmups": 3,
+  "repetitions": 25,
+  "interleaved": true,
+  "control_arm": "baseline re-run (A-vs-A)",
+  "unit": "ns",
+  "seed": 20260826,
+  "toolchain": "gcc -O3 -march=native -fopenmp",
+  "max_abs_diff": 0,
+  "equivalent": true,
+  "speedup": 1.932526441,
+  "noise_floor": {"ratio": 0.9998015659, "samples": 25, "method": "A-vs-A control arm"},
+  "environment": {
+    "cores_pinned": 1,
+    "cores_total": 8,
+    "core_type": "Cortex-A55",
+    "governor": "walt",
+    "max_freq_mhz": 1804,
+    "arch": "cpuset 4"
+  },
+  "reproduction": {
+    "runs": 2,
+    "ratios": [1.925431238, 1.939661026],
+    "agreement": "REPRODUCED"
+  },
+  "performance": {
+    "reported_metric": "median_ns",
+    "timing_source": "clock_gettime(CLOCK_MONOTONIC)",
+    "attribution": {
+      "work_ratio": 1.0,
+      "inheritable_conditions": [
+        "same 2*n^3 flops; pure constant-factor gain",
+        "bitwise-identical output (max_abs_diff == 0)",
+        "any call site using the same GEMM kernel shape"
+      ],
+      "composed": false,
+      "overlap": null
+    }
+  },
+  "baseline": {
+    "median": 3858358488, "mad": 26099896, "min": 3576907812, "max": 4240773593,
+    "samples": [3576907812, 3781580884, 3811612967, 3823367446, 3830349374, 3832258592, 3837586456, 3837853072, 3843506301, 3850579842, 3853275936, 3854066561, 3858358488, 3860379738, 3865545624, 3868928696, 3873467290, 3884349166, 3897654529, 3911995831, 3924207394, 3959482811, 3982832290, 4027791041, 4240773593],
+    "unit": "ns"
+  },
+  "candidate": {
+    "median": 1996535937, "mad": 18342656, "min": 1861385156, "max": 2179983592,
+    "samples": [1861385156, 1865193489, 1963021457, 1963467707, 1969513698, 1977424739, 1978193281, 1983136614, 1984742499, 1985826562, 1986276093, 1989909061, 1996535937, 1998905780, 2000914061, 2003339947, 2005891509, 2009144479, 2011203541, 2021209843, 2031278697, 2038979999, 2054541198, 2074395103, 2179983592],
+    "unit": "ns"
+  },
+  "control": {
+    "median": 3859124270, "mad": 42242137, "min": 3582726197, "max": 4140657706,
+    "samples": [3582726197, 3754833905, 3806449114, 3807821041, 3812502706, 3816882133, 3820217550, 3833718905, 3839786665, 3845361040, 3850862759, 3856334478, 3859124270, 3862472550, 3865682603, 3878322134, 3884252445, 3894286770, 3905351561, 3916233696, 3921921353, 4003863540, 4023724634, 4050976560, 4140657706],
+    "unit": "ns"
+  },
+  "ratio_candidate": 1.932526441,
+  "ratio_control": 0.9998015659,
+  "scenario_hash": "38e0616cb861a56c21fdc4a302c6b109c5a53a3ae8c8613285993cae0b95f56b",
+  "source_hash": "cc9be7a235efdb097b38e904a4be93e36fe77b2a7b760e0dd6edebfd1682077a",
+  "input_hash": "38e0616cb861a56c21fdc4a302c6b109c5a53a3ae8c8613285993cae0b95f56b",
+  "environment_hash": "f6a5242706cbd0ebc86c9724caee3ba18ee31e848fae0e2c868ce54721c45cf9",
+  "baseline_trace_hash": "46352c225f0c7daff6f5f515c231f7eaf355a18bfcde17b8f7d1dde6394e135d",
+  "candidate_trace_hash": "c2abd35017c06e525743dd045460999d50bceb81144867be53201c183f524ec5",
+  "quotient_hash": "c2abd35017c06e525743dd045460999d50bceb81144867be53201c183f524ec5",
+  "reconstruction_hash": "362f3de6ae662d8f72e47faa681de3dd9404904413bcd23d6a00303e8ebfe612",
+  "invariant_hash": "b23a6a8439c0dde5515893e7c90c1e3233b8616e634470f20dc4928bcf3609bc",
+  "performance_hash": "37084bf5eb0def16c7419c2cbfe2f357ea6b998f2f4a4d4f73d317ef12e48cd8",
+  "lean_hash": "517d8f5a6677f08e805a3e49befac026ee90558ac43c61c7c16203bdc1e078c5",
+  "run_id": "ab-unknown-cpu1-govwalt-n2048",
+  "scenario_id": "gemm_register_block_n2048",
+  "timestamp": "recorded-by-run",
+  "seed": 20260826,
+  "parameters": {"n": 2048, "iters": 25, "warmups": 3, "omp_threads": 1},
+  "tolerance": 0.0,
+  "metric": "median_ns",
+  "baseline_measurement": {"median_s": 3.858358488, "samples": 25},
+  "candidate_measurement": {"median_s": 1.996535937, "samples": 25},
+  "speedup": 1.932526441,
+  "invariants": {"preserved": true, "max_abs_diff": 0, "tolerance": 0.0},
+  "implementation_identity": "full_vector_gemm -> register_blocked_gemm (bitwise identical)",
+  "gates": {"integrity": true, "reproducibility": true, "quotient_forward": true, "reconstruction_reverse": true, "invariants": true, "performance": true, "lean": false},
+  "uncertainty": {"treatment": "median+MAD, interleaved, A-vs-A control arm", "baseline_std_s": 0.026099896, "candidate_std_s": 0.018342656, "speedup_low_s": 1.92788706848, "speedup_high_s": 1.93725184936},
+  "mechanism": "constant_factor",
+  "claim_strength": "NOT_VERIFIED",
+  "claim_boundary": "declared scenario only; single core (unknown), governor walt; the gain is a cache-residency effect and is not portable across hosts without re-measurement",
+  "artifact_paths": [{"path": "workloads/gemm_register_block/ab_traces.json", "sha256": "37084bf5eb0def16c7419c2cbfe2f357ea6b998f2f4a4d4f73d317ef12e48cd8"}]
+}

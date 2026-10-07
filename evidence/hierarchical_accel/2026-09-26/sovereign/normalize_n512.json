@@ -1,0 +1,43 @@
+{
+  "n": 512,
+  "omp_num_threads": 1,
+  "observable": "full C=A*B matrix, elementwise vs scalar baseline",
+  "baseline": {"name": "scalar_triple_loop_i_k_j", "median_s": 0.132360052, "gflops": 2.0281, "checksum": 324807328.0},
+  "candidates": [
+    {
+      "name": "neon_correct",
+      "source": "sovereign_gemm_fixed_verify.c",
+      "observable_ok": true,
+      "max_error": 0.000122,
+      "coverage_frac": 1.000000,
+      "result_frac_of_baseline": 1.000000,
+      "median_s": 0.236710000,
+      "gflops": 1.1340,
+      "speedup_vs_baseline": 0.5592
+    },
+    {
+      "name": "neon_broken_verify",
+      "source": "sovereign_gemm_verify.c",
+      "observable_ok": false,
+      "max_error": 1239.041626,
+      "coverage_frac": 0.125000,
+      "result_frac_of_baseline": 0.125000,
+      "median_s": 0.021950052,
+      "gflops": 12.2294,
+      "speedup_vs_baseline": null,
+      "reject_reason": "does not reproduce the baseline observable; timing discarded"
+    },
+    {
+      "name": "neon_broken_max",
+      "source": "sovereign_gemm_max.c",
+      "observable_ok": false,
+      "max_error": 1239.041626,
+      "coverage_frac": 0.250000,
+      "result_frac_of_baseline": 0.250000,
+      "median_s": 0.025414635,
+      "gflops": 10.5622,
+      "speedup_vs_baseline": null,
+      "reject_reason": "does not reproduce the baseline observable; timing discarded"
+    }
+  ]
+}

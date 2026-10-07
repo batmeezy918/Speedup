@@ -1,0 +1,20 @@
+{
+  "build_exit_code": 0,
+  "declared_not_proven": [
+    "BlockedSumObligation (general N-block reassociation)"
+  ],
+  "file": "lean4/PCSSGemmRegisterBlock.lean",
+  "pass": true,
+  "proven": [
+    "sum_append",
+    "microkernel_reassociation",
+    "reassociate3",
+    "workRatio_is_one",
+    "no_speedup_from_this"
+  ],
+  "scenario_id": "gemm-register-block-20260926T055827Z",
+  "schema": "PCSS-LEAN",
+  "scope": "The reassociation identity the shipped 8x8 microkernel actually evaluates is machine-checked. The general N-block form is an open obligation. No performance theorem is claimed or needed: work_ratio = 1.",
+  "stderr_tail": "",
+  "toolchain": "leanprover/lean4:v4.29.0"
+}

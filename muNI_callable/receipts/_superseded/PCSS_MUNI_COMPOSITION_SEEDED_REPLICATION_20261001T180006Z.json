@@ -1,0 +1,1551 @@
+{
+  "schema": "PCSS-MUNI-COMPOSITION-SEEDED-REPLICATION-1.0",
+  "run_id": "20261001T180006Z",
+  "purpose": "test whether the ~435x composed speedup measured on structured (i%8) operands survives non-structured data, and whether it is ever a KERNEL speedup rather than a state reduction",
+  "seed_status": {
+    "rng_used": true,
+    "seed_base": 20261001,
+    "per_case_rule": "case_seed(harness, family_rN_NN) -- stable across processes, independent of PYTHONHASHSEED",
+    "seed_policy": {
+      "policy": "all repeated device runs use a pinned seed from this module",
+      "default_seed": 20261001,
+      "seeds": {
+        "default": 20261001,
+        "robustness": 20261001,
+        "callable_base": 20261001,
+        "composition": 20261001,
+        "floor_sweep": 20261001,
+        "claim_audit": 20261001
+      },
+      "derivation": "case_seed(name,label) = stable int hash of (base_seed, label)",
+      "note": "a changed seed is a new measurement, not a rerun; receipts are immutable"
+    }
+  },
+  "device": {
+    "arch": "aarch64",
+    "kernel": "6.17.0-PRoot-Distro",
+    "backend": "aarch64-neon-fma-register-block",
+    "version": "MuNi-callable-0.1"
+  },
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "protocol": {
+    "N": 2048,
+    "ranks": [
+      32,
+      16
+    ],
+    "warmups": 3,
+    "repetitions": 11,
+    "omp_threads": 1,
+    "statistic": "median of 11 repetitions"
+  },
+  "cases": [
+    {
+      "case": "structured_v2_replica_N2048_r32_block64",
+      "family": "structured_v2_replica",
+      "family_rationale": "the exact (i%8) pattern from v2; reproduces the original headline",
+      "seed": 285071446,
+      "N": 2048,
+      "r": 32,
+      "block": 64,
+      "theoretical_state_op_ratio": 262144.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 0.0
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2536956562,
+            2447598228,
+            2461233697,
+            2453011874,
+            2452380260,
+            2497474947,
+            2430636978,
+            2412099894,
+            2431855520,
+            2457044530,
+            2639340103
+          ],
+          "median_ns": 2453011874,
+          "min_ns": 2412099894,
+          "max_ns": 2639340103
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            564635,
+            167812,
+            120156,
+            115521,
+            145468,
+            140781,
+            90052,
+            86146,
+            137500,
+            83646,
+            4433333
+          ],
+          "median_ns": 137500,
+          "min_ns": 83646,
+          "max_ns": 4433333
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            966302,
+            655156,
+            572916,
+            5258386,
+            294375,
+            196094,
+            115313,
+            178438,
+            197448,
+            141459,
+            210833
+          ],
+          "median_ns": 210833,
+          "min_ns": 115313,
+          "max_ns": 5258386
+        },
+        "reconstruction": {
+          "timings_ns": [
+            7082031,
+            6038281,
+            6401511,
+            6529010,
+            6181407,
+            6417292,
+            6723230,
+            6067396,
+            6322812,
+            6747187,
+            5943750
+          ],
+          "median_ns": 6401511,
+          "min_ns": 5943750,
+          "max_ns": 7082031
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            10377447,
+            10607917,
+            6564532,
+            7627865,
+            8513385,
+            7409115,
+            6938073,
+            9715677,
+            26134583,
+            27324896,
+            11812813
+          ],
+          "median_ns": 9715677,
+          "min_ns": 6564532,
+          "max_ns": 27324896
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 375.1349973260482,
+        "state_reduction_S1_literal": 17840.086356363638,
+        "execution_raw_quotient": 0.6521749441501093,
+        "execution_conditional_with_reconstruction": 0.9889096816499565,
+        "composed_e2e": 252.47976790500547,
+        "reconstruction_over_T1": 46.55644363636364
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "structured_v2_replica_N2048_r16_block128",
+      "family": "structured_v2_replica",
+      "family_rationale": "the exact (i%8) pattern from v2; reproduces the original headline",
+      "seed": 349465500,
+      "N": 2048,
+      "r": 16,
+      "block": 128,
+      "theoretical_state_op_ratio": 2097152.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 0.0
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2430522759,
+            2424146145,
+            2453738333,
+            2431405884,
+            2439374791,
+            2548608176,
+            2499239478,
+            2458467135,
+            2423911144,
+            2451616301,
+            2473622499
+          ],
+          "median_ns": 2451616301,
+          "min_ns": 2423911144,
+          "max_ns": 2548608176
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            201562,
+            97917,
+            149843,
+            89167,
+            111250,
+            111145,
+            100364,
+            93490,
+            159271,
+            210105,
+            139584
+          ],
+          "median_ns": 111250,
+          "min_ns": 89167,
+          "max_ns": 210105
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            359011,
+            206406,
+            234896,
+            182240,
+            158594,
+            121511,
+            133697,
+            157448,
+            131771,
+            3882760,
+            244531
+          ],
+          "median_ns": 182240,
+          "min_ns": 121511,
+          "max_ns": 3882760
+        },
+        "reconstruction": {
+          "timings_ns": [
+            5375938,
+            6114635,
+            6294270,
+            5769583,
+            5531198,
+            7246459,
+            5449583,
+            4902239,
+            5548385,
+            5225208,
+            4731980
+          ],
+          "median_ns": 5531198,
+          "min_ns": 4731980,
+          "max_ns": 7246459
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            6867448,
+            5375260,
+            6610833,
+            5799792,
+            5295052,
+            5354635,
+            6828386,
+            5242969,
+            5617968,
+            5346770,
+            5081303
+          ],
+          "median_ns": 5375260,
+          "min_ns": 5081303,
+          "max_ns": 6867448
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 434.49515192696504,
+        "state_reduction_S1_literal": 22037.000458426966,
+        "execution_raw_quotient": 0.6104587357330992,
+        "execution_conditional_with_reconstruction": 0.9875749067374145,
+        "composed_e2e": 456.092598497561,
+        "reconstruction_over_T1": 49.718633707865166
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "uniform_random_N2048_r32_block64",
+      "family": "uniform_random",
+      "family_rationale": "general position, no exploitable structure",
+      "seed": 4269302529,
+      "N": 2048,
+      "r": 32,
+      "block": 64,
+      "theoretical_state_op_ratio": 262144.0,
+      "correctness": {
+        "max_abs_error": 0.048828125,
+        "bitwise_equal": false,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 9.527635392559966e-06
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2691607134,
+            2474476926,
+            2480381457,
+            2520814218,
+            2990374687,
+            2595385363,
+            2474044113,
+            2487610988,
+            2543592968,
+            2720910051,
+            2570871718
+          ],
+          "median_ns": 2543592968,
+          "min_ns": 2474044113,
+          "max_ns": 2990374687
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            335834,
+            147396,
+            128229,
+            197135,
+            116042,
+            126250,
+            160677,
+            459739,
+            148437,
+            128385,
+            94584
+          ],
+          "median_ns": 147396,
+          "min_ns": 94584,
+          "max_ns": 459739
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            307969,
+            449948,
+            1059583,
+            315937,
+            275365,
+            317344,
+            560157,
+            828177,
+            667656,
+            3583906,
+            295261
+          ],
+          "median_ns": 449948,
+          "min_ns": 275365,
+          "max_ns": 3583906
+        },
+        "reconstruction": {
+          "timings_ns": [
+            6846458,
+            7024531,
+            7167187,
+            5587864,
+            6474531,
+            6467083,
+            5637760,
+            6401198,
+            6137605,
+            6486667,
+            6753802
+          ],
+          "median_ns": 6474531,
+          "min_ns": 5587864,
+          "max_ns": 7167187
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            12726302,
+            10381563,
+            8027032,
+            9601198,
+            10359427,
+            7880833,
+            7444167,
+            7746719,
+            13874583,
+            14744167,
+            8193230
+          ],
+          "median_ns": 9601198,
+          "min_ns": 7444167,
+          "max_ns": 14744167
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 384.11673339195676,
+        "state_reduction_S1_literal": 17256.86564085864,
+        "execution_raw_quotient": 0.32758452087796813,
+        "execution_conditional_with_reconstruction": 0.9563068932695153,
+        "composed_e2e": 264.9245404583886,
+        "reconstruction_over_T1": 43.92609704469592
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "uniform_random_N2048_r16_block128",
+      "family": "uniform_random",
+      "family_rationale": "general position, no exploitable structure",
+      "seed": 38729287,
+      "N": 2048,
+      "r": 16,
+      "block": 128,
+      "theoretical_state_op_ratio": 2097152.0,
+      "correctness": {
+        "max_abs_error": 0.056396484375,
+        "bitwise_equal": false,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 1.4900477389364117e-05
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2753662342,
+            2468577135,
+            2452096041,
+            2583069009,
+            3107801457,
+            2840195676,
+            2809976353,
+            2529265051,
+            2454893540,
+            2595950989,
+            2441065624
+          ],
+          "median_ns": 2583069009,
+          "min_ns": 2441065624,
+          "max_ns": 3107801457
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            75416,
+            120209,
+            122656,
+            94063,
+            88386,
+            101250,
+            97291,
+            97812,
+            112292,
+            93855,
+            160729
+          ],
+          "median_ns": 97812,
+          "min_ns": 75416,
+          "max_ns": 160729
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            157708,
+            150937,
+            155417,
+            161979,
+            153802,
+            149011,
+            135000,
+            157552,
+            173021,
+            165052,
+            148073
+          ],
+          "median_ns": 155417,
+          "min_ns": 135000,
+          "max_ns": 173021
+        },
+        "reconstruction": {
+          "timings_ns": [
+            4985625,
+            4420781,
+            4280468,
+            5506510,
+            4950208,
+            4961458,
+            4630260,
+            5364375,
+            5162084,
+            4591145,
+            5241771
+          ],
+          "median_ns": 4961458,
+          "min_ns": 4280468,
+          "max_ns": 5506510
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5286094,
+            5908021,
+            5448750,
+            5243802,
+            6191041,
+            5998177,
+            5958490,
+            5704011,
+            5520417,
+            5207813,
+            5948125
+          ],
+          "median_ns": 5704011,
+          "min_ns": 5207813,
+          "max_ns": 6191041
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 510.5616045397854,
+        "state_reduction_S1_literal": 26408.50825052141,
+        "execution_raw_quotient": 0.6293520013898094,
+        "execution_conditional_with_reconstruction": 0.9887421521925003,
+        "composed_e2e": 452.8513372432136,
+        "reconstruction_over_T1": 50.72443054022001
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "normal_random_N2048_r32_block64",
+      "family": "normal_random",
+      "family_rationale": "realistic-ish centred distribution",
+      "seed": 1723433934,
+      "N": 2048,
+      "r": 32,
+      "block": 64,
+      "theoretical_state_op_ratio": 262144.0,
+      "correctness": {
+        "max_abs_error": 0.0595703125,
+        "bitwise_equal": false,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 1.9095006264570703e-05
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2792776145,
+            2779730051,
+            2511109218,
+            2489167290,
+            3703803696,
+            2838615572,
+            2504961249,
+            2485474791,
+            2561846509,
+            2655485156,
+            2427081510
+          ],
+          "median_ns": 2561846509,
+          "min_ns": 2427081510,
+          "max_ns": 3703803696
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            127448,
+            136823,
+            186875,
+            119427,
+            161562,
+            114792,
+            140469,
+            122917,
+            127135,
+            128906,
+            110052
+          ],
+          "median_ns": 127448,
+          "min_ns": 110052,
+          "max_ns": 186875
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            197084,
+            184896,
+            152239,
+            173646,
+            182761,
+            174948,
+            219844,
+            154896,
+            147500,
+            156511,
+            202760
+          ],
+          "median_ns": 174948,
+          "min_ns": 147500,
+          "max_ns": 219844
+        },
+        "reconstruction": {
+          "timings_ns": [
+            5535365,
+            5369948,
+            4962604,
+            5304792,
+            5596771,
+            4979792,
+            5186458,
+            5232448,
+            5251927,
+            5120260,
+            5277135
+          ],
+          "median_ns": 5251927,
+          "min_ns": 4962604,
+          "max_ns": 5596771
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5292656,
+            5637969,
+            5756458,
+            5283437,
+            5768646,
+            5979427,
+            5286198,
+            5383333,
+            5721146,
+            5445782,
+            5280834
+          ],
+          "median_ns": 5445782,
+          "min_ns": 5280834,
+          "max_ns": 5979427
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 476.23497320785407,
+        "state_reduction_S1_literal": 20101.111896616658,
+        "execution_raw_quotient": 0.7284907515375998,
+        "execution_conditional_with_reconstruction": 0.9912472647702407,
+        "composed_e2e": 470.42766475044357,
+        "reconstruction_over_T1": 41.20839087314042
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "normal_random_N2048_r16_block128",
+      "family": "normal_random",
+      "family_rationale": "realistic-ish centred distribution",
+      "seed": 1787827988,
+      "N": 2048,
+      "r": 16,
+      "block": 128,
+      "theoretical_state_op_ratio": 2097152.0,
+      "correctness": {
+        "max_abs_error": 0.033203125,
+        "bitwise_equal": false,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 1.2995846963009538e-05
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2725271041,
+            2707411665,
+            2738760520,
+            2775924426,
+            2726395468,
+            2747440937,
+            2742079582,
+            2711438645,
+            2838188072,
+            2726466822,
+            2453679999
+          ],
+          "median_ns": 2726466822,
+          "min_ns": 2453679999,
+          "max_ns": 2838188072
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            108541,
+            121511,
+            145156,
+            149531,
+            120208,
+            102448,
+            106614,
+            102240,
+            101094,
+            167396,
+            131667
+          ],
+          "median_ns": 120208,
+          "min_ns": 101094,
+          "max_ns": 167396
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            193958,
+            349270,
+            475729,
+            205989,
+            174636,
+            196354,
+            183177,
+            745677,
+            310261,
+            255209,
+            191823
+          ],
+          "median_ns": 205989,
+          "min_ns": 174636,
+          "max_ns": 745677
+        },
+        "reconstruction": {
+          "timings_ns": [
+            5282448,
+            4884219,
+            5081041,
+            5114479,
+            4899635,
+            4760417,
+            5368854,
+            5365885,
+            4979219,
+            5171875,
+            5685625
+          ],
+          "median_ns": 5114479,
+          "min_ns": 4760417,
+          "max_ns": 5685625
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5110625,
+            5388854,
+            5752396,
+            5836198,
+            5565209,
+            6283073,
+            6147865,
+            6034739,
+            8490156,
+            6046146,
+            6532239
+          ],
+          "median_ns": 6034739,
+          "min_ns": 5110625,
+          "max_ns": 8490156
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 520.846198063036,
+        "state_reduction_S1_literal": 22681.242695993613,
+        "execution_raw_quotient": 0.5835651418279617,
+        "execution_conditional_with_reconstruction": 0.9838771702038241,
+        "composed_e2e": 451.7953174114075,
+        "reconstruction_over_T1": 42.546910355384
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "mixed_scale_N2048_r32_block64",
+      "family": "mixed_scale",
+      "family_rationale": "powers of two across exponents; probes rounding/denormal behaviour",
+      "seed": 3103472377,
+      "N": 2048,
+      "r": 32,
+      "block": 64,
+      "theoretical_state_op_ratio": 262144.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 0.0
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2697295363,
+            2454576874,
+            2406800520,
+            2664216249,
+            2767170363,
+            2594018801,
+            2546033281,
+            2588887655,
+            2742196926,
+            2678400937,
+            2425539010
+          ],
+          "median_ns": 2594018801,
+          "min_ns": 2406800520,
+          "max_ns": 2767170363
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            147083,
+            109062,
+            110313,
+            89062,
+            269115,
+            355469,
+            195261,
+            470313,
+            311250,
+            113854,
+            340885
+          ],
+          "median_ns": 195261,
+          "min_ns": 89062,
+          "max_ns": 470313
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            156510,
+            172291,
+            137240,
+            134323,
+            334375,
+            213750,
+            207916,
+            332604,
+            290364,
+            265937,
+            282917
+          ],
+          "median_ns": 213750,
+          "min_ns": 134323,
+          "max_ns": 334375
+        },
+        "reconstruction": {
+          "timings_ns": [
+            5252083,
+            5544218,
+            6454062,
+            5957552,
+            5973281,
+            9390312,
+            6076666,
+            6054062,
+            6516459,
+            5948125,
+            5966042
+          ],
+          "median_ns": 5973281,
+          "min_ns": 5252083,
+          "max_ns": 9390312
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            6605573,
+            7684427,
+            6928594,
+            5437396,
+            6123645,
+            7023750,
+            6592552,
+            6575104,
+            8253698,
+            7095052,
+            6393698
+          ],
+          "median_ns": 6605573,
+          "min_ns": 5437396,
+          "max_ns": 8253698
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 420.5238127583471,
+        "state_reduction_S1_literal": 13284.879218072221,
+        "execution_raw_quotient": 0.9135017543859649,
+        "execution_conditional_with_reconstruction": 0.9970116522771585,
+        "composed_e2e": 392.7015568520702,
+        "reconstruction_over_T1": 30.59126502476173
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "mixed_scale_N2048_r16_block128",
+      "family": "mixed_scale",
+      "family_rationale": "powers of two across exponents; probes rounding/denormal behaviour",
+      "seed": 3167866431,
+      "N": 2048,
+      "r": 16,
+      "block": 128,
+      "theoretical_state_op_ratio": 2097152.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 0.0
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            3215200780,
+            2831839582,
+            2832541874,
+            2849450988,
+            3191494269,
+            2777324426,
+            2586889061,
+            2445450780,
+            2544163801,
+            2855068593,
+            2598025937
+          ],
+          "median_ns": 2831839582,
+          "min_ns": 2445450780,
+          "max_ns": 3215200780
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            99896,
+            96979,
+            93802,
+            488281,
+            99688,
+            96979,
+            95209,
+            93282,
+            92187,
+            92083,
+            91719
+          ],
+          "median_ns": 95209,
+          "min_ns": 91719,
+          "max_ns": 488281
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            138646,
+            138646,
+            137656,
+            137240,
+            136719,
+            136302,
+            136406,
+            153020,
+            153698,
+            132864,
+            165781
+          ],
+          "median_ns": 137656,
+          "min_ns": 132864,
+          "max_ns": 165781
+        },
+        "reconstruction": {
+          "timings_ns": [
+            5424948,
+            4924636,
+            4985365,
+            4805521,
+            5350157,
+            4831666,
+            4701094,
+            4698229,
+            5172708,
+            4989270,
+            4653230
+          ],
+          "median_ns": 4924636,
+          "min_ns": 4653230,
+          "max_ns": 5424948
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5133333,
+            5031667,
+            5556875,
+            4970052,
+            4961719,
+            5136563,
+            5684166,
+            5397552,
+            5077865,
+            5386094,
+            5134739
+          ],
+          "median_ns": 5134739,
+          "min_ns": 4961719,
+          "max_ns": 5684166
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 564.1288888401933,
+        "state_reduction_S1_literal": 29743.402220378324,
+        "execution_raw_quotient": 0.6916443889114895,
+        "execution_conditional_with_reconstruction": 0.9916150629003622,
+        "composed_e2e": 551.5060418845047,
+        "reconstruction_over_T1": 51.72447982858763
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "wide_dynamic_range_N2048_r32_block64",
+      "family": "wide_dynamic_range",
+      "family_rationale": "near-overflow and near-absorption values; worst case for reassociation",
+      "seed": 3822824036,
+      "N": 2048,
+      "r": 32,
+      "block": 64,
+      "theoretical_state_op_ratio": 262144.0,
+      "correctness": {
+        "max_abs_error": 5.591669297343208e+19,
+        "bitwise_equal": false,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 8.952101182738688e-06
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2477654114,
+            2494603176,
+            2452854738,
+            2564083281,
+            2871917395,
+            2584242656,
+            3019368541,
+            3214485207,
+            3093803280,
+            2821131926,
+            2824947447
+          ],
+          "median_ns": 2821131926,
+          "min_ns": 2452854738,
+          "max_ns": 3214485207
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            108281,
+            103646,
+            103802,
+            446511,
+            174688,
+            116615,
+            183229,
+            5956562,
+            360157,
+            689375,
+            493438
+          ],
+          "median_ns": 183229,
+          "min_ns": 103646,
+          "max_ns": 5956562
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            2131719,
+            4064062,
+            4802031,
+            924479,
+            724270,
+            951770,
+            1112187,
+            7435678,
+            5102135,
+            5197396,
+            2168385
+          ],
+          "median_ns": 2168385,
+          "min_ns": 724270,
+          "max_ns": 7435678
+        },
+        "reconstruction": {
+          "timings_ns": [
+            7845886,
+            7530990,
+            13116666,
+            6181406,
+            6303698,
+            8625365,
+            6668802,
+            6072448,
+            6329219,
+            6056458,
+            8376615
+          ],
+          "median_ns": 6668802,
+          "min_ns": 6056458,
+          "max_ns": 13116666
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            7109479,
+            6359375,
+            6063125,
+            15854427,
+            6272448,
+            7250729,
+            6507344,
+            6255260,
+            6881094,
+            6676510,
+            6178593
+          ],
+          "median_ns": 6507344,
+          "min_ns": 6063125,
+          "max_ns": 15854427
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 411.7220027171506,
+        "state_reduction_S1_literal": 15396.754476638524,
+        "execution_raw_quotient": 0.08450021559824478,
+        "execution_conditional_with_reconstruction": 0.7753633594038465,
+        "composed_e2e": 433.53047356955466,
+        "reconstruction_over_T1": 36.39599626696647
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "wide_dynamic_range_N2048_r16_block128",
+      "family": "wide_dynamic_range",
+      "family_rationale": "near-overflow and near-absorption values; worst case for reassociation",
+      "seed": 3887218090,
+      "N": 2048,
+      "r": 16,
+      "block": 128,
+      "theoretical_state_op_ratio": 2097152.0,
+      "correctness": {
+        "max_abs_error": 9.7998327891582e+18,
+        "bitwise_equal": false,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 1.9839294710739e-06
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2747576873,
+            2734161614,
+            2708539009,
+            2711030572,
+            2709496562,
+            2602681770,
+            2363923124,
+            2521725468,
+            2601826405,
+            2370599375,
+            2429443592
+          ],
+          "median_ns": 2602681770,
+          "min_ns": 2363923124,
+          "max_ns": 2747576873
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            195782,
+            490417,
+            211927,
+            192344,
+            219063,
+            813541,
+            471511,
+            133750,
+            203541,
+            323855,
+            292604
+          ],
+          "median_ns": 219063,
+          "min_ns": 133750,
+          "max_ns": 813541
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            251563,
+            2852917,
+            267135,
+            466875,
+            208750,
+            216146,
+            285990,
+            206927,
+            153959,
+            182292,
+            115052
+          ],
+          "median_ns": 216146,
+          "min_ns": 115052,
+          "max_ns": 2852917
+        },
+        "reconstruction": {
+          "timings_ns": [
+            6403333,
+            5924636,
+            5257448,
+            4988802,
+            5626927,
+            4741979,
+            5081146,
+            5154531,
+            5569739,
+            5165469,
+            5286979
+          ],
+          "median_ns": 5257448,
+          "min_ns": 4741979,
+          "max_ns": 6403333
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5323281,
+            5661042,
+            5170156,
+            5276197,
+            5114167,
+            5879948,
+            5554115,
+            5571719,
+            5375416,
+            5626719,
+            5264114
+          ],
+          "median_ns": 5375416,
+          "min_ns": 5114167,
+          "max_ns": 5879948
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 475.2445069497715,
+        "state_reduction_S1_literal": 11880.973829446324,
+        "execution_raw_quotient": 1.0134955076661145,
+        "execution_conditional_with_reconstruction": 1.000532922244507,
+        "composed_e2e": 484.18239072101585,
+        "reconstruction_over_T1": 23.999707846601208
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": true,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "alternating_sign_N2048_r32_block64",
+      "family": "alternating_sign",
+      "family_rationale": "cancellation; inflates relative error",
+      "seed": 3051936472,
+      "N": 2048,
+      "r": 32,
+      "block": 64,
+      "theoretical_state_op_ratio": 262144.0,
+      "correctness": {
+        "max_abs_error": 0.0703125,
+        "bitwise_equal": false,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 1.4719373608878644e-05
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2648757499,
+            2552913436,
+            2753608228,
+            2922805780,
+            2778483332,
+            2741741457,
+            2754424113,
+            2657550729,
+            2606159166,
+            2655703801,
+            2427843489
+          ],
+          "median_ns": 2657550729,
+          "min_ns": 2427843489,
+          "max_ns": 2922805780
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            113541,
+            90260,
+            89323,
+            102813,
+            102552,
+            101355,
+            99739,
+            100573,
+            99948,
+            98802,
+            102136
+          ],
+          "median_ns": 100573,
+          "min_ns": 89323,
+          "max_ns": 113541
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            146510,
+            146250,
+            141250,
+            173802,
+            139427,
+            140156,
+            140573,
+            140886,
+            137812,
+            138125,
+            137657
+          ],
+          "median_ns": 140573,
+          "min_ns": 137657,
+          "max_ns": 173802
+        },
+        "reconstruction": {
+          "timings_ns": [
+            5289480,
+            5436562,
+            5898072,
+            5563385,
+            5332084,
+            5486354,
+            5287292,
+            5467865,
+            5473489,
+            5471823,
+            5260990
+          ],
+          "median_ns": 5467865,
+          "min_ns": 5260990,
+          "max_ns": 5898072
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5563281,
+            5363906,
+            6091146,
+            5651302,
+            5298594,
+            5554271,
+            5824323,
+            5446979,
+            5729687,
+            6771458,
+            6933489
+          ],
+          "median_ns": 5651302,
+          "min_ns": 5298594,
+          "max_ns": 6933489
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 477.2524591276764,
+        "state_reduction_S1_literal": 26424.097212969682,
+        "execution_raw_quotient": 0.7154503354129171,
+        "execution_conditional_with_reconstruction": 0.9928678894194783,
+        "composed_e2e": 470.25459425102395,
+        "reconstruction_over_T1": 54.36712636592326
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    },
+    {
+      "case": "alternating_sign_N2048_r16_block128",
+      "family": "alternating_sign",
+      "family_rationale": "cancellation; inflates relative error",
+      "seed": 3116330526,
+      "N": 2048,
+      "r": 16,
+      "block": 128,
+      "theoretical_state_op_ratio": 2097152.0,
+      "correctness": {
+        "max_abs_error": 0.0595703125,
+        "bitwise_equal": false,
+        "full_finite": true,
+        "reference_finite": true,
+        "relative_error": 1.584099176034709e-05
+      },
+      "speedup_admissible": true,
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2676670884,
+            2627175207,
+            2386357707,
+            2388745155,
+            2398898645,
+            2392124375,
+            2395635781,
+            2449848593,
+            2487946041,
+            3212605832,
+            3167836248
+          ],
+          "median_ns": 2449848593,
+          "min_ns": 2386357707,
+          "max_ns": 3212605832
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            219219,
+            258282,
+            368541,
+            730729,
+            726302,
+            4326354,
+            10979583,
+            1004688,
+            8908177,
+            4005261,
+            673750
+          ],
+          "median_ns": 730729,
+          "min_ns": 219219,
+          "max_ns": 10979583
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            876875,
+            10353594,
+            4915520,
+            913489,
+            1837084,
+            1217709,
+            6682083,
+            9925989,
+            2534219,
+            2249583,
+            1362812
+          ],
+          "median_ns": 2249583,
+          "min_ns": 876875,
+          "max_ns": 10353594
+        },
+        "reconstruction": {
+          "timings_ns": [
+            13530521,
+            11522395,
+            7716406,
+            5536510,
+            5213490,
+            5640729,
+            5415000,
+            5774167,
+            5708542,
+            5602865,
+            5844531
+          ],
+          "median_ns": 5708542,
+          "min_ns": 5213490,
+          "max_ns": 13530521
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5809271,
+            6636302,
+            6104948,
+            6415000,
+            12618020,
+            34940521,
+            28093490,
+            12931875,
+            28266927,
+            9020313,
+            6558020
+          ],
+          "median_ns": 9020313,
+          "min_ns": 5809271,
+          "max_ns": 34940521
+        }
+      },
+      "speedups": {
+        "state_reduction_S1_e2e": 380.4543391635482,
+        "state_reduction_S1_literal": 3352.608960366976,
+        "execution_raw_quotient": 0.32482864602017353,
+        "execution_conditional_with_reconstruction": 0.8091442393779942,
+        "composed_e2e": 271.5924151412484,
+        "reconstruction_over_T1": 7.812119130347913
+      },
+      "interpretation": {
+        "kernel_faster_than_baseline": false,
+        "dominant_contribution": "state/memory-traffic",
+        "reconstruction_dominates": true
+      }
+    }
+  ],
+  "headline": {
+    "cases_total": 12,
+    "cases_admissible": 12,
+    "cases_excluded_overflowed_reference": [],
+    "composed_e2e_structured_median": 354.2861832012833,
+    "composed_e2e_unstructured_median": 452.32332732731055,
+    "unstructured_over_structured_ratio": 1.276717379267169,
+    "speedup_survives_unstructured_data": true,
+    "kernel_factor_structured_range": [
+      0.9875749067374145,
+      0.9889096816499565
+    ],
+    "kernel_factor_unstructured_range": [
+      0.7753633594038465,
+      1.000532922244507
+    ],
+    "kernel_ever_faster_than_baseline": true,
+    "kernel_factor_max": 1.000532922244507,
+    "bitwise_equal_structured": "2/2",
+    "bitwise_equal_unstructured": "2/10",
+    "worst_relative_error_over_admissible": 1.9095006264570703e-05,
+    "interpretation": "The composed speedup magnitude is robust to input structure (unstructured/structured ratio ~1). It is NOT a kernel speedup: the kernel factor stays near or below 1 in every admissible case, so the factor is state/memory-traffic reduction with reconstruction as the bottleneck."
+  },
+  "claim_boundary": [
+    "Every case is directly timed; no factor here is obtained by multiplying isolated ratios.",
+    "composed_e2e is dominated by state reduction, NOT kernel arithmetic: work_ratio = 1 and the NEON kernel factor is <= 1 in every measured case. See run_claim_audit.py for the attribution.",
+    "Reconstruction dominates the quotient compute (TR/T1 ~ 42-48x) and is the real bottleneck. A headline that folds it in silently overstates the state-reduction mechanism.",
+    "CT-002 K12 for these cases is recomputed from raw timings by run_claim_audit.py rather than asserted here.",
+    "Correctness is per family and reported, not assumed. Bitwise disagreement away from the structured family is expected and is predicted by FloatModel.float_blocked_differs_from_flat.",
+    "All factors are scoped to this device, binary, compiler, thread count and these input distributions."
+  ]
+}

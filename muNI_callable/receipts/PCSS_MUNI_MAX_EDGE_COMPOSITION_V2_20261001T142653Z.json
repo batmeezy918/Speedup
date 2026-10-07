@@ -1,0 +1,251 @@
+{
+  "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-2.0",
+  "run_id": "20261001T142653Z",
+  "device": {
+    "arch": "aarch64",
+    "kernel": "6.17.0-PRoot-Distro",
+    "backend": "aarch64-neon-fma-register-block",
+    "version": "MuNi-callable-0.1"
+  },
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "cases": [
+    {
+      "case": "N2048_r32_block64",
+      "N": 2048,
+      "r": 32,
+      "block": 64,
+      "theoretical_state_op_ratio": 262144.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true
+      },
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2375243020,
+            2653403957,
+            2418828541,
+            2486696301,
+            2460621405,
+            2422835467,
+            2379061249,
+            2399619687,
+            2398029687,
+            2390335728,
+            2392719843
+          ],
+          "median_ns": 2399619687.0,
+          "min_ns": 2375243020,
+          "max_ns": 2653403957
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            127343,
+            142969,
+            116927,
+            119740,
+            94896,
+            125260,
+            87605,
+            130938,
+            136875,
+            194740,
+            122708
+          ],
+          "median_ns": 125260.0,
+          "min_ns": 87605,
+          "max_ns": 194740
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            147083,
+            171250,
+            176303,
+            190104,
+            201875,
+            178021,
+            233073,
+            158177,
+            132708,
+            218489,
+            183907
+          ],
+          "median_ns": 178021.0,
+          "min_ns": 132708,
+          "max_ns": 233073
+        },
+        "reconstruction": {
+          "timings_ns": [
+            5406719,
+            5443541,
+            5232291,
+            5141250,
+            5144584,
+            5468958,
+            5207656,
+            5264583,
+            5642240,
+            5257604,
+            5184010
+          ],
+          "median_ns": 5257604.0,
+          "min_ns": 5141250,
+          "max_ns": 5642240
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            5697448,
+            5443334,
+            5511667,
+            5488594,
+            5504219,
+            5979323,
+            5446979,
+            5403906,
+            5574427,
+            5810417,
+            5480469
+          ],
+          "median_ns": 5504219.0,
+          "min_ns": 5403906,
+          "max_ns": 5979323
+        }
+      },
+      "speedups": {
+        "state_reduction": 445.7886521004432,
+        "execution_raw_quotient": 0.7036248532476506,
+        "execution_conditional_with_reconstruction": 0.9902934805105209,
+        "composed_e2e": 435.96006754091724,
+        "compositional_product": 441.46159586064164,
+        "composition_K": 0.9875379231821989,
+        "composition_residual": -5.5015283197244
+      }
+    },
+    {
+      "case": "N2048_r16_block128",
+      "N": 2048,
+      "r": 16,
+      "block": 128,
+      "theoretical_state_op_ratio": 2097152.0,
+      "correctness": {
+        "max_abs_error": 0.0,
+        "bitwise_equal": true,
+        "full_finite": true
+      },
+      "timing": {
+        "full_baseline": {
+          "timings_ns": [
+            2324745467,
+            2327602186,
+            2323780520,
+            2317331510,
+            2306368958,
+            2312693333,
+            2317821874,
+            2319204426,
+            2328245364,
+            2319175468,
+            2303880520
+          ],
+          "median_ns": 2319175468.0,
+          "min_ns": 2303880520,
+          "max_ns": 2328245364
+        },
+        "quotient_baseline": {
+          "timings_ns": [
+            124635,
+            110208,
+            199479,
+            138490,
+            101146,
+            113281,
+            113750,
+            123386,
+            118072,
+            99532,
+            92500
+          ],
+          "median_ns": 113750.0,
+          "min_ns": 92500,
+          "max_ns": 199479
+        },
+        "quotient_neon": {
+          "timings_ns": [
+            156094,
+            143020,
+            6759740,
+            195990,
+            173854,
+            143906,
+            140468,
+            138594,
+            138542,
+            137813,
+            138750
+          ],
+          "median_ns": 143020.0,
+          "min_ns": 137813,
+          "max_ns": 6759740
+        },
+        "reconstruction": {
+          "timings_ns": [
+            4606250,
+            4831875,
+            4810104,
+            4984375,
+            4885260,
+            4880469,
+            4932604,
+            4400416,
+            4838698,
+            4220885,
+            5023646
+          ],
+          "median_ns": 4838698.0,
+          "min_ns": 4220885,
+          "max_ns": 5023646
+        },
+        "composed_e2e": {
+          "timings_ns": [
+            4614896,
+            4674167,
+            5006406,
+            4723906,
+            4822760,
+            4590990,
+            4883802,
+            4875625,
+            4989740,
+            4561458,
+            4657812
+          ],
+          "median_ns": 4723906.0,
+          "min_ns": 4561458,
+          "max_ns": 5006406
+        }
+      },
+      "speedups": {
+        "state_reduction": 468.28870651443486,
+        "execution_raw_quotient": 0.7953433086281639,
+        "execution_conditional_with_reconstruction": 0.994124516883533,
+        "composed_e2e": 490.9444574045292,
+        "compositional_product": 465.5372841256771,
+        "composition_K": 1.054576022469541,
+        "composition_residual": 25.4071732788521
+      }
+    }
+  ],
+  "claim_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E_WITH_EXPLICIT_COMPOSITION_CLOSURE",
+  "claim_boundary": [
+    "E2E is directly timed; isolated speedups are not multiplied to obtain it.",
+    "The compositional product uses the conditional execution factor with reconstruction held fixed.",
+    "K near 1 is the algebraic closure criterion; deviations require measurement/error analysis.",
+    "Theoretical operation ratio is not wall-clock speedup.",
+    "Exact equality is scoped to the constructed integer invariant sector and this binary32 implementation."
+  ],
+  "datadog_integration": {
+    "status": "NO_HOST_TELEMETRY_FOUND",
+    "note": "Datadog organization was queried; no matching observed host/service was returned, so no false telemetry binding is asserted."
+  }
+}

@@ -1,0 +1,3255 @@
+{
+  "cma_final_target_success_rate": 0.005555555555555556,
+  "cma_mean_best_f": 96.82481678413068,
+  "counts": {
+    "BOTH": 0,
+    "CMA_ONLY": 2,
+    "NEITHER": 358,
+    "S6X_ONLY": 0
+  },
+  "details": [
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 79.48001278846937,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 79.52675540962049,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 394.4809880336908,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 394.6183969722815,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -247.10996032074098,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -247.1095928081775,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -152.03995674417848,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -152.0399257351122,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -25.24995296192786,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -25.2497210404087,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 183.01006897232352,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 183.05389428693243,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 183.52002729481205,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 183.55731574769186,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -593.8399733570543,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -593.8399006230354,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -999.9996821055282,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -999.9998511725037,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -25.30998421556654,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -25.30983017906701,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 22.28008412707154,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 22.292819592441422,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 356.14000573166794,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 356.205060772219,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -475.69998206356905,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -475.6999454929998,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -999.9999850784078,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -999.9995554754076,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -41.57995680235142,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f001_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -41.57951221457023,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 2166.4851124002107,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 6427.250490285112,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 206.27302931291254,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 4193.9660137215415,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1560.2855104545954,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 51473.02508852429,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 718.5636419093655,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 12567.586164926985,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 422.4716884510841,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 14655.049370470659,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 831.724400903647,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 3205.046240588229,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 658.2232881161764,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 3222.033341819949,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 241.53272263166556,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 5845.747956525611,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1825.1766114755062,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 3414.9336340576347,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -359.73708984282246,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 18909.98673967353,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1113.2483961003356,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 4161.028880997653,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 618.5053278722859,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 11212.262130281348,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 875.7837651301203,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 5640.7886043613435,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 171.0109427937064,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 3636.925879397145,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 719.1719510886458,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f002_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 3594.394789307508,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -372.5412602143194,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -395.1720415074021,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 97.6762242425809,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 97.43931338391975,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 144.51149000379505,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 165.2185467813873,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 28.499353621289266,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 41.62630049752848,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 158.2621469350797,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 157.07972558041263,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -21.749060253388677,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 30.315070888584685,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 60.42583302945149,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 114.75960050359194,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 311.201972952951,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 299.3847554222823,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -10.929666600551187,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 35.509276208130686,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -33.370137519457515,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -0.8923654445200242,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -530.2966072848862,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -502.42131843105864,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 166.33133974766898,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 149.85097106001825,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 21.10475481709204,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 11.914001196648112,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 177.26362386244625,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 140.88341534860118,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 56.976631490255876,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f003_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 70.4955806354276,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -399.169817086744,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -337.70536787965807,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 114.49322104724638,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 206.1633634823755,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 137.15156297082186,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 159.4544185548578,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 13.418417354912329,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 111.88760997830657,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 162.97835498567315,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 224.74328075203158,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 34.505394268964736,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 30.985060225427162,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 87.30055630579892,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 143.61711764309894,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 328.2955396280631,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 373.9517492390742,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 16.372024476328406,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -0.7199087634248187,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 8.35491422591447,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -37.14827180085303,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -530.2867405931414,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -555.0747949363185,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 212.3632975397431,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 243.30265318583497,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 2.3873232193969365,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 64.02456228060312,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 196.97609456018017,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 184.80844407169604,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 66.61505667381878,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f004_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 72.44214258994057,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -9.183281637745326,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -2.546528407857638,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 656.0017831462574,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 657.587581304749,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 67.10086841583748,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 67.39324854034604,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 941.671023520727,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 945.1697678053457,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -37.448601163790734,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -36.92698715119788,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -66.38780989195148,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -65.18751507192329,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -226.00538870629478,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -219.5869924832422,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1000.0034697643276,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1006.2672347911772,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -183.01803201086415,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -178.65257123574648,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -102.61835852541766,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -101.78015436063205,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 99.56216805112619,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 100.43459303476176,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 149.6017233272667,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 152.8054818107846,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -999.9985410848714,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -999.5835049197316,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -29.202397647109574,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -28.308089523315132,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -40.95927624289792,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f005_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -40.022555095661424,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 38.4016226096475,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 47.005021771313025,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 36.55367660639158,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 36.61811897721833,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -999.1549958832808,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -975.9113309296903,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 134.34193865157866,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 134.43114212274412,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 592.1801778944832,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 603.3957949421632,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 69.15119824040954,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 68.32755887756511,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 31.609839451103554,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 36.8148368631253,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -11.81582191837038,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -10.023673996285584,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 539.759889471828,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 550.4608413049706,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -104.96508842967147,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 19.084493055572793,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 98.77433743970978,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 100.23693398428972,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1001.883316400687,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1003.8963085295161,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 3.002735343888147,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 3.345675329371133,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 598.4682151372065,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 675.9418707590396,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -115.93350234170067,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f006_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -115.13329359960336,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 93.46559366157257,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 99.9732498288478,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 38.30251709813591,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 37.64723503602292,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 5.04674697262999,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 6.828974809152426,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 26.41950421338608,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 22.471347393867905,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 65.38838427844756,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 69.42622294854002,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -999.5550753695185,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -997.5843364035775,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 166.10577224301787,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 169.35040103970917,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -164.4505627446787,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -164.4305685320089,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 94.75120360308455,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 99.18880933147241,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -366.7625093501625,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -365.8797972116672,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 50.31086524709793,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 51.84764315272247,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -11.645980440503521,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -7.580109524252235,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 63.67927739993729,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 65.98804012721939,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 699.7403972921064,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 701.4172116343847,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1005.5453786539022,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f007_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1008.6534860708673,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 151.36575691516484,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 158.77807839961733,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -993.9457363644608,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -991.5558568538908,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 104.47582254287714,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 166.26773559756145,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -39.93438325420486,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -38.54673026284956,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 45.391231055334075,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 46.59586230192376,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 28.533501130932287,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 91.70326213100309,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -182.44813741381964,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -181.1717850705997,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -19.507793097169355,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -19.652958389884702,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 13.944583799808656,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 15.193052974552442,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -36.50993629263623,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -35.70855886460977,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1034.4244677182135,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1001.1706214354883,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -672.7813126702699,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -672.5682538547569,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1006.7538721822091,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1006.8931913161507,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 17.3294168938369,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 117.71504843838682,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -0.2185626574941386,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f008_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 60.30200927336758,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 129.5216455962652,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 124.56453426821261,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 55.23810704086342,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 50.361093287117406,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 59.96806851617596,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 60.73677794272145,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -84.40966770251315,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -83.36111743372908,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 69.76275783201031,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 72.02951700609086,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 935.6080750849269,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 941.8575638761748,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -57.40702720641301,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -56.70045864451095,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1003.8420660913581,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1004.9867759782716,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 36.440666450923,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 36.097416157586146,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 61.09264687234227,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 65.91843807924455,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -2.411267933077966,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -1.0771308161925726,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -56.80134076501068,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -58.93364416032722,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 7.096126473505217,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 7.248168522827841,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -42.44495636699368,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -39.922944933686644,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 66.80507576699203,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f009_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 63.52913371498088,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1737.53576241149,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 53070.310027863205,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1165.2073029878177,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 10180.287570874843,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 163.3816771755495,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 30087.162882836965,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 2600.7201365214028,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 13920.291159863458,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 380.68049516230553,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 5099.950422964727,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 543.7935202128322,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 5935.77251952939,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 229.26807267358845,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1779.0686668738572,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 831.2824873506486,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1350.482184240765,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 2140.5029889713787,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 15450.603877980502,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 688.9948169341088,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 3461.056152906149,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1685.5914420998547,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 38462.62993263753,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 462.8668770565181,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 5090.155200923701,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 2328.0771499121397,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 10310.52120531657,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -470.54783121739877,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1373.8235707214576,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1444.227815193595,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f010_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 2723.9010299520814,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 100.31562322988201,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 100.66751236366558,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 14.597169857556995,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 33.34047424346467,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 51.89257225556035,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 64.52843101358401,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 990.4146984666575,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1009.9958550765234,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -57.5478435441115,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -14.298247141807565,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 9.829929489336585,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 16.31810306062166,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 150.64863805837476,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 172.24806617341227,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 131.3794678632837,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 131.62386635004853,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 120.36123504500411,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 43.86030513349681,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 186.47716563823218,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 164.5553947785269,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -87.82019296881649,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -99.4869865402678,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -296.4315247634057,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -309.66911931548816,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 24.449593473002427,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 49.05119186032249,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 16.24129213875604,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 38.881628047289716,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 395.082373698877,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f011_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 374.05392630236827,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -620.0003548270125,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -489.7935807661995,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -244.97905150801856,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -136.78595711403847,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 190.2262969379609,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 516.7685942466186,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 400.3874955155169,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 399.2238124404732,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 43.06821998144159,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 111.73514041393773,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -612.2955842120434,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -568.6818099978765,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -63.91626042013617,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 2.8620596980174327,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 237.57044129786397,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1389.0522682587145,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 100.02528513112165,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 300.3790186914572,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1014.1893832397476,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 2298.138473820865,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 50.13582360588279,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 102.85345667302326,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 336.34837143685553,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 517.4499456435307,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -39.57806242430179,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 0.08768951042475948,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 153.94567274396334,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 338.72019154304064,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 141.74981253232244,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f012_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 628.1694287893067,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 38.87845431924602,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 39.03281506879571,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -41.51480932555859,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -43.84658072780735,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -269.3222029070481,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -247.89355593667258,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 934.0368611979028,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 941.4098489114291,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 121.29020670924332,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 117.5076478408188,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 31.39549163581905,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 42.44143521755821,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -733.1966394879962,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -736.8127184803731,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -49.4070557048767,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -37.20231089864762,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -165.54121442452134,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -199.8293149305806,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 11.140705833568635,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 11.18467792890419,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 220.6084707744125,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 227.2219194424849,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 124.55032079748833,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 123.66686556402647,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 220.2410570977641,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 200.1657834598846,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -213.5018963087143,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -208.15003757138413,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -45.09748633975944,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f013_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -24.48281301005384,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -52.34285974699798,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -52.34410927114572,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -179.5353788544996,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -179.5332387110179,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 77.31135836167613,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 77.33029737737701,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 39.9239483652972,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 39.932985601470584,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -56.60614786380588,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -56.602680200036666,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 32.70438262741192,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 32.72063927037984,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -39.42790756285887,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -39.42423551988307,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 419.72727207403824,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 419.88794416955767,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 7.645073143932887,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 7.656577380722701,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -127.67468263141761,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -127.67257603421254,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -36.49822894302656,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -36.49565566620533,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 172.8731877365696,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 172.91807367039533,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 157.72376170520474,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 157.79294388658997,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 28.192229729429208,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 28.214264862028397,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -99.24624756604142,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f014_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -99.24037501362743,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1054.5617554296646,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1068.44087501525,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 112.09659188218029,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 131.37666367359364,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -10.817737728059669,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 2.9985346818572793,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 39.56214572572512,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 89.65540982982162,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -54.31468779296098,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -17.667666245001726,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -333.3367721419961,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -315.12319583168227,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 112.86229546116556,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 140.10382551648337,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -6.563479274794162,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 13.90436559961104,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -945.7593802923872,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -970.3267501619787,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -67.49003601731275,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -26.914259531283705,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -197.30964726372554,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -166.88291221565552,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -18.758639931774077,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -4.654020217158184,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 74.18392021695426,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 161.16534905208982,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -311.86128204874063,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -298.47047490292374,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 189.77784878904316,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f015_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 244.01304247692298,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 71.48817068483608,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 72.13465947547381,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -350.32721448090496,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -353.99542911090947,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 100.07271888626097,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 100.58551031584112,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -517.405979471127,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -514.9791433998297,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -56.75733394053291,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -47.30316713062021,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 67.917292492424,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 73.97959468871443,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -136.74512390603292,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -135.38754043006548,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 731.5429175414276,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 741.0480631549239,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 76.21972054506524,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 81.05366672012612,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -48.60937288998165,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -44.587104566302195,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -141.79451774016187,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -138.80166354338968,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 110.10529131073216,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 118.87252087866966,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 78.84041107154093,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 79.95173870369737,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 115.75953286429932,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 119.48071616410587,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -544.5061053705631,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f016_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -543.2423466538963,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -16.774858492119776,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -16.853980993410683,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 19.35302311118862,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 20.189253873678037,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 273.3087765714377,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 277.74359266907055,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 37.259883758417544,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 40.45054089755824,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -146.08691184209795,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -146.8556325665216,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 481.8782105174696,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 482.307535576339,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -35.83198785352704,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -36.323194267441146,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 42.26585084402392,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 44.51205477473454,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -32.11530780424088,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -31.895734438663055,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 371.8028003350724,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 373.5214826733341,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 47.70408042867077,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 52.381748779800645,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -342.7344463561626,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -336.8141857704074,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 93.49463363121814,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 95.10126584069411,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 734.5928762228598,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 737.1845987871689,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 36.63989783679688,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f017_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 46.447384098039606,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -15.125437392875899,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -15.957268273032689,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 19.088872865239065,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 22.21261218604033,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 276.2645263543722,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 295.0767585185357,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 60.91281605898871,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 63.02687738389084,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -145.19061028407174,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -144.8593424995255,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 481.9630016083248,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 486.428340979032,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -31.937767011916925,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -34.8678928686417,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 40.31275453180843,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 71.8465942187555,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -30.99261253424893,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -30.746041921766906,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 369.9081266993009,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 394.5619156000759,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 68.11735957625555,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 48.92748198016233,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -330.2640173938971,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -340.5578693295094,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 95.23827787580773,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 96.70009500267628,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 739.4004332993782,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 754.8632346030867,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 36.91335000038917,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f018_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 39.293121360235205,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -99.84757735655964,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -99.65591683823553,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 74.05635451307637,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 75.01550231265249,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 216.46689842165605,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 217.57578253427377,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -55.7356243735233,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -55.25218227156607,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -610.2325655714125,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -612.7498242045094,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 64.4970894839895,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 63.263318106494566,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -82.59329234254076,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -84.26862109524785,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -21.883956764716658,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -23.08560757867592,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -27.11874039928444,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -28.000713662347028,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -997.7985414216631,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -997.1466278687661,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -921.5112437556169,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -921.0308821319558,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -6.680649946231013,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -7.49778595144208,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -996.7569490348866,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -997.5297745667518,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 31.683605312498393,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 32.20091118814716,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 38.36940096837492,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f019_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 39.52413378636267,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -544.6589282258954,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -545.0341836057397,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1001.749345114905,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1002.9494535827762,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 210.52014187890862,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 211.50699924643052,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -143.30070976209691,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -142.7640867651278,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -5.2485595992605205,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -3.3605926083734055,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -134.65734210777478,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -134.37146584224084,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 368.4116869893915,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 369.59179010884026,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -247.01875952688013,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -247.24222545242839,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -65.71897388165624,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -64.64745120355649,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -21.82782662297732,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -21.65241594697285,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -7.956640444068446,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -7.044806197123405,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 182.11014187890862,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 182.39157479951186,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 85.46449956548908,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 86.28104229488144,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -387.42989874236576,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -386.77554594233123,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -143.4717676938705,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f020_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -142.9968183706301,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 56.463061241018856,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 43.495594008146114,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 2.0438321977249165,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 3.2343505605335383,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "CMA_ONLY",
+      "cma_best_f": -370.83999999034006,
+      "cma_evals": 960,
+      "problem_id": "bbob_f021_i03_d10",
+      "runtime_ratio_cma_over_s6x": 0.96,
+      "s6x_best_f": -370.83999781895193,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -9.352591800612181,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -26.306981795666182,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 522.05890311489,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 523.1549474891837,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -68.46591372501118,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -68.46573330381878,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 35.781758876890194,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 35.79235509994315,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -21.01056131957608,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -21.00632847896395,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -331.6695811505159,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -330.9406802718437,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -123.12999995063497,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -123.12984388318222,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -146.19414256446308,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -146.11433002450067,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -26.078168279191818,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -26.078120181907885,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 31.862369573273433,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 31.868414891815874,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 31.493396313577858,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f021_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 31.50879815958262,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "CMA_ONLY",
+      "cma_best_f": -19.829999995870587,
+      "cma_evals": 920,
+      "problem_id": "bbob_f021_i80_d10",
+      "runtime_ratio_cma_over_s6x": 0.92,
+      "s6x_best_f": -19.829998417093417,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -998.0449880583546,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -998.044965687067,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1021.8802155310347,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1025.7641479335637,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -47.161341316560375,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -45.97383960486942,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 299.68524091088614,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 299.7456097431437,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 56.6329310228779,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 56.71280999889219,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 209.50459681722936,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 207.47977232590964,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 107.07176100335708,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 102.45397105942818,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -104.82494526253767,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -104.82158813258654,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 19.51376618128174,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 19.748358639379084,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 28.64173122400141,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 28.675338474133877,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 19.32069169754296,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 19.336222934001533,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1014.5848683902577,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1015.0161715896987,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -107.95535799164335,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -99.21680863881596,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -288.00105705656995,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -287.6556062026744,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -305.8580491353577,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f022_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -305.85733910161173,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 10.721710959335113,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 9.749891734501208,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 3.0126641991561964,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 3.3741680139138785,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -128.2271594995635,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -127.74829064331355,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -222.07463055190738,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -220.04379162873158,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -41.84004147359797,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -41.673790058131075,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 257.80034189634836,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 257.79883681141087,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 1002.3152475617802,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 1002.2022477985115,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -184.36717122412284,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -184.4196684057744,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 588.0689531860298,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 588.3443699830934,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 289.7273045874251,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 290.6830381002384,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -391.57585082976055,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -391.8813670515599,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 56.74039837346083,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 56.375058460304004,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 142.6523073407306,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 141.41243775186598,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -55.19910001038659,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -55.57211418196894,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 127.93846369693318,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f023_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 128.12085491883332,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 149.15801146442456,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i01_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 156.79177638470688,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 136.45389169897095,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i02_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 185.72091481676398,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 74.73365223133794,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i03_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 98.2588666695459,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 277.83529892281217,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i04_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 289.1932991717199,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -96.34687476306767,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i05_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -34.039841025081245,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 26.84920650781485,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i71_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 36.09483555064397,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 20.37640272797093,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i72_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 57.5621583591156,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -146.00446739858288,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i73_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -124.09179744836524,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 90.12254681538587,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i74_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 100.5529777432564,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -952.1785076017076,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i75_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -919.799743127141,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -972.3426922172606,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i76_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -918.4976734634859,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 38.202416638632684,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i77_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 74.57191743189816,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -11.08337231747474,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i78_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 18.158934023354654,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": -922.716273836891,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i79_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": -904.368680275465,
+      "s6x_evals": 1000
+    },
+    {
+      "classification": "NEITHER",
+      "cma_best_f": 90.08394203133832,
+      "cma_evals": 1000,
+      "problem_id": "bbob_f024_i80_d10",
+      "runtime_ratio_cma_over_s6x": 1.0,
+      "s6x_best_f": 125.92206856212319,
+      "s6x_evals": 1000
+    }
+  ],
+  "problem_count": 360,
+  "s6x_final_target_success_rate": 0.0,
+  "s6x_mean_best_f": 1011.6398289538116
+}

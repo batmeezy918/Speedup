@@ -39,11 +39,31 @@ The sharper statement is geometric. Each quotient map is a projection, so
 principal angles near 90 degrees, remove disjoint directions, and compose
 multiplicatively; two aligned reductions share directions and do not.
 
-Measured on this corpus (`/tmp/opencode/grassmann_analysis.py`):
-principal angles between the block-constant images at tile 4 vs 5 have
-median 41.5 degrees, at tile 4 vs 6 have median 35.3 degrees, and the minimum
-is 0 degrees in both cases -- i.e. the images share a direction outright.
-That is the geometric reason the `q^2` model fails.
+CORRECTION 2026-10-06. The paragraph above originally cited
+`/tmp/opencode/grassmann_analysis.py` -- a scratch file outside this repository,
+so the measurement could not be reproduced from the tree. It is REPLACED by a
+measurement taken on the corpus itself, and the original numbers were OFF-TARGET:
+they compared projections at DIFFERENT tile sizes (tile 4 vs 5, tile 4 vs 6),
+whereas both composed claims in `verified/sim2xr/` use tile = 16.
+
+Re-measured from repo data (constructing each stage's projection from
+`engines.linear_exact.make_model` under the parameters its own `scenario.json`
+declares):
+
+  qmult02  LinearExactMatrixModel n=512 tile=16  rank(pi) = 1024
+  aqge02   LinearExactMatrixModel n=512 tile=16  rank(pi) = 1024
+  pi index maps equal elementwise; class_weights equal; max |wbar_A - wbar_B| = 0
+  dim(im A n im B) = 262144 = ambient dim (n^2 = 512^2)
+
+So the two composed claims are the SAME operator, differing only in step count
+(8 vs 6). The overlap is MAXIMAL, not zero, and the two "independent" gains are
+not independent. This is a stronger and more specific finding than "the images
+share a direction": they coincide. Consequence: `qm02_aqge02_composed` (22.15x)
+and `qm02_aqge02_agd_composed` (35.82x) are self-compositions, not compositions
+of two reductions, and are quarantined as INVALID_PREMISE rather than merely
+unattested. Both observed ratios being strictly below the 146.2x product is what
+`composedGain_lt_of_overlap` REQUIRES when o > 0, so those two numbers are
+predicted by the criterion rather than anomalous.
 
 `GeneralPositionCriterion` below STATES that criterion. It is NOT PROVEN: it
 needs subspace dimension arithmetic over `R^n`, which requires Mathlib, and

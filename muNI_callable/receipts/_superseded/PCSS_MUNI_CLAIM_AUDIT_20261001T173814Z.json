@@ -1,0 +1,520 @@
+{
+  "schema": "PCSS-MUNI-CLAIM-AUDIT-1.0",
+  "run_id": "20261001T173814Z",
+  "seed": 20261001,
+  "seed_policy": {
+    "policy": "all repeated device runs use a pinned seed from this module",
+    "default_seed": 20261001,
+    "seeds": {
+      "default": 20261001,
+      "robustness": 20261001,
+      "callable_base": 20261001,
+      "composition": 20261001,
+      "floor_sweep": 20261001,
+      "claim_audit": 20261001
+    },
+    "derivation": "case_seed(name,label) = stable int hash of (base_seed, label)",
+    "note": "a changed seed is a new measurement, not a rerun; receipts are immutable"
+  },
+  "purpose": "re-read every speedup receipt and re-derive what each claim supports, attributing composite factors to their true source and downgrading any claim that exceeds its evidence",
+  "auditor_capability": "can only downgrade or annotate; never upgrades a claim, so it cannot launder weak evidence",
+  "device": {
+    "arch": "aarch64",
+    "kernel": "6.17.0-PRoot-Distro"
+  },
+  "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+  "governing_law": {
+    "claim_policy": "CLAIM_POLICY.md (origin/main)",
+    "monotonicity": "CLAIM_STRENGTH <= EVIDENCE_STRENGTH",
+    "theorem_scope": "a Lean theorem validates only what it encodes",
+    "conflict_rule": "disagreement reduces the strongest supported status, or quarantines the artifact",
+    "composition_diagnostic": "CT-002: K12 = S12/(S1*S2); exact multiplication iff K12 = 1; K12 is descriptive, not predictive"
+  },
+  "theorem_inventory": {
+    "lean_probe_exit_code": 0,
+    "theorems": {
+      "PCSSCallableBinding.callable_kernel_respects_blocked_sum": {
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Quot.sound"
+      },
+      "PCSSCallableBinding.callable_microkernel_identity": {
+        "axioms": [
+          "propext"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext"
+      },
+      "PCSSCallableBinding.callable_work_ratio_is_one": {
+        "axioms": [],
+        "class": "PROVEN",
+        "basis": "kernel-checked, no axioms"
+      },
+      "PCSSCompositionCriterion.composedGain_le_product": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Classical.choice, Quot.sound"
+      },
+      "PCSSCompositionCriterion.composedGain_lt_of_overlap": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Classical.choice, Quot.sound"
+      },
+      "PCSSCompositionCriterion.compositionTheoremObligation_refuted": {
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Quot.sound"
+      },
+      "PCSSCompositionCriterion.multiplicative_composition_iff_zero_overlap": {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Classical.choice, Quot.sound"
+      },
+      "PCSSGemmRegisterBlock.FloatModel.float_add_not_associative": {
+        "axioms": [],
+        "class": "PROVEN",
+        "basis": "kernel-checked, no axioms"
+      },
+      "PCSSGemmRegisterBlock.FloatModel.float_blocked_differs_from_flat": {
+        "axioms": [
+          "propext"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext"
+      },
+      "PCSSGemmRegisterBlock.blockedSumObligation_holds": {
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "class": "PROVEN",
+        "basis": "kernel-checked via propext, Quot.sound"
+      }
+    },
+    "tracked_but_not_found": [],
+    "oracle_free": true
+  },
+  "formal_to_speedup_mapping": [
+    {
+      "speedup_claim": "the two kernels compute the same result",
+      "theorem": "PCSSCallableBinding.callable_kernel_respects_blocked_sum",
+      "class": "PROVEN",
+      "verdict": "ILL_SCOPED",
+      "why": "proved over Int; the shipped kernels accumulate in binary32, which is not associative (machine-checked). Bitwise equality is therefore empirical, not proven, and fails at ragged sizes by ~1 ULP."
+    },
+    {
+      "speedup_claim": "the microkernel evaluates the block identity",
+      "theorem": "PCSSCallableBinding.callable_microkernel_identity",
+      "class": "PROVEN",
+      "verdict": "PROVEN",
+      "scope": "the algebraic 2x2 regrouping only; says nothing about time"
+    },
+    {
+      "speedup_claim": "fewer FLOPs are performed",
+      "theorem": "PCSSCallableBinding.callable_work_ratio_is_one",
+      "class": "PROVEN",
+      "verdict": "REFUTED",
+      "why": "work_ratio = 1 exactly. NO flop reduction is available; any speedup is memory/state traffic, not arithmetic."
+    },
+    {
+      "speedup_claim": "composed speedups multiply",
+      "theorem": "PCSSCompositionCriterion.multiplicative_composition_iff_zero_overlap",
+      "class": "PROVEN",
+      "verdict": "REFUTED",
+      "why": "machine-checked that the original composition obligation was FALSE, and proved that multiplicative composition holds iff subspace overlap is zero. CT-002 is CANDIDATE, not VERIFIED. No corpus artifact records a work_ratio, so no measured factor is licensed to compose multiplicatively."
+    },
+    {
+      "speedup_claim": "reassociation preserves the value",
+      "theorem": "PCSSGemmRegisterBlock.FloatModel.float_blocked_differs_from_flat",
+      "class": "PROVEN",
+      "verdict": "REFUTED",
+      "why": "machine-checked counterexample; this is a formal refutation of value-preserving reassociation in floating point"
+    }
+  ],
+  "composed_speedup_audit": [
+    {
+      "receipt": "PCSS_MUNI_MAX_EDGE_COMPOSITION_20261001T141006Z.json",
+      "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-1.0",
+      "claimed_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E",
+      "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+      "cases": [
+        {
+          "T0_full_baseline_ns": 2274062863.0,
+          "T1_quotient_baseline_ns": 104114.0,
+          "T2_quotient_neon_ns": 152605.0,
+          "T_reconstruction_ns": 5013073.0,
+          "T12_composed_e2e_ns": 5353542.0,
+          "S1_state_reduction": 21842.04682367405,
+          "S2_kernel_raw": 0.6822450116313358,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9906128488845026,
+          "S12_composed_e2e": 424.7772527048447,
+          "product_S1_x_S2": 21637.01222946845,
+          "K12_recomputed": 0.01963197359228373,
+          "K12_receipt_value": null,
+          "reconstruction_overhead_fraction_of_T1": 48.14984536181493,
+          "K12_abs_deviation_from_one": 0.9803680264077163,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 424.7772527048447,
+            "state_reduction_factor_S1": 21842.04682367405,
+            "kernel_factor_conditional_S2": 0.9906128488845026,
+            "kernel_factor_raw_S2": 0.6822450116313358,
+            "kernel_share_is_not_the_whole_claim": true
+          },
+          "findings": [
+            "K12 = 0.0196, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.6822 (raw), S2_conditional = 0.9906. The composed speedup of 424.78x therefore does NOT come from faster arithmetic; it comes from computing a 21842x smaller state (S1 = 21842.05)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2271011978.0,
+          "T1_quotient_baseline_ns": 93021.0,
+          "T2_quotient_neon_ns": 113125.0,
+          "T_reconstruction_ns": 4272343.0,
+          "T12_composed_e2e_ns": 4637395.0,
+          "S1_state_reduction": 24413.970802291955,
+          "S2_kernel_raw": 0.8222850828729282,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9954157686249221,
+          "S12_composed_e2e": 489.71717483630357,
+          "product_S1_x_S2": 24302.05151134985,
+          "K12_recomputed": 0.0201512689003885,
+          "K12_receipt_value": null,
+          "reconstruction_overhead_fraction_of_T1": 45.92880102342482,
+          "K12_abs_deviation_from_one": 0.9798487310996115,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 489.71717483630357,
+            "state_reduction_factor_S1": 24413.970802291955,
+            "kernel_factor_conditional_S2": 0.9954157686249221,
+            "kernel_factor_raw_S2": 0.8222850828729282,
+            "kernel_share_is_not_the_whole_claim": true
+          },
+          "findings": [
+            "K12 = 0.0202, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.8223 (raw), S2_conditional = 0.9954. The composed speedup of 489.72x therefore does NOT come from faster arithmetic; it comes from computing a 24414x smaller state (S1 = 24413.97)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        }
+      ],
+      "aggregated_labels": [
+        "K12_DEVIATES_FROM_ONE",
+        "KERNEL_SLOWER_THAN_BASELINE"
+      ],
+      "verdict": "ILL_SCOPED",
+      "verdict_reason": "claimed composed speedup is attributable to state reduction, not to a faster kernel; phrasing it as a kernel speedup would exceed the evidence (CLAIM_POLICY conflict rule)"
+    },
+    {
+      "receipt": "PCSS_MUNI_MAX_EDGE_COMPOSITION_V2_20261001T142653Z.json",
+      "schema": "PCSS-MUNI-MAX-EDGE-COMPOSITION-2.0",
+      "claimed_strength": "EMPIRICALLY_MEASURED_COMPOSED_E2E_WITH_EXPLICIT_COMPOSITION_CLOSURE",
+      "library_sha256": "06252ed3c68ecd1bbae4fa24552443bb3278c8b3ab90359dea42809731d02ff9",
+      "cases": [
+        {
+          "T0_full_baseline_ns": 2399619687.0,
+          "T1_quotient_baseline_ns": 125260.0,
+          "T2_quotient_neon_ns": 178021.0,
+          "T_reconstruction_ns": 5257604.0,
+          "T12_composed_e2e_ns": 5504219.0,
+          "S1_state_reduction": 19157.110705732077,
+          "S2_kernel_raw": 0.7036248532476506,
+          "S2_kernel_conditional_reconstruction_fixed": 0.9902934805105209,
+          "S12_composed_e2e": 435.96006754091724,
+          "product_S1_x_S2": 18971.16183730478,
+          "K12_recomputed": 0.022980145933057614,
+          "K12_receipt_value": 0.9875379231821989,
+          "reconstruction_overhead_fraction_of_T1": 41.973527063707486,
+          "K12_abs_deviation_from_one": 0.9770198540669424,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 435.96006754091724,
+            "state_reduction_factor_S1": 19157.110705732077,
+            "kernel_factor_conditional_S2": 0.9902934805105209,
+            "kernel_factor_raw_S2": 0.7036248532476506,
+            "kernel_share_is_not_the_whole_claim": true
+          },
+          "findings": [
+            "K12 = 0.0230, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "receipt K (0.987537923182) disagrees with recomputed K (0.0229801459331); the receipt value is not reproduced from its own raw timings",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7036 (raw), S2_conditional = 0.9903. The composed speedup of 435.96x therefore does NOT come from faster arithmetic; it comes from computing a 19157x smaller state (S1 = 19157.11)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECEIPT_K_NOT_REPRODUCED",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        },
+        {
+          "T0_full_baseline_ns": 2319175468.0,
+          "T1_quotient_baseline_ns": 113750.0,
+          "T2_quotient_neon_ns": 143020.0,
+          "T_reconstruction_ns": 4838698.0,
+          "T12_composed_e2e_ns": 4723906.0,
+          "S1_state_reduction": 20388.355762637362,
+          "S2_kernel_raw": 0.7953433086281639,
+          "S2_kernel_conditional_reconstruction_fixed": 0.994124516883533,
+          "S12_composed_e2e": 490.9444574045292,
+          "product_S1_x_S2": 20268.564322581464,
+          "K12_recomputed": 0.02422196508795454,
+          "K12_receipt_value": 1.054576022469541,
+          "reconstruction_overhead_fraction_of_T1": 42.538004395604396,
+          "K12_abs_deviation_from_one": 0.9757780349120455,
+          "verdict": "EMPIRICAL",
+          "evidence_class": "EMPIRICAL",
+          "attribution": {
+            "total_composed_e2e": 490.9444574045292,
+            "state_reduction_factor_S1": 20388.355762637362,
+            "kernel_factor_conditional_S2": 0.994124516883533,
+            "kernel_factor_raw_S2": 0.7953433086281639,
+            "kernel_share_is_not_the_whole_claim": true
+          },
+          "findings": [
+            "K12 = 0.0242, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+            "receipt K (1.05457602247) disagrees with recomputed K (0.024221965088); the receipt value is not reproduced from its own raw timings",
+            "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7953 (raw), S2_conditional = 0.9941. The composed speedup of 490.94x therefore does NOT come from faster arithmetic; it comes from computing a 20388x smaller state (S1 = 20388.36)."
+          ],
+          "labels": [
+            "K12_DEVIATES_FROM_ONE",
+            "RECEIPT_K_NOT_REPRODUCED",
+            "KERNEL_SLOWER_THAN_BASELINE"
+          ]
+        }
+      ],
+      "aggregated_labels": [
+        "K12_DEVIATES_FROM_ONE",
+        "KERNEL_SLOWER_THAN_BASELINE",
+        "RECEIPT_K_NOT_REPRODUCED"
+      ],
+      "verdict": "ILL_SCOPED",
+      "verdict_reason": "claimed composed speedup is attributable to state reduction, not to a faster kernel; phrasing it as a kernel speedup would exceed the evidence (CLAIM_POLICY conflict rule)"
+    }
+  ],
+  "callable_speedup_audit": [
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T085637Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "reproducibility",
+        "quotient_forward",
+        "lean"
+      ],
+      "speedup_min": 1.8710164448353295,
+      "speedup_median": 1.8907645023710338,
+      "speedup_max": 2.239304152729197,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: reproducibility, quotient_forward, lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T085812Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 1.9097390450756613,
+      "speedup_median": 1.9125156348349845,
+      "speedup_max": 2.2178144551566734,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T090052Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 2.4699221678953696,
+      "speedup_median": 2.4794780385764854,
+      "speedup_max": 2.486793845377883,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T121053Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 2.241516763582241,
+      "speedup_median": 2.6915696548320542,
+      "speedup_max": 3.2644349184204393,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T123749Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 2.3546881285684527,
+      "speedup_median": 2.593500476563795,
+      "speedup_max": 2.618636627607472,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T123857Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.0",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": false,
+      "failed_gates": [
+        "lean"
+      ],
+      "speedup_min": 2.354447293273974,
+      "speedup_median": 2.3650610867682027,
+      "speedup_max": 2.537631093993737,
+      "has_seed_record": false,
+      "verdict": "REFUTED",
+      "verdict_reason": "own gates failed: lean",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T124738Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.1",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": true,
+      "failed_gates": [],
+      "speedup_min": 2.5201064201932706,
+      "speedup_median": 2.602095003327422,
+      "speedup_max": 2.6031583686980575,
+      "has_seed_record": false,
+      "verdict": "EMPIRICAL",
+      "verdict_reason": "directly measured at one size on one device; speedup is work_ratio == 1 plus memory-traffic reduction, not fewer FLOPs",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T133222Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.1",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": true,
+      "failed_gates": [],
+      "speedup_min": 2.492116626553754,
+      "speedup_median": 2.5297179483247025,
+      "speedup_max": 2.5488064612529233,
+      "has_seed_record": false,
+      "verdict": "EMPIRICAL",
+      "verdict_reason": "directly measured at one size on one device; speedup is work_ratio == 1 plus memory-traffic reduction, not fewer FLOPs",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    },
+    {
+      "receipt": "PCSS_MUNI_CALLABLE_20261001T163744Z.json",
+      "schema": "PCSS-MUNI-CALLABLE-1.1",
+      "claimed_strength": "EMPIRICALLY_VERIFIED_CALLABLE",
+      "all_gates_pass": true,
+      "failed_gates": [],
+      "speedup_min": 2.357946973242467,
+      "speedup_median": 2.542903565279859,
+      "speedup_max": 2.5803660474095373,
+      "has_seed_record": false,
+      "verdict": "EMPIRICAL",
+      "verdict_reason": "directly measured at one size on one device; speedup is work_ratio == 1 plus memory-traffic reduction, not fewer FLOPs",
+      "advisory": "no seed recorded (pre-dates seed pinning); inputs were deterministic constants, so this is a provenance gap rather than a reproducibility defect"
+    }
+  ],
+  "remote_cross_check": {
+    "remote": "https://github.com/batmeezy918/Speedup.git",
+    "available": true,
+    "candidate_theorems": [
+      {
+        "path": "candidate/theorems/CT-001-Quotient-Sufficiency.md",
+        "declared_status": "CANDIDATE / FORMAL-PARTIAL TARGET",
+        "proves_a_wall_clock_speedup": false
+      },
+      {
+        "path": "candidate/theorems/CT-002-Composition-Interaction-Bound.md",
+        "declared_status": "CANDIDATE / DERIVED TARGET",
+        "proves_a_wall_clock_speedup": false
+      },
+      {
+        "path": "candidate/theorems/CT-003-Attribution-Conservation.md",
+        "declared_status": "CANDIDATE / FORMAL-PARTIAL TARGET",
+        "proves_a_wall_clock_speedup": false
+      },
+      {
+        "path": "candidate/theorems/CT-004-Scaling-Extrapolation-Bound.md",
+        "declared_status": "CANDIDATE / DERIVED TARGET",
+        "proves_a_wall_clock_speedup": false
+      }
+    ],
+    "all_candidate_not_verified": true,
+    "conclusion": "No theorem on origin/main proves a wall-clock speedup. CLAIM_POLICY.md: \"A Lean theorem proves the proposition encoded by the theorem. It does not validate facts that were never encoded or supplied as assumptions.\" Therefore no measured speedup in this lane may be described as proven."
+  },
+  "quarantine": {
+    "path": "evidence/quarantine/",
+    "role": "retained candidates excluded from claims per CLAIM_POLICY.md (status QUARANTINED)",
+    "speedup_claims_admitted": 0,
+    "rationale": "quarantined material is excluded from claims by definition; it cannot raise any measured or formal status"
+  },
+  "verdict_counts": {
+    "ILL_SCOPED": 2,
+    "REFUTED": 6,
+    "EMPIRICAL": 3
+  },
+  "findings": [
+    "K12 = 0.0196, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.0202, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.0230, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "K12 = 0.0242, so the composed factor is NOT the product of the isolated factors (CT-002 exactness requires K12 = 1). CT-002 also states K12 is descriptive, not predictive, so this is not by itself a defect; it does mean the product must not be quoted as the achieved speedup.",
+    "receipt K (0.987537923182) disagrees with recomputed K (0.0229801459331); the receipt value is not reproduced from its own raw timings",
+    "receipt K (1.05457602247) disagrees with recomputed K (0.024221965088); the receipt value is not reproduced from its own raw timings",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.6822 (raw), S2_conditional = 0.9906. The composed speedup of 424.78x therefore does NOT come from faster arithmetic; it comes from computing a 21842x smaller state (S1 = 21842.05).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7036 (raw), S2_conditional = 0.9903. The composed speedup of 435.96x therefore does NOT come from faster arithmetic; it comes from computing a 19157x smaller state (S1 = 19157.11).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.7953 (raw), S2_conditional = 0.9941. The composed speedup of 490.94x therefore does NOT come from faster arithmetic; it comes from computing a 20388x smaller state (S1 = 20388.36).",
+    "the NEON kernel is SLOWER than the scalar baseline it replaces: S2_raw = 0.8223 (raw), S2_conditional = 0.9954. The composed speedup of 489.72x therefore does NOT come from faster arithmetic; it comes from computing a 24414x smaller state (S1 = 24413.97)."
+  ],
+  "elapsed_seconds": 22.055,
+  "claim_boundary": [
+    "This audit performs NO timing of its own; it re-derives conclusions from receipts already on disk plus a live Lean axiom probe.",
+    "It cannot upgrade any claim. Its only power is to downgrade.",
+    "A speedup quoted from this lane must state whether it is a state/memory-traffic reduction or a kernel arithmetic speedup. work_ratio = 1, so no arithmetic reduction exists.",
+    "All measured factors remain scoped to this device, binary, compiler, thread count and input distribution.",
+    "No claim here is VERIFIED. Formal status remains FORMAL_PARTIAL and measured status is capped at EMPIRICAL."
+  ]
+}

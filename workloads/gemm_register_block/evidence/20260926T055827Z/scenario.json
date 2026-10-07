@@ -1,0 +1,60 @@
+{
+  "baseline": {
+    "implementation_id": "gemm_optimized_column_streaming",
+    "kind": "native"
+  },
+  "candidate": {
+    "implementation_id": "gemm_blocked_8x8_register_mc_nc_kc_128_pfd8",
+    "kind": "native"
+  },
+  "dimensions": {
+    "flops": 17179869184,
+    "n": 2048,
+    "work_ratio": 1.0,
+    "work_ratio_note": "both kernels execute the same 2*n^3 flops; no work reduction"
+  },
+  "expected_observables": [
+    "quotient forward: candidate C == baseline C bitwise",
+    "reconstruction reverse: identity, err = 0",
+    "invariant: k-sum reassociation preserves total",
+    "work ratio reported as exactly 1.0",
+    "direct speedup reported separately and scoped to this machine"
+  ],
+  "mathematical_object": {
+    "invariant": "block-constancy of the k-axis sum: reassociating the k accumulation into blocks of size <= KC preserves the sum",
+    "note": "work_ratio is exactly 1.0. The transformation is a pure constant-factor data-movement change, not a work reduction.",
+    "observable": "the full C matrix",
+    "projection": "identity",
+    "quotient_space": "R^{n x n} (UNCHANGED: there is no state reduction)",
+    "reconstruction": "identity",
+    "state_space": "R^{n x n}",
+    "transition": "C := A * B (matrix product over R)"
+  },
+  "parameters": {
+    "KC": 128,
+    "MC": 128,
+    "NC": 128,
+    "microkernel": "8x8 NEON FMA",
+    "prefetch_distance": 8,
+    "threads": 1
+  },
+  "quotient": {
+    "definition": "identity quotient; equivalence is equality of the computed C matrix",
+    "function_name": "candidate_vs_baseline_max_abs_diff",
+    "relation": "exact",
+    "tolerance": 0.0
+  },
+  "reconstruction": {
+    "definition": "identity",
+    "metric": "max",
+    "tolerance": 0.0
+  },
+  "repetitions": 30,
+  "scenario_id": "gemm-register-block-20260926T055827Z",
+  "schema": "PCSS-SCENARIO",
+  "schema_version": "1.0",
+  "seed": 0,
+  "timing_source": "clock_gettime_monotonic",
+  "warmup_policy": "fixed",
+  "warmups": 5
+}

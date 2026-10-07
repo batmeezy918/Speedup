@@ -1,0 +1,29 @@
+{
+  "gate": "G_non_advantageous",
+  "reference_impl": "OpenBLAS cblas_sgemm (tuned, blocked, packed)",
+  "openblas_num_threads": 1,
+  "tolerance": "relative 0.0001, coverage >= 0.999",
+  "omp_num_threads": 1,
+  "results": [
+    {"n": 256,
+     "ref_scalar_s": 0.010924479, "ref_scalar_gflops": 3.0715,
+     "neon_8x8": {"observable_ok": true, "max_rel_error": 9.852e-08, "coverage_frac": 1.000000, "median_s": 0.002818125, "gflops": 11.9067, "speedup_vs_ref_scalar": 3.8765, "speedup_vs_openblas": 0.5391},
+     "openblas_sgemm": {"observable_ok": true, "max_rel_error": 0.000e+00, "coverage_frac": 1.000000, "median_s": 0.001519271, "gflops": 22.0859, "speedup_vs_ref_scalar": 7.1906}
+    },
+    {"n": 512,
+     "ref_scalar_s": 0.091690208, "ref_scalar_gflops": 2.9276,
+     "neon_8x8": {"observable_ok": true, "max_rel_error": 9.852e-08, "coverage_frac": 1.000000, "median_s": 0.024809792, "gflops": 10.8197, "speedup_vs_ref_scalar": 3.6957, "speedup_vs_openblas": 0.5054},
+     "openblas_sgemm": {"observable_ok": true, "max_rel_error": 3.941e-07, "coverage_frac": 1.000000, "median_s": 0.012538541, "gflops": 21.4088, "speedup_vs_ref_scalar": 7.3127}
+    },
+    {"n": 768,
+     "ref_scalar_s": 0.314823489, "ref_scalar_gflops": 2.8777,
+     "neon_8x8": {"observable_ok": true, "max_rel_error": 6.568e-08, "coverage_frac": 1.000000, "median_s": 0.098779792, "gflops": 9.1716, "speedup_vs_ref_scalar": 3.1871, "speedup_vs_openblas": 0.3934},
+     "openblas_sgemm": {"observable_ok": true, "max_rel_error": 6.108e-06, "coverage_frac": 1.000000, "median_s": 0.038856406, "gflops": 23.3158, "speedup_vs_ref_scalar": 8.1022}
+    },
+    {"n": 1024,
+     "ref_scalar_s": 0.741273385, "ref_scalar_gflops": 2.8970,
+     "neon_8x8": {"observable_ok": true, "max_rel_error": 9.852e-08, "coverage_frac": 1.000000, "median_s": 0.323348334, "gflops": 6.6414, "speedup_vs_ref_scalar": 2.2925, "speedup_vs_openblas": 0.2807},
+     "openblas_sgemm": {"observable_ok": true, "max_rel_error": 2.069e-06, "coverage_frac": 1.000000, "median_s": 0.090763177, "gflops": 23.6603, "speedup_vs_ref_scalar": 8.1671}
+    }
+  ]
+}
