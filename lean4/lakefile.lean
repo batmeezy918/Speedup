@@ -30,5 +30,6 @@ lean_lib «SpeedupLean» where
     `ToProveCognitiveTensor,
     `ToProveOperatorContraction,
     `ToProveQFIDossier,
-    `ToProveChronoFold
+    `ToProveChronoFold,
+    `AGDDescentCore
   ]

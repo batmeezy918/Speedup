@@ -10,4 +10,4 @@ require mathlib from git
 @[default_target]
 lean_lib «SpeedupMathlib» where
   srcDir := "."
-  roots := #[`SpeedupMathlib]
+  roots := #[`SpeedupMathlib, `MathlibProof, `AGDDescentMathlib]
