@@ -1,0 +1,52 @@
+# prediction: asymptotic per-step ratio ~ m (=tile), NOT ~1.94*m
+# d tile -> expect asymptote near 32 or 64, not near 62 or 124
+TENSOR d=4096 tile=32 r=128 fam=dense steps=1 total_speedup=28.207551x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=dense steps=4 total_speedup=25.299978x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=dense steps=16 total_speedup=42.812443x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=dense steps=64 total_speedup=42.946681x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=dense steps=1 total_speedup=46.448416x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=dense steps=4 total_speedup=61.294934x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=dense steps=16 total_speedup=67.027092x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=dense steps=64 total_speedup=71.882386x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=dense steps=1 total_speedup=47.575026x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=dense steps=4 total_speedup=58.575456x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=dense steps=16 total_speedup=66.171969x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=dense steps=64 total_speedup=70.437108x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=dense steps=1 total_speedup=90.509284x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=dense steps=4 total_speedup=131.826266x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=dense steps=16 total_speedup=146.616196x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=dense steps=64 total_speedup=151.406808x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=perm steps=1 total_speedup=38.502038x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=perm steps=4 total_speedup=42.846820x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=perm steps=16 total_speedup=44.068632x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=perm steps=64 total_speedup=44.917467x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=perm steps=1 total_speedup=47.768684x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=perm steps=4 total_speedup=63.109444x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=perm steps=16 total_speedup=68.786341x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=perm steps=64 total_speedup=71.886523x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=perm steps=1 total_speedup=53.006908x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=perm steps=4 total_speedup=62.967377x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=perm steps=16 total_speedup=68.747377x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=perm steps=64 total_speedup=69.574402x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=perm steps=1 total_speedup=93.388549x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=perm steps=4 total_speedup=129.690284x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=perm steps=16 total_speedup=146.631996x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=perm steps=64 total_speedup=150.676036x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=diagphase steps=1 total_speedup=35.554333x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=diagphase steps=4 total_speedup=42.467414x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=diagphase steps=16 total_speedup=43.940114x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=32 r=128 fam=diagphase steps=64 total_speedup=44.679904x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=diagphase steps=1 total_speedup=46.106122x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=diagphase steps=4 total_speedup=64.431795x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=diagphase steps=16 total_speedup=69.324308x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=4096 tile=64 r=64 fam=diagphase steps=64 total_speedup=71.458208x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=diagphase steps=1 total_speedup=59.701393x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=diagphase steps=4 total_speedup=62.953420x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=diagphase steps=16 total_speedup=68.031315x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=32 r=512 fam=diagphase steps=64 total_speedup=69.806962x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=diagphase steps=1 total_speedup=99.549385x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=diagphase steps=4 total_speedup=126.920036x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=diagphase steps=16 total_speedup=144.766645x setup_included=YES maxerr=0 trials=3 reps=3
+TENSOR d=16384 tile=64 r=256 fam=diagphase steps=64 total_speedup=150.905039x setup_included=YES maxerr=0 trials=3 reps=3
+TENSORSEPARABLE_GATE=PASS
+SINK=876.55320789317182

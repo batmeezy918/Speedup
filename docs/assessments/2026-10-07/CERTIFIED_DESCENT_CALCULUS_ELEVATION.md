@@ -131,6 +131,15 @@ Measured efficiency rises toward the bound as `n` grows (isolated-stage measurem
 reaches 0.72 at n = 13) — the `c/α` overhead term receding, exactly as the cost model
 predicts.
 
+> **CORRECTION 2026-10-08 — the bound `path gain ≤ q` is FALSE in native code.**
+> See `evidence/blockquotient_20261007/TENSOR_OPERATOR_RESULT_20261008.md`.
+> In the native AArch64 runtime the quotient projection is a *decimation* (`O(r)`), not
+> a dense `d×q` matvec, so the FLOP ratio no longer governs. Measured asymptotes:
+> dense/d=4096/tile=64 → **70.3×** against `q = 64` (violated), and 153.5× against
+> `m = 64`. The ratio is set by achieved memory bandwidth, not operation count.
+> **The FLOP bound holds only while both arms are FLOP-bound.** Any later use of §2.1
+> must carry this caveat.
+
 ### 2.2 The break-even theorem is **not an assumption — it is fitted**
 
 Your `k > (C_setup + C_π + C_ρ)/(C_T − C_T̄)` inverts to the testable law
