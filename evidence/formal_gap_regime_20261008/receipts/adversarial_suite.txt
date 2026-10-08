@@ -1,0 +1,24 @@
+AGD ADVERSARIAL SUITE  (criterion: output == ORIGINAL operator, bit for bit)
+certificate: id=quotient-descent-v2-tensor state=FORMAL_PARTIAL target=aarch64-linux-gnu compiler=GCC_14
+
+  [PASS] admissible/dense -> optimised path         fallback=0(want 0) admissible=1(want 1) maxerr=0 steps=32
+  [PASS] perturbed-1-element/dense -> MUST fall back fallback=1(want 1) admissible=0(want 0) maxerr=0 steps=32
+  [PASS] random-general/dense -> MUST fall back     fallback=1(want 1) admissible=0(want 0) maxerr=0 steps=32
+  [PASS] admissible/diagonal -> optimised path      fallback=0(want 0) admissible=1(want 1) maxerr=0 steps=32
+  [PASS] perturbed-1-element/diagonal -> MUST fall back fallback=1(want 1) admissible=0(want 0) maxerr=0 steps=32
+  [PASS] random-general/diagonal -> MUST fall back  fallback=1(want 1) admissible=0(want 0) maxerr=0 steps=32
+  [PASS] admissible/phase -> optimised path         fallback=0(want 0) admissible=1(want 1) maxerr=0 steps=32
+  [PASS] perturbed-1-element/phase -> MUST fall back fallback=1(want 1) admissible=0(want 0) maxerr=0 steps=32
+  [PASS] random-general/phase -> MUST fall back     fallback=1(want 1) admissible=0(want 0) maxerr=0 steps=32
+  [PASS] tol=1e-6 admits 1e-9 perturbation          fallback=0(want 0) admissible=1(want 1) maxerr=8.58e-18 steps=32
+  [PASS] tol=0 refuses the same state               fallback=1(want 1) admissible=0(want 0) maxerr=0 steps=32
+  [PASS] UNVERIFIED cert + admissible state -> MUST fall back fallback=1(want 1) admissible=1(want 1) maxerr=0 steps=32
+  [PASS] d=100 m=32 (m does not divide d) -> NULL   fallback=-1(want 0) admissible=-1(want 0) maxerr=0 steps=0
+  [PASS] NULL state -> NULL                         fallback=-1(want 0) admissible=-1(want 0) maxerr=0 steps=0
+  [PASS] m=0 -> NULL                                fallback=-1(want 0) admissible=-1(want 0) maxerr=0 steps=0
+  [PASS] m=1 (r=d, no compression)                  fallback=0(want 0) admissible=1(want 1) maxerr=0 steps=4
+  [PASS] m=d (r=1, maximal compression)             fallback=0(want 0) admissible=1(want 1) maxerr=0 steps=4
+  [PASS] long trajectory 1000 steps, drift?         fallback=0(want 0) admissible=1(want 1) maxerr=0 steps=1000
+  [PASS] multi-size/multi-family sweep: 4/4 exact on optimised path
+
+ADVERSARIAL_SUITE=PASS  passed=19 failed=0

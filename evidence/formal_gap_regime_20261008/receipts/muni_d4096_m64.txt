@@ -1,0 +1,24 @@
+AGD ANALYSIS
+--------------------------
+Gap:                   FOUND (invariant-state redundancy)
+Invariant:             CERTIFIED
+Semantic gate:         PROVED
+Instantiation gate:    ABSENT
+Certificate state:     FORMAL_PARTIAL
+Path taken:            QUOTIENT (optimised)
+Semantic preservation: PASS (bit-exact)
+Reconstruction:        PASS
+Adversarial suite:     PASS (19/19, separate binary)
+Native compiler:       GCC_14
+Target:                aarch64-linux-gnu
+
+d = 4096   quotient r = 64   tile m = 64   steps = 64
+Baseline:                  58.045 ms   (median of 7 trials x 5 reps)
+Optimised:                  0.819 ms
+Wall-clock speedup:        70.846x
+Machine precision:     max_abs_error = 0
+
+Claim: FORMAL_PARTIAL_MEASURED_LOCAL
+Transformation: quotient-descent-v2-tensor
+Certificate SHA: d69e18ecf39e502882e90a9c8758b8e8018d2831251b7a128060daf8e26fe007
+Receipt written: receipts/muni_d4096_m64.json

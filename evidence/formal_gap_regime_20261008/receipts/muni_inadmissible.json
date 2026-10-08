@@ -1,0 +1,18 @@
+{
+  "transformation_id": "quotient-descent-v2-tensor",
+  "certificate_sha256": "d69e18ecf39e502882e90a9c8758b8e8018d2831251b7a128060daf8e26fe007",
+  "certificate_state": "FORMAL_PARTIAL",
+  "compiler": "GCC_14",
+  "flags": "-O3_marchnative_funroll",
+  "target": "aarch64-linux-gnu",
+  "d": 4096, "quotient_r": 64, "tile_m": 64, "steps": 64,
+  "admissible": false,
+  "in_fallback": true,
+  "max_abs_error": 0,
+  "baseline_ms": 58.016040,
+  "optimised_ms": 57.808490,
+  "speedup": 1.003590,
+  "trials": 7, "reps": 5,
+  "adversarial_suite": "PASS 19/19",
+  "claim_class": "QUARANTINED_OPTIMISATION_NOT_APPLIED"
+}

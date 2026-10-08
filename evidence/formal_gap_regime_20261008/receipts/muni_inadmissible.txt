@@ -1,0 +1,24 @@
+AGD ANALYSIS
+--------------------------
+Gap:                   FOUND (invariant-state redundancy)
+Invariant:             VIOLATED -> REFUSED
+Semantic gate:         PROVED
+Instantiation gate:    ABSENT
+Certificate state:     FORMAL_PARTIAL
+Path taken:            ORIGINAL (fallback)
+Semantic preservation: PASS (bit-exact)
+Reconstruction:        PASS
+Adversarial suite:     PASS (19/19, separate binary)
+Native compiler:       GCC_14
+Target:                aarch64-linux-gnu
+
+d = 4096   quotient r = 64   tile m = 64   steps = 64
+Baseline:                  58.016 ms   (median of 7 trials x 5 reps)
+Optimised:                 57.808 ms
+Wall-clock speedup:         1.004x
+Machine precision:     max_abs_error = 0
+
+Claim: QUARANTINED_OPTIMISATION_NOT_APPLIED
+Transformation: quotient-descent-v2-tensor
+Certificate SHA: d69e18ecf39e502882e90a9c8758b8e8018d2831251b7a128060daf8e26fe007
+Receipt written: receipts/muni_inadmissible.json

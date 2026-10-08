@@ -1,0 +1,75 @@
+{
+  "invariant": "CLAIM_STRENGTH <= EVIDENCE_STRENGTH",
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "Level-4 exact reconstruction on the invariant orbit, abstractly",
+      "evidence": "Lean 4 core, axioms [Quot.sound]",
+      "class": "FORMAL_CLOSED",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "C2",
+      "claim": "Descent exists/unique, iterate intertwining, observable factorisation, compositionality",
+      "evidence": "lean4/AGDDescentCore.lean, core lane, 43 sources all pass",
+      "class": "FORMAL_CLOSED",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "C3",
+      "claim": "Those L1-L3 theorems are novel",
+      "evidence": "Mathlib supplies them via Submodule.mapQ / liftQ",
+      "class": "EXACT_PRIOR",
+      "status": "QUARANTINED (not claimed as novel)"
+    },
+    {
+      "id": "C4",
+      "claim": "Ubar (x) I_m preserves the block-constant sector and reconstruction is exact",
+      "evidence": "max_abs_error = 0 across 19 adversarial cases, 3 operator families",
+      "class": "ADVERSARIAL_VERIFIED",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "C5",
+      "claim": "70.846x wall-clock speedup on this device, d=4096 m=64 steps=64",
+      "evidence": "muni receipt, 7 trials x 5 reps, median, baseline = same operator densely applied",
+      "class": "FORMAL_PARTIAL_MEASURED_LOCAL",
+      "status": "VERIFIED (not promoted to MEASURED_LOCAL_NATIVE)"
+    },
+    {
+      "id": "C6",
+      "claim": "The optimisation applies to inadmissible input",
+      "evidence": "muni --inadmissible: 1.004x, fallback path, max_abs_error 0",
+      "class": "QUARANTINED",
+      "status": "REFUTED -- the system correctly refuses"
+    },
+    {
+      "id": "C7",
+      "claim": "Reconstruction is bit-exact for any nonzero tolerance",
+      "evidence": "tol=1e-6 admits 1e-9 perturbation, measured err 8.58e-18",
+      "class": "QUARANTINED",
+      "status": "REFUTED -- exact only at tol=0"
+    },
+    {
+      "id": "C8",
+      "claim": "Asymptotic per-step ratio ~ m (tile)",
+      "evidence": "tensor operator at d=16384 gives 148-153x vs m=64",
+      "class": "QUARANTINED",
+      "status": "REFUTED -- excess is cache-driven and d-dependent"
+    },
+    {
+      "id": "C9",
+      "claim": "Automatic elevation of arbitrary software",
+      "evidence": "none; no analyser exists",
+      "class": "CANDIDATE",
+      "status": "NOT IMPLEMENTED"
+    },
+    {
+      "id": "C10",
+      "claim": "Universal or quantum speedup",
+      "evidence": "none",
+      "class": "QUARANTINED",
+      "status": "NOT CLAIMED"
+    }
+  ]
+}

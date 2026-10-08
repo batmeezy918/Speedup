@@ -1,0 +1,134 @@
+{
+  "regime": "AGD_FORMAL_GAP_REGIME_20261008T014628Z",
+  "generated_utc": "2026-10-08",
+  "transformation_id": "quotient-descent-v2-tensor",
+  "status": "ELEVATION_INCREMENT_COMPLETE_WITH_UNRESOLVED_GAPS",
+  "preserved_predecessor": {
+    "dir": "/root/AGD_ELEVATION_20261007",
+    "artifacts_hashed": 16,
+    "hash_manifest": "AGD_ELEVATION_20261007.sha256",
+    "proof_carrying_quotient_sha256": "8fea74f3f17d084717fbcc8ca985c068fd7d93a2e86b763ef50f1265524a960c",
+    "provenance_chain_intact": true
+  },
+  "gap": {
+    "type": "invariant-state redundancy",
+    "statement": "H is block-constant to within tol; the block-constant sector is invariant under U = Ubar (x) I_m; the quotient representation is r = d/m instead of d",
+    "derived_from": "hand-specified per operator family -- NOT derived by an automatic analyser"
+  },
+  "gates": {
+    "A_gap_derivation": "PARTIAL (structural, but declared not derived)",
+    "B_semantic_preservation": "PASS bit-exact (max_abs_error = 0) on all 19 adversarial cases",
+    "C_invariant_admissibility": "PASS boundary exposed and enforced both ways",
+    "D_reconstruction": "PASS max_abs_error = 0 including 1000-step trajectory",
+    "E_machine_precision": "PASS exact zero for tol=0; 8.58e-18 when tol=1e-6 (within tol, NOT exact)",
+    "F_adversarial": "PASS 19/19",
+    "G_baseline_neutrality": "PASS baseline is the same operator applied densely (d*r), not a strawman",
+    "H_native_silicon": "PASS aarch64, gcc GCC_14, -O3_marchnative_funroll",
+    "I_reproducibility": "PARTIAL (7 trials x 5 reps, median reported; single host only)",
+    "formal": "FORMAL_PARTIAL -- abstract L4 theorem machine-checked (axioms [Quot.sound]); concrete tensor-separable instantiation NOT Lean-instantiated"
+  },
+  "adversarial_suite": {
+    "passed": 19,
+    "failed": 0,
+    "cases": [
+      "admissible x3 operator families -> optimised path, maxerr 0",
+      "perturbed 1 element x3 -> MUST fall back, maxerr 0",
+      "random general x3 -> MUST fall back, maxerr 0",
+      "tol=1e-6 admits 1e-9 perturbation (err 8.58e-18 <= tol)",
+      "tol=0 refuses the same state",
+      "UNVERIFIED certificate forces fallback even on admissible input",
+      "d%m!=0 / NULL state / m=0 -> NULL plan",
+      "m=1 (r=d) and m=d (r=1) degenerate shapes",
+      "1000-step trajectory, no drift",
+      "multi-size multi-family sweep 4/4"
+    ]
+  },
+  "silicon": {
+    "cpu": "4x Cortex-A78 @2.40GHz + 4x Cortex-A55 @1.80GHz",
+    "governor": "walt (NOT writable from user space)",
+    "thermal": "46-56 C observed",
+    "executable": "PRoot aarch64 on an ARM phone",
+    "note": "single host; cross-hardware validation NOT performed"
+  },
+  "measurements": {
+    "admissible": {
+      "transformation_id": "quotient-descent-v2-tensor",
+      "certificate_sha256": "d69e18ecf39e502882e90a9c8758b8e8018d2831251b7a128060daf8e26fe007",
+      "certificate_state": "FORMAL_PARTIAL",
+      "compiler": "GCC_14",
+      "flags": "-O3_marchnative_funroll",
+      "target": "aarch64-linux-gnu",
+      "d": 4096,
+      "quotient_r": 64,
+      "tile_m": 64,
+      "steps": 64,
+      "admissible": true,
+      "in_fallback": false,
+      "max_abs_error": 0,
+      "baseline_ms": 58.045365,
+      "optimised_ms": 0.819323,
+      "speedup": 70.845521,
+      "trials": 7,
+      "reps": 5,
+      "adversarial_suite": "PASS 19/19",
+      "claim_class": "FORMAL_PARTIAL_MEASURED_LOCAL"
+    },
+    "inadmissible": {
+      "transformation_id": "quotient-descent-v2-tensor",
+      "certificate_sha256": "d69e18ecf39e502882e90a9c8758b8e8018d2831251b7a128060daf8e26fe007",
+      "certificate_state": "FORMAL_PARTIAL",
+      "compiler": "GCC_14",
+      "flags": "-O3_marchnative_funroll",
+      "target": "aarch64-linux-gnu",
+      "d": 4096,
+      "quotient_r": 64,
+      "tile_m": 64,
+      "steps": 64,
+      "admissible": false,
+      "in_fallback": true,
+      "max_abs_error": 0,
+      "baseline_ms": 58.01604,
+      "optimised_ms": 57.80849,
+      "speedup": 1.00359,
+      "trials": 7,
+      "reps": 5,
+      "adversarial_suite": "PASS 19/19",
+      "claim_class": "QUARANTINED_OPTIMISATION_NOT_APPLIED"
+    }
+  },
+  "speedup_accounting": {
+    "structural_reduction": "r = d/m; quotient state 64 values vs 4096 -> 64x",
+    "arithmetic_reduction": "full step d*r = 262144 FMA vs quotient r*r = 4096 FMA -> 64x",
+    "memory_traffic_reduction": "quotient re-reads r*8 bytes; full re-reads d*8 per step",
+    "compiler_vectorization_gain": "NOT isolated (same flags both arms)",
+    "cache_locality_gain": "NOT isolated",
+    "amortization_gain": "plan created per run; setup charged to optimised arm",
+    "total_measured": "70.846x",
+    "residual": "the 70.8x is ~1.11x the pure work ratio 64x; the excess is consistent with the cache effect measured in TENSOR_OPERATOR_RESULT_20261008.md and is NOT separately isolated here"
+  },
+  "claim_classification": {
+    "semantic_preservation": "VERIFIED_SEMANTIC",
+    "native_artifact": "VERIFIED_NATIVE",
+    "adversarial": "ADVERSARIAL_VERIFIED",
+    "performance": "FORMAL_PARTIAL_MEASURED_LOCAL (NOT MEASURED_LOCAL_NATIVE: instantiation gate absent)",
+    "universal": "QUARANTINED -- no universal claim made"
+  },
+  "quarantined": [
+    {
+      "artifact": "agd_tensored_blocked (earlier run)",
+      "reason": "contained `if (w==0.0) continue;` so for sparse operators (perm, diagphase) the blocked arm skipped work the strided arm performed -- a baseline mismatch, not a memory effect",
+      "status": "QUARANTINED, superseded by the zero-skip-removed controlled build"
+    },
+    {
+      "claim": "path gain <= q",
+      "reason": "FLOP-derived bound is FALSE in native code; measured 70.3x asymptote against q=64",
+      "status": "QUARANTINED as a universal bound; holds only while both arms are FLOP-bound"
+    }
+  ],
+  "not_achieved": [
+    "PHASE 6 automatic software elevation: NOT implemented. There is no profiler, no IR, no automatic gap derivation. The gap is declared per operator family by the author. This is the single largest gap between the directive and the system.",
+    "PHASE 5 full certificate binding: partially done. Two-gate model implemented, but the instantiation gate is ABSENT because no Lean file names Ubar (x) I_m.",
+    "PHASE 8 multi-host validation: not performed; single device only.",
+    "Non-separable dense operator: not implemented; Ubar (x) I_m is a special structure."
+  ]
+}
