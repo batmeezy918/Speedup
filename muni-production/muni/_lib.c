@@ -102,12 +102,15 @@ int munibench(const double *Ubar, size_t r, size_t m,
               double tol, double *base_ms, double *opt_ms, double *speedup,
               double *max_abs_error, int *used_quotient)
 {
-  size_t d = r * m;
   if (!Ubar || !x0 || !base_ms || !opt_ms || !speedup) return MUNI_ERR_SHAPE;
   if (trials < 1) trials = 1;
   if (reps < 1) reps = 1;
   if (trials > 256) trials = 256;
   if (reps > 256) reps = 256;
+  /* Guard against overflow: r*m can wrap, producing an undersized buffer. */
+  if (r > SIZE_MAX / m) return MUNI_ERR_SHAPE;
+  size_t d = r * m;
+  if (d > SIZE_MAX / sizeof(double)) return MUNI_ERR_ALLOC;
 
   AGDCertificate cert = agd_certificate_self();
   AGDPlan *probe = agd_plan_create(x0, d, m, Ubar, tol, &cert);
