@@ -87,6 +87,12 @@ _HERE = Path(__file__).resolve().parent
 _LIB = _HERE.parent / "libmuni.so"
 _EVIDENCE = _HERE.parent / "evidence"
 
+# Cached evidence verdict. verify_evidence() reads a file on every call;
+# caching it at first use avoids that I/O on hot paths. It is invalidated
+# automatically if the library file changes (its hash is part of the cache key).
+_evidence_cache: dict[str, Any] | None = None
+_evidence_cache_lib_hash: str | None = None
+
 
 def status_name(code: int) -> str:
     return _STATUS.get(int(code), f"UNKNOWN_{code}")
@@ -115,7 +121,17 @@ def verify_evidence() -> dict[str, Any]:
     Compares the shipped library against the recorded manifest and reports
     every check separately. Never raises: a consumer should be able to display
     the verdict rather than crash on it.
+
+    The result is cached after the first call. The cache is invalidated when
+    the library file changes (its hash is part of the cache key), so a
+    recompiled kernel is re-checked on the next call.
     """
+    global _evidence_cache, _evidence_cache_lib_hash
+    current_lib_hash = _library_sha256()
+    if (_evidence_cache is not None
+            and _evidence_cache_lib_hash == current_lib_hash):
+        return _evidence_cache
+
     out: dict[str, Any] = {
         "integrity": "UNKNOWN",
         "checks": {},
@@ -127,6 +143,8 @@ def verify_evidence() -> dict[str, Any]:
         if not manifest_path.exists():
             out["integrity"] = "NO_EVIDENCE"
             out["details"]["error"] = "evidence/evidence.json not found"
+            _evidence_cache = out
+            _evidence_cache_lib_hash = current_lib_hash
             return out
         man = json.loads(manifest_path.read_text())
 
@@ -154,6 +172,8 @@ def verify_evidence() -> dict[str, Any]:
     except Exception as exc:  # never propagate
         out["integrity"] = "FAIL"
         out["details"] = {"error": f"{type(exc).__name__}: {exc}"}
+    _evidence_cache = out
+    _evidence_cache_lib_hash = current_lib_hash
     return out
 
 
@@ -341,7 +361,7 @@ class Result:
     reason: str
     baseline_ms: float
     optimised_ms: float
-    speedup: float
+    speedup: float | None
     reference: list[float] = field(default_factory=list, repr=False)
     receipt: dict[str, Any] = field(default_factory=dict)
 
@@ -497,8 +517,8 @@ def run(
             "library_sha256": _library_sha256(),
         },
         "evidence": verify_evidence(),
-        "scope_text": SCOPE_TEXT,
-        "scope_exclusions": list(SCOPE_EXCLUSIONS),
+        "scope_id": "tensor-separable-block-constant-v1",
+        "scope_text_ref": "claim()",
         "input_digest": {
             "Ubar_sha256": _digest_doubles(u),
             "x0_sha256": _digest_doubles(x),
@@ -520,7 +540,7 @@ def run(
         reason=reason,
         baseline_ms=float("nan"),
         optimised_ms=opt_ms,
-        speedup=speedup if speedup is not None else 1.0,
+        speedup=speedup,
         reference=reference,
         receipt=receipt,
     )
@@ -615,8 +635,8 @@ def benchmark(
             "library_sha256": _library_sha256(),
         },
         "evidence": verify_evidence(),
-        "scope_text": SCOPE_TEXT,
-        "scope_exclusions": list(SCOPE_EXCLUSIONS),
+        "scope_id": "tensor-separable-block-constant-v1",
+        "scope_text_ref": "claim()",
         "input_digest": {"Ubar_sha256": _digest_doubles(u), "x0_sha256": _digest_doubles(x)},
     }
     return Result(
