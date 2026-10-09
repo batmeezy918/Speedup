@@ -1,0 +1,5 @@
+transformation_id=quotient-descent-v2-tensor
+lean_artifact_sha256=907c730b1f0a160330b0349cd5dfeffcb287057e1a8720c318d0e31ead932d2d
+proof_inputs_manifest_sha256=557bc991cd6845b2b83fd62eb09fc55b7e323c6bc90183dca94344c0e53b8037
+recursive_theorems=AGD.recursive_forward_refinement,AGD.recursive_exact_reconstruction
+claim_scope=exact finite recursive trajectory on declared block-constant invariant sector; not arbitrary transformer or arbitrary operator
