@@ -141,6 +141,8 @@ class TestNonFiniteHandling(unittest.TestCase):
         res = muni.run([[1.0]], [-0.0, 0.0], steps=1)
         self.assertTrue(res.exact)
         self.assertEqual(res.max_abs_error, 0.0)
+        self.assertTrue(res.used_quotient,
+                        "numeric gate should accept mixed signed zeros")
 
 
 class TestBenchmarkHonesty(unittest.TestCase):
