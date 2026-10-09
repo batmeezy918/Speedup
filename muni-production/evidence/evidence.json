@@ -5,9 +5,9 @@
     "note": "-fno-fast-math and -ffp-contract=off are required: IEEE semantics must not be relaxed",
     "target": "aarch64"
   },
-  "callable_surface_sha256": "720034e924006beb70adf3493609d0b9f03c791af61dd66b5566f7e463fd381b",
+  "callable_surface_sha256": "2b5b0a3f21292c405a52a92d30ba022569388e1f45f6288dd214d07581f8f06b",
   "formal_certificate_sha256": "ef60162893f59ee1446af27005e332a0b7978e2822e424511611644713b24ff1",
-  "kernel_source_sha256": "78d650cf29c605690b30c6a7eddc6f4900571d1fee241da840fa75a393d0e75c",
+  "kernel_source_sha256": "d9316a0ddada08ac62a1807a0af7ab9417e320aa888133e9be3ca6cf7741958a",
   "known_characteristics": [
     "Signed zero does not survive an iteration in either arm (both accumulate into acc=0.0); the two arms still agree bit-for-bit, which is the enforced contract.",
     "The admissibility gate is a numeric-tolerance gate, not a bitwise gate: -0.0 and +0.0 compare equal and are treated as the same fiber value.",
@@ -32,7 +32,7 @@
   },
   "lean_source_sha256": "907c730b1f0a160330b0349cd5dfeffcb287057e1a8720c318d0e31ead932d2d",
   "lean_toolchain": "Lean (version 4.29.0, aarch64-unknown-linux-gnu, commit 98dc76e3c0a9b856c9b98726b713fb04fab16740, Release)",
-  "library_sha256": "1b4482be4df9af27d265ec0521573556cbdd9feaac57a2bddfd76d78f0a4f8da",
+  "library_sha256": "9f0aae597e5fea44f3014c6b6867f703df7abcc39062a3b432638327006636c9",
   "platform": {
     "platform": "Linux-6.17.0-PRoot-Distro-aarch64-with-glibc2.41",
     "python": "3.13.5"
@@ -40,10 +40,10 @@
   "proof_axiom_free": true,
   "proof_inputs": {
     "muni/__init__.py": "e651c081519c2d2ffee8481495feb4a896156667770ddea21fbb43e82e478c51",
-    "muni/_lib.c": "720034e924006beb70adf3493609d0b9f03c791af61dd66b5566f7e463fd381b",
-    "muni/core.py": "b5c1eb14a5cc3f56b3d41bd949a5976a13b67bbeda9afd58cc015cdf73208562",
-    "muni/kernel.c": "78d650cf29c605690b30c6a7eddc6f4900571d1fee241da840fa75a393d0e75c",
-    "muni/kernel.h": "4e267f27b9b3c214bc75e9507171be221ade52fff13fe503984e660c680d8617",
+    "muni/_lib.c": "2b5b0a3f21292c405a52a92d30ba022569388e1f45f6288dd214d07581f8f06b",
+    "muni/core.py": "299a500857202f2726bdc650f8f1d848c4058673883aa2020913387b07d23742",
+    "muni/kernel.c": "d9316a0ddada08ac62a1807a0af7ab9417e320aa888133e9be3ca6cf7741958a",
+    "muni/kernel.h": "2546ba8fcee8207575ca8b1337a48f4a6f84a9b38ee7fa06817fa60a144a01c2",
     "muni/kernel_agl.h": "e94f309fb842f19f8686059792ab19cf8b43679eb2a2182483aec822dfd3a36d",
     "proof/AGD_EQUIVALENCE_QUOTIENT_CORE.lean": "b53a040fc6b710d188659d595dbef778e7b510cc212bc4bc19a6e1f9f0e4e7eb",
     "proof/AGD_GAP_DERIVATION.lean": "b5ae57c834abc6be41f4cf51addce96c8f1e8f6f5d4a88d42722132e08e32aba",
