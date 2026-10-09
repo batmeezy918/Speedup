@@ -237,10 +237,17 @@ def _load() -> ctypes.CDLL:
         cache = Path(tempfile.gettempdir()) / "muni-kernel-cache"
         cache.mkdir(parents=True, exist_ok=True)
         dest = cache / f"libmuni-{_sha256_file(_LIB)[:16]}.so"
-        if not dest.exists():
-            tmp = dest.with_suffix(".so.tmp")
-            shutil.copyfile(_LIB, tmp)
+        # Atomic creation: try O_CREAT|O_EXCL first so two processes cannot
+        # race on the existence check. If another process wins, we just use
+        # the file it created; tmp.replace(dest) is atomic on POSIX.
+        tmp = dest.with_suffix(".so.tmp")
+        try:
+            fd = os.open(str(tmp), os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
+            with os.fdopen(fd, "wb") as f:
+                shutil.copyfileobj(open(_LIB, "rb"), f)
             tmp.replace(dest)
+        except FileExistsError:
+            pass
         _lib = _bind(ctypes.CDLL(str(dest)))
         return _lib
     except Exception as exc:  # pragma: no cover - environment dependent
