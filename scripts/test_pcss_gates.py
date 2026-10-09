@@ -25,6 +25,17 @@ def main() -> int:
             "performance.json": b'{"metric":"wall_ns","median_baseline":2,"median_candidate":1,"speedup_measured":2,"samples":1}\n',
         }.items():
             artifacts[name] = write(d / name, data)
+        proof_artifacts = {}
+        for gate, (name, data) in {
+            "quotient_forward": ("quotient.proof", b"quotient proof\n"),
+            "reconstruction_reverse": ("reverse.proof", b"reconstruction proof\n"),
+            "invariants": ("invariants.proof", b"invariant proof\n"),
+            "lean": ("lean.proof", b"lean proof\n"),
+        }.items():
+            proof_artifacts[gate] = {
+                "path": name,
+                "sha256": write(d / name, data),
+            }
         cert = {
             "run_id": "gate-regression",
             "scenario_hash": artifacts["scenario.json"],
@@ -34,9 +45,13 @@ def main() -> int:
             "trace_hash": artifacts["trace.json"],
             "performance_hash": artifacts["performance.json"],
             "artifacts": artifacts,
+            "proof_artifacts": proof_artifacts,
             "performance": {"metric":"wall_ns","median_baseline":2,"median_candidate":1,"speedup_measured":2,"samples":1},
             "gates": {g: True for g in ("integrity","reproducibility","quotient_forward","reconstruction_reverse","invariants","performance","lean")},
-            "quotient_hash": "q", "reverse_hash": "r", "invariants_hash": "i", "proof_hash": "p",
+            "quotient_hash": proof_artifacts["quotient_forward"]["sha256"],
+            "reverse_hash": proof_artifacts["reconstruction_reverse"]["sha256"],
+            "invariants_hash": proof_artifacts["invariants"]["sha256"],
+            "proof_hash": proof_artifacts["lean"]["sha256"],
         }
         cp = d / "certificate.json"
         cp.write_text(json.dumps(cert), encoding="utf-8")
