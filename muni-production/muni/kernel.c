@@ -164,6 +164,9 @@ AGDPlan *agd_plan_create(const double *x, size_t d, size_t m, const double *U,
   if (!x || !U || d == 0 || m == 0 || d % m != 0) return NULL;
   size_t r = d / m;
   if (r == 0) return NULL;
+  /* Guard against overflow in the allocation-size multiplications below. */
+  if (r > SIZE_MAX / r / sizeof(double)) return NULL;
+  if (d > SIZE_MAX / sizeof(double)) return NULL;
   AGDPlan *p = (AGDPlan *)calloc(1, sizeof *p);
   if (!p) return NULL;
   p->d = d; p->m = m; p->r = r;
