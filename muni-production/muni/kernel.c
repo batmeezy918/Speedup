@@ -57,12 +57,15 @@ AGDCertificate agd_certificate_self(void) {
   memset(&c, 0, sizeof c);
   snprintf(c.transformation_id, sizeof c.transformation_id, "%s", AGD_TID);
   snprintf(c.certificate_sha256, sizeof c.certificate_sha256, "%s", AGD_CERT_SHA);
-  snprintf(c.source_sha256, sizeof c.source_sha256, "%s", "557bc991cd6845b2b83fd62eb09fc55b7e323c6bc90183dca94344c0e53b8037");
+  /* The source and artefact hashes are NOT duplicated here. They live in
+     evidence/evidence.json (kernel_source_sha256, library_sha256) and are
+     checked at runtime by verify_evidence(). Hardcoding them here would let
+     them drift out of sync with the actual files; the manifest is generated
+     by tools/make_evidence.py after every source change. */
   snprintf(c.scope, sizeof c.scope, "%s",
            "concrete Lean theorems AGD.recursive_forward_refinement and AGD.recursive_exact_reconstruction "
            "for TensorState R M alpha on the block-constant invariant sector; "
            "pointwise reconstruction and forward refinement; #print axioms reports none");
-  snprintf(c.certified_artefact_sha256, sizeof c.certified_artefact_sha256, "%s", "907c730b1f0a160330b0349cd5dfeffcb287057e1a8720c318d0e31ead932d2d");
   snprintf(c.semantic_gate, sizeof c.semantic_gate, "%s",
            "AGD.recursive_forward_refinement + AGD.recursive_exact_reconstruction (Lean, axioms [])");
   snprintf(c.instantiation_gate, sizeof c.instantiation_gate, "%s", "CLOSED");
