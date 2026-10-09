@@ -21,9 +21,12 @@ int munirun(const double *Ubar, size_t r, size_t m,
             int *used_quotient, double *max_abs_error,
             double *residual, double tol)
 {
-  size_t d = r * m;
   if (!Ubar || !x0 || !out_full || !out_fast || r == 0 || m == 0)
     { g_status = MUNI_ERR_SHAPE; return g_status; }
+  /* Guard against overflow: r*m can wrap, producing an undersized buffer. */
+  if (r > SIZE_MAX / m) { g_status = MUNI_ERR_SHAPE; return g_status; }
+  size_t d = r * m;
+  if (d > SIZE_MAX / sizeof(double)) { g_status = MUNI_ERR_ALLOC; return g_status; }
 
   /* Reject non-finite inputs outright: NaN/Inf are outside every scope we
      claim, and a NaN would poison the admissibility comparison. */

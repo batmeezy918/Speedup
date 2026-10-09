@@ -13,6 +13,7 @@
 #ifndef MUNI_KERNEL_H
 #define MUNI_KERNEL_H
 #include <stddef.h>
+#include <stdint.h>
 #include "kernel_agl.h"
 
 #ifdef __cplusplus
