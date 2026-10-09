@@ -296,12 +296,14 @@ def measure_sector(x0: Sequence[float], m: int) -> tuple[float, int, int]:
 def is_admissible(x0: Sequence[float], m: int, tol: float = 0.0) -> bool:
     """True when every fiber is constant to within `tol`.
 
-    With the default tol=0.0 this requires EXACT bitwise constancy, which is
-    what the Lean theorem needs. Loosen tol only if you accept the
-    corresponding numerical risk, and say so in your own reporting.
+    With the default tol=0.0 this requires numeric constancy (abs diff == 0),
+    which is what the Lean theorem and the C kernel both use. -0.0 and +0.0
+    compare equal here, matching the evidence manifest's numeric-tolerance
+    gate. Loosen tol only if you accept the corresponding numerical risk,
+    and say so in your own reporting.
     """
-    _, bad, _ = measure_sector(x0, m)
-    return bad == 0 or measure_sector(x0, m)[0] <= tol
+    worst, bad, _ = measure_sector(x0, m)
+    return bad == 0 or worst <= tol
 
 
 # --------------------------------------------------------------------------
