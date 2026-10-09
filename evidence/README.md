@@ -2,17 +2,15 @@
 
 Run: `AGD_PCSS_ELEVATION_20261009T060000Z`
 
-The full reproducible run bundle is encoded as ordered base64 text parts in `archive_parts/`. To reconstruct the exact tarball on Linux/macOS:
+The complete reproducible run archive is encoded as ordered base64 text parts in `archive_parts/`. Reconstruct it on Linux/macOS:
 
 ```sh
 cat evidence/archive_parts/part-*.b64 | base64 -d > AGD_PCSS_ELEVATION_20261009T060000Z.tar.gz
 sha256sum AGD_PCSS_ELEVATION_20261009T060000Z.tar.gz
 ```
 
-Expected tarball SHA-256:
+Expected tarball SHA-256: `79f7985b40da7b0bbfb3bd33a402bb52f3b48ea3031084a42ec8f34a2a7a0871`.
 
-`acbec74fa8597811e03809e764dc8389267db70a4dc540dfda5d88be7f16943d`
+The archive includes source, binaries, Lean proof files, receipts, formal and source-set manifests, and the final overhead sweep v3 source/raw CSV. Standalone files expose the report, receipt, manifest, and sweep for review.
 
-The archive includes source, binaries, Lean proof files, gate receipts, the PCSS closure receipt, the overhead sweep source and raw CSV, and the extended artifact manifest. The standalone evidence files in this directory make the main report and receipt reviewable without reconstructing the archive.
-
-**Scope:** PCSS 8/8 closure is limited to the declared tensor-separable family (U = ar U otimes I_m) and its block-constant invariant sector. The sweep measures setup, quotient steps, and reconstruction separately through 1,024 steps. It does not establish universal transformer speedup, arbitrary invariant discovery, or independent-hardware replication.
+**Scope:** PCSS 8/8 applies only to `U = Ubar ⊗ I_m` on the declared block-constant invariant sector. The final overhead sweep measures setup, quotient steps, reconstruction, and plan destruction through 1,024 steps. No universal transformer speedup, arbitrary invariant discovery, or independent-hardware replication is claimed.
