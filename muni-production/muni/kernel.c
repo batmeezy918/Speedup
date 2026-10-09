@@ -136,11 +136,10 @@ int agd_admissible_block_constant(const double *x, size_t d, size_t m, double to
     for (size_t j = 1; j < m; j++) {
       double z = x[b * m + j];
       if (!isfinite(z)) return 0;
-      /* tol==0 is the exact contract: compare representations, not numeric
-         equality (which conflates +0/-0 and has special NaN behavior). */
-      if (tol == 0.0) {
-        if (memcmp(&z, &v, sizeof(double)) != 0) return 0;
-      } else if (fabs(z - v) > tol) {
+      /* Numeric comparison: -0.0 and +0.0 are the same fiber value. This
+         matches the Python gate and the evidence manifest, which both treat
+         the admissibility boundary as numeric tolerance, not bitwise. */
+      if (fabs(z - v) > tol) {
         return 0;
       }
     }
