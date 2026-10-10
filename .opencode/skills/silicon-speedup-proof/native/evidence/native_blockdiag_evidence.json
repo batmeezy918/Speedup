@@ -1,0 +1,208 @@
+{
+  "artifacts": [
+    {
+      "path": ".opencode/skills/silicon-speedup-proof/native/artifacts/native_blockdiag_run1.json",
+      "role": "raw_result",
+      "sha256": "20bfa8cf945e283c57f55fe4aa01f5af90eb5dfda4e1649477058c2d66a66d51"
+    },
+    {
+      "path": ".opencode/skills/silicon-speedup-proof/native/artifacts/native_blockdiag_run2.json",
+      "role": "raw_result",
+      "sha256": "01a4ac07c73f2cd043c9355e466627a7f77377e19edad41ce2078e7202bfa692"
+    }
+  ],
+  "checks": [
+    {
+      "artifact_ref": ".opencode/skills/silicon-speedup-proof/native/artifacts/native_blockdiag_run2.json",
+      "assertion": "y_candidate == y_baseline (elementwise, exact float equality)",
+      "check_id": "native-equiv-bitwise",
+      "expected": 0.0,
+      "expected_source": "independent_oracle",
+      "name": "candidate output equals baseline output bitwise",
+      "observed": 0.0,
+      "parameter_roles": {
+        "blocks": "size",
+        "n": "dimension"
+      },
+      "parameters": {
+        "blocks": 32,
+        "n": 512
+      },
+      "passed": true
+    },
+    {
+      "artifact_ref": ".opencode/skills/silicon-speedup-proof/native/artifacts/native_blockdiag_run2.json",
+      "assertion": "reconstructed_output == candidate_output",
+      "check_id": "native-reverse-reconstruction",
+      "expected": 0.0,
+      "expected_source": "independent_oracle",
+      "name": "output recomputed from the reconstructed dense matrix matches",
+      "observed": 0.0,
+      "parameter_roles": {
+        "n": "dimension"
+      },
+      "parameters": {
+        "n": 512
+      },
+      "passed": true
+    },
+    {
+      "artifact_ref": ".opencode/skills/silicon-speedup-proof/native/artifacts/native_blockdiag_run2.json",
+      "assertion": "1/noise_floor_ratio <= effect size",
+      "check_id": "native-noise-floor",
+      "expected": 1.05,
+      "expected_source": "spec",
+      "name": "baseline measured against baseline under the identical protocol",
+      "note": "baseline-vs-baseline ratio 0.99794; the observed effect is 22.77x, far outside that floor.",
+      "observed": 1.0020597051761608,
+      "parameter_roles": {
+        "reps": "iteration_count"
+      },
+      "parameters": {
+        "reps": 15
+      },
+      "passed": true
+    }
+  ],
+  "claim": {
+    "assigned_manually": false,
+    "kind": "performance",
+    "scope": "Pure-Python reference implementation, n=512 in 32 blocks of 16, one machine, CPython 3.13.5, median of 15 interleaved samples per arm, engines/performance.py evaluator. NOT a device result, NOT a SIM2XR/AGD result, NOT a claim about any kernel or accelerator, NOT a scaling claim (one size only), NOT a hardware-mechanism claim.",
+    "statement": "Skipping provably-zero blocks in a block-diagonal matrix-vector product is 22.77x faster than the dense loop on this machine (Linux-6.17.0-PRoot-Distro-aarch64-with-glibc2.41, CPython 3.13.5), with bitwise-identical output.",
+    "strength": "STRONG_LOCAL"
+  },
+  "command": "python3 native/run_native_verification.py --n 512 --blocks 32 --reps 15 --warmups 3",
+  "correctness": {
+    "equivalence": {
+      "artifact_ref": ".opencode/skills/silicon-speedup-proof/native/artifacts/native_blockdiag_run2.json",
+      "expected": 0.0,
+      "metric": "bitwise_equality_of_output_vector",
+      "note": "off-block terms are exactly 0.0 and IEEE-754 addition of an exact zero to a finite partial sum is exact; both arms sum the non-zero terms left to right",
+      "observed": 0.0,
+      "pass": true
+    },
+    "invariant": {
+      "artifact_ref": ".opencode/skills/silicon-speedup-proof/native/artifacts/native_blockdiag_run2.json",
+      "metric": "declared_block_partition",
+      "note": "the block partition is asserted at construction and re-derived from the reconstructed matrix; no project invariant engine (engines/invariant.py) was exercised by this run.",
+      "pass": true
+    },
+    "reverse_reconstruction": {
+      "artifact_ref": ".opencode/skills/silicon-speedup-proof/native/artifacts/native_blockdiag_run2.json",
+      "expected": 0.0,
+      "metric": "reverse_reconstruction_error",
+      "note": "dense matrix rebuilt from the block view, then the output recomputed from it and compared to the candidate output",
+      "observed": 0.0,
+      "pass": true
+    }
+  },
+  "cwd": "opencode/skills/silicon-speedup-proof",
+  "dependencies": [
+    {
+      "id": "numpy",
+      "ref": "requirements.txt",
+      "status": "resolved"
+    },
+    {
+      "id": "engines/performance.py",
+      "ref": "engines/performance.py",
+      "status": "resolved"
+    }
+  ],
+  "environment": {
+    "compiler_flags": "n/a (interpreted)",
+    "cores_total": 8,
+    "cpu": "unknown",
+    "machine": "aarch64",
+    "note": "single-threaded, nothing else executed concurrently",
+    "platform": "Linux-6.17.0-PRoot-Distro-aarch64-with-glibc2.41",
+    "python": "3.13.5",
+    "toolchain": "CPython 3.13.5"
+  },
+  "evidence_strength": "REPRODUCED",
+  "executed_kind": "native",
+  "exit_code": 0,
+  "gaps": [
+    "G-NATIVE-ATTRIB-001",
+    "G-NATIVE-DERIV-001"
+  ],
+  "mechanism": {
+    "claim": "the gain is a reduction in interpreter-level work, not a device property",
+    "evidence": [],
+    "mechanism_specific": false
+  },
+  "notes": "REAL native run. Raw artifacts hashed and retained.",
+  "primitive_id": "P-NATIVE-BLOCKDIAG",
+  "record_type": "evidence",
+  "run_id": "native-blockdiag-r2",
+  "schema_version": "SSPROOF-1.0",
+  "synthetic": false,
+  "timestamp": "2026-10-09T00:00:00Z",
+  "timing": {
+    "aggregation": "median",
+    "arms": [
+      {
+        "name": "baseline",
+        "samples": [
+          14612812.99998518,
+          14527759.994962253,
+          14516353.992803488,
+          14626667.005359195,
+          14494738.999928813,
+          14532291.002979036,
+          14623957.99899241,
+          14600157.002860215,
+          14474479.00136467,
+          14496301.99931562,
+          14607134.995458182,
+          14546822.996635456,
+          14506510.000501294,
+          14590781.000151765,
+          14579165.996110532
+        ],
+        "scope": "end-to-end"
+      },
+      {
+        "name": "candidate",
+        "samples": [
+          642447.9943234473,
+          630937.0000963099,
+          638905.9999492019,
+          639739.9993147701,
+          797708.9990163222,
+          655520.9984071553,
+          631615.00293063,
+          682916.0047345795,
+          627030.9968385845,
+          664584.0039709583,
+          629217.9969022982,
+          626614.0044317581,
+          616249.9994388781,
+          628594.0035013482,
+          719427.0001491532
+        ],
+        "scope": "end-to-end"
+      }
+    ],
+    "interleaved": true,
+    "unit": "ns",
+    "warmup_discarded": 3
+  },
+  "transition_records": [
+    {
+      "event_ref": "native://UNEVIDENCED->OBSERVED",
+      "from": "UNEVIDENCED",
+      "to": "OBSERVED"
+    },
+    {
+      "event_ref": "native://OBSERVED->EXECUTED",
+      "from": "OBSERVED",
+      "to": "EXECUTED"
+    },
+    {
+      "event_ref": "native://EXECUTED->REPRODUCED",
+      "from": "EXECUTED",
+      "to": "REPRODUCED"
+    }
+  ]
+}

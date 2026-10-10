@@ -1,0 +1,12 @@
+{
+  "note": "Synthetic candidate trace fixture. NOT a measurement.",
+  "run_id": "synthetic-run-candidate",
+  "samples_ms": [
+    40.0,
+    41.0,
+    39.5,
+    40.5,
+    41.5
+  ],
+  "synthetic": true
+}

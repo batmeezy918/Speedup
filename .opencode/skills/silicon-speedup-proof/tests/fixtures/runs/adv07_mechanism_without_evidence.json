@@ -1,0 +1,180 @@
+{
+  "artifacts": [
+    {
+      "path": "tests/fixtures/raw/synthetic_candidate_trace.json",
+      "role": "raw_result",
+      "sha256": "6a74c856d09bc0e562d3220c11060267228d5346cd36454bcd376086c92dc39b"
+    },
+    {
+      "path": "tests/fixtures/raw/synthetic_equivalence.json",
+      "role": "raw_result",
+      "sha256": "4889f803558098c393a84c7d9ed393c8b892d1059a85f078d87743ca9aca08f9"
+    }
+  ],
+  "checks": [
+    {
+      "artifact_ref": "tests/fixtures/raw/synthetic_equivalence.json",
+      "assertion": "max_abs_error(candidate, baseline) <= 1e-12",
+      "check_id": "syn-c1",
+      "expected": 0.0,
+      "expected_source": "independent_oracle",
+      "name": "synthetic equivalence check",
+      "observed": 0.0,
+      "parameter_roles": {
+        "n": "dimension"
+      },
+      "parameters": {
+        "n": 1024
+      },
+      "passed": true
+    }
+  ],
+  "claim": {
+    "assigned_manually": false,
+    "kind": "hardware_mechanism",
+    "scope": "synthetic fixture only",
+    "statement": "hardware mechanism asserted from the timing delta alone",
+    "strength": "STRONG_LOCAL"
+  },
+  "command": "python3 tests/fixtures/run_synthetic_workload.py",
+  "correctness": {
+    "equivalence": {
+      "artifact_ref": "tests/fixtures/raw/synthetic_equivalence.json",
+      "expected": 0.0,
+      "metric": "max_abs_error",
+      "observed": 0.0,
+      "pass": true,
+      "tolerance": 1e-12
+    },
+    "invariant": {
+      "artifact_ref": "tests/fixtures/raw/synthetic_equivalence.json",
+      "metric": "declared_signature",
+      "pass": true
+    },
+    "reverse_reconstruction": {
+      "artifact_ref": "tests/fixtures/raw/synthetic_equivalence.json",
+      "expected": 0.0,
+      "metric": "max_abs_error",
+      "observed": 0.0,
+      "pass": true,
+      "tolerance": 1e-12
+    }
+  },
+  "cwd": "synthetic",
+  "dependencies": [
+    {
+      "id": "synthetic-dep",
+      "ref": "synthetic://dep",
+      "status": "resolved"
+    }
+  ],
+  "environment": {
+    "compiler_flags": "none",
+    "cpu": "synthetic",
+    "governor": "synthetic",
+    "machine": "synthetic",
+    "platform": "synthetic",
+    "toolchain": "none",
+    "versions": {
+      "python": "synthetic"
+    }
+  },
+  "evidence_strength": "SCOPED_VERIFIED",
+  "executed_kind": "native",
+  "exit_code": 0,
+  "gaps": [],
+  "mechanism": {
+    "claim": "the speedup comes from the tensor cores' reduced instruction count",
+    "evidence": [],
+    "mechanism_specific": false
+  },
+  "notes": "SYNTHETIC FIXTURE. Not a measurement.",
+  "primitive_id": "P-SYN-KERNEL",
+  "record_type": "evidence",
+  "run_id": "synthetic-run-mechanism",
+  "scaling": {
+    "ratios": [
+      2.9,
+      3.0,
+      3.0
+    ],
+    "sizes": [
+      256,
+      512,
+      1024
+    ],
+    "unit": "elements"
+  },
+  "schema_version": "SSPROOF-1.0",
+  "synthetic": true,
+  "timestamp": "2026-01-01T00:00:00Z",
+  "timing": {
+    "aggregation": "median",
+    "arms": [
+      {
+        "memory_bytes": 2048,
+        "name": "baseline",
+        "samples": [
+          118.0,
+          119.0,
+          120.0,
+          121.0,
+          122.0
+        ],
+        "scope": "end-to-end"
+      },
+      {
+        "memory_bytes": 1024,
+        "name": "candidate",
+        "samples": [
+          38.0,
+          39.0,
+          40.0,
+          41.0,
+          42.0
+        ],
+        "scope": "end-to-end"
+      }
+    ],
+    "interleaved": true,
+    "unit": "ms",
+    "warmup_discarded": 2
+  },
+  "transition_records": [
+    {
+      "event_ref": "synthetic://UNEVIDENCED->OBSERVED",
+      "from": "UNEVIDENCED",
+      "to": "OBSERVED"
+    },
+    {
+      "event_ref": "synthetic://OBSERVED->EXECUTED",
+      "from": "OBSERVED",
+      "to": "EXECUTED"
+    },
+    {
+      "event_ref": "synthetic://EXECUTED->REPRODUCED",
+      "from": "EXECUTED",
+      "to": "REPRODUCED"
+    },
+    {
+      "event_ref": "synthetic://REPRODUCED->CORRECTNESS",
+      "from": "REPRODUCED",
+      "to": "CORRECTNESS"
+    },
+    {
+      "event_ref": "synthetic://CORRECTNESS->MECHANISM",
+      "from": "CORRECTNESS",
+      "to": "MECHANISM"
+    },
+    {
+      "event_ref": "synthetic://MECHANISM->FORMAL",
+      "from": "MECHANISM",
+      "to": "FORMAL"
+    },
+    {
+      "event_ref": "synthetic://FORMAL->SCOPED_VERIFIED",
+      "from": "FORMAL",
+      "to": "SCOPED_VERIFIED"
+    }
+  ]
+}
