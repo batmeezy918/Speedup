@@ -318,21 +318,30 @@ jobs:
           d = {}
           for line in cap:
               p = line.split()
-              if p and p[0].endswith(('1', '2', '3')) and p[0].startswith('FULL'):
-                  d.setdefault('FULL'+p[0][4:], []).append(p[1:])
-              if p and p[0] == 'QUOT':
+              if not p:
+                  continue
+              tag = p[0]
+              if tag.startswith('FULL') and tag[4:].isdigit():
+                  d['FULL' + tag[4:]] = p[1:]
+              elif tag == 'QUOT':
                   d['QUOT'] = p[1:]
-          def bits(step, b):
-              return int(d[step][b])
-          # rewrite the FULL3 / QUOT expectations from the fresh capture
-          src = re.sub(r'= 4587427314697419198 :=', '= %d :=' % bits('FULL3', 0), src)
-          src = re.sub(r'= 4608380468211094437 :=', '= %d :=' % bits('FULL3', 1), src)
-          src = re.sub(r'= 4598460982789154126 :=', '= %d :=' % bits('FULL3', 2), src)
-          src = re.sub(r'= 4587427314697419198 :=', '= %d :=' % bits('QUOT', 0), src)
-          src = re.sub(r'= 4608380468211094437 :=', '= %d :=' % bits('QUOT', 1), src)
-          src = re.sub(r'= 4598460982789154126 :=', '= %d :=' % bits('QUOT', 2), src)
-          open('C_BITDIFF_TEST.lean','w').write(src)
+          assert 'FULL3' in d and 'QUOT' in d, f"capture missing keys: {list(d)}"
+          # b-th block value: the capture repeats each block value across its m
+          # fibers, so take fiber index 0 of each block.
+          def bit(tag, b):
+              return d[tag][b * 4]
+          # Transcribed literals -> regex, applied to BOTH the full-path and the
+          # quotient-path expectations.
+          for old in ('4587427314697419198', '4608380468211094437', '4598460982789154126'):
+              b = {'4587427314697419198': 0,
+                   '4608380468211094437': 1,
+                   '4598460982789154126': 2}[old]
+              src = src.replace(old, str(bit('FULL3', b)))
+              src = src.replace(old, str(bit('QUOT', b)))
+          open('C_BITDIFF_TEST.lean', 'w').write(src)
           print("regenerated expectations from this runner's C capture")
+          for k in sorted(d):
+              print(f"  {k}: {d[k][:3]} ...")
           PY
           echo "--- checking ---"
           LEAN_PATH=/tmp/corr lean C_BITDIFF_TEST.lean && echo "CORRESPONDENCE: C == Lean, bit for bit"
