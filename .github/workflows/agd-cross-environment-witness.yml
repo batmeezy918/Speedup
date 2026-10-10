@@ -1,0 +1,50 @@
+name: AGD Cross-Environment Witness
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'muni-production/muni/kernel.c'
+      - 'muni-production/muni/kernel.h'
+      - 'muni-production/muni/kernel_agl.h'
+      - 'muni-production/tests/cross_environment_witness.cpp'
+      - '.github/workflows/agd-cross-environment-witness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cross-environment:
+    name: Exact MUNI workload on independent x86-64 runner
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Record independent substrate and source provenance
+        run: |
+          set -euo pipefail
+          uname -a
+          g++ --version | head -1
+          sha256sum muni-production/muni/kernel.c muni-production/muni/kernel.h muni-production/muni/kernel_agl.h muni-production/tests/cross_environment_witness.cpp
+
+      - name: Build unchanged production kernel and C++ witness
+        run: |
+          set -euo pipefail
+          cd muni-production
+          gcc -O3 -fno-fast-math -ffp-contract=off -fPIC -DAGD_COMPILER='"gcc-ci"' -DAGD_FLAGS='"-O3 -fno-fast-math -ffp-contract=off"' -DAGD_TARGET='"x86_64-linux-gnu"' -c muni/kernel.c -o /tmp/muni-kernel.o
+          g++ -std=c++17 -O3 -fno-fast-math -ffp-contract=off -I muni tests/cross_environment_witness.cpp /tmp/muni-kernel.o -lm -o /tmp/agd-cross-environment-witness
+
+      - name: Execute exact workload and adversarial fallback gates
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/runtime/cross-environment
+          /tmp/agd-cross-environment-witness | tee evidence/runtime/cross-environment/github-x86_64.txt
+          sha256sum evidence/runtime/cross-environment/github-x86_64.txt > evidence/runtime/cross-environment/SHA256SUMS.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agd-cross-environment-witness
+          path: evidence/runtime/cross-environment/
+          if-no-files-found: error
