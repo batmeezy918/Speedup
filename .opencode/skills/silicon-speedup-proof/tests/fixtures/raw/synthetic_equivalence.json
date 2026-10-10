@@ -1,0 +1,7 @@
+{
+  "max_abs_error": 0.0,
+  "note": "Synthetic equivalence artifact fixture. NOT a measurement.",
+  "pass": true,
+  "synthetic": true,
+  "tolerance": 1e-12
+}

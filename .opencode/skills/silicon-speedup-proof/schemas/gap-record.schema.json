@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speedup.local/schemas/silicon-speedup-proof/gap-record.schema.json",
+  "title": "Silicon Speedup Proof — Gap Record",
+  "description": "An unresolved obligation that bounds a claim. Gap closure creates a new evidence event; it never deletes the historical gap or the failure that produced it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "gap_id",
+    "gap_class",
+    "primitive_id",
+    "status",
+    "opened_at",
+    "claim_impact",
+    "observable_evidence",
+    "closure_criterion",
+    "owner",
+    "responsible_action",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": { "const": "SSPROOF-1.0" },
+    "record_type": { "const": "gap" },
+
+    "gap_id": { "type": "string", "pattern": "^G-[A-Za-z0-9][A-Za-z0-9._-]*$" },
+    "gap_class": {
+      "enum": [
+        "dependency",
+        "equivalence_correctness",
+        "measurement",
+        "attribution",
+        "scaling",
+        "hardware_mechanism",
+        "composition",
+        "formal_proof",
+        "vacuity",
+        "provenance",
+        "reproducibility",
+        "derivation"
+      ],
+      "description": "The first eleven are mandatory taxonomy classes. 'derivation' carries unresolved operator specifications (SKILL.md section: Operator model)."
+    },
+    "legacy_alias": {
+      "type": "string",
+      "description": "Preserved verbatim when a gap is imported from an existing repository taxonomy, e.g. RECONSTRUCTION_GAP."
+    },
+
+    "primitive_id": { "type": "string", "minLength": 1 },
+
+    "status": {
+      "enum": ["open", "closed", "quarantined", "accepted_risk", "superseded"],
+      "description": "closed requires closed_by_evidence. accepted_risk is an admission, not a closure."
+    },
+    "opened_at": { "type": "string", "minLength": 1 },
+    "closed_at": { "type": ["string", "null"] },
+    "closed_by_evidence": { "type": ["string", "null"] },
+
+    "claim_impact": {
+      "enum": ["blocks_promotion", "bounds_scope", "qualifies_claim", "none"],
+      "description": "blocks_promotion forbids claim strengths above CANDIDATE while the gap is open."
+    },
+
+    "observable_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "description": "What an observer can see. A gap with no observable evidence is itself a PROVENANCE gap.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["description"],
+        "properties": {
+          "ref": { "type": "string" },
+          "description": { "type": "string", "minLength": 1 },
+          "observed_at": { "type": "string" }
+        }
+      }
+    },
+
+    "closure_criterion": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A falsifiable condition. 'More work' is not a criterion."
+    },
+    "owner": { "type": "string", "minLength": 1 },
+    "responsible_action": { "type": "string", "minLength": 1 },
+
+    "bounds_scope": { "type": "string" },
+    "supersedes_gap_id": { "type": "string" },
+    "related_gap_ids": { "type": "array", "items": { "type": "string" } },
+
+    "synthetic": { "type": "boolean" },
+    "notes": { "type": "string" }
+  }
+}

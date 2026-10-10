@@ -1,0 +1,109 @@
+{
+  "command": "python3 native/run_native_verification.py --n 512 --blocks 32 --reps 15 --warmups 3",
+  "correctness": {
+    "argument": "off-block terms are exactly 0.0 and IEEE-754 addition of an exact zero to a finite partial sum is exact; both arms sum the non-zero terms left to right",
+    "bitwise_identical_output": true,
+    "max_abs_error": 0.0,
+    "reverse_block_reconstruction_identical": true,
+    "reverse_output_identical": true
+  },
+  "cwd": "opencode/skills/silicon-speedup-proof",
+  "environment": {
+    "compiler_flags": "n/a (interpreted)",
+    "cores_total": 8,
+    "cpu": "unknown",
+    "machine": "aarch64",
+    "note": "single-threaded, nothing else executed concurrently",
+    "platform": "Linux-6.17.0-PRoot-Distro-aarch64-with-glibc2.41",
+    "python": "3.13.5",
+    "toolchain": "CPython 3.13.5"
+  },
+  "kind": "native_run_raw_result",
+  "noise_floor": {
+    "baseline2_median_ns": 14489948.000118602,
+    "baseline_median_ns": 14502292.004181072,
+    "description": "baseline against baseline, identical protocol",
+    "ratio": 1.0008519011981527
+  },
+  "note": "REAL native run produced by native/run_native_verification.py",
+  "result": {
+    "S_i": 22.8740069790515,
+    "baseline_relative_spread": 0.030186975831727282,
+    "samples_per_arm": 15
+  },
+  "started_unix": 1791570826.8126698,
+  "synthetic": false,
+  "timing": {
+    "aggregation": "median",
+    "baseline": {
+      "mad": 47863.99949807674,
+      "max": 14906874.996086117,
+      "mean": 14584260.332533933,
+      "median": 14580989.998648874,
+      "memory_bytes": null,
+      "min": 14466719.003394246,
+      "p95": 14639322.995208204,
+      "p99": 14906874.996086117,
+      "samples": 15,
+      "samples_ns": [
+        14628853.998146951,
+        14906874.996086117,
+        14530000.000377186,
+        14589999.998861458,
+        14508489.00276469,
+        14534894.995449577,
+        14581769.99585703,
+        14580989.998648874,
+        14639322.995208204,
+        14617864.99567097,
+        14626615.004090127,
+        14466719.003394246,
+        14471927.002887242,
+        14558229.006070178,
+        14521353.994496167
+      ],
+      "unit": "ns"
+    },
+    "candidate": {
+      "mad": 14010.998711455613,
+      "max": 774374.9956716783,
+      "mean": 655628.533665246,
+      "median": 637447.9999067262,
+      "memory_bytes": null,
+      "min": 605468.9947632141,
+      "p95": 751458.9960919693,
+      "p99": 774374.9956716783,
+      "samples": 15,
+      "samples_ns": [
+        635885.9973261133,
+        654219.0021718852,
+        635415.9995680675,
+        665833.0021309666,
+        688646.0032546893,
+        629271.0022535175,
+        774374.9956716783,
+        648437.0023827069,
+        633438.0013868213,
+        640469.0066119656,
+        637447.9999067262,
+        610625.0002630986,
+        605468.9947632141,
+        623437.0011952706,
+        751458.9960919693
+      ],
+      "unit": "ns"
+    },
+    "evaluator": "engines/performance.py PerformanceEngine (unmodified)",
+    "protocol": "interleaved A B A B, warmup discarded, sequential execution",
+    "warmup_discarded": 3
+  },
+  "workload": {
+    "baseline": "dense: sum over all j of A[i][j]*v[j]",
+    "block_size": 16,
+    "blocks": 32,
+    "candidate": "block-structured: sum over j in block(i)",
+    "description": "block-diagonal matrix-vector product, pure Python",
+    "input_generation": "deterministic LCG, seed 12345, no clock, no file",
+    "n": 512
+  }
+}

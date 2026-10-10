@@ -1,0 +1,271 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speedup.local/schemas/silicon-speedup-proof/evidence-record.schema.json",
+  "title": "Silicon Speedup Proof — Native Run / Evidence Record",
+  "description": "One execution of one scenario. The raw-result artifact of the mandatory lifecycle. Claim/evidence ordering, vacuity, and promotion rules are enforced by scripts/validate-run.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "run_id",
+    "primitive_id",
+    "timestamp",
+    "executed_kind",
+    "artifacts",
+    "checks",
+    "claim"
+  ],
+  "properties": {
+    "schema_version": { "const": "SSPROOF-1.0" },
+    "record_type": { "const": "evidence" },
+
+    "run_id": { "type": "string", "minLength": 1 },
+    "primitive_id": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "minLength": 1 },
+    "scenario_id": { "type": "string" },
+
+    "executed_kind": {
+      "enum": ["native", "simulated", "dry_run", "static_inspection", "not_run"],
+      "description": "Anything other than 'native' forbids measured, reproduced and verified claims."
+    },
+
+    "command": { "type": "string", "minLength": 1 },
+    "cwd": { "type": "string" },
+    "exit_code": {
+      "type": ["integer", "null"],
+      "description": "Null/absent is UNKNOWN, not PASS. A zero exit code is not a correctness result."
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "platform": { "type": "string" },
+        "cpu": { "type": "string" },
+        "governor": { "type": "string" },
+        "toolchain": { "type": "string" },
+        "compiler_flags": { "type": "string" },
+        "versions": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    },
+
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Raw arms. An arm with no positive sample is a MEASUREMENT gap regardless of exit_code.",
+      "properties": {
+        "unit": { "enum": ["ns", "us", "ms", "s"] },
+        "warmup_discarded": { "type": "integer", "minimum": 0 },
+        "interleaved": { "type": "boolean" },
+        "aggregation": { "enum": ["median", "mean", "min", "p95", "p99"] },
+        "arms": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "samples"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "scope": { "type": "string" },
+              "samples": { "type": "array", "items": { "type": "number" } },
+              "input_size": { "type": "number" },
+              "memory_bytes": { "type": "integer", "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+
+    "correctness": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "equivalence": { "$ref": "#/$defs/checkResult" },
+        "reverse_reconstruction": { "$ref": "#/$defs/checkResult" },
+        "invariant": { "$ref": "#/$defs/checkResult" }
+      }
+    },
+
+    "scaling": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sizes": { "type": "array", "items": { "type": "number" } },
+        "ratios": { "type": "array", "items": { "type": "number" } },
+        "unit": { "type": "string" }
+      }
+    },
+
+    "formal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["theorem_target"],
+      "properties": {
+        "theorem_target": { "type": "string", "minLength": 1 },
+        "file": { "type": "string", "minLength": 1 },
+        "command": { "type": "string", "minLength": 1 },
+        "exit_status": { "type": ["integer", "null"] },
+        "output_ref": { "type": "string" },
+        "kernel_checked": { "type": "boolean" },
+        "toolchain": { "type": "string" },
+        "mathlib": { "type": "string" },
+        "scope_note": {
+          "type": "string",
+          "description": "What the theorem does NOT establish, stated explicitly."
+        }
+      }
+    },
+
+    "mechanism": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "claim": { "type": "string" },
+        "mechanism_specific": { "type": "boolean" },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ref", "kind"],
+            "properties": {
+              "ref": { "type": "string", "minLength": 1 },
+              "kind": {
+                "enum": ["counterfactual", "ablation", "hardware_counter", "microarchitectural_trace", "model_fit", "prior_work", "none"]
+              },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "checks": {
+      "type": "array",
+      "description": "The declarative validation batch. Vacuous entries do not count toward substantive coverage.",
+      "items": { "$ref": "#/$defs/check" }
+    },
+
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["resolved", "unresolved", "assumed"] },
+          "ref": { "type": "string" }
+        }
+      }
+    },
+
+    "artifacts": {
+      "type": "array",
+      "description": "Raw, immutable result artifacts. A run with exit_code 0 and zero artifacts is not a measurement.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "path", "sha256"],
+        "properties": {
+          "role": { "enum": ["raw_result", "stdout", "stderr", "trace", "certificate", "fixture", "log"] },
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    },
+
+    "gaps": { "type": "array", "items": { "type": "string" } },
+
+    "synthetic": {
+      "type": "boolean",
+      "description": "true for validator fixtures. Never counted as hardware evidence."
+    },
+
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strength", "kind", "statement", "scope"],
+      "properties": {
+        "strength": { "enum": ["NONE", "CANDIDATE", "STRONG_LOCAL", "FORMAL_PARTIAL", "VERIFIED"] },
+        "kind": {
+          "enum": ["none", "performance", "implementation", "hardware_mechanism", "formal", "composition", "cumulative"]
+        },
+        "statement": { "type": "string", "minLength": 1 },
+        "scope": { "type": "string", "minLength": 1 },
+        "assigned_manually": { "type": "boolean" }
+      }
+    },
+
+    "evidence_strength": {
+      "enum": ["UNEVIDENCED", "OBSERVED", "EXECUTED", "REPRODUCED", "CORRECTNESS", "MECHANISM", "FORMAL", "SCOPED_VERIFIED"]
+    },
+
+    "transition_records": {
+      "type": "array",
+      "description": "Ordered, event-bound chain from UNEVIDENCED up to evidence_strength. A level above OBSERVED may not be self-declared without it.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to", "event_ref"],
+        "properties": {
+          "from": { "enum": ["UNEVIDENCED", "OBSERVED", "EXECUTED", "REPRODUCED", "CORRECTNESS", "MECHANISM", "FORMAL", "SCOPED_VERIFIED"] },
+          "to": { "enum": ["UNEVIDENCED", "OBSERVED", "EXECUTED", "REPRODUCED", "CORRECTNESS", "MECHANISM", "FORMAL", "SCOPED_VERIFIED"] },
+          "event_ref": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+
+    "notes": { "type": "string" }
+  },
+
+  "$defs": {
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check_id", "name", "parameters", "assertion", "observed", "passed"],
+      "description": "Every field that lets a reader decide whether the check could have failed is mandatory. A check whose discriminating power cannot be reconstructed is vacuous by construction.",
+      "properties": {
+        "check_id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Must contain at least one entry with a non-trivial value for the declared parameter_roles, otherwise the check is vacuous."
+        },
+        "parameter_roles": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "parameter name -> role, e.g. {\"n\": \"dimension\", \"iters\": \"iteration_count\"}."
+        },
+        "assertion": { "type": "string", "minLength": 1 },
+        "expected_source": {
+          "enum": ["spec", "independent_oracle", "fixture", "prior_art", "self"],
+          "description": "'self' means the expected value was produced by the same computation under test; the check is vacuous."
+        },
+        "expected": { "type": ["number", "string", "boolean", "null"] },
+        "observed": { "type": ["number", "string", "boolean", "null"] },
+        "passed": { "type": "boolean" },
+        "artifact_ref": { "type": "string" },
+        "synthetic": { "type": "boolean" },
+        "note": { "type": "string" }
+      }
+    },
+    "checkResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pass"],
+      "properties": {
+        "pass": { "type": ["boolean", "null"] },
+        "metric": { "type": "string" },
+        "tolerance": { "type": "number", "minimum": 0 },
+        "observed": { "type": ["number", "string", "null"] },
+        "expected": { "type": ["number", "string", "null"] },
+        "artifact_ref": { "type": "string" },
+        "vacuous": { "type": "boolean" },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}
