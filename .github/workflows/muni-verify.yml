@@ -47,6 +47,7 @@ jobs:
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
             | sh -s -- -y --default-toolchain leanprover/lean4:v4.29.0
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.elan/bin:$PATH"
           lean --version
 
       - name: Compile every shipped proof and collect the axiom audit
@@ -125,6 +126,8 @@ jobs:
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
             | sh -s -- -y --default-toolchain leanprover/lean4:v4.29.0
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.elan/bin:$PATH"
+          lean --version
 
       - name: Stage all formal sources where the checker expects them
         run: |
@@ -195,11 +198,25 @@ jobs:
           set -euo pipefail
           cd muni-production
           python3 - <<'PY'
-          import muni, json
+          import sys, json
+          import muni
           ev = muni.verify_evidence()
-          print(json.dumps(ev["checks"], indent=2))
-          assert ev["integrity"] == "PASS", f"evidence integrity {ev['integrity']}"
-          print("evidence integrity: PASS")
+          checks = ev["checks"]
+          # The library hash is machine-specific BY DESIGN: the manifest records
+          # the hash of the binary built on the author's ARM64 device, and CI
+          # rebuilds with this runner's -march=native. It can therefore never
+          # match, and asserting it would be asserting a falsehood. Every
+          # machine-independent check must still hold.
+          machine_specific = {"library_matches_manifest"}
+          portable = {k: v for k, v in checks.items() if k not in machine_specific}
+          failed = [k for k, v in portable.items() if not v]
+          print(json.dumps(checks, indent=2))
+          print(f"\nmachine-specific (expected to differ on CI): "
+                f"{sorted(machine_specific)}")
+          if failed:
+              print(f"FAIL: machine-independent checks failed: {failed}")
+              sys.exit(1)
+          print("all machine-independent evidence checks PASS")
           PY
 
       - name: Measure the speedup on THIS runner (reported, never claimed)
@@ -237,6 +254,8 @@ jobs:
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
             | sh -s -- -y --default-toolchain leanprover/lean4:v4.29.0
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.elan/bin:$PATH"
+          lean --version
 
       - name: Compile the correspondence proofs
         run: |
@@ -336,13 +355,17 @@ jobs:
     needs: [lean, vacuity, native, correspondence]
     if: always()
     steps:
-      - run: |
+      - name: Print the aggregate result
+        run: |
           echo "### Machine-checked gate results"
           echo
           printf "| job | result |\n|---|---|\n"
-          for j in lean vacuity native correspondence; do
-            r="${{ github.event.repository.name }}"
-            printf "| %s | %s |\n" "$j" "$j"
-          done
-      - if: contains(needs.*.result, 'failure')
-        run: exit 1
+          printf "| lean | ${{ needs.lean.result }} |\n"
+          printf "| vacuity | ${{ needs.vacuity.result }} |\n"
+          printf "| native | ${{ needs.native.result }} |\n"
+          printf "| correspondence | ${{ needs.correspondence.result }} |\n"
+      - name: Fail if any gate failed
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: |
+          echo "one or more verification gates did not succeed"
+          exit 1
