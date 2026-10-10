@@ -1,0 +1,38 @@
+{
+  "run_id": "QKXR_LIVE_TOWER_NATIVE_20261004T0707Z",
+  "source": "Coinbase BTC-USD Level-2 live REST snapshots acquired with fresh network fetches",
+  "live_snapshot_count": 6,
+  "snapshot_file": "evidence/qkxr/live_btcusd_snapshots.csv",
+  "formal_gap_derivation": "docs/QKXR_TOWER_FORMAL_GAP_DERIVATION.md",
+  "native_implementation": "benchmarks/qkxr_tower_native.cpp",
+  "compiler": "g++ -O3 -march=native -std=c++20 -DNDEBUG",
+  "lean": "lean4/QKXRTower.lean; lean exit 0",
+  "semantic_gate": {
+    "decision_equivalent": true,
+    "one_time_derivation_ms": 0.00224,
+    "one_time_validation_ms": 0.000833
+  },
+  "performance": {
+    "downstream_K": 100000,
+    "baseline_median_ms": 7.95,
+    "quotient_downstream_median_ms": 1.977708,
+    "quotient_amortized_including_overhead_ms": 1.980781,
+    "measured_ratio": 4.0135683854
+  },
+  "compression": {
+    "live_events": 6,
+    "unique_signatures": 6,
+    "compression_ratio": 1.0
+  },
+  "claim_boundary": "Native finite replay of six fresh live market snapshots. The 4.0136x result is a software microbenchmark for the modeled downstream decision operator, not an HFT, profitability, continuous-feed, or silicon-causal claim.",
+  "environment": {
+    "arch": "aarch64",
+    "python": "3.13.5"
+  },
+  "hashes": {
+    "qkxr_tower_native.cpp": "aada9c5c15f5740081277b5ce3f3522d18bc1738502363558141915d83fa011b",
+    "QKXRTower.lean": "3f31f1bb0c5273046ebefaebaa71e3011eb4d0847d58bd07a3b3ccd4d1305dda",
+    "QKXR_TOWER_FORMAL_GAP_DERIVATION.md": "5cb1073c5051dae4f4867f8dfc0b86395db04d607df868b4ee7f8c97d1e77f4f",
+    "live_btcusd_snapshots.csv": "7ca44cbe55c55184ce0c8a4d9f157801041c129142ea94a6363b7de12996e24b"
+  }
+}

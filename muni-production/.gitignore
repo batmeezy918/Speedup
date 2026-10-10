@@ -1,0 +1,7 @@
+# Device-specific compiled artifact. -march=native makes this binary valid only
+# for the machine that built it; every user must run `make` themselves.
+libmuni.so
+__pycache__/
+*.pyc
+*.o
+build/

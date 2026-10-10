@@ -1,0 +1,12 @@
+# fiber-replication sweep: r fixed = 64, steps = 256
+# predicted speedup ~ m (the replication factor)
+    m    d=r*m     base_ms     quot_ms   speedup    m_pred  ratio/m   exact
+    1       64     0.79613     0.77078     1.03x        1   1.033     EXACT
+    2      128     1.58951     0.77292     2.06x        2   1.028     EXACT
+    4      256     3.18057     0.78842     4.03x        4   1.009     EXACT
+    8      512     6.33578     0.77583     8.17x        8   1.021     EXACT
+   16     1024    12.66026     0.77908    16.25x       16   1.016     EXACT
+   32     2048    25.50168     0.79099    32.24x       32   1.008     EXACT
+   64     4096    52.77451     1.02524    51.48x       64   0.804     EXACT
+  128     8192   257.36274     1.12267   229.24x      128   1.791     EXACT
+  256    16384   540.02561     1.31826   409.65x      256   1.600     EXACT

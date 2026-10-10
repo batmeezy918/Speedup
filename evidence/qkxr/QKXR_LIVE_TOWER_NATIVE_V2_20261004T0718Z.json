@@ -1,0 +1,55 @@
+{
+  "run_id": "QKXR_LIVE_TOWER_NATIVE_V2_20261004T0718Z",
+  "source": {
+    "venue": "Coinbase",
+    "product": "BTC-USD",
+    "feed": "Level-2 REST",
+    "acquisition": "Firecrawl live browser fetch with fresh network requests",
+    "snapshot_semantics": "98 unique sequence changes were acquired; 50 earliest unique changes were transferred as immutable replay evidence",
+    "continuous_websocket": false,
+    "device_direct_rest_status": 403
+  },
+  "formal": {
+    "derivation": "docs/QKXR_TOWER_FORMAL_GAP_DERIVATION.md",
+    "tower": "X -> Q_spread -> Q_spread x Q_imbalance -> Q_exec",
+    "execution_preservation": "pi(x)=pi(y) implies O(x)=O(y) for the declared execution observable",
+    "reconstruction": "representative reconstruction preserves the quotient signature and declared execution result",
+    "lean_source": "lean4/QKXRTower.lean",
+    "lean_result": "PASS",
+    "lean_sorry": false
+  },
+  "native": {
+    "source": "benchmarks/qkxr_tower_native.cpp",
+    "compiler": "g++ -O3 -march=native -std=c++20 -DNDEBUG",
+    "live_states": 50,
+    "downstream_K": 100000,
+    "decision_equivalent": true,
+    "one_time_derivation_ms": 0.01,
+    "one_time_validation_ms": 0.001458,
+    "one_time_cache_build_ms": 0.006094,
+    "unique_signatures": 26,
+    "compression_events_to_signatures": "50->26",
+    "compression_ratio": 1.92307692308,
+    "baseline_median_ms": 66.204948,
+    "quotient_unique_class_downstream_median_ms": 19.051822,
+    "quotient_amortized_including_all_one_time_cost_ms": 19.069374,
+    "baseline_over_amortized_quotient_speedup": 3.47179451198,
+    "sink": 0,
+    "exit_code": 0
+  },
+  "promotion_boundary": {
+    "semantic_preservation": "PASS for captured replay",
+    "live_class_compression": "OBSERVED: 50 sequence changes -> 26 signatures",
+    "native_acceleration": "OBSERVED finite replay microbenchmark",
+    "continuous_feed": "OPEN",
+    "profitability": "OPEN",
+    "hardware_causality": "OPEN",
+    "market_wide_claim": "NOT ESTABLISHED"
+  },
+  "hashes": {
+    "benchmarks/qkxr_tower_native.cpp": "c37ada1eb85a9533579a352a9aede7007445e3d15f338c5f7c8d3144c8577255",
+    "lean4/QKXRTower.lean": "3f31f1bb0c5273046ebefaebaa71e3011eb4d0847d58bd07a3b3ccd4d1305dda",
+    "docs/QKXR_TOWER_FORMAL_GAP_DERIVATION.md": "b085161c33fe6d79fae2836f95dcad04259409b96e12b053ae67ffbea4f6854d",
+    "evidence/qkxr/live_btcusd_stream_20261004T0718Z.csv": "f7809ce58fbbee0c2438a204426ff938ab32a79c0428d72d0674010524336455"
+  }
+}

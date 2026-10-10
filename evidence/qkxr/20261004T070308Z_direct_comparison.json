@@ -1,0 +1,51 @@
+{
+  "run_type": "QKXR_DIRECT_BASELINE_VS_QUOTIENT",
+  "timestamp_utc": "20261004T070308Z",
+  "workload": {
+    "source": "verified finite QK-XR domain",
+    "states_per_pass": 1608,
+    "replay_events": 101304,
+    "repeats": 63
+  },
+  "results": {
+    "baseline_result": 27720,
+    "quotient_result": 27720,
+    "decision_equivalent": true,
+    "baseline_ms": [
+      67.774583,
+      69.555886,
+      65.782084,
+      66.74349,
+      69.846615,
+      66.847291,
+      68.5925
+    ],
+    "quotient_ms": [
+      870.447135,
+      665.752865,
+      567.882812,
+      612.672187,
+      557.86026,
+      554.208333,
+      495.184375
+    ],
+    "baseline_p50_ms": 67.774583,
+    "quotient_p50_ms": 567.882812,
+    "baseline_p95_ms": 69.75939629999999,
+    "quotient_p95_ms": 809.038854,
+    "baseline_max_ms": 69.846615,
+    "quotient_max_ms": 870.447135,
+    "median_baseline_over_quotient": 0.11934607205544374,
+    "unique_raw_states": 1608,
+    "unique_refined_classes": 160,
+    "compression_ratio": 10.05
+  },
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.17.0-PRoot-Distro-aarch64-with-glibc2.41",
+    "processor": "",
+    "machine": "aarch64"
+  },
+  "claim_boundary": "Finite deterministic microbenchmark only. No live-market, profitability, latency, or HFT speedup claim.",
+  "source_hash": "964361fba8bb2ec725b83a39553b6b78d398e03eba097bb281e08f3191e3d495"
+}
