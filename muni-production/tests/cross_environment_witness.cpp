@@ -92,7 +92,7 @@ int main() {
   full_run(x,U,d,m,r,steps,reference);
   p=agd_plan_create(x.data(),d,m,U.data(),0.0,&cert);
   if(!p || !agd_plan_in_fallback(p) || agd_plan_admissible(p) ||
-     !agd_plan_run(p,steps) || !agd_plan_reconstruct(fast.data())) {
+     !agd_plan_run(p,steps) || !agd_plan_reconstruct(p,fast.data())) {
     std::cerr<<"CROSS_ENVIRONMENT_FALLBACK_GATE=FAIL path\n"; return 15;
   }
   const double ferr=agd_max_abs_error(reference.data(),fast.data(),d);
