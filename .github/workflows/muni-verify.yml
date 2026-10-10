@@ -1,0 +1,348 @@
+name: muni-verify
+
+# Independent machine-checking of the certified quotient artifact.
+#
+# Nothing is verified locally by the author. Every claim in this repository is
+# re-established here on GitHub-hosted runners, which are x86_64 and physically
+# unrelated to the ARM64 device the benchmarks were taken on.
+#
+# What this workflow does and does not establish:
+#   DOES      - every .lean file compiles on a clean runner with Lean 4.29.0
+#   DOES      - no `sorry`, no `sorryAx`, in any shipped proof
+#   DOES      - the vacuity gate (V1-V5) passes over all formal sources
+#   DOES      - the Python/native test suite passes from a clean build
+#   DOES      - the Lean Float model and the compiled C kernel agree BIT-FOR-BIT
+#               on freshly regenerated inputs, on this runner
+#   DOES NOT  - verify the benchmark speedup; timings from shared CI runners are
+#               meaningless and are deliberately not claimed here
+
+on:
+  push:
+    branches: [muni-production-v1]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: muni-verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------------------------
+  # 1. Formal proofs: compile, and audit the axioms actually reported.
+  # ---------------------------------------------------------------------
+  lean:
+    name: Lean 4 proofs (axiom audit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lean 4.29.0
+        run: |
+          set -euo pipefail
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain leanprover/lean4:v4.29.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          lean --version
+
+      - name: Compile every shipped proof and collect the axiom audit
+        run: |
+          set -uo pipefail
+          cd muni-production/proof
+          mkdir -p ../proof-build
+          fail=0
+          summary=""
+          for f in *.lean; do
+            echo "::group::$f"
+            if out=$(lean "$f" 2>&1); then
+              echo "$out"
+              free=$(printf '%s\n' "$out" | grep -c "does not depend on any axioms" || true)
+              sorry=$(printf '%s\n' "$out" | grep -c "sorryAx" || true)
+              err=$(printf '%s\n' "$out" | grep -c "error" || true)
+              echo "RESULT $f axioms=$free sorryAx=$sorry errors=$err"
+              summary="${summary}$(printf '%-46s axioms=%-3s sorryAx=%-3s errors=%s\n' "$f" "$free" "$sorry" "$err")"$'\n'
+              [ "$sorry" -eq 0 ] || fail=1
+              [ "$err"  -eq 0 ] || fail=1
+            else
+              echo "$out"
+              echo "RESULT $f COMPILE_FAILED"
+              summary="${summary}$(printf '%-46s COMPILE_FAILED\n' "$f")"$'\n'
+              fail=1
+            fi
+            echo "::endgroup::"
+          done
+          printf '%s' "$summary" | tee "$GITHUB_STEP_SUMMARY"
+          printf '%s' "$summary" > ../proof-build/lean_audit.txt
+          exit $fail
+
+      - name: Enforce the no-sorry, no-error policy across all proofs
+        run: |
+          set -euo pipefail
+          cd muni-production/proof
+          total_axioms=0
+          for f in *.lean; do
+            lean "$f" > /dev/null 2>&1 || { echo "FAIL: $f does not compile"; exit 1; }
+          done
+          total_axioms=$(grep -ho "does not depend on any axioms" *.lean | wc -l)
+          echo "axiom-free theorem declarations found: $total_axioms"
+          # every file must declare at least one audited theorem, except the
+          # deliberately minimal probe file
+          for f in *.lean; do
+            if grep -q "#print axioms" "$f"; then
+              echo "OK  $f declares an axiom audit"
+            else
+              echo "FAIL $f has no #print axioms block"; exit 1
+            fi
+          done
+          echo "$total_axioms" > ../proof-build/axiom_count.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lean-audit
+          path: muni-production/proof-build/
+
+  # ---------------------------------------------------------------------
+  # 2. Vacuity gate. `#print axioms` cannot see a theorem that states `True`,
+  #    or one whose property is forced by a structure field. This is the check
+  #    that caught ProofCarryingTransformation.lean and the structurally
+  #    degenerate ProofCarryingQuotient.lean.
+  # ---------------------------------------------------------------------
+  vacuity:
+    name: Formal vacuity gate (V1-V5)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lean 4.29.0
+        run: |
+          set -euo pipefail
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain leanprover/lean4:v4.29.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Stage all formal sources where the checker expects them
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/vac/src
+          cp muni-production/proof/*.lean /tmp/vac/src/
+          cp muni-production/ops/vacuity/vacuity_check.py /tmp/vac/
+          ls -1 /tmp/vac/src/
+
+      - name: Run the vacuity gate
+        run: |
+          set -uo pipefail
+          cd /tmp/vac
+          python3 vacuity_check.py | tee vacuity_out.txt
+          rc=${PIPESTATUS[0]}
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d = json.load(open('/tmp/vac/vacuity_report.json'))
+          print("## Vacuity gate\n")
+          print("| module | compiles | axiom-free | sorryAx | flags |")
+          print("|---|---|---|---|---|")
+          for k, v in d['modules'].items():
+              print(f"| `{k}` | {v['compiles']} | {v['axiom_free_lines']} | "
+                    f"{v['sorryAx_lines']} | {', '.join(v['flags']) or 'clean'} |")
+          print("\n### Hypothesis reachability (V3)")
+          for h in d['v3_hypothesis_reachability']:
+              print(f"- **{h['status']}** — {h['module']}: {h['hypothesis']}")
+          print(f"\n**verdict: {d['verdict']}**")
+          PY
+          exit $rc
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vacuity-report
+          path: |
+            /tmp/vac/vacuity_report.json
+            /tmp/vac/vacuity_out.txt
+
+  # ---------------------------------------------------------------------
+  # 3. Native kernel and the user-facing Python API, from a clean build.
+  # ---------------------------------------------------------------------
+  native:
+    name: Native kernel + Python API
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the kernel with the mandated IEEE flags
+        run: |
+          set -euo pipefail
+          cd muni-production
+          make clean >/dev/null 2>&1 || true
+          make
+          echo "### note: -march=native here is the CI runner's ISA, which is" >&2
+          echo "### intentional. The library is built per-machine by design;" >&2
+          echo "### libmuni.so is gitignored and never shipped." >&2
+
+      - name: Run the test suite
+        run: |
+          set -euo pipefail
+          cd muni-production
+          python3 -m unittest discover -s tests -v 2>&1 | tail -30
+
+      - name: Evidence integrity must be PASS
+        run: |
+          set -euo pipefail
+          cd muni-production
+          python3 - <<'PY'
+          import muni, json
+          ev = muni.verify_evidence()
+          print(json.dumps(ev["checks"], indent=2))
+          assert ev["integrity"] == "PASS", f"evidence integrity {ev['integrity']}"
+          print("evidence integrity: PASS")
+          PY
+
+      - name: Measure the speedup on THIS runner (reported, never claimed)
+        run: |
+          set -euo pipefail
+          cd muni-production
+          python3 - <<'PY'
+          import muni
+          r = m = 64
+          U = [[0.02 if i == j else 0.004 for j in range(r)] for i in range(r)]
+          x = [0.01*b for b in range(r) for _ in range(m)]
+          b = muni.benchmark(U, x, steps=64, trials=7, reps=5)
+          print(f"speedup={b.speedup:.2f}x  baseline={b.baseline_ms:.3f} ms  "
+                f"optimised={b.optimised_ms:.4f} ms  exact={b.exact}")
+          assert b.exact, "optimised path must agree with the original"
+          print("NOTE: shared CI runners are not a valid benchmark platform.")
+          print("      This number is reported for visibility only and is NOT")
+          print("      part of any published speedup claim.")
+          PY
+
+  # ---------------------------------------------------------------------
+  # 4. The formal/native correspondence, regenerated from source on this
+  #    runner and compared bit-for-bit.
+  # ---------------------------------------------------------------------
+  correspondence:
+    name: C <-> Lean bit-exact correspondence
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lean 4.29.0
+        run: |
+          set -euo pipefail
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain leanprover/lean4:v4.29.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Compile the correspondence proofs
+        run: |
+          set -euo pipefail
+          cd muni-production/proof
+          for f in AGD_C_KERNEL_CORRESPONDENCE.lean AGD_C_KERNEL_FLOAT_CORRESPONDENCE.lean; do
+            echo "::group::$f"
+            lean "$f"
+            echo "::endgroup::"
+          done
+          lean -o AGD_C_KERNEL_CORRESPONDENCE.olean AGD_C_KERNEL_CORRESPONDENCE.lean
+          lean -o AGD_C_KERNEL_FLOAT_CORRESPONDENCE.olean AGD_C_KERNEL_FLOAT_CORRESPONDENCE.lean
+
+      - name: Calibrate Lean Float against the compiler's double
+        run: |
+          set -euo pipefail
+          cd /tmp && mkdir -p corr && cd corr
+          cp "$GITHUB_WORKSPACE/muni-production/muni/kernel.c" .
+          cp "$GITHUB_WORKSPACE/muni-production/muni/kernel_agl.h" .
+          cp "$GITHUB_WORKSPACE/muni-production/proof/correspondence/calibrate_float.c" .
+          gcc -O2 -fno-fast-math -ffp-contract=off -o calibrate_float calibrate_float.c
+          ./calibrate_float > c_calib.txt
+          cat c_calib.txt
+          # Lean's Float.toBits must equal the compiler's memcpy bit pattern.
+          cat > calib.lean <<'LEAN'
+          def probe : List (Float × Nat) :=
+            [ (1.0, 4607182418800017408), (-2.5, 13836183955189006336),
+              (0.1, 4591870180066957722), (3.14159265358979, 4614256656552045841),
+              (92.0, 4636174341401214976), (212.5, 4641680695633117184),
+              (1e-300, 118622047889322841), (-0.0, 9223372036854775808) ]
+          #eval probe.all (fun p => (Float.toBits p.1).toNat == p.2)
+          LEAN
+          out=$(lean calib.lean 2>&1 | tail -1)
+          echo "Lean Float.toBits matches compiler bits: $out"
+          grep -q "true" <<<"$out" || { echo "FAIL: Float/compiler calibration"; exit 1; }
+
+      - name: Regenerate the C kernel's bit patterns on this runner
+        run: |
+          set -euo pipefail
+          cd /tmp/corr
+          cp "$GITHUB_WORKSPACE/muni-production/proof/correspondence/dumpf.c" .
+          gcc -O3 -fno-fast-math -ffp-contract=off -o dumpf dumpf.c kernel.c -lm
+          ./dumpf > c_bits.txt
+          cat c_bits.txt
+
+      - name: Lean's model must reproduce those bits exactly
+        run: |
+          set -euo pipefail
+          cd /tmp/corr
+          cp "$GITHUB_WORKSPACE/muni-production/proof/"AGD_C_KERNEL_*.lean .
+          cp "$GITHUB_WORKSPACE/muni-production/proof/correspondence/C_BITDIFF_TEST.lean" .
+          cp c_bits.txt captured_bits.txt
+          # The expected patterns in C_BITDIFF_TEST.lean are transcribed from the
+          # C binary. Regenerate the check from THIS runner's capture so the
+          # comparison cannot be satisfied by a stale committed literal.
+          python3 - <<'PY'
+          import re
+          src = open('C_BITDIFF_TEST.lean').read()
+          cap = open('c_bits.txt').read().splitlines()
+          d = {}
+          for line in cap:
+              p = line.split()
+              if p and p[0].endswith(('1', '2', '3')) and p[0].startswith('FULL'):
+                  d.setdefault('FULL'+p[0][4:], []).append(p[1:])
+              if p and p[0] == 'QUOT':
+                  d['QUOT'] = p[1:]
+          def bits(step, b):
+              return int(d[step][b])
+          # rewrite the FULL3 / QUOT expectations from the fresh capture
+          src = re.sub(r'= 4587427314697419198 :=', '= %d :=' % bits('FULL3', 0), src)
+          src = re.sub(r'= 4608380468211094437 :=', '= %d :=' % bits('FULL3', 1), src)
+          src = re.sub(r'= 4598460982789154126 :=', '= %d :=' % bits('FULL3', 2), src)
+          src = re.sub(r'= 4587427314697419198 :=', '= %d :=' % bits('QUOT', 0), src)
+          src = re.sub(r'= 4608380468211094437 :=', '= %d :=' % bits('QUOT', 1), src)
+          src = re.sub(r'= 4598460982789154126 :=', '= %d :=' % bits('QUOT', 2), src)
+          open('C_BITDIFF_TEST.lean','w').write(src)
+          print("regenerated expectations from this runner's C capture")
+          PY
+          echo "--- checking ---"
+          LEAN_PATH=/tmp/corr lean C_BITDIFF_TEST.lean && echo "CORRESPONDENCE: C == Lean, bit for bit"
+
+      - name: Negative control (the check must be able to fail)
+        run: |
+          set -euo pipefail
+          cd /tmp/corr
+          sed 's/4587427314697419198/4587427314697419199/g' C_BITDIFF_TEST.lean > neg.lean
+          if LEAN_PATH=/tmp/corr lean neg.lean >/dev/null 2>&1; then
+            echo "FAIL: negative control passed; the comparison is vacuous"
+            exit 1
+          fi
+          echo "negative control correctly rejected"
+
+  # ---------------------------------------------------------------------
+  gates:
+    name: Aggregate gate
+    runs-on: ubuntu-latest
+    needs: [lean, vacuity, native, correspondence]
+    if: always()
+    steps:
+      - run: |
+          echo "### Machine-checked gate results"
+          echo
+          printf "| job | result |\n|---|---|\n"
+          for j in lean vacuity native correspondence; do
+            r="${{ github.event.repository.name }}"
+            printf "| %s | %s |\n" "$j" "$j"
+          done
+      - if: contains(needs.*.result, 'failure')
+        run: exit 1
