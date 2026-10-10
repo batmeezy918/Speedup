@@ -33,7 +33,7 @@
     },
     "AGD_GAP_DERIVATION.lean": {
       "compiles": true,
-      "axiom_free_lines": 17,
+      "axiom_free_lines": 19,
       "sorryAx_lines": 0,
       "v2_true_defined_props": [],
       "v4_unresolvable_imports": [],
@@ -51,6 +51,8 @@
         "orbit_gap_free_certifies",
         "pipeline_gap_on_range",
         "pipeline_gap_surjective",
+        "pipeline_refinement_composes",
+        "pipeline_fixed_point_does_not_imply_refinement",
         "forward_invariant_iterate",
         "sector_intersection",
         "sector_intersection_iterate"
@@ -122,6 +124,16 @@
           "detail": "conclusion does not reduce to True"
         },
         {
+          "theorem": "AGD.pipeline_refinement_composes",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.pipeline_fixed_point_does_not_imply_refinement",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
           "theorem": "AGD.forward_invariant_iterate",
           "status": "NONTRIVIAL",
           "detail": "conclusion does not reduce to True"
@@ -133,6 +145,42 @@
         },
         {
           "theorem": "AGD.sector_intersection_iterate",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": []
+    },
+    "AGD_PIPELINE_GAP_CORRECTED.lean": {
+      "compiles": true,
+      "axiom_free_lines": 4,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "composed_refinement",
+        "stage_two_relation_on_range",
+        "stage_two_relation_surjective",
+        "old_fixed_point_condition_is_insufficient"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.composed_refinement",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.stage_two_relation_on_range",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.stage_two_relation_surjective",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.old_fixed_point_condition_is_insufficient",
           "status": "NONTRIVIAL",
           "detail": "conclusion does not reduce to True"
         }
@@ -181,67 +229,146 @@
       ],
       "flags": []
     },
-    "ProofCarryingQuotient.lean": {
-      "compiles": false,
-      "axiom_free_lines": 0,
+    "AGD_TENSOR_OPERATOR_BRIDGE.lean": {
+      "compiles": true,
+      "axiom_free_lines": 6,
       "sorryAx_lines": 0,
       "v2_true_defined_props": [],
-      "v4_unresolvable_imports": [
-        "Mathlib"
-      ],
+      "v4_unresolvable_imports": [],
       "theorems": [
-        "certified_step",
-        "CertifiedCompile",
-        "certified_reconstruction"
+        "iterate_pointwise_congr",
+        "fullStep_preserves_invariant",
+        "forward_refinement",
+        "iterate_preserves_invariant",
+        "recursive_forward_refinement",
+        "recursive_exact_reconstruction"
       ],
       "v1_conclusions": [
         {
-          "theorem": "AGD.certified_step",
-          "status": "SKIP",
-          "detail": "module does not compile here"
+          "theorem": "AGD.iterate_pointwise_congr",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
         },
         {
-          "theorem": "AGD.CertifiedCompile",
-          "status": "SKIP",
-          "detail": "module does not compile here"
+          "theorem": "AGD.fullStep_preserves_invariant",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
         },
         {
-          "theorem": "AGD.certified_reconstruction",
-          "status": "SKIP",
-          "detail": "module does not compile here"
+          "theorem": "AGD.forward_refinement",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.iterate_preserves_invariant",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.recursive_forward_refinement",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.recursive_exact_reconstruction",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
         }
       ],
-      "flags": [
-        "DOES_NOT_COMPILE",
-        "BAD_IMPORTS=['Mathlib']"
-      ]
+      "flags": []
+    },
+    "ProofCarryingQuotient.lean": {
+      "compiles": true,
+      "axiom_free_lines": 6,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "gapClosed_iff_semPres",
+        "semPres_of_admissible",
+        "reconstruct_exact_of",
+        "semPres_is_falsifiable",
+        "reconstruct_exact_of'",
+        "reconstructExact_is_falsifiable"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.gapClosed_iff_semPres",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.semPres_of_admissible",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.reconstruct_exact_of",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.semPres_is_falsifiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.reconstruct_exact_of'",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.reconstructExact_is_falsifiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": []
     },
     "ProofCarryingTransformation.lean": {
       "compiles": true,
-      "axiom_free_lines": 0,
+      "axiom_free_lines": 5,
       "sorryAx_lines": 0,
-      "v2_true_defined_props": [
-        " (P : Program) (T : Transformation P) : Prop ",
-        " (P : Program) (T : Transformation P) : Prop ",
-        " (P : Program) (T : Transformation P) : Prop "
-      ],
+      "v2_true_defined_props": [],
       "v4_unresolvable_imports": [],
       "theorems": [
+        "gapPropagates",
+        "gap_is_falsifiable",
+        "gap_is_satisfiable",
+        "artifactCorrect_is_falsifiable",
         "master"
       ],
       "v1_conclusions": [
+        {
+          "theorem": "AGD.gapPropagates",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.gap_is_falsifiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.gap_is_satisfiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.artifactCorrect_is_falsifiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
         {
           "theorem": "AGD.master",
           "status": "NONTRIVIAL",
           "detail": "conclusion does not reduce to True"
         }
       ],
-      "flags": [
-        "TRUE_DEFS=[' (P : Program) (T : Transformation P) : Prop ', ' (P : Program) (T : Transformation P) : Prop ', ' (P : Program) (T : Transformation P) : Prop ']"
-      ]
+      "flags": []
     }
   },
-  "verdict": "VACUITY_FAIL",
+  "verdict": "VACUITY_PASS",
   "v3_hypothesis_reachability": [
     {
       "module": "AGD_EQUIVALENCE_QUOTIENT_CORE",
