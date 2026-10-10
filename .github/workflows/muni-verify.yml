@@ -308,6 +308,10 @@ jobs:
           cp "$GITHUB_WORKSPACE/muni-production/proof/"AGD_C_KERNEL_*.lean .
           cp "$GITHUB_WORKSPACE/muni-production/proof/correspondence/C_BITDIFF_TEST.lean" .
           cp c_bits.txt captured_bits.txt
+          # the .olean was built in the proof directory; build it here too, or
+          # LEAN_PATH=/tmp/corr cannot resolve the module
+          lean -o AGD_C_KERNEL_FLOAT_CORRESPONDENCE.olean AGD_C_KERNEL_FLOAT_CORRESPONDENCE.lean >/dev/null
+          lean -o AGD_C_KERNEL_CORRESPONDENCE.olean AGD_C_KERNEL_CORRESPONDENCE.lean >/dev/null
           # The expected patterns in C_BITDIFF_TEST.lean are transcribed from the
           # C binary. Regenerate the check from THIS runner's capture so the
           # comparison cannot be satisfied by a stale committed literal.
