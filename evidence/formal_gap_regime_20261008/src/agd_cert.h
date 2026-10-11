@@ -17,6 +17,9 @@ extern "C" {
 #ifndef AGD_TARGET
 #define AGD_TARGET "unknown"
 #endif
+#ifndef AGD_SOURCE_SHA
+#define AGD_SOURCE_SHA "unknown"
+#endif
 
 typedef struct {
   char transformation_id[48];

@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-10-11T02:30:14Z",
+  "depth": 5,
+  "iterations": 13,
+  "obligations": {
+    "O1": {
+      "state": "ASSUMED",
+      "evidence": "ASSUMED BY DESIGN: the chosen invariant. Auto-discovery is explicitly out of scope."
+    },
+    "O2": {
+      "state": "CLOSED",
+      "evidence": "['FUZZ cases=5000 optimal=2354 fallback=2646 null=0 tampered=1266 violations=0', 'FUZZ_TOL_POS max_tol=9.99e-10 max_err=2.67984e-07 ratio=268.252', 'FUZZ_RESULT=PASS']"
+    },
+    "O2b": {
+      "state": "OPEN",
+      "evidence": "max_tol=9.99e-10 max_err=3.15199e-07 err/tol=315.514",
+      "next_test": "re-run this probe after a fix; keep open until evidence passes",
+      "hardening": "certificate must distinguish EXACT (tol=0) from APPROX (tol>0); refuse to call tol>0 results 'bit-exact'; document error-growth bound or require contraction"
+    },
+    "O2b_guard": {
+      "state": "CLOSED",
+      "evidence": "guard present"
+    },
+    "O3": {
+      "state": "CLOSED",
+      "evidence": "['FUZZ cases=5000 optimal=2354 fallback=2646 null=0 tampered=1266 violations=0']"
+    },
+    "O4a": {
+      "state": "CLOSED",
+      "evidence": "'AGDRefinement.fullCoord_eq_quotCoord_of_blockConstant' depends on axioms: [Quot.sound]\n'AGDRefinement.iter_refines' depends on axioms: [Quot.sound]\n'AGDRefinement.float_iter_refines' depends on axioms: [Classical.choice, Quot.sound]; 'AGDGapDerivation.blockConstant_implies_gapFree' depends on axioms: [Quot.sound]\n'AGDGapDerivation.ce_has_gap' depends on axioms: [propext]\n'AGDGapDerivation.invariant_is_sufficient_and_necessary' depends on axioms: [propext, Quot.sound]"
+    },
+    "O4b": {
+      "state": "CLOSED",
+      "evidence": "REFINE_SELFTEST=PASS\nCLAIM_TOL0=EXACT_BITWISE\nCLAIM_TOLPOS=APPROX_UNBOUNDED"
+    },
+    "O4c": {
+      "state": "RESIDUAL",
+      "evidence": "RESIDUAL: cannot be closed by testing. Needs a verified-float / compiler-refinement proof (CompCert, Frama-C, or a proved IEEE model).",
+      "next_test": "attach a compiler/float refinement proof",
+      "hardening": "add certificate field binding_scope=\"matvec-order-pinned\" and refuse native claim until a refinement artifact is attached"
+    },
+    "O5": {
+      "state": "CLOSED",
+      "evidence": "heat max_abs_error=0.0"
+    },
+    "O6": {
+      "state": "CLOSED",
+      "evidence": "dense_abs_error=0.0 speedup_vs_dense=5997.665465"
+    },
+    "O7": {
+      "state": "CLOSED",
+      "evidence": "A/A n=9 median=1.000506 max=1.003773"
+    }
+  },
+  "n_closed": 8,
+  "n_open": 1,
+  "n_residual": 1,
+  "n_assumed": 1,
+  "trace": [
+    "[1] O1 operator is the certified tensor-separable U(x)I_m -> ASSUMED",
+    "[2] O2 admissibility gate is sound (admitted => exact at tol=0) -> CLOSED (['FUZZ cases=5000 optimal=2354 fallback=2646 null=0 tampered=1266 violations=0', 'FUZZ_TOL_POS max_tol=9.99e-10 max_err=2.67984e-07 ratio=268.252', 'FUZZ_RESULT=PASS'])",
+    "[3] O2b nonzero tolerance bounds error over many steps -> OPEN (max_tol=9.99e-10 max_err=3.15199e-07 err/tol=315.514)",
+    "[4] O2b_guard MUNI refuses to label tol>0 as exact (hardening) -> CLOSED (guard present)",
+    "[5] O3 certificate fails closed on tamper / unknown state -> CLOSED (['FUZZ cases=5000 optimal=2354 fallback=2646 null=0 tampered=1266 violations=0'])",
+    "[6] O4a refinement at model/operation-order level (Lean) -> CLOSED ('AGDRefinement.fullCoord_eq_quotCoord_of_blockConstant' depends on axioms: [Quot.sound]\n'AGDRefinement.iter_refines' depends on axioms: [Quot.sound]\n'AGDRefinement.float_iter_refines' depends on axioms: [Classical.choice, Quot.sound]; 'AGDGapDerivation.blockConstant_implies_gapFree' depends on axioms: [Quot.sound]\n'AGDGapDerivation.ce_has_gap' depends on axioms: [propext]\n'AGDGapDerivation.invariant_is_sufficient_and_necessary' depends on axioms: [propext, Quot.sound])",
+    "[7] O4b native binary path agreement (runtime witness) -> CLOSED (REFINE_SELFTEST=PASS\nCLAIM_TOL0=EXACT_BITWISE\nCLAIM_TOLPOS=APPROX_UNBOUNDED)",
+    "[8] O4c C binary == Lean float model (kernel-level binding) -> RESIDUAL",
+    "[9] O5 exact reconstruction on the block-constant sector -> CLOSED (heat max_abs_error=0.0)",
+    "[10] O6 baseline is a genuinely general dense operator -> CLOSED (dense_abs_error=0.0 speedup_vs_dense=5997.665465)",
+    "[11] O7 timing claims exceed a measured A/A noise floor -> CLOSED (A/A n=9 median=1.000506 max=1.003773)"
+  ]
+}

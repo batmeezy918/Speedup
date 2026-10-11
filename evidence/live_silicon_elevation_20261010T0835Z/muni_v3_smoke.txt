@@ -1,0 +1,27 @@
+AGD ANALYSIS
+--------------------------
+Gap:                   FOUND (invariant-state redundancy)
+Invariant:             CERTIFIED
+Semantic gate:         PROVED
+Instantiation gate:    LEAN_ALGEBRAIC_MODEL_ONLY
+Certificate state:     FORMAL_PARTIAL
+Path taken:            QUOTIENT (optimised)
+Semantic preservation: PASS (bit-exact)
+Reconstruction:        PASS
+Adversarial suite:     PASS (19/19, separate binary)
+Native compiler:       GCC_14
+Target:                aarch64-linux-gnu
+
+d = 4096   quotient r = 64   tile m = 64   steps = 32
+Baseline:                 300.679 ms   (median of 3 trials x 5 reps)
+Optimised:                  4.130 ms
+Wall-clock speedup:        72.810x
+Machine precision:     max_abs_error = 0
+
+Claim: FORMAL_PARTIAL_MEASURED_LOCAL
+Transformation: quotient-descent-v3-tensor-lean-model
+Certificate SHA: eea5e18530087b654307429514e43b76274bf201fa356be1980aef2f0413d01e
+Source manifest SHA: 259eaccb0a8ba1f6c8a84c1a3c34233e7b0d6cd8a5f8ebefafcdf650a32c5e19
+Proof artifact SHA: eea5e18530087b654307429514e43b76274bf201fa356be1980aef2f0413d01e
+Instantiation gate: LEAN_ALGEBRAIC_MODEL_ONLY
+Receipt written: /root/Speedup/evidence/live_silicon_elevation_20261010T0835Z/muni_v3_smoke.json

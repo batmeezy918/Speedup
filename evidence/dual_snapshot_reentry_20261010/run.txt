@@ -1,0 +1,17 @@
+DUAL_SNAPSHOT_REENTRY v2
+shape d=2048 m=64 r=32 steps=32 injected_gap_height=13
+original_reference_ms=10.980157
+old_quotient_ms=0.171041
+new_dual_snapshot_ms=10.862240
+injected_quotient_perturbation=YES
+gap_detected_by_integrity_gate=YES
+full_snapshot_integrity=PASS
+quotient_gap_snapshot_preserved=PASS
+authoritative_recovery_at_checkpoint=PASS
+reentry_gate=PASS
+reentered=YES
+initial_inadmissible_fallback=PASS
+old_max_abs_error=0
+new_max_abs_error=0
+speedup_old_vs_original=64.196052x
+speedup_new_vs_original=1.010856x

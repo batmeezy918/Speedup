@@ -1,0 +1,6 @@
+'AGDRefinement.fullCoord_eq_quotCoord_of_blockConstant' depends on axioms: [Quot.sound]
+'AGDRefinement.iter_refines' depends on axioms: [Quot.sound]
+'AGDRefinement.float_iter_refines' depends on axioms: [Classical.choice, Quot.sound]
+'AGDGapDerivation.blockConstant_implies_gapFree' depends on axioms: [Quot.sound]
+'AGDGapDerivation.ce_has_gap' depends on axioms: [propext]
+'AGDGapDerivation.invariant_is_sufficient_and_necessary' depends on axioms: [propext, Quot.sound]

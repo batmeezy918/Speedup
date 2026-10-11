@@ -1,0 +1,3 @@
+FUZZ cases=20000 optimal=9535 fallback=10465 null=0 tampered=4952 violations=0
+FUZZ_TOL_POS max_tol=9.99e-10 max_err=3.15199e-07 ratio=315.514
+FUZZ_RESULT=PASS

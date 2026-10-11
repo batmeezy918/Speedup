@@ -49,6 +49,36 @@ static void report(const char *name, int want_fallback, int got_fallback,
          ok ? "PASS" : "FAIL", name, got_fallback, want_fallback, got_adm, want_adm, err, nsteps);
 }
 
+static void check_bad_certificate(const char *name, const AGDCertificate *bad,
+                                 const double *x, const double *U,
+                                 size_t d, size_t m, size_t r, size_t steps) {
+  double *ref = malloc(d * sizeof(double));
+  double *tmp = malloc(d * sizeof(double));
+  double *got = malloc(d * sizeof(double));
+  if (!ref || !tmp || !got) {
+    report(name, 1, 0, 1, 0, INFINITY, 0, (int)steps, 0.0, 0);
+    free(ref); free(tmp); free(got);
+    return;
+  }
+  memcpy(ref, x, d * sizeof(double));
+  for (size_t k = 0; k < steps; k++) {
+    agd_original_apply(ref, tmp, U, d, m, r);
+    double *swap = ref; ref = tmp; tmp = swap;
+  }
+  AGDPlan *p = agd_plan_create(x, d, m, U, 0.0, bad);
+  if (!p) {
+    report(name, 1, 0, 1, 0, INFINITY, 0, (int)steps, 0.0, 0);
+    free(ref); free(tmp); free(got);
+    return;
+  }
+  agd_plan_run(p, steps);
+  agd_plan_reconstruct(p, got);
+  report(name, 1, agd_plan_in_fallback(p), 1, agd_plan_admissible(p),
+         agd_max_abs_error(ref, got, d), 1, (int)steps, 0.0, 0);
+  agd_plan_destroy(p);
+  free(ref); free(tmp); free(got);
+}
+
 int main(void) {
   printf("AGD ADVERSARIAL SUITE  (criterion: output == ORIGINAL operator, bit for bit)\n");
   AGDCertificate cert = agd_certificate_self();
@@ -151,6 +181,27 @@ int main(void) {
   report("UNVERIFIED cert + admissible state -> MUST fall back", 1, agd_plan_in_fallback(p),
          1, agd_plan_admissible(p), agd_max_abs_error(xref, got, d), 1, (int)steps, 0.0, 0);
   agd_plan_destroy(p); free(got);
+
+  /* Unknown certificate states and mismatched semantic identities fail closed. */
+  bad = cert;
+  snprintf(bad.state, sizeof bad.state, "CANDIDATE");
+  check_bad_certificate("unknown certificate state -> MUST fall back", &bad, x, U, d, m, r, steps);
+
+  bad = cert;
+  snprintf(bad.semantic_gate, sizeof bad.semantic_gate, "%s", "unreviewed semantic claim");
+  check_bad_certificate("mismatched semantic identity -> MUST fall back", &bad, x, U, d, m, r, steps);
+
+  bad = cert;
+  snprintf(bad.state, sizeof bad.state, "CERTIFIED");
+  snprintf(bad.instantiation_gate, sizeof bad.instantiation_gate, "%s", "LEAN_ALGEBRAIC_MODEL_ONLY");
+  check_bad_certificate("CERTIFIED without native binding -> MUST fall back", &bad, x, U, d, m, r, steps);
+
+  bad = cert;
+  snprintf(bad.state, sizeof bad.state, "CERTIFIED");
+  snprintf(bad.instantiation_gate, sizeof bad.instantiation_gate, "%s", "CERTIFIED_NATIVE_BINDING");
+  snprintf(bad.semantic_gate, sizeof bad.semantic_gate, "%s", "unreviewed semantic claim");
+  check_bad_certificate("CERTIFIED with mismatched semantic identity -> MUST fall back",
+                       &bad, x, U, d, m, r, steps);
 
   /* ---- degenerate shapes ---- */
   p = agd_plan_create(x, 100, 32, U, 0.0, &cert);

@@ -1,0 +1,12 @@
+2026-10-10T08:34:09+00:00
+Linux localhost 6.17.0-PRoot-Distro #1 SMP PREEMPT_DYNAMIC Fri, 10 Oct 2025 00:00:00 +0000 aarch64 GNU/Linux
+TMRV08P5G
+16
+SM6475
+Filesystem        Size  Used Avail Use% Mounted on
+/dev/block/dm-64  222G  220G  2.0G 100% /
+220e289aeb34c541257222adc408779cc94e971d319ba437616c40bc2d1e9bb2  evidence/formal_gap_regime_20261008/bin/muni
+67ac4006258830a8aedc3e9bbe0c64bc5aaeefac04a09fab207d1e6ada7dd562  evidence/formal_gap_regime_20261008/bin/agd_adversarial
+c3d984b7d54c7ddf101af09d3a1eec82f132613110595002b2353586400dbe20  evidence/formal_gap_regime_20261008/src/muni.c
+a213f9cc31b7e61f104144c6b0153ac49d74985308f7617ccde7907e17d4bc8e  evidence/formal_gap_regime_20261008/src/agd_cert.c
+evidence/formal_gap_regime_20261008/bin/muni: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=3cf2063f539e66150a723d835f523bae5f6471b9, for GNU/Linux 3.7.0, not stripped

@@ -1,0 +1,38 @@
+{
+  "sessions": 9,
+  "noise_sessions": 9,
+  "speedup_vs_structured": {
+    "n": 9,
+    "median": 78.348905,
+    "min": 24.828234,
+    "max": 146.954659,
+    "p25": 68.447643,
+    "p75": 124.323947
+  },
+  "speedup_vs_dense": {
+    "n": 9,
+    "median": 8790.308827,
+    "min": 6715.496509,
+    "max": 12671.738194,
+    "p25": 6764.167055,
+    "p75": 11014.524596
+  },
+  "dense_vs_structured": {
+    "n": 9,
+    "median": 98.459585,
+    "min": 74.951857,
+    "max": 337.399845,
+    "p25": 90.43861,
+    "p75": 112.194405
+  },
+  "noise_floor_aa": {
+    "n": 9,
+    "median": 1.000506,
+    "min": 0.995754,
+    "max": 1.003773,
+    "p25": 0.998651,
+    "p75": 1.001336
+  }
+}
+
+A/A noise floor (max |ratio-1|): 0.0038 (0.38% dispersion on a null difference)

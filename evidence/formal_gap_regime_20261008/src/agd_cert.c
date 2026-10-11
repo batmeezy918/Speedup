@@ -34,8 +34,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define AGD_TID "quotient-descent-v2-tensor"
-#define AGD_CERT_SHA "d69e18ecf39e502882e90a9c8758b8e8018d2831251b7a128060daf8e26fe007"
+#define AGD_TID "quotient-descent-v3-tensor-lean-model"
+#define AGD_CERT_SHA "eea5e18530087b654307429514e43b76274bf201fa356be1980aef2f0413d01e"
 
 struct AGDPlan {
   size_t d, m, r;
@@ -45,7 +45,7 @@ struct AGDPlan {
   double *xf, *xb;  /* full-state ping-pong (fallback path)                   */
   double *x0;       /* initial full state (fallback path)                     */
   int admissible;   /* invariant holds for x0                                */
-  int cert_ok;      /* certificate state == CERTIFIED                         */
+  int cert_ok;      /* approved certificate policy authorises fast path         */
   int fallback;     /* actually running the original path                    */
   AGDCertificate cert;
 };
@@ -57,30 +57,25 @@ AGDCertificate agd_certificate_self(void) {
   memset(&c, 0, sizeof c);
   snprintf(c.transformation_id, sizeof c.transformation_id, "%s", AGD_TID);
   snprintf(c.certificate_sha256, sizeof c.certificate_sha256, "%s", AGD_CERT_SHA);
-  snprintf(c.source_sha256, sizeof c.source_sha256, "%s", __FILE__);
+  snprintf(c.source_sha256, sizeof c.source_sha256, "%s", AGD_SOURCE_SHA);
   snprintf(c.scope, sizeof c.scope, "%s",
-           "abstract L4 theorem AGDDescent.exact_reconstruction_on_invariant_orbit "
-           "(lean4/AGDDescentCore.lean, axioms [Quot.sound]); the TENSOR-SEPARABLE "
-           "instantiation is verified numerically (max_abs_error=0), NOT Lean-instantiated; "
-           "the only Lean-instantiated artefact remains v1 diagonal "
-           "8fea74f3f17d084717fbcc8ca985c068fd7d93a2e86b763ef50f1265524a960c");
-  snprintf(c.certified_artefact_sha256, sizeof c.certified_artefact_sha256, "%s", "8fea74f3f17d084717fbcc8ca985c068fd7d93a2e86b763ef50f1265524a960c");
-  /* TWO INDEPENDENT GATES -- conflating them was a real design error.
-   *   semantic_gate      : the transformation's SEMANTICS are machine-checked.
-   *   instantiation_gate : this CONCRETE instantiation is named in Lean.
-   * AGDDescent.exact_reconstruction_on_invariant_orbit is fully general over the
-   * state type, the operator and the sector, so it DOES cover Ubar (x) I_m. What
-   * is missing is a specialised Lean file naming that operator -- not the proof. */
+           "AGDTensorSeparable.exact_reconstruction_on_blockConstant "
+           "(lean4/AGDTensorSeparableInstantiation.lean; algebraic model; "
+           "axioms [propext, Quot.sound]); native C floating-point/compiler binding "
+           "is NOT kernel-proved; claim remains FORMAL_PARTIAL");
+  snprintf(c.certified_artefact_sha256, sizeof c.certified_artefact_sha256, "%s", "eea5e18530087b654307429514e43b76274bf201fa356be1980aef2f0413d01e");
+  /* Separate algebraic instantiation from native floating-point binding.
+   * The Lean theorem proves the tensor-separable model; it does not yet model
+   * compiler lowering or prove IEEE-754 behavior of this exact C binary. */
   snprintf(c.semantic_gate, sizeof c.semantic_gate, "%s",
-           "AGDDescent.exact_reconstruction_on_invariant_orbit (machine-checked, axioms [Quot.sound])");
-  snprintf(c.instantiation_gate, sizeof c.instantiation_gate, "%s", "ABSENT");
+           "AGDTensorSeparable.exact_reconstruction_on_blockConstant (Lean core algebraic model)");
+  snprintf(c.instantiation_gate, sizeof c.instantiation_gate, "%s", "LEAN_ALGEBRAIC_MODEL_ONLY");
   snprintf(c.compiler, sizeof c.compiler, "%s", AGD_COMPILER);
   snprintf(c.flags, sizeof c.flags, "%s", AGD_FLAGS);
   snprintf(c.target, sizeof c.target, "%s", AGD_TARGET);
-  /* NOT "CERTIFIED": the concrete tensor-separable instantiation has no Lean
-   * certificate. Calling it CERTIFIED would inflate FORMAL_PARTIAL into a stronger
-   * class than the evidence supports. FORMAL_PARTIAL is the honest state: the
-   * abstract theorem is machine-checked, the instantiation is only measured. */
+  /* The algebraic model is now Lean-instantiated, but the native C/IEEE-754
+   * implementation is not yet bound by a formal refinement proof. Keep the
+   * certificate FORMAL_PARTIAL until that implementation-level obligation closes. */
   snprintf(c.state, sizeof c.state, "%s", "FORMAL_PARTIAL");
   return c;
 }
@@ -91,12 +86,18 @@ int agd_certificate_is_certified(const AGDCertificate *c) {
 }
 
 int agd_certificate_authorises_optimised(const AGDCertificate *c) {
-  /* The SEMANTIC gate alone authorises the optimised path, because the Level-4
-   * theorem is general enough to cover this instantiation. A certificate in a
-   * hostile state (UNVERIFIED / QUARANTINED) never authorises anything. */
+  /* Fail closed on unknown states AND on any unrecognized semantic identity.
+   * A full certification additionally requires an explicit native binding. */
   if (!c) return 0;
-  if (strcmp(c->state, "UNVERIFIED") == 0 || strcmp(c->state, "QUARANTINED") == 0) return 0;
-  return c->semantic_gate[0] != '\0';
+  if (strcmp(c->semantic_gate,
+             "AGDTensorSeparable.exact_reconstruction_on_blockConstant (Lean core algebraic model)") != 0)
+    return 0;
+  if (strcmp(c->state, "FORMAL_PARTIAL") == 0)
+    return 1;
+  if (strcmp(c->state, "CERTIFIED") == 0 &&
+      strcmp(c->instantiation_gate, "CERTIFIED_NATIVE_BINDING") == 0)
+    return 1;
+  return 0;
 }
 
 /* ------------------------------------------------------- the two operators */

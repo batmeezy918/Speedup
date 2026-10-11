@@ -1,0 +1,3 @@
+NREBBI_EL_MUNI_REPLAY
+started=2026-10-10T10:52:13+00:00
+workload=d2048,m64,r32,steps32,trials5,reps5

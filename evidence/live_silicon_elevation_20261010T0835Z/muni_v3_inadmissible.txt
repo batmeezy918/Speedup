@@ -1,0 +1,30 @@
+AGD ANALYSIS
+--------------------------
+Gap:                   FOUND (invariant-state redundancy)
+Invariant:             VIOLATED -> REFUSED
+Semantic gate:         PROVED
+Instantiation gate:    LEAN_ALGEBRAIC_MODEL_ONLY
+Certificate state:     FORMAL_PARTIAL
+Path taken:            ORIGINAL (fallback)
+Semantic preservation: PASS (bit-exact)
+Reconstruction:        PASS (exact)
+Adversarial suite:     NOT RUN IN THIS PROCESS (see separate receipt)
+Native compiler:       GCC_14
+Target:                aarch64-linux-gnu
+
+d = 4096   quotient r = 64   tile m = 64   steps = 256
+Run-loop baseline/call:    58.929 ms   (median trial total / 5 reps)
+Run-loop quotient/call:     58.539 ms
+Run-loop speedup:            1.007x  (plan/gate/reconstruction excluded)
+Full-call baseline E2E:     58.935 ms   (alloc + copy + steps + cleanup)
+Full-call quotient E2E:     59.018 ms   (plan/gate + run + reconstruct + cleanup)
+End-to-end speedup:          0.999x
+Machine precision:     max_abs_error = 0
+
+Claim: QUARANTINED_OPTIMISATION_NOT_APPLIED
+Transformation: quotient-descent-v3-tensor-lean-model
+Certificate SHA: eea5e18530087b654307429514e43b76274bf201fa356be1980aef2f0413d01e
+Source manifest SHA: aa810c1480e433f252b5634c954482083cff04bda5a559bce607781081920919
+Proof artifact SHA: eea5e18530087b654307429514e43b76274bf201fa356be1980aef2f0413d01e
+Instantiation gate: LEAN_ALGEBRAIC_MODEL_ONLY
+Receipt written: /root/Speedup/evidence/live_silicon_elevation_20261010T0835Z/muni_v3_inadmissible.json

@@ -31,5 +31,8 @@ lean_lib «SpeedupLean» where
     `ToProveOperatorContraction,
     `ToProveQFIDossier,
     `ToProveChronoFold,
-    `AGDDescentCore
+    `AGDDescentCore,
+    `AGDTensorSeparableInstantiation,
+    `AGDRefinement,
+    `AGDGapDerivation
   ]

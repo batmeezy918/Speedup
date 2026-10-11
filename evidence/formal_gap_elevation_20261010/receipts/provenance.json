@@ -1,0 +1,218 @@
+{
+  "generated_at": "2026-10-11T02:28:54Z",
+  "host": {
+    "uname": "Linux localhost 6.17.0-PRoot-Distro #1 SMP PREEMPT_DYNAMIC Fri, 10 Oct 2025 00:00:00 +0000 aarch64 GNU/Linux",
+    "cpu_model": "SM6475 (Cortex-A55 Cortex-A78)",
+    "nproc": "1",
+    "governor": [
+      "walt"
+    ],
+    "kernel": "6.17.0-PRoot-Distro"
+  },
+  "toolchain": {
+    "cc": "cc (Debian 14.2.0-19) 14.2.0",
+    "lean": "Lean (version 4.29.0, aarch64-unknown-linux-gnu, commit 98dc76e3c0a9b856c9b98726b713fb04fab16740, Release)",
+    "python": "3.13.5",
+    "compiler_flags": "-O3 -march=native -mtune=native -funroll-loops -fomit-frame-pointer -DNDEBUG -std=c11 -D_POSIX_C_SOURCE=200809L -DAGD_COMPILER=GCC_14 -DAGD_FLAGS=-O3,-march=native -DAGD_TARGET=aarch64-linux-gnu -DAGD_SOURCE_SHA=source_manifest -Isrc"
+  },
+  "workload_dimensions": {
+    "d": 2048,
+    "m": 64,
+    "r": 32,
+    "steps": 32,
+    "trials": 5,
+    "reps": 3
+  },
+  "definitions": {
+    "BASELINE": "structured_ms: full U(x)I_m operator apply (exact op being replaced)",
+    "CANDIDATE": "quotient_ms: quotient-descent optimized path",
+    "REFERENCE": "dense_ms: general dense d x d operator (structure-independent)"
+  },
+  "per_session": [
+    {
+      "session": "session_1.json",
+      "structured_ms_BASELINE": 1.726979,
+      "quotient_ms_CANDIDATE": 0.025208,
+      "dense_ms_REFERENCE": 169.284236,
+      "speedup_vs_structured": 68.509164,
+      "speedup_vs_dense": 6715.496509,
+      "dense_vs_structured": 98.023332,
+      "max_abs_error": 0,
+      "dense_abs_error": 0
+    },
+    {
+      "session": "session_2.json",
+      "structured_ms_BASELINE": 1.722726,
+      "quotient_ms_CANDIDATE": 0.025226,
+      "dense_ms_REFERENCE": 169.618854,
+      "speedup_vs_structured": 68.292572,
+      "speedup_vs_dense": 6724.058327,
+      "dense_vs_structured": 98.459585,
+      "max_abs_error": 0,
+      "dense_abs_error": 0
+    },
+    {
+      "session": "session_3.json",
+      "structured_ms_BASELINE": 1.723055,
+      "quotient_ms_CANDIDATE": 0.025173,
+      "dense_ms_REFERENCE": 170.276632,
+      "speedup_vs_structured": 68.447643,
+      "speedup_vs_dense": 6764.167055,
+      "dense_vs_structured": 98.822498,
+      "max_abs_error": 0,
+      "dense_abs_error": 0
+    },
+    {
+      "session": "session_4.json",
+      "structured_ms_BASELINE": 1.720729,
+      "quotient_ms_CANDIDATE": 0.069305,
+      "dense_ms_REFERENCE": 580.573698,
+      "speedup_vs_structured": 24.828234,
+      "speedup_vs_dense": 8377.042137,
+      "dense_vs_structured": 337.399845,
+      "max_abs_error": 0,
+      "dense_abs_error": 0
+    },
+    {
+      "session": "session_5.json",
+      "structured_ms_BASELINE": 8.616354,
+      "quotient_ms_CANDIDATE": 0.069306,
+      "dense_ms_REFERENCE": 712.597569,
+      "speedup_vs_structured": 124.323947,
+      "speedup_vs_dense": 10281.952447,
+      "dense_vs_structured": 82.702912,
+      "max_abs_error": 0,
+      "dense_abs_error": 0
+    },
+    {
+      "session": "session_6.json",
+      "structured_ms_BASELINE": 10.253663,
+      "quotient_ms_CANDIDATE": 0.069774,
+      "dense_ms_REFERENCE": 768.531111,
+      "speedup_vs_structured": 146.954659,
+      "speedup_vs_dense": 11014.524596,
+      "dense_vs_structured": 74.951857,
+      "max_abs_error": 0,
+      "dense_abs_error": 0
+    },
+    {
+      "session": "session_7.json",
+      "structured_ms_BASELINE": 9.710712,
+      "quotient_ms_CANDIDATE": 0.069306,
+      "dense_ms_REFERENCE": 878.223263,
+      "speedup_vs_structured": 140.114252,
+      "speedup_vs_dense": 12671.738194,
+      "dense_vs_structured": 90.43861,
+      "max_abs_error": 0,
+      "dense_abs_error": 0
+    },
+    {
+      "session": "session_8.json",
+      "structured_ms_BASELINE": 7.77908,
+      "quotient_ms_CANDIDATE": 0.099288,
+      "dense_ms_REFERENCE": 872.769253,
+      "speedup_vs_structured": 78.348905,
+      "speedup_vs_dense": 8790.308827,
+      "dense_vs_structured": 112.194405,
+      "max_abs_error": 0,
+      "dense_abs_error": 0
+    },
+    {
+      "session": "session_9.json",
+      "structured_ms_BASELINE": 6.913785,
+      "quotient_ms_CANDIDATE": 0.069323,
+      "dense_ms_REFERENCE": 843.303681,
+      "speedup_vs_structured": 99.732912,
+      "speedup_vs_dense": 12164.846886,
+      "dense_vs_structured": 121.974247,
+      "max_abs_error": 0,
+      "dense_abs_error": 0
+    }
+  ],
+  "aa_noise_sessions": [
+    {
+      "session": "noise_1.json",
+      "noise_ratio": 1.001336
+    },
+    {
+      "session": "noise_2.json",
+      "noise_ratio": 0.997214
+    },
+    {
+      "session": "noise_3.json",
+      "noise_ratio": 0.998651
+    },
+    {
+      "session": "noise_4.json",
+      "noise_ratio": 1.001509
+    },
+    {
+      "session": "noise_5.json",
+      "noise_ratio": 1.000506
+    },
+    {
+      "session": "noise_6.json",
+      "noise_ratio": 1.0
+    },
+    {
+      "session": "noise_7.json",
+      "noise_ratio": 1.00125
+    },
+    {
+      "session": "noise_8.json",
+      "noise_ratio": 0.995754
+    },
+    {
+      "session": "noise_9.json",
+      "noise_ratio": 1.003773
+    }
+  ],
+  "aggregate": {
+    "sessions": 9,
+    "noise_sessions": 9,
+    "speedup_vs_structured": {
+      "n": 9,
+      "median": 78.348905,
+      "min": 24.828234,
+      "max": 146.954659,
+      "p25": 68.447643,
+      "p75": 124.323947
+    },
+    "speedup_vs_dense": {
+      "n": 9,
+      "median": 8790.308827,
+      "min": 6715.496509,
+      "max": 12671.738194,
+      "p25": 6764.167055,
+      "p75": 11014.524596
+    },
+    "dense_vs_structured": {
+      "n": 9,
+      "median": 98.459585,
+      "min": 74.951857,
+      "max": 337.399845,
+      "p25": 90.43861,
+      "p75": 112.194405
+    },
+    "noise_floor_aa": {
+      "n": 9,
+      "median": 1.000506,
+      "min": 0.995754,
+      "max": 1.003773,
+      "p25": 0.998651,
+      "p75": 1.001336
+    }
+  },
+  "hashes": {
+    "bin/agd_adversarial": "40ac3cf304f24679fa51002956ee87e9f21f0decfba68886d543f174b5e56f82",
+    "bin/agd_elev": "5f4551d10c887b1a752a38985b8cded40743a8a5f308daa26f9fdef523b279da",
+    "bin/agd_fuzz": "864850187405c33a49a05c2e8ed9a2708549bcdef92829d0967181b03f7bb1fd",
+    "src/agd_adversarial.c": "6b2e714c236f25461600bf0455c60f382dd2d4164c553c4fd160500e06794719",
+    "src/agd_cert.c": "6b9b3896b9c1844bf7ca451ff60ef28091add6254bf86730d3852ff3bb0f3cc4",
+    "src/agd_cert.h": "90669af9cf3a0bd02f62d7c45007de1f221da1daba559dceadd183d7bbb5bc74",
+    "src/agd_elev.c": "11a480af4ae5e32608e0047e5fd26458b5a9a046e832fb93e062977c80235076",
+    "src/agd_elev.h": "82ffdc7c1e6bee5b5f579e46ccc154ab53a8fec84fe457cd3c14d3fd1136d001",
+    "src/agd_elev_main.c": "77b15e9c085f8218a99468122ce15adef63100bb32b62962561ef9f0c78eb911",
+    "src/agd_fuzz.c": "913af28815b6b90c50eff1e81e4cc1705ad7f56b1582c8ad469d5592cb586e85"
+  }
+}

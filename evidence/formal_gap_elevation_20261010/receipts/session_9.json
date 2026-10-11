@@ -1,0 +1,8 @@
+{
+  "mode": "bench",
+  "d": 2048, "m": 64, "r": 32, "steps": 32, "trials": 5, "reps": 3,
+  "structured_ms": 6.913785, "dense_ms": 843.303681, "quotient_ms": 0.069323,
+  "speedup_vs_structured": 99.732912, "speedup_vs_dense": 12164.846886, "dense_vs_structured": 121.974247,
+  "max_abs_error": 0, "dense_abs_error": 0, "direct_stencil_abs_error": 0,
+  "noise_ratio": 0.000000
+}

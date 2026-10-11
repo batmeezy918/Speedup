@@ -1,0 +1,8 @@
+{
+  "mode": "noise",
+  "d": 2048, "m": 64, "r": 32, "steps": 32, "trials": 5, "reps": 3,
+  "structured_ms": 0.000000, "dense_ms": 0.000000, "quotient_ms": 0.025208,
+  "speedup_vs_structured": 0.000000, "speedup_vs_dense": 0.000000, "dense_vs_structured": 0.000000,
+  "max_abs_error": 0, "dense_abs_error": 0, "direct_stencil_abs_error": 0,
+  "noise_ratio": 0.998651
+}

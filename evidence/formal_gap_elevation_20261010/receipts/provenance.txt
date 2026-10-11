@@ -1,0 +1,43 @@
+AGD / MUNI ELEVATION - PROVENANCE AND REPRODUCIBILITY RECEIPT
+====================================================================
+generated_at : 2026-10-11T02:28:54Z
+uname        : Linux localhost 6.17.0-PRoot-Distro #1 SMP PREEMPT_DYNAMIC Fri, 10 Oct 2025 00:00:00 +0000 aarch64 GNU/Linux
+cpu_model    : SM6475 (Cortex-A55 Cortex-A78)
+nproc        : 1
+governor     : ['walt']
+cc           : cc (Debian 14.2.0-19) 14.2.0
+lean         : Lean (version 4.29.0, aarch64-unknown-linux-gnu, commit 98dc76e3c0a9b856c9b98726b713fb04fab16740, Release)
+python       : 3.13.5
+
+COMPILER FLAGS (identical for baseline, candidate, reference):
+  -O3 -march=native -mtune=native -funroll-loops -fomit-frame-pointer -DNDEBUG -std=c11 -D_POSIX_C_SOURCE=200809L -DAGD_COMPILER=GCC_14 -DAGD_FLAGS=-O3,-march=native -DAGD_TARGET=aarch64-linux-gnu -DAGD_SOURCE_SHA=source_manifest -Isrc
+
+WORKLOAD DIMENSIONS:
+  d = 2048
+  m = 64
+  r = 32
+  steps = 32
+  trials = 5
+  reps = 3
+
+PER-SESSION RAW WALL-TIMES (ms) AND SPEEDUPS
+  BASELINE  = structured_ms (original U(x)I_m operator)
+  CANDIDATE = quotient_ms   (optimized path)
+  REFERENCE = dense_ms      (general dense operator)
+  session          base_ms   cand_ms     ref_ms   SvsBase    SvsRef   err
+  session_1.json    1.7270   0.02521     169.28     68.51    6715.5     0
+  session_2.json    1.7227   0.02523     169.62     68.29    6724.1     0
+  session_3.json    1.7231   0.02517     170.28     68.45    6764.2     0
+  session_4.json    1.7207   0.06931     580.57     24.83    8377.0     0
+  session_5.json    8.6164   0.06931     712.60    124.32   10282.0     0
+  session_6.json   10.2537   0.06977     768.53    146.95   11014.5     0
+  session_7.json    9.7107   0.06931     878.22    140.11   12671.7     0
+  session_8.json    7.7791   0.09929     872.77     78.35    8790.3     0
+  session_9.json    6.9138   0.06932     843.30     99.73   12164.8     0
+
+AGGREGATE (median [min, max]):
+  speedup vs BASELINE : 78.348905 [24.828234, 146.954659]
+  speedup vs REFERENCE: 8790.308827 [6715.496509, 12671.738194]
+  A/A noise floor     : median 1.000506 max 1.003773
+
+HASHES (src/bin) - verbatim values in provenance.json

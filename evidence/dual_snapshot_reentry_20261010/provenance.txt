@@ -1,0 +1,7 @@
+2026-10-10T11:30:44Z
+Linux localhost 6.17.0-PRoot-Distro #1 SMP PREEMPT_DYNAMIC Fri, 10 Oct 2025 00:00:00 +0000 aarch64 GNU/Linux
+gcc (Debian 14.2.0-19) 14.2.0
+b80541764e487b8d0a901867a7113aa15d3b1e9e9eb3946915f84bf0f8fdda74  evidence/dual_snapshot_reentry_20261010/dual_snapshot_reentry.c
+4d50f49fe7d25efb3f6713b989c5bc4365643a981a596ea59551f28012cc92cf  evidence/dual_snapshot_reentry_20261010/dual_snapshot_reentry
+6b9b3896b9c1844bf7ca451ff60ef28091add6254bf86730d3852ff3bb0f3cc4  evidence/formal_gap_regime_20261008/src/agd_cert.c
+5a9c9f6e1418101b2c51ab172223ddc3a2dd91a32a7826214bb8df9f7cae78be  evidence/formal_gap_regime_20261008/src/muni.c
