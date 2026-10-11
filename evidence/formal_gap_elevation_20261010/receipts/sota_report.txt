@@ -1,0 +1,12 @@
+=== SOTA differential report (AGD/MuNi quotient vs dense/BLAS) ===
+configs=5  cand_err_zero=True  no_fallback=True
+noise floor (A/A cand): [0.864, 1.152]
+
+      d     r steps   cand_med  struct_med    blas_med   naive_med  x_struct   x_blas  x_naive     AA  drift%
+   1024    32   500     0.3894     13.4935    264.1542   5747.6109      34.7    678.4  14761.1  1.000    -0.0
+   2048    32   200     0.1565     10.6877    491.4217           -      68.3   3140.9        -  1.000    -0.0
+   4096    64    40     0.1335      9.2227    427.4351           -      69.1   3200.8        -  1.152    -0.0
+    512    16  1000     0.1591      6.1666    120.1264    856.6369      38.8    755.2   5385.6  1.078   +11.0
+  65536   256    10     0.8463    484.4760           -           -     572.5        -        -  0.864    -0.7
+
+wrote receipts/sota_report.json

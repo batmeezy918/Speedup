@@ -43,8 +43,12 @@ python3 "$HERE/capture_provenance.py" "$CFLAGS_STR" | tee "$REC/provenance.txt"
 echo "== recursive formal-gap ledger (Task 7) =="
 python3 "$HERE/agd_gap_ledger.py" 5 | tee "$REC/gap_ledger.txt"
 
+echo "== full SOTA differential vs dense/BLAS (Task 8) =="
+"$HERE/run_sota.sh" > "$REC/sota_full.log" 2>&1; echo "sota_exit=$?"; tail -12 "$REC/sota_full.log"
+
 echo "== manifest =="
 ( cd "$HERE" && { find src bin receipts -type f ! -name deliverables.sha256; \
-    ls run_all.sh run_sessions.sh aggregate_sessions.py agd_gap_ledger.py capture_provenance.py REPORT.md; } \
+    ls run_all.sh run_sessions.sh aggregate_sessions.py agd_gap_ledger.py capture_provenance.py \
+       run_sota.sh sota_aggregate.py REPORT.md SOTA_REPORT.md; } \
   | sort | xargs sha256sum > receipts/deliverables.sha256 )
 echo "DONE"

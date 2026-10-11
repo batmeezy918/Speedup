@@ -1,0 +1,451 @@
+{
+ "generated": "2026-10-11T22:00:07",
+ "summary": {
+  "all_cand_err_zero": true,
+  "all_cand_no_fallback": true,
+  "min_struct_speedup": 34.654227929373995,
+  "max_struct_speedup": 572.4623006917153,
+  "max_noise_aa_cand": 1.1517200581090594,
+  "min_noise_aa_cand": 0.8640532575841721,
+  "n_configs": 5
+ },
+ "configs": [
+  {
+   "file": "/root/Speedup/evidence/formal_gap_elevation_20261010/receipts/sota_raw_s1024.txt",
+   "d": 1024,
+   "m": 32,
+   "r": 32,
+   "steps": 500,
+   "trials": 9,
+   "reps": 2,
+   "blas_enabled": true,
+   "naive_enabled": true,
+   "paths": {
+    "cand": {
+     "n": 9,
+     "median_ms": 0.389375,
+     "mad_ms": 0.0002610000000000112,
+     "min_ms": 0.388073,
+     "max_ms": 0.390156,
+     "raw": [
+      0.389375,
+      0.389114,
+      0.389375,
+      0.388073,
+      0.390156,
+      0.388854,
+      0.389636,
+      0.389114,
+      0.389688
+     ]
+    },
+    "blas": {
+     "n": 9,
+     "median_ms": 264.154219,
+     "mad_ms": 7.533542000000011,
+     "min_ms": 249.041302,
+     "max_ms": 276.258698,
+     "raw": [
+      266.08776,
+      264.154219,
+      276.258698,
+      262.567969,
+      271.687761,
+      266.828125,
+      249.517396,
+      249.041302,
+      250.445729
+     ]
+    },
+    "naive": {
+     "n": 9,
+     "median_ms": 5747.610935,
+     "mad_ms": 94.53369800000019,
+     "min_ms": 5426.36156,
+     "max_ms": 5849.922394,
+     "raw": [
+      5842.144633,
+      5849.922394,
+      5748.209321,
+      5803.039529,
+      5747.610935,
+      5669.830466,
+      5534.51156,
+      5426.36156,
+      5542.355727
+     ]
+    },
+    "struct": {
+     "n": 9,
+     "median_ms": 13.49349,
+     "mad_ms": 0.018646000000000384,
+     "min_ms": 13.465104,
+     "max_ms": 13.550781,
+     "raw": [
+      13.514062,
+      13.550781,
+      13.465104,
+      13.474844,
+      13.480365,
+      13.525677,
+      13.500781,
+      13.49349,
+      13.477188
+     ]
+    }
+   },
+   "ratio_struct_over_cand": 34.654227929373995,
+   "ratio_blas_over_cand": 678.4056988764045,
+   "ratio_naive_over_cand": 14761.119576243978,
+   "noise_aa_cand": 0.999866452648475,
+   "noise_aa_blas": 1.0541472669039595,
+   "drift_struct_pct": -0.007136265545557802,
+   "err": {
+    "cand": 0.0,
+    "blas": 0.0,
+    "naive": 0.0,
+    "struct": 0.0
+   },
+   "cand_runs": 38,
+   "cand_fallback": 0,
+   "cand_vs_struct_disjoint": true,
+   "cand_vs_blas_disjoint": true
+  },
+  {
+   "file": "/root/Speedup/evidence/formal_gap_elevation_20261010/receipts/sota_raw_s2048.txt",
+   "d": 2048,
+   "m": 64,
+   "r": 32,
+   "steps": 200,
+   "trials": 9,
+   "reps": 2,
+   "blas_enabled": true,
+   "naive_enabled": true,
+   "paths": {
+    "cand": {
+     "n": 9,
+     "median_ms": 0.156458,
+     "mad_ms": 0.00020899999999998697,
+     "min_ms": 0.155885,
+     "max_ms": 0.156719,
+     "raw": [
+      0.156667,
+      0.156563,
+      0.156458,
+      0.155938,
+      0.156458,
+      0.155885,
+      0.156667,
+      0.156146,
+      0.156719
+     ]
+    },
+    "blas": {
+     "n": 9,
+     "median_ms": 491.421666,
+     "mad_ms": 4.8045830000000365,
+     "min_ms": 476.761094,
+     "max_ms": 526.625781,
+     "raw": [
+      494.845521,
+      487.584792,
+      481.375625,
+      498.217188,
+      492.238281,
+      476.761094,
+      491.421666,
+      486.617083,
+      526.625781
+     ]
+    },
+    "naive": null,
+    "struct": {
+     "n": 9,
+     "median_ms": 10.687656,
+     "mad_ms": 0.004166999999998922,
+     "min_ms": 10.670521,
+     "max_ms": 10.821667,
+     "raw": [
+      10.687656,
+      10.821667,
+      10.691823,
+      10.680312,
+      10.670521,
+      10.686615,
+      10.68401,
+      10.696145,
+      10.68927
+     ]
+    }
+   },
+   "ratio_struct_over_cand": 68.31006404274629,
+   "ratio_blas_over_cand": 3140.9174730598625,
+   "ratio_naive_over_cand": null,
+   "noise_aa_cand": 1.0000063914916462,
+   "noise_aa_blas": 1.0206268052495675,
+   "drift_struct_pct": -0.0292289629695859,
+   "err": {
+    "cand": 0.0,
+    "blas": 0.0,
+    "naive": -1.0,
+    "struct": 0.0
+   },
+   "cand_runs": 38,
+   "cand_fallback": 0,
+   "cand_vs_struct_disjoint": true,
+   "cand_vs_blas_disjoint": true
+  },
+  {
+   "file": "/root/Speedup/evidence/formal_gap_elevation_20261010/receipts/sota_raw_s4096.txt",
+   "d": 4096,
+   "m": 64,
+   "r": 64,
+   "steps": 40,
+   "trials": 9,
+   "reps": 2,
+   "blas_enabled": true,
+   "naive_enabled": true,
+   "paths": {
+    "cand": {
+     "n": 9,
+     "median_ms": 0.133542,
+     "mad_ms": 5.1999999999996493e-05,
+     "min_ms": 0.133437,
+     "max_ms": 0.134115,
+     "raw": [
+      0.133541,
+      0.133594,
+      0.133594,
+      0.133698,
+      0.133489,
+      0.134115,
+      0.133542,
+      0.133541,
+      0.133437
+     ]
+    },
+    "blas": {
+     "n": 9,
+     "median_ms": 427.435052,
+     "mad_ms": 2.0827089999999657,
+     "min_ms": 419.474896,
+     "max_ms": 433.053177,
+     "raw": [
+      419.535677,
+      419.474896,
+      427.435052,
+      427.871823,
+      427.755677,
+      433.053177,
+      425.352343,
+      425.874323,
+      432.940468
+     ]
+    },
+    "naive": null,
+    "struct": {
+     "n": 9,
+     "median_ms": 9.222657,
+     "mad_ms": 0.00927100000000003,
+     "min_ms": 9.198437,
+     "max_ms": 10.615104,
+     "raw": [
+      9.231928,
+      9.198437,
+      9.290886,
+      9.21849,
+      9.222657,
+      9.224947,
+      9.216041,
+      9.199271,
+      10.615104
+     ]
+    }
+   },
+   "ratio_struct_over_cand": 69.06184571146156,
+   "ratio_blas_over_cand": 3200.7537104431567,
+   "ratio_naive_over_cand": null,
+   "noise_aa_cand": 1.1517200581090594,
+   "noise_aa_blas": 1.1158660427315634,
+   "drift_struct_pct": -0.027663329903958447,
+   "err": {
+    "cand": 0.0,
+    "blas": 0.0,
+    "naive": -1.0,
+    "struct": 0.0
+   },
+   "cand_runs": 38,
+   "cand_fallback": 0,
+   "cand_vs_struct_disjoint": true,
+   "cand_vs_blas_disjoint": true
+  },
+  {
+   "file": "/root/Speedup/evidence/formal_gap_elevation_20261010/receipts/sota_raw_s512.txt",
+   "d": 512,
+   "m": 32,
+   "r": 16,
+   "steps": 1000,
+   "trials": 9,
+   "reps": 2,
+   "blas_enabled": true,
+   "naive_enabled": true,
+   "paths": {
+    "cand": {
+     "n": 9,
+     "median_ms": 0.159062,
+     "mad_ms": 0.004843000000000014,
+     "min_ms": 0.154219,
+     "max_ms": 0.173281,
+     "raw": [
+      0.154531,
+      0.154219,
+      0.155989,
+      0.155886,
+      0.159062,
+      0.173281,
+      0.171823,
+      0.173125,
+      0.17125
+     ]
+    },
+    "blas": {
+     "n": 9,
+     "median_ms": 120.126354,
+     "mad_ms": 4.781771000000006,
+     "min_ms": 109.719739,
+     "max_ms": 127.909948,
+     "raw": [
+      112.654896,
+      115.344583,
+      110.996719,
+      109.719739,
+      121.415469,
+      120.126354,
+      127.909948,
+      121.730573,
+      123.849948
+     ]
+    },
+    "naive": {
+     "n": 9,
+     "median_ms": 856.636927,
+     "mad_ms": 9.981198000000063,
+     "min_ms": 833.905573,
+     "max_ms": 879.430104,
+     "raw": [
+      833.905573,
+      879.430104,
+      834.410937,
+      846.655729,
+      868.889948,
+      861.942552,
+      856.636927,
+      854.485573,
+      860.992135
+     ]
+    },
+    "struct": {
+     "n": 9,
+     "median_ms": 6.166614,
+     "mad_ms": 0.06562499999999982,
+     "min_ms": 5.553229,
+     "max_ms": 6.232239,
+     "raw": [
+      5.579323,
+      5.553229,
+      5.566615,
+      5.588698,
+      6.232239,
+      6.202031,
+      6.169479,
+      6.18875,
+      6.166614
+     ]
+    }
+   },
+   "ratio_struct_over_cand": 38.768618526109314,
+   "ratio_blas_over_cand": 755.2171731777546,
+   "ratio_naive_over_cand": 5385.553601740202,
+   "noise_aa_cand": 1.0782587921690912,
+   "noise_aa_blas": 1.0150535909880358,
+   "drift_struct_pct": 11.049424462974766,
+   "err": {
+    "cand": 0.0,
+    "blas": 0.0,
+    "naive": 0.0,
+    "struct": 0.0
+   },
+   "cand_runs": 38,
+   "cand_fallback": 0,
+   "cand_vs_struct_disjoint": true,
+   "cand_vs_blas_disjoint": true
+  },
+  {
+   "file": "/root/Speedup/evidence/formal_gap_elevation_20261010/receipts/sota_raw_s65536.txt",
+   "d": 65536,
+   "m": 256,
+   "r": 256,
+   "steps": 10,
+   "trials": 9,
+   "reps": 2,
+   "blas_enabled": false,
+   "naive_enabled": false,
+   "paths": {
+    "cand": {
+     "n": 9,
+     "median_ms": 0.846302,
+     "mad_ms": 0.008488999999999969,
+     "min_ms": 0.824792,
+     "max_ms": 1.005156,
+     "raw": [
+      0.846302,
+      0.845573,
+      0.848333,
+      0.888125,
+      0.831823,
+      0.824792,
+      0.854219,
+      0.837813,
+      1.005156
+     ]
+    },
+    "blas": null,
+    "naive": null,
+    "struct": {
+     "n": 9,
+     "median_ms": 484.47599,
+     "mad_ms": 3.7162509999999997,
+     "min_ms": 418.786198,
+     "max_ms": 495.41875,
+     "raw": [
+      485.634896,
+      480.759739,
+      492.177187,
+      484.47599,
+      486.978541,
+      495.41875,
+      481.768437,
+      478.078698,
+      418.786198
+     ]
+    }
+   },
+   "ratio_struct_over_cand": 572.4623006917153,
+   "ratio_blas_over_cand": null,
+   "ratio_naive_over_cand": null,
+   "noise_aa_cand": 0.8640532575841721,
+   "noise_aa_blas": null,
+   "drift_struct_pct": -0.677655729347216,
+   "err": {
+    "cand": 0.0,
+    "blas": -1.0,
+    "naive": -1.0,
+    "struct": 0.0
+   },
+   "cand_runs": 38,
+   "cand_fallback": 0,
+   "cand_vs_struct_disjoint": true,
+   "cand_vs_blas_disjoint": null
+  }
+ ]
+}
