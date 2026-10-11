@@ -1,0 +1,28 @@
+OFFICIAL BENCHMARK CORPORA - PROVENANCE (2026-10-11)
+====================================================
+Requested: clone the official benchmark corpora this repo uses.
+
+Both corpora were already present as treeless+sparse partial clones with
+UNMATERIALISED working trees (miniF2F 13 files, PutnamBench 2 files). Disk was
+100% full, so space was reclaimed first (see disk_reclaim_manifest.txt), then
+the partial clones were completed.
+
+State after materialisation:
+
+  corpus       remote                                         pinned HEAD                                 files  size  clean
+  -----------  ---------------------------------------------  ------------------------------------------  -----  ----  -----
+  miniF2F      https://github.com/facebookresearch/miniF2F      e4f113090ad82d64f8ce064d2f55b613a9b6bded    1806   8.6M  yes
+  PutnamBench  https://github.com/trishullab/PutnamBench       97b5e9458b04e3d1044e8f8afe1724ff133f5a53    1764   11M   yes
+
+Commands run per corpus:
+  git -C <dir> sparse-checkout disable
+  git -C <dir> checkout -f HEAD -- .
+  git -C <dir> status --porcelain      # empty => clean
+
+No other external corpora are referenced by the repository. The matrix/GEMM,
+vector, compiler, quantum and COCO-BFS "domains" are internal workloads, not
+clones.
+
+Note for reviewers: the subdirectories benchmarks/official/miniF2F and
+benchmarks/official/PutnamBench are gitignored; benchmarks/official/CORPORA.md
+is committed and pins the exact commits.
