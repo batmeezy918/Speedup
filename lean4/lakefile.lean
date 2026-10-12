@@ -34,5 +34,6 @@ lean_lib «SpeedupLean» where
     `AGDDescentCore,
     `AGDTensorSeparableInstantiation,
     `AGDRefinement,
-    `AGDGapDerivation
+    `AGDGapDerivation,
+    `AGDTransportGapTheorem
   ]
