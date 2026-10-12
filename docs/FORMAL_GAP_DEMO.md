@@ -12,6 +12,7 @@ This demo pairs a kernel-checkable bounded transport theorem with a separately l
 - New proof source: `lean4/AGDTransportGapTheorem.lean`
 - Build registration: `lean4/lakefile.lean`
 - Lean toolchain: Lean 4.29.0
+- Public review: https://github.com/batmeezy918/Speedup/pull/20
 
 ## Literal gap theorem
 
@@ -39,11 +40,12 @@ From the repository root:
 
 ```sh
 cd lean4
-lean AGDTransportGapTheorem.lean
-lake build
+lean --root . -o AGDTransportGapTheorem.olean AGDTransportGapTheorem.lean
 ```
 
-The file emits `#print axioms` output for its key theorems. The expected baseline Lean logical axioms include standard core items such as `propext`, `Classical.choice`, and `Quot.sound`; the acceptance check must reject `sorryAx` or any unreviewed extra axiom. A local direct Lean check succeeded for the theorem file before the iterated-transport extension; the final extension must be confirmed by CI/build before promotion to VERIFIED.
+The new module was compiled by both GitHub Lean workflows on the PR head commit. Its `#print axioms` output lists standard Lean core axioms (`propext`, `Classical.choice`, and `Quot.sound`) for propositions involving structure equality; the concrete counterexample theorem reports no axioms. The CI log shows no `sorryAx` dependency for the new theorem.
+
+**Important build boundary:** the broader existing source scan also logs unresolved-import errors for unrelated repository modules, even though the workflow jobs finish successfully. Therefore this PR remains a draft pending a clean package-wide build and review of those existing import/build issues. The target theorem module compiles; the repository-wide closure is not yet certified.
 
 ## Separately scoped performance witness
 
