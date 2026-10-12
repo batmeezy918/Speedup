@@ -191,3 +191,21 @@ The canonical machine-readable ledger is `evidence/ledger/RECURSIVE_PRIMITIVE_LE
 GitHub Actions workflow `.github/workflows/recursive-speedup-ledger.yml` runs this validator on ledger and governing-specification changes. CI is an independent verification event; it does not promote an artifact to `VERIFIED` by itself.
 
 The ledger currently records no `VERIFIED` primitive. Existing empirical/formal artifacts remain at their declared lower evidence classes until their own complete PCSS gates close.
+
+## 17. V2 recursive enforcement
+
+The legacy validator remains responsible for the historical v1 ledger. New evidence records use `schema_version: "2.0"` and are checked by `governor/recursive_speedup_ledger_v2.py`. CI runs both validators and the adversarial unit tests.
+
+For a v2 individual primitive, `S_i` and `S_measured` must agree with the ratio recomputed from raw individual baseline/candidate timings. A verified speedup primitive must have `S_i > 1`, all seven PCSS gates true, all eleven stages marked PASS with hash-checked evidence, valid scenario/implementation/run/proof hashes, attribution evidence, and no open gap. Hardware-mechanism evidence is mandatory only when a hardware-mechanism claim is made; otherwise the record must explicitly say NOT_CLAIMED.
+
+For a v2 composition, `S_composed` is recomputed from its own direct timing pair and `S_cumulative` is recomputed independently from the canonical original baseline. The composed and cumulative measurements require distinct run-batch hashes. A verified composition must reference only previously VERIFIED parents, prove scope/state/observable/invariant compatibility, account for overlap and double-counting, and include measured component ratios. The interaction factor is recomputed as `S_composed / S_product`; `S_product` is diagnostic only and is never accepted as a replacement for either direct run.
+
+An unmeasured candidate may retain null speedup values only when MEASUREMENT_GAP is explicit. Negative and failed outcomes remain append-only records. The validator does not promote evidence: it only rejects records whose declarations exceed their evidence.
+
+## 18. Evidence-reference contract
+
+Every stage marked PASS must contain one or more repository-relative artifact references of the form `{"path":"relative/path","sha256":"<64 lowercase hex characters>"}`. The validator rejects missing files, hash mismatches, and references escaping the repository root. The same rule applies to the overall evidence bundle and to attribution/hardware evidence when required.
+
+## 19. Migration boundary
+
+Historical v1 entries are not rewritten to manufacture chronology or evidence. Their original values and gaps remain intact. They do not become v2 verified primitives by migration alone. The current audit found zero VERIFIED primitives in the canonical ledger; new evidence can be promoted only by a new append-only v2 record after the native and formal gates actually close.

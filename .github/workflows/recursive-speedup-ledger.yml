@@ -6,6 +6,8 @@ on:
     paths:
       - 'evidence/ledger/**'
       - 'governor/recursive_speedup_ledger.py'
+      - 'governor/recursive_speedup_ledger_v2.py'
+      - 'tests/test_recursive_speedup_ledger_v2.py'
       - 'RECURSIVE_SPEEDUP_CONSTITUTION.md'
       - 'SPECIFICATIONS.md'
       - '.github/workflows/recursive-speedup-ledger.yml'
@@ -13,6 +15,8 @@ on:
     paths:
       - 'evidence/ledger/**'
       - 'governor/recursive_speedup_ledger.py'
+      - 'governor/recursive_speedup_ledger_v2.py'
+      - 'tests/test_recursive_speedup_ledger_v2.py'
       - 'RECURSIVE_SPEEDUP_CONSTITUTION.md'
       - 'SPECIFICATIONS.md'
       - '.github/workflows/recursive-speedup-ledger.yml'
@@ -25,5 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate append-only recursive primitive ledger
+      - name: Validate append-only recursive primitive ledger (legacy)
         run: python3 governor/recursive_speedup_ledger.py evidence/ledger/RECURSIVE_PRIMITIVE_LEDGER.jsonl
+      - name: Enforce v2 stage evidence, hashes, chronology, and direct composition
+        run: python3 governor/recursive_speedup_ledger_v2.py evidence/ledger/RECURSIVE_PRIMITIVE_LEDGER.jsonl
+      - name: Run recursive ledger adversarial tests
+        run: python3 -m unittest discover -s tests -p 'test_recursive_speedup_ledger_v2.py' -v
