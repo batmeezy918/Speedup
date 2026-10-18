@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Official Observer S6 refined from 27-win diagonal base.
-K=10, stronger adaptation, Observer attached.
+"""Continued official Observer S6. Elite retained across restarts.
+Based on 25-27 win diagonal configurations.
 """
 from __future__ import annotations
 import argparse, hashlib, json, os, random, re, sys, time
@@ -34,58 +34,71 @@ def class_signature(problem):
     if fid <= 19: return 'multimodal'
     return 'multimodal_weak'
 
-def run_s6_refined(problem, rng, budget):
+def run_s6_continue(problem, rng, budget):
     dim = int(problem.dimension)
     lo = np.asarray(problem.lower_bounds)
     hi = np.asarray(problem.upper_bounds)
     group = class_signature(problem)
-    base = {'separable': 0.7, 'low_mod_cond': 0.5, 'high_cond': 0.22,
-            'multimodal': 0.6, 'multimodal_weak': 0.45}.get(group, 0.5)
-    scale = np.ones(dim) * base
-    x = rng.uniform(lo, hi)
-    fx = float(problem(x))
+    base = {'separable': 0.72, 'low_mod_cond': 0.5, 'high_cond': 0.2,
+            'multimodal': 0.62, 'multimodal_weak': 0.44}.get(group, 0.5)
+    best_x = rng.uniform(lo, hi)
+    best_f = float(problem(best_x))
     evals = 1
-    rejects = 0
     restarts = 0
-    K = 10
-    while evals < budget:
-        best_cand = None
-        best_fc = fx
-        best_dir = None
-        nprop = min(K, budget - evals)
-        for i in range(nprop):
-            if group == 'separable' and i % 2 == 0:
-                j = int(rng.integers(0, dim))
-                z = np.zeros(dim)
-                z[j] = rng.standard_normal()
-            else:
-                z = rng.standard_normal(dim)
-            cand = np.clip(x + scale * z, lo, hi)
-            fc = float(problem(cand))
-            evals += 1
-            if fc < best_fc:
-                best_fc = fc
-                best_cand = cand
-                best_dir = z
-            if evals >= budget:
-                break
-        if best_cand is not None and best_fc < fx:
-            x, fx = best_cand, best_fc
-            rejects = 0
-            if best_dir is not None:
-                scale = np.clip(scale * (1.0 + 0.06 * np.abs(best_dir)), base * 0.05, base * 3.5)
+    K = 8
+    while evals < budget and restarts <= 8:
+        if restarts == 0:
+            x = best_x.copy()
+            fx = best_f
         else:
-            rejects += 1
-            scale *= 0.9
-            if rejects >= 4 and restarts < 8 and evals + 1 < budget:
-                x = rng.uniform(lo, hi)
-                fx = float(problem(x))
+            x = rng.uniform(lo, hi)
+            fx = float(problem(x))
+            evals += 1
+            if fx < best_f:
+                best_f = fx
+                best_x = x.copy()
+        scale = np.ones(dim) * base * (0.88 ** restarts)
+        rejects = 0
+        local_left = max(40, (budget - evals) // max(1, 9 - restarts))
+        local_used = 0
+        while evals < budget and local_used < local_left:
+            best_cand = None
+            best_fc = fx
+            best_dir = None
+            nprop = min(K, budget - evals)
+            for i in range(nprop):
+                if group == 'separable' and i % 2 == 0:
+                    j = int(rng.integers(0, dim))
+                    z = np.zeros(dim)
+                    z[j] = rng.standard_normal()
+                else:
+                    z = rng.standard_normal(dim)
+                cand = np.clip(x + scale * z, lo, hi)
+                fc = float(problem(cand))
                 evals += 1
+                local_used += 1
+                if fc < best_fc:
+                    best_fc = fc
+                    best_cand = cand
+                    best_dir = z
+                if evals >= budget:
+                    break
+            if best_cand is not None and best_fc < fx:
+                x, fx = best_cand, best_fc
                 rejects = 0
-                restarts += 1
-                scale = np.ones(dim) * base * (0.9 ** restarts)
-            scale = np.maximum(scale, base * 0.05)
-    return fx
+                if best_dir is not None:
+                    scale = np.clip(scale * (1.0 + 0.07 * np.abs(best_dir)), base * 0.04, base * 3.5)
+                if fx < best_f:
+                    best_f = fx
+                    best_x = x.copy()
+            else:
+                rejects += 1
+                scale *= 0.88
+                if rejects >= 5:
+                    break
+            scale = np.maximum(scale, base * 0.04)
+        restarts += 1
+    return best_f
 
 def run_cma(problem, budget):
     dim = int(problem.dimension)
@@ -117,7 +130,7 @@ def main():
     for p in suite:
         p.observe_with(observer)
         ts = time.time_ns()
-        fs6 = run_s6_refined(p, rng, args.budget)
+        fs6 = run_s6_continue(p, rng, args.budget)
         te_s6 = time.time_ns() - ts
         ts = time.time_ns()
         fcma = run_cma(p, args.budget)
@@ -132,7 +145,7 @@ def main():
     elapsed = time.time_ns() - t0
     s6_wins = sum(1 for r in rows if r['s6_wins'])
     payload = {
-        'mode': 'S6_OFFICIAL_REFINED_VS_CMA',
+        'mode': 'S6_OFFICIAL_CONTINUE_VS_CMA',
         'problem_count': len(rows),
         's6_wins': s6_wins,
         'cma_wins': len(rows) - s6_wins,
@@ -141,7 +154,7 @@ def main():
         'rows': rows,
         'seed': args.seed,
         'budget': args.budget,
-        'elevation': 'K=10 diagonal refined from 27-win + Observer',
+        'elevation': 'elite-across-restarts + K=8 diagonal + Observer',
         'official_observer': True,
     }
     jp = out / 's6_official_results.json'
