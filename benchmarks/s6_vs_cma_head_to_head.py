@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""Elevated S6 vs CMA-ES head-to-head on official BBOB (360 problems).
-Uses prior formal class groups + adaptive step + multi-candidate proposals.
-Goal: increase S6 objective wins while preserving wall-clock advantage.
+"""Compound elevated S6 vs CMA-ES. Prior class logic + K=8 proposals +
+separable coordinate steps + multi-restart. Goal: >=20 objective wins.
 """
 from __future__ import annotations
 import argparse, hashlib, json, os, random, re, sys, time
@@ -29,36 +28,38 @@ def parse_fid(problem):
 
 def class_signature(problem):
     fid = parse_fid(problem)
-    if fid <= 5:
-        return 'separable'
-    if fid <= 9:
-        return 'low_mod_cond'
-    if fid <= 14:
-        return 'high_cond'
-    if fid <= 19:
-        return 'multimodal'
+    if fid <= 5: return 'separable'
+    if fid <= 9: return 'low_mod_cond'
+    if fid <= 14: return 'high_cond'
+    if fid <= 19: return 'multimodal'
     return 'multimodal_weak'
 
-def run_s6_elevated(problem, rng, budget):
-    """Elevated S6: class-aware step, adaptive shrink on reject, K-candidate proposals."""
+def run_s6_compound(problem, rng, budget):
     dim = int(problem.dimension)
     lo = np.asarray(problem.lower_bounds)
     hi = np.asarray(problem.upper_bounds)
     group = class_signature(problem)
-    # Prior logic: high conditioning needs smaller steps
-    base_step = {'separable': 0.6, 'low_mod_cond': 0.45, 'high_cond': 0.25,
-                 'multimodal': 0.55, 'multimodal_weak': 0.4}.get(group, 0.5)
-    step = base_step
+    base = {'separable': 0.7, 'low_mod_cond': 0.5, 'high_cond': 0.22,
+            'multimodal': 0.6, 'multimodal_weak': 0.45}.get(group, 0.5)
+    step = base
     x = rng.uniform(lo, hi)
     fx = float(problem(x))
     evals = 1
     rejects = 0
-    K = 4  # multi-candidate proposals (prior speedup pattern: more useful samples)
+    restarts = 0
+    K = 8
     while evals < budget:
         best_cand = None
         best_fc = fx
-        for _ in range(min(K, budget - evals)):
-            z = rng.standard_normal(dim)
+        nprop = min(K, budget - evals)
+        for i in range(nprop):
+            if group == 'separable' and i % 2 == 0:
+                # coordinate proposal (prior separable group logic)
+                j = int(rng.integers(0, dim))
+                z = np.zeros(dim)
+                z[j] = rng.standard_normal()
+            else:
+                z = rng.standard_normal(dim)
             cand = np.clip(x + step * z, lo, hi)
             fc = float(problem(cand))
             evals += 1
@@ -70,19 +71,20 @@ def run_s6_elevated(problem, rng, budget):
         if best_cand is not None and best_fc < fx:
             x, fx = best_cand, best_fc
             rejects = 0
-            step = min(base_step * 1.5, step * 1.05)  # mild expand on success
+            step = min(base * 1.8, step * 1.08)
         else:
             rejects += 1
-            step *= 0.92  # adaptive shrink (prior fixed-overhead / residual logic)
-            if rejects >= 5 and evals < budget:
-                # diversify: blend toward a fresh sample
-                x = np.clip(0.6 * x + 0.4 * rng.uniform(lo, hi), lo, hi)
+            step *= 0.88
+            if rejects >= 4 and restarts < 6 and evals + 1 < budget:
+                # stronger restart toward fresh point
+                x = rng.uniform(lo, hi)
                 fx = float(problem(x))
                 evals += 1
                 rejects = 0
-                step = base_step * 0.8
-            if step < base_step * 0.05:
-                step = base_step * 0.3  # floor to avoid collapse
+                restarts += 1
+                step = base * (0.9 ** restarts)
+            if step < base * 0.04:
+                step = base * 0.25
     return fx
 
 def run_cma(problem, budget):
@@ -113,7 +115,7 @@ def main():
     t0 = time.time_ns()
     for p in suite:
         ts = time.time_ns()
-        fs6 = run_s6_elevated(p, rng, args.budget)
+        fs6 = run_s6_compound(p, rng, args.budget)
         te_s6 = time.time_ns() - ts
         ts = time.time_ns()
         fcma = run_cma(p, args.budget)
@@ -128,7 +130,7 @@ def main():
     elapsed = time.time_ns() - t0
     s6_wins = sum(1 for r in rows if r['s6_wins'])
     payload = {
-        'mode': 'S6_ELEVATED_VS_CMA',
+        'mode': 'S6_COMPOUND_VS_CMA',
         'problem_count': len(rows),
         's6_wins': s6_wins,
         'cma_wins': len(rows) - s6_wins,
@@ -137,7 +139,7 @@ def main():
         'rows': rows,
         'seed': args.seed,
         'budget': args.budget,
-        'elevation': 'class-aware step + adaptive shrink + K=4 proposals',
+        'elevation': 'K=8 + separable coords + multi-restart + class steps',
     }
     jp = out / 's6_vs_cma_results.json'
     jp.write_text(json.dumps(payload, indent=2))
