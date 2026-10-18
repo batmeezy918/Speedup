@@ -96,13 +96,19 @@ A candidate speed-up may be promoted from CANDIDATE to STRONG_LOCAL only when:
 - Determinism holds (pcss_native_runner_v2 exit+stdout+stderr hash check).
 - Sub-one or negative speedups are logged as structured evidence, never
   buried (see §3).
+- The vacuity gate (§2.4) has been run against any new or modified formal
+  sources and returned VACUITY_PASS.
+- The cross-environment witness (§2.5) has been run (locally or via CI) and
+  returned CROSS_ENVIRONMENT=PASS for MUNI-family candidates.
 
 Promotion to VERIFIED requires the full gate chain:
 
     I ∧ R ∧ Q ∧ Q⁻¹ ∧ Ω ∧ X ∧ L
 
-where X = cross-environment witness and L = Lean gate. The publisher
-(publisher/strict_gate.py) is the sole authority for this transition.
+where X = cross-environment witness (§2.5) and L = Lean gate (§2.4).
+The publisher (publisher/strict_gate.py) is the sole authority for this
+transition. A candidate whose X or L predicate is unknown is QUARANTINED,
+not promoted.
 
 ### 2.3 What a speed-up is NOT
 
@@ -111,6 +117,72 @@ where X = cross-environment witness and L = Lean gate. The publisher
 - Not SOTA from beating one comparator.
 - Not a formal proof from numerical agreement.
 - Not publishable while any gate is false or unknown.
+
+### 2.4 Vacuity Gate (L predicate support)
+
+Path: muni-production/ops/vacuity/vacuity_check.py
+Schema: muni.formal-vacuity-audit.v1
+Output: muni-production/ops/vacuity/vacuity_report.json
+CI: .github/workflows/muni-verify.yml runs it automatically.
+
+Five probes across two independent axes:
+
+| Probe | Question |
+|---|---|
+| V1 | Does the theorem's conclusion reduce to `True`? |
+| V2 | Does the file define any `def ... : Prop := True`? |
+| V3 | Are the hypotheses jointly satisfiable (real witnesses)? |
+| V4 | Do all `import`s resolve in this toolchain? |
+| V5 | Axiom-freeness regression guard |
+
+AXES:
+
+- VACUITY (V1/V2/V4): does the theorem say anything? BLOCKING.
+- AXIOM-FREE (V5): does it depend on an axiom? REPORTED per file;
+  axiom-bearing files must declare a justification or the gate fails.
+  Allowed: AGD_C_KERNEL_FLOAT_CORRESPONDENCE.lean (Classical.choice forced
+  by Lean 4 core Float arithmetic — declared in-file).
+
+sorryAx is never acceptable anywhere, regardless of axis.
+
+A file can be vacuous yet axiom-free (ProofCarryingTransformation.lean:
+`theorem master : True ∧ True ∧ True`). A file can be non-vacuous yet
+axiom-bearing. Conflating the axes is a defect the gate exists to catch.
+
+When to run: before any promotion involving new or modified
+muni-production/proof/*.lean sources, and on every autonomous audit cycle.
+VACUITY_FAIL => the formal corpus cannot support L=true => no VERIFIED
+promotion for affected candidates. Quarantine the vacuous file; do not
+delete it. Preserve vacuity_report.json as evidence.
+
+### 2.5 Cross-Environment Witness (X predicate)
+
+Path: muni-production/tests/cross_environment_witness.cpp
+CI: .github/workflows/agd-cross-environment-witness.yml
+Artifact dir: evidence/runtime/cross-environment/
+Independent substrate: ubuntu-24.04 x86-64 GitHub runner (not the ARM64
+dev device). Build flags are mandatory: -O3 -fno-fast-math
+-ffp-contract=off. Relaxing IEEE-754 invalidates the bitwise claim.
+
+Three gates, all must PASS:
+
+1. EXACTNESS: full-path vs quotient-path outputs — max_abs_error == 0.0
+   AND bitwise equal (FNV-1a64 hashes of both vectors recorded).
+2. BENCHMARK: finite positive speedup with positive medians; timing is
+   INFORMATIONAL ONLY — it does not itself satisfy any gate.
+3. FALLBACK: an inadmissible input (state perturbed off the
+   block-constant sector) must enter fallback (agd_plan_in_fallback true,
+   agd_plan_admissible false) and still return bit-exact output.
+
+The witness also self-checks the AGD certificate (state, target, compiler).
+
+X=PASS requires the witness executed on an independent substrate from the
+measurement substrate. A witness run on the same device that produced the
+speedup number does not close X. CI artifact
+evidence/runtime/cross-environment/github-x86_64.txt + SHA256SUMS.txt is
+the canonical X evidence. If CI has not run (no recent push to kernel
+paths), run the witness locally on a different arch if available, or
+explicitly report X=UNKNOWN and quarantine rather than assume.
 
 ---
 
@@ -127,6 +199,10 @@ Examples that MUST be recorded, not hidden:
   alongside the measured ratio.
 - Missing dependency, solver crash, timeout, invariant residual above
   threshold, degenerate shuffle, numerical instability.
+- VACUITY_FAIL on a formal source: log as FORMAL_VACUITY_FINDING with the
+  vacuity_report.json attached.
+- CROSS_ENVIRONMENT=FAIL or X=UNKNOWN: log as CROSS_ENVIRONMENT_FINDING;
+  X stays false; no VERIFIED promotion.
 
 Record: RUN_ID, what failed, why, what remains invariant, what the formal
 model still predicts. Quarantine the artifact; do not delete it.
@@ -166,7 +242,8 @@ until the Lean gate passes.
 - Attach a machine-readable validation summary as a PR comment AND as a
   check-run annotation so a human reviewer sees pass/fail evidence inline:
   gate matrix (I, R, Q, Q⁻¹, Ω, X, L), measured speedup with sample stats,
-  determinism verdict, evidence class, and any quarantined artifacts.
+  determinism verdict, evidence class, vacuity verdict, cross-environment
+  verdict, and any quarantined artifacts.
 - PR title format: [PCSS] <candidate> — <evidence class> — gates <pass/fail>.
 - Include RUN_ID and commit SHA in the PR body.
 - Do not modify unrelated files in the same PR.
@@ -183,6 +260,7 @@ If no authoritative PCSS spec exists in-repo:
 2. Mark it PROPOSED, not SPECIFIED.
 3. Route it through the Triad: Construction → Compactness → Invariants.
 4. Do not execute against an unspecified scenario.
+5. Run the vacuity gate against any PROPOSED formal content before routing.
 
 ---
 
@@ -195,10 +273,14 @@ Each autonomous run must:
 3. Execute only declared scenarios.
 4. Preserve every artifact, including failures.
 5. Validate schemas (evidence/schema/*.json).
-6. Run publisher/strict_gate.py — never bypass it.
-7. Generate SHA256 manifest.
-8. State exactly what the run establishes and what remains unestablished.
-9. Lower the claim when evidence is thin; never raise it to fit.
+6. Run the vacuity gate (ops/vacuity/vacuity_check.py) against
+   muni-production/proof/*.lean — record VACUITY_PASS/FAIL.
+7. Run or verify the cross-environment witness — record X=PASS/FAIL/UNKNOWN
+   with substrate identity.
+8. Run publisher/strict_gate.py — never bypass it.
+9. Generate SHA256 manifest.
+10. State exactly what the run establishes and what remains unestablished.
+11. Lower the claim when evidence is thin; never raise it to fit.
 
 ---
 
@@ -213,3 +295,6 @@ Each autonomous run must:
 - Speedup/PCSS publishes only under PUBLISH := I ∧ R ∧ Q ∧ Q⁻¹ ∧ Ω ∧ X ∧ L.
 - Do not upgrade FORMAL_PARTIAL to VERIFIED speedup, Hilbert-space CMI,
   wall-clock, or B(H) claims.
+- Vacuity is a blocking gate: a vacuous theorem cannot support L.
+- Cross-environment requires an independent substrate: same-device witness
+  does not close X.
