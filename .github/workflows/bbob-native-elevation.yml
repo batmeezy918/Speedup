@@ -1,0 +1,82 @@
+name: BBOB Native Quotient + Head-to-Head Elevation
+
+on:
+  workflow_dispatch:
+    inputs:
+      dimensions:
+        description: 'BBOB dimension'
+        required: false
+        default: '10'
+      budget:
+        description: 'Function-evaluation budget'
+        required: false
+        default: '1000'
+      seed:
+        description: 'Deterministic seed'
+        required: false
+        default: '20260810'
+
+permissions:
+  contents: read
+
+jobs:
+  elevation:
+    name: BBOB-native quotient + S6-vs-CMA
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PYTHONUNBUFFERED: '1'
+      COCO_DIMENSIONS: ${{ github.event.inputs.dimensions || '10' }}
+      COCO_BUDGET: ${{ github.event.inputs.budget || '1000' }}
+      COCO_SEED: ${{ github.event.inputs.seed || '20260810' }}
+      PYTHONHASHSEED: '0'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install official stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'coco-experiment==2.8.2' 'cma==4.4.4' 'numpy==2.2.6'
+
+      - name: Run BBOB-native quotient harness
+        run: |
+          mkdir -p evidence/runtime/bbob-native-${{ github.run_id }}
+          python benchmarks/bbob_native_quotient_harness.py \
+            --dimensions "${COCO_DIMENSIONS}" \
+            --budget "${COCO_BUDGET}" \
+            --seed "${COCO_SEED}" \
+            --output-dir evidence/runtime/bbob-native-${{ github.run_id }}
+
+      - name: Run S6-vs-CMA head-to-head
+        run: |
+          mkdir -p evidence/runtime/s6-vs-cma-${{ github.run_id }}
+          python benchmarks/s6_vs_cma_head_to_head.py \
+            --dimensions "${COCO_DIMENSIONS}" \
+            --budget "${COCO_BUDGET}" \
+            --seed "${COCO_SEED}" \
+            --output-dir evidence/runtime/s6-vs-cma-${{ github.run_id }}
+
+      - name: Hash and upload
+        run: |
+          find evidence/runtime -type f -print0 | sort -z | xargs -0 sha256sum | tee evidence/runtime/SHA256SUMS.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bbob-elevation-${{ github.run_id }}
+          path: evidence/runtime/
+          retention-days: 90
+
+      - name: Summary
+        run: |
+          echo '## BBOB Native Elevation' >> $GITHUB_STEP_SUMMARY
+          echo '- BBOB-native quotient (class cache)' >> $GITHUB_STEP_SUMMARY
+          echo '- S6 vs CMA head-to-head' >> $GITHUB_STEP_SUMMARY
+          echo '- Gates remain closed until Q/Q^{-1}/Omega/X/L captured on same workload' >> $GITHUB_STEP_SUMMARY
