@@ -52,33 +52,23 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install 'coco-experiment==2.8.2' 'cma==4.4.4' 'numpy==2.2.6' psutil
 
-      - name: Run BBOB-native quotient harness
+      - name: Run official Observer S6 vs CMA
         run: |
-          mkdir -p evidence/runtime/bbob-native-${{ github.run_id }}
-          python benchmarks/bbob_native_quotient_harness.py \
+          mkdir -p evidence/runtime/s6-official-${{ github.run_id }}
+          python benchmarks/s6_official_coco.py \
             --dimensions "${COCO_DIMENSIONS}" \
             --budget "${COCO_BUDGET}" \
             --seed "${COCO_SEED}" \
-            --output-dir evidence/runtime/bbob-native-${{ github.run_id }} \
-            2>&1 | tee evidence/runtime/bbob-native-${{ github.run_id }}/stdout.log || true
+            --output-dir evidence/runtime/s6-official-${{ github.run_id }} \
+            2>&1 | tee evidence/runtime/s6-official-${{ github.run_id }}/stdout.log || true
 
-      - name: Run S6-vs-CMA head-to-head
+      - name: Hash and upload
         run: |
-          mkdir -p evidence/runtime/s6-vs-cma-${{ github.run_id }}
-          python benchmarks/s6_vs_cma_head_to_head.py \
-            --dimensions "${COCO_DIMENSIONS}" \
-            --budget "${COCO_BUDGET}" \
-            --seed "${COCO_SEED}" \
-            --output-dir evidence/runtime/s6-vs-cma-${{ github.run_id }} \
-            2>&1 | tee evidence/runtime/s6-vs-cma-${{ github.run_id }}/stdout.log || true
-
-      - name: Hash and upload elevation evidence
-        run: |
-          find evidence/runtime -type f -print0 | sort -z | xargs -0 sha256sum | tee evidence/runtime/ELEVATION_SHA256SUMS.txt || true
+          find evidence/runtime -type f -print0 | sort -z | xargs -0 sha256sum | tee evidence/runtime/OFFICIAL_SHA256SUMS.txt || true
 
       - uses: actions/upload-artifact@v4
         with:
-          name: bbob-elevation-${{ github.run_id }}
+          name: s6-official-${{ github.run_id }}
           path: evidence/runtime/
           if-no-files-found: warn
           retention-days: 90
@@ -86,5 +76,4 @@ jobs:
       - name: Summary
         if: always()
         run: |
-          echo '## Elevation run (BBOB-native + S6-vs-CMA)' >> $GITHUB_STEP_SUMMARY
-          echo 'Gates remain closed until Q/Q^{-1}/Omega/X/L captured on the same workload.' >> $GITHUB_STEP_SUMMARY
+          echo '## Official Observer S6 vs CMA' >> $GITHUB_STEP_SUMMARY
