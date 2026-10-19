@@ -1,0 +1,504 @@
+{
+  "schema": "muni.formal-vacuity-audit.v1",
+  "modules": {
+    "AGD_C_KERNEL_CORRESPONDENCE.lean": {
+      "compiles": true,
+      "axiom_free_lines": 5,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "csum_congr",
+        "cOriginalApply_preserves_invariant",
+        "cInvariant_iterate",
+        "cProject_commutes",
+        "cProject_commutes_at",
+        "cQuotient_tracks_projection",
+        "cReconstruct_exact"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.csum_congr",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cOriginalApply_preserves_invariant",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cInvariant_iterate",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cProject_commutes",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cProject_commutes_at",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cQuotient_tracks_projection",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cReconstruct_exact",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": [],
+      "axis_vacuity": "PASS",
+      "axis_axioms": "AXIOM_FREE"
+    },
+    "AGD_C_KERNEL_FLOAT_CORRESPONDENCE.lean": {
+      "compiles": true,
+      "axiom_free_lines": 0,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "fsum_congr",
+        "cOriginalApply_preserves_invariant",
+        "cInvariant_iterate",
+        "cProject_commutes_at",
+        "cQuotient_tracks_projection",
+        "cReconstruct_exact",
+        "float_arith_is_axiom_bearing"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.fsum_congr",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cOriginalApply_preserves_invariant",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cInvariant_iterate",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cProject_commutes_at",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cQuotient_tracks_projection",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.cReconstruct_exact",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.float_arith_is_axiom_bearing",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": [],
+      "axis_vacuity": "PASS",
+      "axis_axioms": "AXIOM_BEARING",
+      "axis_axioms_justified": true,
+      "axis_axioms_reason": "Classical.choice is forced by Lean's core Float arithmetic (see float_arith_is_axiom_bearing in that file). Unavoidable in Lean 4 core; a zero-axiom IEEE-754 proof is impossible here."
+    },
+    "AGD_EQUIVALENCE_QUOTIENT_CORE.lean": {
+      "compiles": true,
+      "axiom_free_lines": 3,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "iterate_projection_commutes",
+        "iterate_reconstruction_exact",
+        "iterate_preserves_invariant"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.iterate_projection_commutes",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.iterate_reconstruction_exact",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.iterate_preserves_invariant",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": [],
+      "axis_vacuity": "PASS",
+      "axis_axioms": "AXIOM_FREE"
+    },
+    "AGD_GAP_DERIVATION.lean": {
+      "compiles": true,
+      "axiom_free_lines": 17,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "iterate_one",
+        "iterate_two",
+        "iterate_zero",
+        "iterate_shift",
+        "iterate_comm",
+        "gap1_suffices",
+        "trajectories_give_gap1",
+        "gap1_iff_all_trajectories",
+        "projected_trajectory_all_states",
+        "section_exact",
+        "orbit_gap_free_certifies",
+        "pipeline_gap_on_range",
+        "pipeline_gap_surjective",
+        "forward_invariant_iterate",
+        "sector_intersection",
+        "sector_intersection_iterate"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.iterate_one",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.iterate_two",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.iterate_zero",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.iterate_shift",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.iterate_comm",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.gap1_suffices",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.trajectories_give_gap1",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.gap1_iff_all_trajectories",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.projected_trajectory_all_states",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.section_exact",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.orbit_gap_free_certifies",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.pipeline_gap_on_range",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.pipeline_gap_surjective",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.forward_invariant_iterate",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.sector_intersection",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.sector_intersection_iterate",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": [],
+      "axis_vacuity": "PASS",
+      "axis_axioms": "AXIOM_FREE"
+    },
+    "AGD_TENSOR_INSTANTIATION.lean": {
+      "compiles": true,
+      "axiom_free_lines": 5,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "exact_reconstruction_on_invariant_orbit",
+        "forward_refinement",
+        "reconstruction_exact",
+        "recursive_forward_refinement",
+        "recursive_exact_reconstruction"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.exact_reconstruction_on_invariant_orbit",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.forward_refinement",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.reconstruction_exact",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.recursive_forward_refinement",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.recursive_exact_reconstruction",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": [],
+      "axis_vacuity": "PASS",
+      "axis_axioms": "AXIOM_FREE"
+    },
+    "AGD_WORK_COUNT.lean": {
+      "compiles": true,
+      "axiom_free_lines": 8,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "rowLen_eq",
+        "full_step_op_count",
+        "quotient_step_op_count",
+        "quotient_is_one_over_m_of_full",
+        "op_count_ratio_is_m",
+        "no_replication_means_no_saving",
+        "saving_grows_with_m",
+        "quotient_never_costs_more"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.rowLen_eq",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.full_step_op_count",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.quotient_step_op_count",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.quotient_is_one_over_m_of_full",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.op_count_ratio_is_m",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.no_replication_means_no_saving",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.saving_grows_with_m",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.quotient_never_costs_more",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": [],
+      "axis_vacuity": "PASS",
+      "axis_axioms": "AXIOM_FREE"
+    },
+    "ProofCarryingQuotient.lean": {
+      "compiles": true,
+      "axiom_free_lines": 6,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "gapClosed_iff_semPres",
+        "semPres_of_admissible",
+        "reconstruct_exact_of",
+        "semPres_is_falsifiable",
+        "reconstruct_exact_of'",
+        "reconstructExact_is_falsifiable"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.gapClosed_iff_semPres",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.semPres_of_admissible",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.reconstruct_exact_of",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.semPres_is_falsifiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.reconstruct_exact_of'",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.reconstructExact_is_falsifiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": [],
+      "axis_vacuity": "PASS",
+      "axis_axioms": "AXIOM_FREE"
+    },
+    "ProofCarryingTransformation.lean": {
+      "compiles": true,
+      "axiom_free_lines": 5,
+      "sorryAx_lines": 0,
+      "v2_true_defined_props": [],
+      "v4_unresolvable_imports": [],
+      "theorems": [
+        "gapPropagates",
+        "gap_is_falsifiable",
+        "gap_is_satisfiable",
+        "artifactCorrect_is_falsifiable",
+        "master"
+      ],
+      "v1_conclusions": [
+        {
+          "theorem": "AGD.gapPropagates",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.gap_is_falsifiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.gap_is_satisfiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.artifactCorrect_is_falsifiable",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        },
+        {
+          "theorem": "AGD.master",
+          "status": "NONTRIVIAL",
+          "detail": "conclusion does not reduce to True"
+        }
+      ],
+      "flags": [],
+      "axis_vacuity": "PASS",
+      "axis_axioms": "AXIOM_FREE"
+    }
+  },
+  "verdict": "VACUITY_PASS",
+  "v3_hypothesis_reachability": [
+    {
+      "module": "AGD_EQUIVALENCE_QUOTIENT_CORE",
+      "hypothesis": "section_law (decode\u2218project = id)",
+      "status": "SAT"
+    },
+    {
+      "module": "AGD_EQUIVALENCE_QUOTIENT_CORE",
+      "hypothesis": "section_law at m \u2265 2 (non-degenerate)",
+      "status": "SAT"
+    },
+    {
+      "module": "AGD_EQUIVALENCE_QUOTIENT_CORE",
+      "hypothesis": "invariant section (block-constant sector non-empty)",
+      "status": "SAT"
+    },
+    {
+      "module": "AGD_EQUIVALENCE_QUOTIENT_CORE",
+      "hypothesis": "block-constant state of length 4 with m=2 is reachable",
+      "status": "SAT"
+    },
+    {
+      "module": "AGD_GAP_DERIVATION",
+      "hypothesis": "Gap1 satisfiable (one-step gap holds for some system)",
+      "status": "SAT"
+    },
+    {
+      "module": "AGD_GAP_DERIVATION",
+      "hypothesis": "Gap1 VIOLATED by some system (gap is not universal)",
+      "status": "SAT"
+    },
+    {
+      "module": "AGD_GAP_DERIVATION",
+      "hypothesis": "OrbitGapFree satisfiable (a real gap-free trajectory)",
+      "status": "SAT"
+    },
+    {
+      "module": "AGD_GAP_DERIVATION",
+      "hypothesis": "Pipeline range restriction non-vacuous (f\u2081 surjective)",
+      "status": "SAT"
+    }
+  ]
+}
