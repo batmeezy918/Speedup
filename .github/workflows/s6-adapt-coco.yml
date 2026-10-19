@@ -105,8 +105,9 @@ jobs:
         run: |
           RUN_DIR="evidence/runtime/s6-adapt-${{ github.run_id }}"
           python - <<PY
-          import json, sys
-          paths = __import__('glob').glob(f"{RUN_DIR}/s6_adapt_summary.json")
+          import json, os, sys
+          run_dir = os.environ.get("RUN_DIR", "evidence/runtime/s6-adapt-${{ github.run_id }}")
+          paths = __import__('glob').glob(f"{run_dir}/s6_adapt_summary.json")
           if not paths:
               print('No summary found'); sys.exit(1)
           with open(paths[0]) as f:
