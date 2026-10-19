@@ -33,9 +33,9 @@ jobs:
     timeout-minutes: 60
     env:
       PYTHONUNBUFFERED: '1'
-      COCO_DIMENSIONS: ${{ github.event.inputs.dimensions || '10' }}
-      COCO_BUDGET: ${{ github.event.inputs.budget || '1000' }}
-      COCO_SEED: ${{ github.event.inputs.seed || '20260810' }}
+      COCO_DIMENSIONS: ${{ github.event.inputs.dimensions || '10' }
+      COCO_BUDGET: ${{ github.event.inputs.budget || '1000' }
+      COCO_SEED: ${{ github.event.inputs.seed || '20260810' }
       PYTHONHASHSEED: '0'
 
     steps:
@@ -84,28 +84,16 @@ jobs:
           print(json.dumps({**record, 'record_sha256': digest}, sort_keys=True, indent=2))
           PY
 
-      - name: Locate registered harness
+      - name: Execute elevated S6 official Observer harness
         run: |
-          test -f evidence/official-coco/ARCHITECTURE.md
-          test -f evidence/official-coco/OPTIMIZER_MATRIX.json
-          grep -q "OFFICIAL_HARNESS_NOT_YET_FULL_CAPTURE" evidence/official-coco/OPTIMIZER_MATRIX.json
-
-      - name: Fetch ChronoFold benchmark source
-        run: |
-          python - <<'PY'
-          from urllib.request import urlopen
-          import hashlib, json
-          url = 'https://raw.githubusercontent.com/batmeezy918/chronofold/main/benchmarks/coco_deterministic/s6_coco_harness.py'
-          data = urlopen(url, timeout=30).read()
-          digest = hashlib.sha256(data).hexdigest()
-          open('/tmp/s6_coco_harness.py', 'wb').write(data)
-          print(json.dumps({'source': url, 'sha256': digest}, sort_keys=True))
-          PY
-
-      - name: Execute registered S6 COCO harness
-        run: |
-          mkdir -p evidence/runtime/official-coco/${{ github.run_id }}
-          python /tmp/s6_coco_harness.py 2>&1 | tee evidence/runtime/official-coco/${{ github.run_id }}/stdout.log
+          mkdir -p evidence/runtime/official-coco/${{ github.run_id }
+          export RUN_ID=${{ github.run_id }
+          python benchmarks/s6_official_coco.py \
+            --dimensions ${{ env.COCO_DIMENSIONS }} \
+            --budget ${{ env.COCO_BUDGET }} \
+            --seed ${{ env.COCO_SEED }} \
+            --output-dir evidence/runtime/official-coco/${{ github.run_id } \
+            2>&1 | tee evidence/runtime/official-coco/${{ github.run_id }}/stdout.log
 
       - name: Execute quotient-runtime EOF gate
         run: |
@@ -126,7 +114,7 @@ jobs:
 
       - name: Hash runtime evidence
         run: |
-          find evidence/runtime/official-coco/${{ github.run_id }} -type f -print0 \
+          find evidence/runtime/official-coco/${{ github.run_id } -type f -print0 \
             | sort -z \
             | xargs -0 sha256sum \
             | tee evidence/runtime/official-coco/${{ github.run_id }}/SHA256SUMS.txt
@@ -134,8 +122,8 @@ jobs:
       - name: Upload immutable benchmark evidence
         uses: actions/upload-artifact@v4
         with:
-          name: official-coco-${{ github.run_id }}
-          path: evidence/runtime/official-coco/${{ github.run_id }}/
+          name: official-coco-${{ github.run_id }
+          path: evidence/runtime/official-coco/${{ github.run_id }/
           if-no-files-found: error
           retention-days: 90
 
@@ -144,12 +132,12 @@ jobs:
           {
             echo '## Official COCO/BBOB registered run'
             echo
-            echo "- Commit: \\`${GITHUB_SHA}\\`"
-            echo "- Dimension: \\`${COCO_DIMENSIONS}\\`"
-            echo "- Budget: \\`${COCO_BUDGET}\\`"
-            echo "- Seed: \\`${COCO_SEED}\\`"
-            echo '- Suite: `cocoex.Suite("bbob")`'
-            echo '- Observer: official COCO observer'
+            echo "- Commit: \`\${{ github.sha }}\`"
+            echo "- Dimension: \`\${{ env.COCO_DIMENSIONS }}\`"
+            echo "- Budget: \`\${{ env.COCO_BUDGET }}\`"
+            echo "- Seed: \`\${{ env.COCO_SEED }}\`"
+            echo '- Suite: \`cocoex.Suite("bbob")\`'
+            echo '- Observer: official COCO observer (elevated S6 diagonal self-adapt)'
             echo '- Evidence: uploaded as workflow artifact'
             echo '- Speedup publication gate: remains closed until quotient equivalence + reverse reconstruction + invariant + performance gates are captured for the same workload.'
-          } >> "$GITHUB_STEP_SUMMARY"
+          } >> "$\{github.step_summary}"
