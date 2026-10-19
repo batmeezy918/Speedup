@@ -71,8 +71,9 @@ def main():
     suite = cocoex.Suite('bbob', '', 'dimensions: %d' % args.dimensions)
     observer = cocoex.Observer('bbob', 'result_folder: %s' % (out / 'exdata'))
     rng = np.random.default_rng(args.seed); rows = []; t0 = time.time_ns()
-    for p in suite:
-        p = observer.observe(p)
+    for i in range(len(suite)):
+        p = suite.get_problem(i)
+        observer.observe(p)
         ts = time.time_ns(); fs6 = run_s6_adapt(p, rng, args.budget); te = time.time_ns() - ts
         rows.append({'id': p.id, 's6_f': fs6, 's6_ns': te})
     observer.finish(); elapsed = time.time_ns() - t0
