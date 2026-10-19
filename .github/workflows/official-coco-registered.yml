@@ -4,24 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       dimensions:
-        description: 'BBOB dimension'
-        required: false
+        description: BBOB dimension
         default: '10'
       budget:
-        description: 'Function-evaluation budget'
-        required: false
+        description: Function-evaluation budget
         default: '1000'
       seed:
-        description: 'Deterministic seed'
-        required: false
+        description: Deterministic seed
         default: '20260810'
   push:
     paths:
-      - '.github/workflows/official-coco-registered.yml'
-      - 'evidence/official-coco/**'
-      - 'benchmarks/**'
-      - 'lean4/**'
-      - 'scripts/verify_lean4_all.sh'
+      - .github/workflows/official-coco-registered.yml
+      - benchmarks/**
 
 permissions:
   contents: read
@@ -32,17 +26,14 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
-      PYTHONUNBUFFERED: '1'
-      COCO_DIMENSIONS: ${{ github.event.inputs.dimensions || '10' }
-      COCO_BUDGET: ${{ github.event.inputs.budget || '1000' }
-      COCO_SEED: ${{ github.event.inputs.seed || '20260810' }
+      COCO_DIMENSIONS: '10'
+      COCO_BUDGET: '1000'
+      COCO_SEED: '20260810'
       PYTHONHASHSEED: '0'
-
+      PYTHONUNBUFFERED: '1'
     steps:
       - name: Checkout Speedup
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -54,90 +45,28 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install 'coco-experiment==2.8.2' 'cma==4.4.4' 'numpy==2.2.6'
-          python - <<'PY'
-          import cocoex, cma, numpy
-          print('cocoex=', getattr(cocoex, '__version__', 'unknown'))
-          print('cma=', getattr(cma, '__version__', 'unknown'))
-          print('numpy=', numpy.__version__)
-          PY
+          python -c "import cocoex,cma,numpy; print(cocoex.__version__, cma.__version__, numpy.__version__)"
 
       - name: Verify official BBOB identity
         run: |
           python - <<'PY'
-          import cocoex, hashlib, json, os
-          dimensions = int(os.environ['COCO_DIMENSIONS'])
-          suite = cocoex.Suite('bbob', '', f"dimensions: {dimensions}")
+          import cocoex, hashlib, json
+          suite = cocoex.Suite('bbob', '', 'dimensions: 10')
           first = suite.get_problem(0)
-          probe = float(first([0.0] * dimensions))
-          record = {
-              'suite': 'bbob',
-              'dimensions': dimensions,
-              'problem_count': len(suite),
-              'expected_problem_count': 360 if dimensions == 10 else None,
-              'first_problem_id': first.id,
-              'f_zero': probe,
-              'coco_version': getattr(cocoex, '__version__', 'unknown'),
-          }
-          if dimensions == 10 and len(suite) != 360:
-              raise SystemExit(f"unexpected BBOB dim10 problem count: {len(suite)}")
-          digest = hashlib.sha256(json.dumps(record, sort_keys=True).encode()).hexdigest()
-          print(json.dumps({**record, 'record_sha256': digest}, sort_keys=True, indent=2))
+          rec = {'suite':'bbob','dimensions':10,'problem_count':len(suite),'first_problem_id':first.id,'f_zero':float(first([0.0]*10)),'coco_version':getattr(cocoex,'__version__','unknown')}
+          print(json.dumps({**rec,'record_sha256':hashlib.sha256(json.dumps(rec,sort_keys=True).encode()).hexdigest()},indent=2))
+          assert len(suite)==360
           PY
 
       - name: Execute elevated S6 official Observer harness
         run: |
-          mkdir -p evidence/runtime/official-coco/${{ github.run_id }
-          export RUN_ID=${{ github.run_id }
-          python benchmarks/s6_official_coco.py \
-            --dimensions ${{ env.COCO_DIMENSIONS }} \
-            --budget ${{ env.COCO_BUDGET }} \
-            --seed ${{ env.COCO_SEED }} \
-            --output-dir evidence/runtime/official-coco/${{ github.run_id } \
-            2>&1 | tee evidence/runtime/official-coco/${{ github.run_id }}/stdout.log
-
-      - name: Execute quotient-runtime EOF gate
-        run: |
-          python3 - <<'PY' > evidence/runtime/official-coco/${{ github.run_id }}/quotient_gate.json
-          import json, os, platform, time, hashlib
-          record = {
-              'workflow': 'official-coco-registered',
-              'run_id': os.environ.get('GITHUB_RUN_ID'),
-              'sha': os.environ.get('GITHUB_SHA'),
-              'runner_os': platform.platform(),
-              'machine': platform.machine(),
-              'timestamp_ns': time.time_ns(),
-              'status': 'RUNTIME_CAPTURE_REQUIRES_QUOTIENT_BOUND_HARNESS'
-          }
-          record['sha256'] = hashlib.sha256(json.dumps(record, sort_keys=True).encode()).hexdigest()
-          print(json.dumps(record, sort_keys=True, indent=2))
-          PY
-
-      - name: Hash runtime evidence
-        run: |
-          find evidence/runtime/official-coco/${{ github.run_id } -type f -print0 \
-            | sort -z \
-            | xargs -0 sha256sum \
-            | tee evidence/runtime/official-coco/${{ github.run_id }}/SHA256SUMS.txt
+          mkdir -p evidence/runtime/official-coco
+          python benchmarks/s6_official_coco.py --dimensions $COCO_DIMENSIONS --budget $COCO_BUDGET --seed $COCO_SEED --output-dir evidence/runtime/official-coco
 
       - name: Upload immutable benchmark evidence
         uses: actions/upload-artifact@v4
         with:
-          name: official-coco-${{ github.run_id }
-          path: evidence/runtime/official-coco/${{ github.run_id }/
+          name: official-coco-elevated-s6
+          path: evidence/runtime/official-coco/
           if-no-files-found: error
           retention-days: 90
-
-      - name: Publish gate summary
-        run: |
-          {
-            echo '## Official COCO/BBOB registered run'
-            echo
-            echo "- Commit: \`\${{ github.sha }}\`"
-            echo "- Dimension: \`\${{ env.COCO_DIMENSIONS }}\`"
-            echo "- Budget: \`\${{ env.COCO_BUDGET }}\`"
-            echo "- Seed: \`\${{ env.COCO_SEED }}\`"
-            echo '- Suite: \`cocoex.Suite("bbob")\`'
-            echo '- Observer: official COCO observer (elevated S6 diagonal self-adapt)'
-            echo '- Evidence: uploaded as workflow artifact'
-            echo '- Speedup publication gate: remains closed until quotient equivalence + reverse reconstruction + invariant + performance gates are captured for the same workload.'
-          } >> "$\{github.step_summary}"
