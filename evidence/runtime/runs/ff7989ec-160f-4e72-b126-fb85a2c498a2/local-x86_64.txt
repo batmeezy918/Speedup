@@ -1,0 +1,12 @@
+WITNESS=AGD_MUNI_CROSS_ENVIRONMENT
+d=4096 m=64 r=64 steps=256
+certificate_state=CERTIFIED target=x86_64-linux-gnu compiler=gcc-local
+max_abs_error=0 bitwise_equal=PASS
+full_output_fnv1a64=13698687503655124261
+fast_output_fnv1a64=13698687503655124261
+baseline_ms=30.2364986667 quotient_e2e_ms=0.400768666667 speedup=75.4462640958x (timing informational only)
+inadmissible_fallback_error=0 fallback_bitwise_equal=PASS
+CROSS_ENVIRONMENT_EXACTNESS_GATE=PASS
+CROSS_ENVIRONMENT_BENCHMARK_GATE=PASS (timing informational only)
+CROSS_ENVIRONMENT_FALLBACK_GATE=PASS
+CROSS_ENVIRONMENT=PASS

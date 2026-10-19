@@ -1,0 +1,32 @@
+{
+  "run_id": "ff7989ec-160f-4e72-b126-fb85a2c498a2",
+  "commit_sha": "aac92cb2f81410e916fd799a40948909d6e440ae",
+  "evidence_class": "AUDIT_ONLY",
+  "vacuity_verdict": "VACUITY_PASS",
+  "cross_environment_verdict": "PASS",
+  "substrate": "x86_64-linux-gnu (local sandbox, independent of any prior measurement substrate)",
+  "gate_matrix": {
+    "I": "PASS (repo pin + hashes)",
+    "R": "NOT_EXECUTED (audit cycle, no new candidate run)",
+    "Q": "NOT_EXECUTED",
+    "Q_inv": "NOT_EXECUTED",
+    "Omega": "NOT_EXECUTED",
+    "X": "PASS (local x86_64 witness, independent substrate)",
+    "L": "PASS (VACUITY_PASS, no sorryAx)"
+  },
+  "measured_speedups": {
+    "agd_quotient_formal_work_ratio": 16,
+    "agd_quotient_historical_wall_aarch64": "15.96x (measuredHundredths=1596, historical)",
+    "neon_n512_historical": "11.554x (not publishable)",
+    "muni_cross_env_informational": "75.45x (timing informational only, this run)",
+    "sim2xr_historical": "16.5-17.6x (HISTORICAL_ARTIFACT)"
+  },
+  "quarantined": [
+    "NEON N512 (Q, Q^{-1}, Omega false)",
+    "SIM2XR until independent rerun",
+    "Any candidate with X=UNKNOWN or L=FAIL"
+  ],
+  "establishes": "Vacuity gate PASS on current MUNI proof corpus; cross-environment witness PASS on independent x86_64 substrate with exactness, benchmark (info), fallback all PASS; formal work ratio 16 separated from measured 15.96x remains load-bearing.",
+  "unestablished": "No new STRONG_LOCAL or VERIFIED promotion; no independent re-execution of AGD/NEON/SIM2XR wall-clock on this substrate; publisher strict_gate not satisfied for any new certificate.",
+  "claim_strength": "AUDIT_ONLY <= EVIDENCE_STRENGTH"
+}
