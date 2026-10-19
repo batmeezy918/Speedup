@@ -32,9 +32,9 @@ jobs:
     timeout-minutes: 60
     env:
       PYTHONUNBUFFERED: '1'
-      COCO_DIMENSIONS: ${{ github.event.inputs.dimensions || '10' }
-      COCO_BUDGET: ${{ github.event.inputs.budget || '1000' }
-      COCO_SEED: ${{ github.event.inputs.seed || '20260810' }
+      COCO_DIMENSIONS: ${{ github.event.inputs.dimensions || '10' }}
+      COCO_BUDGET: ${{ github.event.inputs.budget || '1000' }}
+      COCO_SEED: ${{ github.event.inputs.seed || '20260810' }}
       PYTHONHASHSEED: '0'
 
     steps:
@@ -122,7 +122,7 @@ jobs:
       - name: Upload immutable evidence artifact
         uses: actions/upload-artifact@v4
         with:
-          name: s6-adapt-coco-${{ github.run_id }
+          name: s6-adapt-coco-${{ github.run_id }}
           path: evidence/runtime/s6-adapt-${{ github.run_id }}/
           if-no-files-found: error
           retention-days: 90
@@ -134,11 +134,11 @@ jobs:
           {
             echo '## S6 Diagonal Adaptation COCO Run'
             echo
-            echo "- Commit: \`$GITUB_SHA\`"
-            echo "- Dimension: \`$COCO_DIMENSIONS\`"
-            echo "- Budget: \`$COCO_BUDGET\`"
-            echo "- Seed: \`$COCO_SEED\`"
+            echo "- Commit: \`${GITHUB_SHA}\`"
+            echo "- Dimension: \`${COCO_DIMENSIONS}\`"
+            echo "- Budget: \`${COCO_BUDGET}\`"
+            echo "- Seed: \`${COCO_SEED}\`"
             echo '- Contract: suite.get_problem(i) -> run_s6_adapt(problem)'
             echo '- Observer: observe_with logging only'
             echo '- Evidence class: FORMAL_PARTIAL'
-          } >> "$GITUB_STEP_SUMMARY"
+          } >> "$GITHUB_STEP_SUMMARY"
