@@ -1,0 +1,33 @@
+{
+  "run_id": "AGD-PCSS-AUDIT-20261021T071545Z-edfd02e6",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp": "2026-10-21T07:15:45Z",
+  "substrate": "x86_64 (Intel Xeon Platinum 8481C)",
+  "phases": ["AUDIT", "APPLY", "EVIDENCE"],
+  "canonical_paths_present": true,
+  "vacuity_verdict": "VACUITY_PASS",
+  "vacuity_source": "muni-production/ops/vacuity/vacuity_report.json (existing; ProofCarryingTransformation.lean corrected post-Oct9)",
+  "cross_environment": {
+    "verdict": "PASS",
+    "substrate": "local x86_64 (independent from historical aarch64 measurements)",
+    "artifact": "evidence/runtime/cross-environment/local-x86_64.txt",
+    "exactness": "PASS (max_abs_error=0, bitwise equal)",
+    "benchmark": "PASS (informational only, ~81.6x)",
+    "fallback": "PASS",
+    "note": "CI artifact github-x86_64.txt not present in repo; local independent-substrate run performed"
+  },
+  "gates": {
+    "I": "UNKNOWN (no new certificate)",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Qinv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS (this substrate)",
+    "L": "PASS (vacuity)"
+  },
+  "publisher": "strict_gate.py requires certificate; none provided for promotion",
+  "evidence_class": "AUDIT_ONLY / X_CLOSED_LOCALLY",
+  "promotions": "none (no VERIFIED; AGDGovernor remains FORMAL_PARTIAL)",
+  "quarantined": [],
+  "notes": "No sub-one speedups observed this run. Historical AGD 15.96x and NEON 11.554x remain as previously classified. SIM2XR historical only."
+}
