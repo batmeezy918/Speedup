@@ -1,0 +1,24 @@
+{
+  "run_id": "RUN_20261022T0715Z_AGD_AUDIT_001",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp": "2026-10-22T07:15:00Z",
+  "substrate": "x86_64-linux (sandbox, g++ 12.2.0)",
+  "vacuity_verdict": "VACUITY_PASS (from committed vacuity_report.json; Lean toolchain unavailable for re-execution)",
+  "cross_environment_verdict": "CROSS_ENVIRONMENT=PASS (local independent x86-64 execution)",
+  "speedup_measured": 74.8671062244,
+  "speedup_note": "informational only; MUNI quotient vs full path on d=4096 m=64 steps=256",
+  "gate_matrix": {
+    "I": "UNKNOWN (no full PCSS certificate executed this run)",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS (this substrate)",
+    "L": "PARTIAL (vacuity_report PASS, but not re-run here)"
+  },
+  "evidence_class": "CROSS_ENVIRONMENT_WITNESS",
+  "quarantined": [],
+  "established": "MUNI cross-environment exactness, fallback, and positive speedup on independent x86-64 substrate; committed formal corpus vacuity PASS",
+  "unestablished": "Full PUBLISH gate chain; AGD aarch64 wall measurements; Lean re-verification in this environment; NEON/SIM2XR promotion",
+  "status": "QUARANTINED_FOR_PROMOTION"
+}
