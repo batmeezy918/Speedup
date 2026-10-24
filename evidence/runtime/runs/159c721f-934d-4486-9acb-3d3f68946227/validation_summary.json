@@ -1,0 +1,34 @@
+{
+  "run_id": "159c721f-934d-4486-9acb-3d3f68946227",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp": "2026-10-24T07:13:38Z",
+  "evidence_class": "AUDIT_ONLY",
+  "vacuity_verdict": "VACUITY_PASS (prior report ff7989ec; Lean toolchain unavailable in current sandbox for re-execution)",
+  "cross_environment_verdict": "PASS",
+  "substrate": "x86_64-linux (local sandbox, independent substrate)",
+  "gate_matrix": {
+    "I": "PASS (repo pinned at edfd02e6ffebc95f368e6093c6e7be8bab0feadc)",
+    "R": "NOT_EXECUTED (audit cycle)",
+    "Q": "NOT_EXECUTED",
+    "Q_inv": "NOT_EXECUTED",
+    "Omega": "NOT_EXECUTED",
+    "X": "PASS (local x86_64 cross-environment witness: EXACTNESS max_abs_error=0 bitwise_equal=PASS, FALLBACK PASS, BENCHMARK informational 77.28x)",
+    "L": "PASS (VACUITY_PASS on MUNI corpus; no sorryAx observed in prior audit)"
+  },
+  "measured_speedups": {
+    "muni_cross_env_informational_this_run": "77.2796x (timing informational only)",
+    "agd_quotient_formal_work_ratio": 16,
+    "agd_quotient_historical_wall_aarch64": "15.96x (HISTORICAL)",
+    "neon_n512_historical": "11.554x (NOT publishable; Q/Qinv/Omega false)",
+    "sim2xr_historical": "16.5-17.6x (HISTORICAL_ARTIFACT)"
+  },
+  "determinism_verdict": "NOT_EXECUTED",
+  "quarantined": [
+    "NEON N512 (Q, Q^{-1}, Omega false — do not promote)",
+    "SIM2XR until independently rerun",
+    "Any candidate pending full gate chain"
+  ],
+  "establishes": "Canonical paths present. Cross-environment witness executed on independent x86_64 substrate with all three gates PASS (exactness, benchmark-info, fallback). Vacuity previously PASS. No new candidate promotion.",
+  "unestablished": "No new wall-clock re-execution of AGD/NEON/SIM2XR on this substrate. Publisher strict_gate not satisfied for VERIFIED. Lean re-execution of vacuity blocked by missing toolchain.",
+  "claim_strength": "AUDIT_ONLY"
+}
