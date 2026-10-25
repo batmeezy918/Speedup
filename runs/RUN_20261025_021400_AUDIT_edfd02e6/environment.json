@@ -1,0 +1,8 @@
+{
+  "arch": "x86_64",
+  "uname": "Linux hds-b12ml1bqhi1a 6.12.8+ #1 SMP Tue Jul 21 13:56:45 UTC 2026 x86_64 GNU/Linux",
+  "python": "3.10.21",
+  "gcc": "Debian 12.2.0-14+deb12u1",
+  "lean": "NOT_INSTALLED",
+  "substrate_note": "Independent from presumed aarch64 measurement substrates; matches CI ubuntu-24.04 x86-64 class"
+}
