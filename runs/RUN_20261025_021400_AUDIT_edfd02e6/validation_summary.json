@@ -1,0 +1,45 @@
+{
+  "run_id": "RUN_20261025_021400_AUDIT_edfd02e6",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp": "2026-10-25T07:14:00Z",
+  "phase": "AUDIT",
+  "gate_matrix": {
+    "I": "UNKNOWN",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS",
+    "L": "PASS_FROM_COMMITTED_REPORT"
+  },
+  "vacuity_verdict": "VACUITY_PASS",
+  "vacuity_note": "Based on committed vacuity_report.json (schema muni.formal-vacuity-audit.v1). ProofCarryingTransformation.lean master is now NONTRIVIAL (prior True\u2227True\u2227True defect corrected). Lean toolchain unavailable in this sandbox; re-execution not performed.",
+  "cross_environment_verdict": "PASS",
+  "cross_environment_substrate": "x86_64 (this sandbox, Linux 6.12.8+, independent class from aarch64 measurement substrates; matches CI target)",
+  "cross_environment_details": {
+    "max_abs_error": 0,
+    "bitwise_equal": "PASS",
+    "fnv1a64": "13698687503655124261",
+    "speedup_informational": 78.9367389308,
+    "fallback": "PASS",
+    "gates": [
+      "EXACTNESS=PASS",
+      "BENCHMARK=PASS",
+      "FALLBACK=PASS"
+    ]
+  },
+  "measured_speedup": null,
+  "evidence_class": "AUDIT_EVIDENCE",
+  "quarantined": [],
+  "notes": [
+    "All declared canonical paths present.",
+    "AGD quotient formal: workRatio(fullWork 1024, quotientWork 256) = 16; measuredHundredths=1596 \u2260 16*100 preserved in lean4/AGDGemmSpeedup.lean.",
+    "NEON N512 remains not publishable (Q/Qinv/Omega false per standing law).",
+    "SIM2XR remains HISTORICAL_ARTIFACT pending independent rerun.",
+    "No VERIFIED promotion. AGDGovernor remains FORMAL_PARTIAL.",
+    "X closed for MUNI-family on this independent substrate.",
+    "L supported by committed VACUITY_PASS; re-execution blocked by missing Lean."
+  ],
+  "what_established": "Cross-environment X=PASS on x86_64 independent substrate for MUNI witness; committed formal corpus VACUITY_PASS; path audit clean.",
+  "what_unestablished": "Any new measured speedup, full gate closure for publication, re-execution of Lean vacuity probes, independent aarch64 remeasurement of historical numbers."
+}
