@@ -1,0 +1,22 @@
+{
+  "run_id": "RUN_20261030_0718_AUDIT_edfd02e6",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp": "2026-10-30T07:18:00Z",
+  "evidence_class": "AUDIT_EVIDENCE",
+  "gate_matrix": {
+    "I": "UNKNOWN",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS",
+    "L": "PASS_FROM_COMMITTED_REPORT"
+  },
+  "vacuity_verdict": "VACUITY_PASS",
+  "cross_environment_verdict": "PASS",
+  "cross_environment_substrate": "x86_64 local sandbox (Linux 6.12.8+, g++ 12.2.0, independent from aarch64)",
+  "measured_speedup": "None (audit); informational witness ~75.7x",
+  "determinism": "Not re-executed for new candidates",
+  "quarantined": ["NEON_N512", "SIM2XR_HISTORICAL", "AGDGovernor_FORMAL_PARTIAL"],
+  "notes": "Canonical paths verified. Vacuity from committed report (toolchain absent). X closed on independent x86_64."
+}
