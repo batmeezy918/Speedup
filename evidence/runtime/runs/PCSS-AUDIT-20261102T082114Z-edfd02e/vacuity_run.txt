@@ -1,0 +1,93 @@
+VERDICT: VACUITY_PASS
+
+  AGD_C_KERNEL_CORRESPONDENCE.lean
+    compiles=True  axiom_free=5  sorryAx=0  theorems=7
+    AXES: vacuity=PASS axioms=AXIOM_FREE
+      V1 AGD.csum_congr: SKIP -- module does not compile here
+      V1 AGD.cOriginalApply_preserves_invariant: SKIP -- module does not compile here
+      V1 AGD.cInvariant_iterate: SKIP -- module does not compile here
+      V1 AGD.cProject_commutes: SKIP -- module does not compile here
+      V1 AGD.cProject_commutes_at: SKIP -- module does not compile here
+      V1 AGD.cQuotient_tracks_projection: SKIP -- module does not compile here
+      V1 AGD.cReconstruct_exact: SKIP -- module does not compile here
+  AGD_C_KERNEL_FLOAT_CORRESPONDENCE.lean
+    compiles=True  axiom_free=0  sorryAx=0  theorems=7
+    AXES: vacuity=PASS axioms=AXIOM_BEARING (Classical.choice is forced by Lean's core Float arithmetic (...)
+      V1 AGD.fsum_congr: SKIP -- module does not compile here
+      V1 AGD.cOriginalApply_preserves_invariant: SKIP -- module does not compile here
+      V1 AGD.cInvariant_iterate: SKIP -- module does not compile here
+      V1 AGD.cProject_commutes_at: SKIP -- module does not compile here
+      V1 AGD.cQuotient_tracks_projection: SKIP -- module does not compile here
+      V1 AGD.cReconstruct_exact: SKIP -- module does not compile here
+      V1 AGD.float_arith_is_axiom_bearing: SKIP -- module does not compile here
+  AGD_EQUIVALENCE_QUOTIENT_CORE.lean
+    compiles=True  axiom_free=3  sorryAx=0  theorems=3
+    AXES: vacuity=PASS axioms=AXIOM_FREE
+      V1 AGD.iterate_projection_commutes: SKIP -- module does not compile here
+      V1 AGD.iterate_reconstruction_exact: SKIP -- module does not compile here
+      V1 AGD.iterate_preserves_invariant: SKIP -- module does not compile here
+  AGD_GAP_DERIVATION.lean
+    compiles=True  axiom_free=17  sorryAx=0  theorems=16
+    AXES: vacuity=PASS axioms=AXIOM_FREE
+      V1 AGD.iterate_one: SKIP -- module does not compile here
+      V1 AGD.iterate_two: SKIP -- module does not compile here
+      V1 AGD.iterate_zero: SKIP -- module does not compile here
+      V1 AGD.iterate_shift: SKIP -- module does not compile here
+      V1 AGD.iterate_comm: SKIP -- module does not compile here
+      V1 AGD.gap1_suffices: SKIP -- module does not compile here
+      V1 AGD.trajectories_give_gap1: SKIP -- module does not compile here
+      V1 AGD.gap1_iff_all_trajectories: SKIP -- module does not compile here
+      V1 AGD.projected_trajectory_all_states: SKIP -- module does not compile here
+      V1 AGD.section_exact: SKIP -- module does not compile here
+      V1 AGD.orbit_gap_free_certifies: SKIP -- module does not compile here
+      V1 AGD.pipeline_gap_on_range: SKIP -- module does not compile here
+      V1 AGD.pipeline_gap_surjective: SKIP -- module does not compile here
+      V1 AGD.forward_invariant_iterate: SKIP -- module does not compile here
+      V1 AGD.sector_intersection: SKIP -- module does not compile here
+      V1 AGD.sector_intersection_iterate: SKIP -- module does not compile here
+  AGD_TENSOR_INSTANTIATION.lean
+    compiles=True  axiom_free=5  sorryAx=0  theorems=5
+    AXES: vacuity=PASS axioms=AXIOM_FREE
+      V1 AGD.exact_reconstruction_on_invariant_orbit: SKIP -- module does not compile here
+      V1 AGD.forward_refinement: SKIP -- module does not compile here
+      V1 AGD.reconstruction_exact: SKIP -- module does not compile here
+      V1 AGD.recursive_forward_refinement: SKIP -- module does not compile here
+      V1 AGD.recursive_exact_reconstruction: SKIP -- module does not compile here
+  AGD_WORK_COUNT.lean
+    compiles=True  axiom_free=8  sorryAx=0  theorems=8
+    AXES: vacuity=PASS axioms=AXIOM_FREE
+      V1 AGD.rowLen_eq: SKIP -- module does not compile here
+      V1 AGD.full_step_op_count: SKIP -- module does not compile here
+      V1 AGD.quotient_step_op_count: SKIP -- module does not compile here
+      V1 AGD.quotient_is_one_over_m_of_full: SKIP -- module does not compile here
+      V1 AGD.op_count_ratio_is_m: SKIP -- module does not compile here
+      V1 AGD.no_replication_means_no_saving: SKIP -- module does not compile here
+      V1 AGD.saving_grows_with_m: SKIP -- module does not compile here
+      V1 AGD.quotient_never_costs_more: SKIP -- module does not compile here
+  ProofCarryingQuotient.lean
+    compiles=True  axiom_free=6  sorryAx=0  theorems=6
+    AXES: vacuity=PASS axioms=AXIOM_FREE
+      V1 AGD.gapClosed_iff_semPres: SKIP -- module does not compile here
+      V1 AGD.semPres_of_admissible: SKIP -- module does not compile here
+      V1 AGD.reconstruct_exact_of: SKIP -- module does not compile here
+      V1 AGD.semPres_is_falsifiable: SKIP -- module does not compile here
+      V1 AGD.reconstruct_exact_of': SKIP -- module does not compile here
+      V1 AGD.reconstructExact_is_falsifiable: SKIP -- module does not compile here
+  ProofCarryingTransformation.lean
+    compiles=True  axiom_free=5  sorryAx=0  theorems=5
+    AXES: vacuity=PASS axioms=AXIOM_FREE
+      V1 AGD.gapPropagates: SKIP -- module does not compile here
+      V1 AGD.gap_is_falsifiable: SKIP -- module does not compile here
+      V1 AGD.gap_is_satisfiable: SKIP -- module does not compile here
+      V1 AGD.artifactCorrect_is_falsifiable: SKIP -- module does not compile here
+      V1 AGD.master: SKIP -- module does not compile here
+
+V3 hypothesis reachability:
+  SKIP               AGD_EQUIVALENCE_QUOTIENT_CORE  section_law (decode∘project = id)
+  SKIP               AGD_EQUIVALENCE_QUOTIENT_CORE  section_law at m ≥ 2 (non-degenerate)
+  SKIP               AGD_EQUIVALENCE_QUOTIENT_CORE  invariant section (block-constant sector non-empty)
+  SKIP               AGD_EQUIVALENCE_QUOTIENT_CORE  block-constant state of length 4 with m=2 is reachable
+  SKIP               AGD_GAP_DERIVATION             Gap1 satisfiable (one-step gap holds for some system)
+  SKIP               AGD_GAP_DERIVATION             Gap1 VIOLATED by some system (gap is not universal)
+  SKIP               AGD_GAP_DERIVATION             OrbitGapFree satisfiable (a real gap-free trajectory)
+  SKIP               AGD_GAP_DERIVATION             Pipeline range restriction non-vacuous (f₁ surjective)
