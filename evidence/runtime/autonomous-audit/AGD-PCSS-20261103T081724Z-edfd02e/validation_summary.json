@@ -1,0 +1,30 @@
+{
+  "run_id": "AGD-PCSS-20261103T081724Z-edfd02e",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "commit_short": "edfd02e",
+  "timestamp_utc": "2026-11-03T08:17:24Z",
+  "substrate": {
+    "uname": "Linux hds-5v0dz00isayi 6.12.8+ #1 SMP Tue Jul 21 13:56:45 UTC 2026 x86_64 GNU/Linux",
+    "compiler": "g++ (Debian 12.2.0-14+deb12u1) 12.2.0",
+    "python": "3.10.21",
+    "lean_available": false,
+    "arch": "x86_64"
+  },
+  "gate_matrix": {
+    "I": "UNKNOWN (no full certificate evaluated)",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS",
+    "L": "PARTIAL (committed vacuity_report.json reports VACUITY_PASS; re-execution blocked by missing Lean)"
+  },
+  "vacuity_verdict": "VACUITY_PASS (from committed report; not re-executed)",
+  "cross_environment_verdict": "PASS",
+  "cross_environment_substrate": "local x86_64 sandbox (independent of typical aarch64 measurement substrates)",
+  "measured_speedup": "77.9035552894x (informational only, from witness BENCHMARK gate; timing not used for promotion)",
+  "determinism_verdict": "N/A (no native runner execution in this audit)",
+  "evidence_class": "AUDIT_CROSS_ENVIRONMENT_WITNESS",
+  "quarantined": ["Any promotion to VERIFIED blocked: I/R/Q/Qinv/Omega unknown, L not re-confirmed, no full PCSS certificate"],
+  "notes": "Witness executed with mandatory flags -O3 -fno-fast-math -ffp-contract=off. EXACTNESS max_abs_error=0 bitwise_equal=PASS, FALLBACK PASS. No new algorithmic candidates promoted. SIM2XR remains HISTORICAL_ARTIFACT. NEON N512 remains non-publishable. AGDGovernor remains FORMAL_PARTIAL."
+}
