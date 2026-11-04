@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/workspace/artifacts/Speedup/muni-production/ops/vacuity/vacuity_check.py", line 229, in <module>
+    sys.exit(main())
+  File "/workspace/artifacts/Speedup/muni-production/ops/vacuity/vacuity_check.py", line 158, in main
+    report["v3_hypothesis_reachability"] = v3_hypothesis_reachability()
+  File "/workspace/artifacts/Speedup/muni-production/ops/vacuity/vacuity_check.py", line 105, in v3_hypothesis_reachability
+    r = probe(mod, snip)
+  File "/workspace/artifacts/Speedup/muni-production/ops/vacuity/vacuity_check.py", line 42, in probe
+    d = compile_module(lean_name)
+  File "/workspace/artifacts/Speedup/muni-production/ops/vacuity/vacuity_check.py", line 38, in compile_module
+    r = lean(["-o", str(d / f"{lean_name}.olean"), str(SRC / f"{lean_name}.lean")], cwd=SRC)
+  File "/workspace/artifacts/Speedup/muni-production/ops/vacuity/vacuity_check.py", line 33, in lean
+    return subprocess.run(["lean", *args], cwd=cwd or ROOT, capture_output=True,
+  File "/usr/local/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/local/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/local/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: PosixPath('/workspace/artifacts/Speedup/muni-production/ops/vacuity/src')
