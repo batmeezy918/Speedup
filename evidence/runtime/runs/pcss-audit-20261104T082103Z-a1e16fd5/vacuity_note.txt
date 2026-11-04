@@ -1,0 +1,1 @@
+VACUITY: historical report shows VACUITY_PASS; this run could not re-execute due to missing Lean toolchain in sandbox.
