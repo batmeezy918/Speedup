@@ -1,0 +1,26 @@
+{
+  "run_id": "fa4a6c8e-6f27-4774-a8be-a561f2b2c4d5",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp_utc": "2026-11-05T08:22:19Z",
+  "phase": "AUDIT+EVIDENCE",
+  "canonical_paths": "all_present",
+  "vacuity_verdict": "VACUITY_PASS",
+  "cross_environment": {
+    "verdict": "PASS",
+    "substrate": "local-x86_64-debian12",
+    "uname": "Linux hds-cgplsc7s7rvl 6.12.8+ #1 SMP Tue Jul 21 13:56:45 UTC 2026 x86_64 GNU/Linux",
+    "speedup_informational": "74.137x",
+    "gates": ["EXACTNESS=PASS", "BENCHMARK=PASS", "FALLBACK=PASS"]
+  },
+  "candidates_status": {
+    "AGD_quotient": "formal_workRatio=16, measured_aarch64_historical=15.96x (measuredHundredths=1596), separation theorem load-bearing; no new execution",
+    "NEON_N512": "11.554x (3/3 >1) but Q/Qinv/Omega false; NOT publishable",
+    "SIM2XR": "HISTORICAL_ARTIFACT only (16.5-17.6x)",
+    "MUNI_kernels": "X=PASS on independent x86_64, L=VACUITY_PASS; full PUBLISH gates not satisfied",
+    "QKXR_towers": "natives present; no new measurement this run"
+  },
+  "publisher_strict_gate": "requires valid certificate; no VERIFIED promotion attempted",
+  "evidence_class": "AUDIT_EVIDENCE",
+  "established": "canonical wiring intact; vacuity PASS; cross-env X=PASS on independent substrate; no verified publications",
+  "unestablished": "full I/R/Q/Qinv/Omega/L for any candidate under current certificate schema; independent re-runs of historical numbers"
+}
