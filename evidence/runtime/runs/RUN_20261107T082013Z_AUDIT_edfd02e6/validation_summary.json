@@ -1,0 +1,39 @@
+{
+  "run_id": "RUN_20261107T082013Z_AUDIT_edfd02e6",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp_utc": "2026-11-07T08:20:13Z",
+  "gate_matrix": {
+    "I": "UNKNOWN",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS",
+    "L": "PASS_FROM_COMMITTED_REPORT"
+  },
+  "vacuity_verdict": "VACUITY_PASS",
+  "vacuity_notes": "Committed muni-production/ops/vacuity/vacuity_report.json shows NONTRIVIAL conclusions, sorryAx=0, compiles=true for audited modules. Lean toolchain unavailable in this sandbox; re-execution not performed.",
+  "cross_environment_verdict": "PASS",
+  "cross_environment_substrate": "x86_64 Debian 12 (bookworm), gcc 12.2.0, independent from aarch64 measurement substrates",
+  "cross_environment_details": {
+    "EXACTNESS": "PASS (max_abs_error=0, bitwise_equal=PASS, FNV-1a64=13698687503655124261)",
+    "BENCHMARK": "PASS (75.149x informational only)",
+    "FALLBACK": "PASS"
+  },
+  "measured_speedup": "None for candidate (audit only). Informational witness speedup 75.149x on x86_64.",
+  "determinism": "Not applicable (no PCSS runner execution)",
+  "evidence_class": "AUDIT_EVIDENCE",
+  "quarantined": ["SIM2XR historical remains HISTORICAL_ARTIFACT", "NEON N512 remains non-publishable (Q/Qinv/Omega false)"],
+  "what_established": [
+    "Canonical paths present at pinned SHA",
+    "X gate closed for MUNI-family witness on independent x86_64 substrate",
+    "Formal corpus VACUITY_PASS per committed report",
+    "AGD quotient measured vs work_ratio separation preserved in Lean specimens"
+  ],
+  "what_unestablished": [
+    "Full I∧R∧Q∧Q⁻¹∧Ω∧L for any candidate",
+    "Re-execution of vacuity gate (Lean absent)",
+    "Independent remeasurement of historical SIM2XR/NEON",
+    "No VERIFIED promotion. AGDGovernor remains FORMAL_PARTIAL."
+  ]
+}
