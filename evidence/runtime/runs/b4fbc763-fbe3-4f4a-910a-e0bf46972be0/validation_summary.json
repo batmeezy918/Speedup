@@ -1,0 +1,26 @@
+{
+  "run_id": "b4fbc763-fbe3-4f4a-910a-e0bf46972be0",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp": "2026-11-08T08:21:06Z",
+  "gate_matrix": {
+    "I": "UNKNOWN",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS",
+    "L": "PASS_FROM_COMMITTED"
+  },
+  "vacuity_verdict": "VACUITY_PASS",
+  "cross_environment": {
+    "verdict": "PASS",
+    "substrate": "x86_64-sandbox (independent from aarch64 measurement substrates)",
+    "exactness": "PASS",
+    "benchmark_informational": "77.15x",
+    "fallback": "PASS"
+  },
+  "speedup_measured": null,
+  "evidence_class": "AUDIT_EVIDENCE",
+  "quarantined": ["SIM2XR historical as HISTORICAL_ARTIFACT", "NEON N512 not publishable"],
+  "notes": "No new candidate execution; X closed independently this run. No VERIFIED promotion."
+}
