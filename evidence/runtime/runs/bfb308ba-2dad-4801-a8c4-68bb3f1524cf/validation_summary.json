@@ -1,0 +1,42 @@
+{
+  "run_id": "bfb308ba-2dad-4801-a8c4-68bb3f1524cf",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp_utc": "2026-11-09T08:25:02Z",
+  "phase": "AUDIT+EVIDENCE",
+  "vacuity_verdict": "VACUITY_PASS",
+  "vacuity_source": "muni-production/ops/vacuity/vacuity_report.json (pre-existing; Lean not available to re-execute)",
+  "cross_environment": {
+    "verdict": "PASS",
+    "substrate": "local-x86_64-debian12-sandbox (independent from historical aarch64 measurement)",
+    "gates": {
+      "EXACTNESS": "PASS (max_abs_error=0, bitwise equal, FNV-1a64 match)",
+      "BENCHMARK": "PASS (informational; ~79x observed this run)",
+      "FALLBACK": "PASS"
+    },
+    "raw_output": "WITNESS=AGD_MUNI_CROSS_ENVIRONMENT\nd=4096 m=64 r=64 steps=256\ncertificate_state=CERTIFIED target=x86_64-linux-gnu compiler=gcc-local\nmax_abs_error=0 bitwise_equal=PASS\nfull_output_fnv1a64=13698687503655124261\nfast_output_fnv1a64=13698687503655124261\nbaseline_ms=30.096964 quotient_e2e_ms=0.405007333333 speedup=74.3121457883x (timing informational only)\ninadmissible_fallback_error=0 fallback_bitwise_equal=PASS\nCROSS_ENVIRONMENT_EXACTNESS_GATE=PASS\nCROSS_ENVIRONMENT_BENCHMARK_GATE=PASS (timing informational only)\nCROSS_ENVIRONMENT_FALLBACK_GATE=PASS\nCROSS_ENVIRONMENT=PASS"
+  },
+  "gate_matrix": {
+    "I": "UNKNOWN (no new certificate produced)",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS",
+    "L": "PARTIAL (VACUITY_PASS on corpus; no new Lean obligations discharged)"
+  },
+  "measured_speedups": {
+    "cross_env_witness_informational": "79.3855374688x (this local x86_64 run; timing only)",
+    "historical_agd_aarch64": "15.96x (measuredHundredths=1596; formal workRatio=16; theorem proves measured \u2260 work_ratio\u00d7100)",
+    "historical_neon_n512": "11.554x (NOT publishable; Q/Qinv/Omega false)",
+    "sim2xr": "HISTORICAL_ARTIFACT only"
+  },
+  "evidence_class": "AUDIT_EVIDENCE (no promotion; AGDGovernor remains FORMAL_PARTIAL; verified_count=0)",
+  "quarantined": [],
+  "notes": [
+    "All declared canonical paths exist.",
+    "No algorithmic code changes applied this cycle.",
+    "Sub-one or negative results: none newly measured; historical cocoex 0.8465x remains in claims as NEGATIVE.",
+    "Publisher strict_gate.py not bypassed; no candidate certificate submitted for publication.",
+    "Lean toolchain absent; vacuity re-execution impossible; prior report accepted with VACUITY_PASS."
+  ]
+}
