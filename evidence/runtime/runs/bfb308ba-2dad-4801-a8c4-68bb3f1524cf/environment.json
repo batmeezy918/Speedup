@@ -1,0 +1,13 @@
+{
+  "schema": "pcss.environment.v1",
+  "run_id": "bfb308ba-2dad-4801-a8c4-68bb3f1524cf",
+  "timestamp_utc": "2026-11-09T08:25:02Z",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "arch": "x86_64",
+  "kernel": "Linux hds-mcv49fo5xo3r 6.12.8+ #1 SMP Tue Jul 21 13:56:45 UTC 2026 x86_64 GNU/Linux",
+  "lean_version": "not installed in this sandbox",
+  "gcc_version": "g++ (Debian 12.2.0-14+deb12u1) 12.2.0",
+  "substrate": "local-x86_64-debian12-sandbox",
+  "independent_from_measurement": true,
+  "note": "Measurement substrate for MUNI historically aarch64/Termux; this is independent x86_64"
+}
