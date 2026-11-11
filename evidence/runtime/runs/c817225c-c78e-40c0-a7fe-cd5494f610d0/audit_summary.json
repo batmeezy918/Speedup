@@ -1,0 +1,29 @@
+{
+  "run_id": "c817225c-c78e-40c0-a7fe-cd5494f610d0",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "phase": "AUDIT_APPLY_EVIDENCE",
+  "canonical_paths_verified": true,
+  "vacuity_verdict": "VACUITY_PASS (prior report; fresh execution blocked: lean toolchain absent)",
+  "cross_environment_verdict": "PASS",
+  "cross_environment_substrate": "x86_64 (local Debian g++ 12.2, independent of any aarch64 measurement)",
+  "witness_gates": {
+    "EXACTNESS": "PASS",
+    "BENCHMARK": "PASS (informational timing ~77.8x)",
+    "FALLBACK": "PASS"
+  },
+  "gate_matrix": {
+    "I": false,
+    "R": false,
+    "Q": false,
+    "Qinv": false,
+    "Omega": false,
+    "X": true,
+    "L": "prior_PASS_only"
+  },
+  "evidence_class": "AUDIT_CYCLE_STRONG_LOCAL_CANDIDATE",
+  "notes": "No new algorithmic candidate promoted. AGD quotient formal 16x vs measured 15.96x separation preserved as load-bearing. NEON N512 11.554x remains non-publishable. SIM2XR historical only. MUNI witness closed X on independent substrate. Vacuity prior report PASS; ProofCarryingTransformation.lean currently NONTRIVIAL in report. Strict gate not bypassed. No VERIFIED claim.",
+  "quarantined": [],
+  "speedups_observed": {
+    "muni_cross_env_witness_informational": 77.79
+  }
+}
