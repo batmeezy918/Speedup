@@ -1,0 +1,17 @@
+WITNESS=AGD_MUNI_CROSS_ENVIRONMENT
+d=4096 m=64 r=64 steps=256
+certificate_state=CERTIFIED target=unknown compiler=unknown
+max_abs_error=0 bitwise_equal=PASS
+full_output_fnv1a64=13698687503655124261
+fast_output_fnv1a64=13698687503655124261
+baseline_ms=22.750853 quotient_e2e_ms=0.338065666667 speedup=67.2971414824x (timing informational only)
+inadmissible_fallback_error=0 fallback_bitwise_equal=PASS
+CROSS_ENVIRONMENT_EXACTNESS_GATE=PASS
+CROSS_ENVIRONMENT_BENCHMARK_GATE=PASS (timing informational only)
+CROSS_ENVIRONMENT_FALLBACK_GATE=PASS
+CROSS_ENVIRONMENT=PASS
+
+Substrate: Debian GNU/Linux 12 (bookworm) x86_64
+Compiler flags: -O3 -fno-fast-math -ffp-contract=off
+RUN_ID: 20261113T081943Z-b73908f6-af46-48ea-98da-f3176ecfa6d3
+Commit: edfd02e6ffebc95f368e6093c6e7be8bab0feadc
