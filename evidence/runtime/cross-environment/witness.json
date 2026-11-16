@@ -1,0 +1,27 @@
+{
+  "schema": "agd.cross-environment-witness.v1",
+  "run_id": "20261116T082245Z-f18ff8c5",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "substrate": "x86_64 Debian 12 (local independent)",
+  "uname": "Linux hds-z7pd8dp0nky4 6.12.8+ #1 SMP Tue Jul 21 13:56:45 UTC 2026 x86_64 GNU/Linux",
+  "compiler": "g++ (Debian 12.2.0-14+deb12u1) 12.2.0",
+  "flags": "-O3 -fno-fast-math -ffp-contract=off",
+  "exactness": {
+    "max_abs_error": 0.0,
+    "bitwise_equal": true,
+    "fnv1a64_full": "13698687503655124261",
+    "fnv1a64_fast": "13698687503655124261"
+  },
+  "benchmark": {
+    "baseline_ms": 31.2851003333,
+    "quotient_ms": 0.455601333333,
+    "speedup": 68.6677102203,
+    "note": "informational only"
+  },
+  "fallback": {
+    "inadmissible_error": 0.0,
+    "bitwise_equal": true
+  },
+  "verdict": "CROSS_ENVIRONMENT=PASS",
+  "timestamp": "2026-11-16T08:23:30.587654+00:00"
+}

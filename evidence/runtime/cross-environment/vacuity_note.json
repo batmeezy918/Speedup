@@ -1,0 +1,7 @@
+{
+  "schema": "muni.formal-vacuity-audit.v1",
+  "source": "committed report at muni-production/ops/vacuity/vacuity_report.json",
+  "verdict": "VACUITY_PASS",
+  "note": "Lean toolchain unavailable in this audit environment; report not re-executed. Historical October 9 vacuity in ProofCarryingTransformation.lean has been corrected in current sources.",
+  "run_id": "20261116T082245Z-f18ff8c5"
+}
