@@ -1,0 +1,32 @@
+{
+  "run_id": "20261116T082245Z-f18ff8c5",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "phase": "AUDIT+EVIDENCE",
+  "vacuity_verdict": "VACUITY_PASS (committed; not re-run)",
+  "cross_environment_verdict": "PASS",
+  "cross_environment_substrate": "x86_64 Debian GNU/Linux 12 (local)",
+  "gate_matrix": {
+    "I": true,
+    "R": true,
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": true,
+    "L": "PARTIAL (vacuity pass on committed report)"
+  },
+  "measured_speedups": {
+    "cross_env_witness_informational": 68.67,
+    "agd_quotient_historical_aarch64": 15.96,
+    "neon_n512_historical": 11.554,
+    "note": "No new AGD/NEON/SIM2XR wall-clock measurements in this run. Formal work ratio remains 16; measured \u2260 work_ratio\u00d7100 theorem preserved."
+  },
+  "evidence_class": "AUDIT_WITH_INDEPENDENT_X_WITNESS",
+  "promotions": [],
+  "quarantined": [],
+  "unestablished": [
+    "Fresh Lean vacuity re-execution (toolchain missing)",
+    "Full PUBLISH gate chain for any candidate",
+    "Independent re-run of historical AGD 15.96x and NEON 11.554x on canonical instance",
+    "SIM2XR remains HISTORICAL_ARTIFACT"
+  ]
+}
