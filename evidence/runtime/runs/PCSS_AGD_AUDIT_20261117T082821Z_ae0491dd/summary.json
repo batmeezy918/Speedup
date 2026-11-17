@@ -1,0 +1,1 @@
+{"run_id":"PCSS_AGD_AUDIT_20261117T082821Z_ae0491dd","commit":"edfd02e6ffebc95f368e6093c6e7be8bab0feadc","vacuity":"VACUITY_PASS (existing report; lean not re-run)","cross_env":"PASS on local x86_64 (independent substrate)","demo_speedup":1.142,"gates":"mostly false as expected","class":"AUDIT_LOCAL"}

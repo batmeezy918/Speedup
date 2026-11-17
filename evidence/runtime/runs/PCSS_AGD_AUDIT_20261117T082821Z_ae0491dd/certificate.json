@@ -1,0 +1,52 @@
+{
+  "artifacts": {
+    "environment.json": "ebe4e5d5cb5c14193b08437fbc98a86a45a2b769dc197a3c107ad37e913144c6",
+    "performance.json": "6fcc975b945f38b887b04bcb3a6df09a2c48498ca7e2b611acb02746a85758bc",
+    "scenario.json": "cb057f2ca0fe3fbc93e2454b0854b853cf4d15dd97ae9669588bc375af80e4d3",
+    "trace.json": "06ee52c4b48739475b8610704c2c02f46aff5a7b0b9d845b7b573659bf4faf3e"
+  },
+  "attribution_hash": null,
+  "claim_strength": "STRONG_LOCAL",
+  "environment_hash": "ebe4e5d5cb5c14193b08437fbc98a86a45a2b769dc197a3c107ad37e913144c6",
+  "evidence_strength": "STRONG_LOCAL",
+  "gates": {
+    "integrity": false,
+    "invariants": false,
+    "lean": false,
+    "performance": true,
+    "quotient_forward": false,
+    "reconstruction_reverse": false,
+    "reproducibility": true
+  },
+  "input_hash": "c7b35ff01512f48fdf6851e2f462b58e2abb06e514f357769b002d71a1cb9871",
+  "invariants_hash": null,
+  "performance": {
+    "all_exit_zero": true,
+    "baseline_deterministic": true,
+    "baseline_samples": [
+      1280420,
+      1187691,
+      1547628
+    ],
+    "candidate_deterministic": true,
+    "candidate_samples": [
+      1120992,
+      1194469,
+      1052287
+    ],
+    "median_baseline": 1280420,
+    "median_candidate": 1120992,
+    "metric": "wall_ns",
+    "samples": 3,
+    "speedup_measured": 1.1422204618766236
+  },
+  "performance_hash": "6fcc975b945f38b887b04bcb3a6df09a2c48498ca7e2b611acb02746a85758bc",
+  "proof_hash": null,
+  "quotient_hash": null,
+  "reverse_hash": null,
+  "run_id": "audit_demo",
+  "scenario_hash": "cb057f2ca0fe3fbc93e2454b0854b853cf4d15dd97ae9669588bc375af80e4d3",
+  "source_hash": "a7569833e9dc6deed8fc84ff2131c28f8762abd34346d883aa0d57e999ffd457",
+  "status": "NATIVE_RUN_ONLY",
+  "trace_hash": "06ee52c4b48739475b8610704c2c02f46aff5a7b0b9d845b7b573659bf4faf3e"
+}

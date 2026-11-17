@@ -1,0 +1,1 @@
+{"all_exit_zero":true,"baseline_deterministic":true,"baseline_samples":[1280420,1187691,1547628],"candidate_deterministic":true,"candidate_samples":[1120992,1194469,1052287],"median_baseline":1280420,"median_candidate":1120992,"metric":"wall_ns","samples":3,"speedup_measured":1.1422204618766236}
