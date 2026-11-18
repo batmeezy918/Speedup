@@ -1,0 +1,6 @@
+{
+  "scenario_id": "muni-cross-env-local",
+  "candidate": "MUNI AGD quotient kernel",
+  "baseline": "full-path apply",
+  "note": "Local witness only; not a full PCSS scenario"
+}
