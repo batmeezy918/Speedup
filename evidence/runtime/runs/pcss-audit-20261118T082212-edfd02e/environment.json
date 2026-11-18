@@ -1,0 +1,11 @@
+{
+  "platform": "Linux-6.12.8+-x86_64-with-glibc2.36",
+  "machine": "x86_64",
+  "processor": "",
+  "python": "3.10.21",
+  "git_commit": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "uname": "Linux hds-kjpdxt1v0li8 6.12.8+ #1 SMP Tue Jul 21 13:56:45 UTC 2026 x86_64 GNU/Linux",
+  "gcc": "gcc (Debian 12.2.0-14+deb12u1) 12.2.0",
+  "substrate": "local-x86_64-debian12",
+  "note": "Not GitHub ubuntu-24.04 CI runner"
+}

@@ -1,0 +1,10 @@
+{
+  "speedup": 76.1857458212,
+  "baseline_ms": 29.6461846667,
+  "quotient_ms": 0.389130333333,
+  "note": "Informational only from local witness; timing not a gate",
+  "exactness": "PASS",
+  "bitwise_equal": true,
+  "fnv1a64_full": "13698687503655124261",
+  "fnv1a64_fast": "13698687503655124261"
+}
