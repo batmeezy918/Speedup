@@ -1,0 +1,29 @@
+{
+  "run_id": "RUN-20261121T0820Z-AGD-PCSS-AUDIT",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp": "2026-11-21T08:22:00Z",
+  "audit_status": "CANONICAL_PATHS_PRESENT",
+  "vacuity_verdict": "VACUITY_PASS",
+  "vacuity_note": "Existing report at pinned commit; re-execution blocked by missing lean binary in audit environment. ProofCarryingTransformation.lean reports NONTRIVIAL conclusions.",
+  "cross_environment_verdict": "X=PASS",
+  "cross_environment_substrate": "x86_64-linux-gnu (local audit runner, independent of any aarch64 measurement substrate)",
+  "cross_environment_gates": {
+    "EXACTNESS": "PASS",
+    "BENCHMARK": "PASS (informational, ~77.5x)",
+    "FALLBACK": "PASS"
+  },
+  "gate_matrix": {
+    "I": "UNKNOWN (no full certificate produced this run)",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS",
+    "L": "PARTIAL (vacuity PASS, but no new formal obligations closed)"
+  },
+  "evidence_class": "AUDIT_EVIDENCE_ONLY",
+  "claim_strength": "NONE (no promotion; AGDGovernor remains FORMAL_PARTIAL)",
+  "measured_speedup": "None this run (witness timing informational only)",
+  "quarantined": [],
+  "notes": "No algorithmic integration or new measurement performed. All declared canonical paths present. Publisher not invoked as no candidate certificate generated. SIM2XR remains HISTORICAL_ARTIFACT. NEON N512 remains non-publishable."
+}
