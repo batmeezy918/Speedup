@@ -1,0 +1,35 @@
+{
+  "run_id": "c63175d0-eae8-4534-84d9-6f1f193ef0d4",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp": "2026-11-24T08:21:00Z",
+  "substrate": "Debian 12 x86_64 sandbox (independent from any aarch64 measurement)",
+  "gates": {
+    "I": "UNKNOWN (no new certificate executed)",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS",
+    "L": "PASS (from committed vacuity_report.json; re-execution blocked by missing src/ layout and toolchain setup)"
+  },
+  "cross_environment": {
+    "verdict": "PASS",
+    "substrate": "x86_64-linux-gnu Debian 12",
+    "exactness": "PASS (max_abs_error=0, bitwise equal, FNV-1a64=13698687503655124261)",
+    "benchmark": "PASS (informational 75.7x)",
+    "fallback": "PASS"
+  },
+  "vacuity": {
+    "verdict": "VACUITY_PASS",
+    "source": "committed muni-production/ops/vacuity/vacuity_report.json",
+    "note": "vacuity_check.py could not re-execute: expects ops/vacuity/src/*.lean which is absent; Lean toolchain partially available"
+  },
+  "speedups_observed": {
+    "note": "No new wall-clock measurements performed this run. Historical AGD 15.96x (measuredHundredths=1596 ≠ 1600) and NEON 11.554x remain as previously recorded; not re-measured.",
+    "cross_env_informational": "75.7x on x86_64 witness (timing only)"
+  },
+  "evidence_class": "AUDIT_ONLY",
+  "quarantined": ["Any promotion attempt blocked by incomplete I/R/Q/Q⁻¹/Ω"],
+  "established": "Canonical wiring intact; X gate closed on independent x86_64 substrate for MUNI kernel; committed vacuity report is PASS; formal workRatio=16 distinct from measured 15.96x preserved in Lean.",
+  "unestablished": "No new STRONG_LOCAL or VERIFIED promotion; NEON remains non-publishable; SIM2XR historical only; no re-execution of AGD wall-clock on aarch64."
+}
