@@ -1,0 +1,23 @@
+{
+  "run_id": "443fb744-b0ac-4368-b1e4-0027f1d2605a",
+  "commit_sha": "edfd02e6ffebc95f368e6093c6e7be8bab0feadc",
+  "timestamp": "2026-11-28T08:19:43Z",
+  "gate_matrix": {
+    "I": "UNKNOWN",
+    "R": "UNKNOWN",
+    "Q": "UNKNOWN",
+    "Q_inv": "UNKNOWN",
+    "Omega": "UNKNOWN",
+    "X": "PASS",
+    "L": "PARTIAL"
+  },
+  "vacuity_verdict": "VACUITY_PASS_FROM_COMMITTED_REPORT",
+  "cross_environment_verdict": "PASS",
+  "substrate": "local-x86_64-sandbox-gcc",
+  "measured_speedup": 78.466171941,
+  "speedup_note": "informational only from cross-environment witness; does not close gates",
+  "evidence_class": "AUDIT_EVIDENCE",
+  "determinism": "N/A",
+  "quarantined": [],
+  "notes": "No new algorithmic changes applied. Vacuity not re-run (Lean absent). X closed on independent x86_64 substrate. No VERIFIED promotion. AGDGovernor remains FORMAL_PARTIAL. verified_count=0."
+}
